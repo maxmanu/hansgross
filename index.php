@@ -77,7 +77,7 @@ include("template-parts/header.php");
         </div>
         <div class="swiper-pagination"></div>
       </div>
-      <div>
+      <div class="col-right-event">
         <div class="card card--eventos-description">
           <div class="card-content pt-5">
             <h2 class="colorgreen">Webinars</h2>
@@ -86,16 +86,16 @@ include("template-parts/header.php");
           </div>
         </div>
         <div class="grid" style="margin-top: 20px;">
-          <div id="webinars" class="card text-bg-dark">
+          <div id="webinars" class="card card--btn-event text-bg-dark">
             <img src="assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
-              <h5 class="">Webinars</h5>
+              <p class="">Webinars</p>
             </div>
           </div>
-          <div id="cursos" class="card text-bg-dark">
+          <div id="cursos" class="card card--btn-event text-bg-dark">
             <img src="assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
-              <h5 class="">Cursos</h5>
+              <p class="">Cursos</p>
             </div>
           </div>
         </div>
@@ -262,10 +262,10 @@ include("template-parts/header.php");
           </div>
           <!-- If we need navigation buttons -->
           <div id="button-prev-software" class="swiper-button-prev">
-            <img src="assets/img/arrow-soft-left.svg" class="" alt="...">
+            <img src="assets/img/arrow-soft-left.svg" class="arrow-soft" alt="...">
           </div>
           <div id="button-next-software" class="swiper-button-next">
-            <img src="assets/img/arrow-soft-right.svg" class="" alt="...">
+            <img src="assets/img/arrow-soft-right.svg" class="arrow-soft" alt="...">
           </div>
         </div>
       </div>
