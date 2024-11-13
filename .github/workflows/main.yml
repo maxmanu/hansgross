@@ -14,6 +14,6 @@ jobs:
     - name: 📂 Sync fisles
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: yourdomain.com
-        username: ${{ secrets.ftp_username }}
+        server: ftp.maxmanuel.com
+        username: max@maxmanuel.com
         password: ${{ secrets.ftp_password }}
