@@ -26,7 +26,7 @@
             <a class="nav-link" href="academico.php">Académico</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Certificados</a>
+            <a class="nav-link" href="certificados.php">Certificados</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/">Software</a>

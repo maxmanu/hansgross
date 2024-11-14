@@ -124,7 +124,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.25);
   z-index: 2;
 }
 
@@ -889,16 +889,58 @@ footer .top-title {
   min-height: 300px
 }
 
+.card-search {
+  background: #03111C;
+  padding: 50px 50px 20px 50px;
+  color: #fff;
+  border-radius: 30px;
+}
 
+.btn--search {
+  background-color: #06834D;
+  color: #fff;
+}
 
+.card-search .input-group {
+  max-width: 750px;
+}
 
+.card-search .input-group>.form-control {
+  flex: 4;
+}
 
+.card-search .input-group .btn {
+  flex: 1;
+}
 
+.table-light {
+  background: #85E5BB;
+}
 
+.table>:not(caption)>*>* {
+  background-color: transparent;
+}
 
+.icon-table {
+  max-width: 30px;
+}
 
+.section-table-certificados {
+  background-color: #fff;
+  z-index: 9999;
+  position: relative;
+}
 
+.name-student {
+  font-family: "HandleGotic";
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #000;
+}
 
+.card-search {
+  margin-top: -85px;
+}
 
 
 
