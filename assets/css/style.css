@@ -257,8 +257,11 @@ h2 {
 }
 
 .section-equipo {
-  background: url('../img/bg-equipo.png') no-repeat 0 0 / contain, #D1FAE8;
+  background: url('../img/bg-equipo.png'), #D1FAE8;
   background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 160px;
+  padding-bottom: 160px;
 }
 
 .swiperServicios .swiper-slide {
@@ -282,12 +285,13 @@ h2 {
   height: 40px;
   width: 40px;
   background-color: #06834D;
+  margin-bottom: 8px;
 }
 
 .square--equipo {
   height: 10px;
   width: 10px;
-  margin-top: 5px;
+  margin-top: 50%;
   border-radius: 0;
   background-color: #D1FAE8;
 }
@@ -301,9 +305,14 @@ h2 {
   bottom: 10%;
   left: 0;
   background-color: rgba(6, 131, 77, .7);
-  max-width: 325px;
+  max-width: 100%;
+  width: 300px;
   color: #fff;
   padding: 5px 10px;
+}
+
+.card-eq p {
+  font-size: 1.4rem;
 }
 
 .row--mision,
@@ -818,6 +827,70 @@ footer .top-title {
 .row-contact h6 {
   font-size: 0.8rem;
 }
+
+.text-justify {
+  text-align: justify;
+}
+
+.splide__slide img {
+  width: 100%;
+  height: auto;
+}
+
+.splide {
+  padding: 4rem;
+}
+
+.section-equipo .card {
+  border-radius: 15px;
+}
+
+.splide__pagination__page {
+  height: 13px;
+  width: 13px;
+}
+
+.splide__pagination li {
+  margin: 3px;
+}
+
+.splide__pagination__page {
+  background: #fff;
+  opacity: 1;
+}
+
+.splide__pagination__page.is-active {
+  background: #06834D;
+}
+
+.splide__arrow {
+  border-radius: 5px;
+  background: #CFD4D7;
+}
+
+.splide__arrow svg {
+  margin-top: 4px;
+}
+
+.splide__arrow:hover:not(:disabled) {
+  background: #292A2C;
+}
+
+.splide__arrow:hover:not(:disabled) svg {
+  fill: #fff;
+}
+
+.section-mision p {
+  font-size: 1.2rem;
+  padding-left: 10px;
+}
+
+.col--mision {
+  min-height: 300px
+}
+
+
+
 
 
 
