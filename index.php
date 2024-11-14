@@ -86,7 +86,7 @@ include("template-parts/header.php");
           </div>
         </div>
         <div class="grid" style="margin-top: 20px;">
-          <div id="webinars" class="card card--btn-event text-bg-dark">
+          <div id="webinars" class="card card--btn-event active text-bg-dark">
             <img src="assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
               <p class="">Webinars</p>
@@ -122,15 +122,15 @@ include("template-parts/header.php");
   </div>
 </section>
 
-<section class="section-servicios ptb-100">
+<section class="section-servicios">
   <div class="container container-fluid-right">
     <div class="row">
       <div class="col-lg-4">
-        <div class="col-section-title text-white">
-          <h2 class="title-carousel-section">Conoce <br> Nuestros servicios</h2>
+        <div class="col-section-title text-white mt-5">
+          <h2 class="title-carousel-section mb-0">Conoce <br> Nuestros servicios</h2>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-          <div class="d-flex justify-content-start arrows-swipper position-relative">
-            <div id="button-prev-servicios" class="btn-arrows-servicios">
+          <div class="d-flex justify-content-start arrows-swipper position-relative pt-4">
+            <div id="button-prev-servicios" class="btn-arrows-servicios ms-0 me-2">
               <i class="bi bi-arrow-left"></i>
             </div>
             <div id="button-next-servicios" class="btn-arrows-servicios">
@@ -140,6 +140,7 @@ include("template-parts/header.php");
         </div>
       </div>
       <div class="col-lg-8 position-relative">
+        <div class="decor-green"></div>
         <div class="swiper swiperServicios">
           <div class="swiper-wrapper">
             <div class="swiper-slide">

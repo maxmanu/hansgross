@@ -41,11 +41,12 @@ body {
   font-family: 'Gotham', sans-serif;
   font-weight: 400;
   background-color: #F8F8FA;
+  font-size: 1.1rem;
 }
 
-header {
+/* header {
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .4);
-}
+} */
 
 a {
   text-decoration: none;
@@ -245,6 +246,9 @@ h2 {
   background-image: url('../img/textura_home_conoce nuestros servicios.png');
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  overflow: hidden;
 }
 
 .section-quienes-somos {
@@ -754,6 +758,22 @@ footer {
   font-size: 1rem;
 }
 
+.card--btn-event:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(1, 162, 92);
+  background: linear-gradient(0deg, rgba(1, 162, 92, 1) 0%, rgba(0, 60, 34, 0) 100%);
+  opacity: .7;
+}
+
+.card--btn-event.active:before {
+  opacity: 0;
+}
+
 .card--btn-event .card-img-overlay {
   top: initial;
 }
@@ -781,12 +801,36 @@ footer .top-title {
   margin-bottom: 0;
 }
 
+.decor-green {
+  content: "";
+  position: absolute;
+  top: -15%;
+  left: 15%;
+  width: 100%;
+  height: 130%;
+  background: #08663D;
+}
+
+.icon-fot {
+  max-width: 35px;
+}
+
+.row-contact h6 {
+  font-size: 0.8rem;
+}
 
 
 
 
 
 
+
+
+
+
+
+
+/*------MIN-WIDTH*--------*/
 
 @media (min-width: 768px) {
   .grid {
@@ -867,8 +911,30 @@ footer .top-title {
   }
 }
 
+
+/*------MAX-WIDTH*--------*/
+@media (max-width: 1200px) {
+  .social-links {
+    margin-bottom: 30px;
+  }
+
+  .logo-footer {
+    margin-top: 30px;
+  }
+}
+
 @media (max-width: 991px) {
   .section-sidebar-feat {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-title {
+    font-size: 2rem;
+  }
+
+  .grid {
+    display: block;
   }
 }

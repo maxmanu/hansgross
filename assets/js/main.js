@@ -112,8 +112,27 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
-    // Añade los eventos de clic a cada botón
+    // Función para manejar la clase activa
+    function setActiveButton(selectedButton) {
+      // Remueve la clase activa de ambos botones
+      webinarsBtn.classList.remove('active');
+      cursosBtn.classList.remove('active');
+
+      // Agrega la clase activa al botón seleccionado
+      selectedButton.classList.add('active');
+    }
+
+    // Asigna la clase activa y cambia el contenido al cargar la página
+    setActiveButton(webinarsBtn);
+    changeContent(
+      'Webinars',
+      'Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
+      '#'
+    );
+
+    // Añade los eventos de clic a cada botón para cambiar el contenido y el estado activo
     webinarsBtn.addEventListener('click', () => {
+      setActiveButton(webinarsBtn);
       changeContent(
         'Webinars',
         'Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
@@ -122,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     cursosBtn.addEventListener('click', () => {
+      setActiveButton(cursosBtn);
       changeContent(
         'Cursos',
         'Descubre una variedad de cursos diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
