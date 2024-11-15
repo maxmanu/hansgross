@@ -29,13 +29,13 @@
             <a class="nav-link" href="certificados.php">Certificados</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Software</a>
+            <a class="nav-link" href="software.php">Software</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Blog</a>
+            <a class="nav-link" href="blog.php">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Contáctanos</a>
+            <a class="nav-link" href="contacto.php">Contáctanos</a>
           </li>
         </ul>
         <!-- Left links -->
