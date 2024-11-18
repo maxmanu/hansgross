@@ -258,7 +258,7 @@ include("template-parts/header.php");
           <div class="col-auto">
             <span class="square"></span>
           </div>
-          <div class="col ps-0">
+          <div class="col">
             <h2 class="mb-0 text-white">Misión</h2>
           </div>
         </div>
@@ -267,12 +267,13 @@ include("template-parts/header.php");
         <p>Contribuir con objetividad y apego a la verdad, a resolver controversias o responder incertidumbres dentro de los procesos judiciales y/o administrativos que requieran nuestros servicios. Fomentar el interés por la Criminalística, ofreciendo capacitaciones de calidad empleando nuevas tecnologías</p>
       </div>
     </div>
-    <div class="row row--vision">
+    <div class="row row--vision position-relative">
+      <div class="boxes-decor"></div>
       <div class="col-lg-8 d-flex align-items-center">
-        <p>Consolidarnos como empresa líder brindando servicios en probática pericial en las diversas especialidades de la Criminalística. Ser reconocidos como empresa éticamente profesional de trabajo objetivo.</p>
+        <p class="vision-text">Consolidarnos como empresa líder brindando servicios en probática pericial en las diversas especialidades de la Criminalística. Ser reconocidos como empresa éticamente profesional de trabajo objetivo.</p>
       </div>
       <div class="col-lg-4">
-        <div class="row h-100 align-items-end pb-4 ps-4">
+        <div class="row h-100 align-items-end pb-5 ps-4">
           <div class="col-auto">
             <span class="square square--grey"></span>
           </div>

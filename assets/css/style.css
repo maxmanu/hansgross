@@ -326,7 +326,8 @@ h2 {
 }
 
 .row--vision {
-  background: url('../img/bg-boxes-vision.png') no-repeat 0 0 / contain, #06834D;
+  /* background: url('../img/bg-boxes-vision.png') no-repeat 0 0 / contain, #06834D; */
+  background: #06834D;
   color: #fff;
 }
 
@@ -892,6 +893,16 @@ footer .top-title {
 .splide__arrow {
   border-radius: 5px;
   background: #CFD4D7;
+  height: 45px;
+  width: 45px;
+}
+
+.splide__arrow--prev {
+  left: 0
+}
+
+.splide__arrow--next {
+  right: 0;
 }
 
 .splide__arrow svg {
@@ -907,7 +918,7 @@ footer .top-title {
 }
 
 .section-mision p {
-  font-size: 1.2rem;
+  font-size: 1.375rem;
   padding-left: 10px;
 }
 
@@ -1105,6 +1116,39 @@ footer .top-title {
   font-size: 1.2rem;
 }
 
+.boxes-decor {
+  position: absolute;
+  width: 95%;
+  left: 3%;
+  top: 0;
+  background-image: url('../img/bg-boxes-vision.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1146,6 +1190,10 @@ footer .top-title {
     max-width: calc(100% - (100% - 960px) / 2);
     margin-right: 0;
     padding-right: 0;
+  }
+
+  .section-mision .vision-text {
+    padding-left: 30px;
   }
 
   .container-fluid-right .row {
