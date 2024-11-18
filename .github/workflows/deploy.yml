@@ -2,7 +2,7 @@ name: Deploy to cPanel
 on:
   push:
     branches:
-      - main  # Puedes especificar la rama desde la que quieres desplegar
+      - main # Puedes especificar la rama desde la que quieres desplegar
 jobs:
   deploy:
     name: Deploy to cPanel via FTP
@@ -18,7 +18,7 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./  # Directorio local para subir (./ sube todo el proyecto)
+          local-dir: ./ # Directorio local para subir (./ sube todo el proyecto)
           server-dir: ${{ secrets.FTP_PATH }}
-          method: ftp  # Cambia a 'sftp' si prefieres usar SFTP en lugar de FTP
+          method: ftp # Cambia a 'sftp' si prefieres usar SFTP en lugar de FTP
           git-ftp-args: --insecure

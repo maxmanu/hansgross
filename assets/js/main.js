@@ -205,3 +205,18 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   splide.mount();
 });
+
+// Selecciona el botón del menú hamburguesa
+const menuToggleButton = document.querySelector('.navbar-toggler');
+const navbar = document.getElementById('mainNavbar');
+
+// Escucha el evento de clic en el botón
+menuToggleButton.addEventListener('click', function () {
+  if (!menuToggleButton.classList.contains('collapsed')) {
+    // Si el botón no tiene la clase 'collapsed', añade una clase al padre
+    navbar.classList.add('menu-expanded');
+  } else {
+    // Si el botón tiene la clase 'collapsed', remueve la clase del padre
+    navbar.classList.remove('menu-expanded');
+  }
+});
