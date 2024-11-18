@@ -35,48 +35,48 @@ include("template-parts/header.php");
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-footer text-center">
+                <img src="assets/img/img-card-service.webp" class="card-img-top" alt="...">
+                <div class="card-footer justify-content-center">
+                  <h5 class="card-title">Accidente de transito</h5>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card">
+                <img src="assets/img/balistica-forense.webp" class="card-img-top" alt="...">
+                <div class="card-footer justify-content-center">
+                  <h5 class="card-title">Balística forense</h5>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card">
+                <img src="assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
+                <div class="card-footer justify-content-center">
                   <h5 class="card-title">Dactiloscopia</h5>
                 </div>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-footer text-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
+                <img src="assets/img/img-card-service.webp" class="card-img-top" alt="...">
+                <div class="card-footer justify-content-center">
+                  <h5 class="card-title">Accidente de transito</h5>
                 </div>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-footer text-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
+                <img src="assets/img/balistica-forense.webp" class="card-img-top" alt="...">
+                <div class="card-footer justify-content-center">
+                  <h5 class="card-title">Balística forense</h5>
                 </div>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-footer text-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-footer text-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-footer text-center">
+                <img src="assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
+                <div class="card-footer justify-content-center">
                   <h5 class="card-title">Dactiloscopia</h5>
                 </div>
               </div>
@@ -102,38 +102,45 @@ include("template-parts/header.php");
 
 <section class="section-servicios-description ptb-100">
   <div class="container">
-    <div class="row mb-4">
+    <div class="row mb-5">
       <div class="col-lg-6">
-        <h2 class="">Accidente de transito</h2>
+        <h2 class="colorgreen-2">Accidente de transito</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
       </div>
-      <div class="col-lg-6">
-        <div class="swiper swiperEventos">
+      <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+        <div class="swiper swiperServicios2 mt-3">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
+                <img src="assets/img/img-card-service.webp" class="card-img-top" alt="...">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
+                <img src="assets/img/img-card-service.webp" class="card-img-top" alt="...">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
+                <img src="assets/img/img-card-service.webp" class="card-img-top" alt="...">
               </div>
             </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination swiper-pagination2"></div>
         </div>
       </div>
     </div>
-    <div class="row mb-4">
-      <div class="col-lg-6">
-        <img src="assets/img/img-card-service.webp" alt="" class="img-fluid">
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-6 text-lg-start text-center">
+        <div class="position-relative mb-3">
+          <a data-fslightbox="gallery" href="https://www.youtube.com/watch?v=3nQNiWdeH2Q">
+            <img src="assets/img/img-person-video.png" alt="" class="img-fluid position-relative">
+            <div class="btn-play-wrapper">
+              <img src="assets/img/btn-play.svg" class="btn-play" alt="">
+            </div>
+          </a>
+        </div>
       </div>
       <div class="col-lg-6">
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
@@ -142,30 +149,30 @@ include("template-parts/header.php");
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <h5 class="">Accidente de transito</h5>
+        <h2 class="colorgreen-2">Accidente de transito</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
       </div>
-      <div class="col-lg-6">
-        <div class="swiper swiperEventos">
+      <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+        <div class="swiper swiperServicios3 mt-3">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
+                <img src="assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
+                <img src="assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
+                <img src="assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
               </div>
             </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination swiper-pagination3"></div>
         </div>
       </div>
     </div>
@@ -178,9 +185,19 @@ include("template-parts/header.php");
       <div class="col-lg-5">
         <h2 class="colorgreen">Contáctanos</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-        <div class="">
-          <a href="/contactanos"><button class="btn btn-hans btn-hans--green">Por Whatsapp</button></a>
-          <a href="/contactanos"><button class="btn btn-hans btn-hans--green">Ver más</button></a>
+        <div class="group-buttons mt-5">
+          <a href="contacto.php">
+            <button class="btn btn-hans btn-hans--whats">
+              <span><img src="assets/img/icon-svg-whats.svg" alt=""></span>
+              Por Whatsapp
+            </button>
+          </a>
+          <a href="contacto.php">
+            <button class="btn btn-hans btn-hans--mail">
+              <span><img src="assets/img/icon-svg-mail.svg" alt=""></span>
+              Ver más
+            </button>
+          </a>
         </div>
       </div>
       <div class="col-lg-7">

@@ -26,12 +26,28 @@ include("template-parts/header.php");
         <p class="mb-0">NUESTROS CLIENTES</p>
       </div>
       <div class="col-lg-9">
-        <div class="row align-items-center">
-          <div class="col text-center"><img src="assets/img/chimu-logo.png" alt="" class="img-fluid"></div>
-          <div class="col text-center"><img src="assets/img/asbac-logo.png" alt="" class="img-fluid"></div>
-          <div class="col text-center"><img src="assets/img/mapfre-logo.png" alt="" class="img-fluid"></div>
-          <div class="col text-center"><img src="assets/img/marina-logo.png" alt="" class="img-fluid"></div>
-          <div class="col text-center"><img src="assets/img/caja-logo.png" alt="" class="img-fluid"></div>
+        <div class="swiper swiperLogosClientes">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">
+              <div class="col text-center"><img src="assets/img/chimu-logo.png" alt="" class="img-fluid"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="col text-center"><img src="assets/img/asbac-logo.png" alt="" class="img-fluid"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="col text-center"><img src="assets/img/mapfre-logo.png" alt="" class="img-fluid"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="col text-center"><img src="assets/img/marina-logo.png" alt="" class="img-fluid"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="col text-center"><img src="assets/img/caja-logo.png" alt="" class="img-fluid"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="col text-center"><img src="assets/img/chimu-logo.png" alt="" class="img-fluid"></div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
     </div>

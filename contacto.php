@@ -78,7 +78,7 @@ include("template-parts/header.php");
       </div>
       <div class="col-lg-5">
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+          <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
         </div>
       </div>

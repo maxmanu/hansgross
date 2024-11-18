@@ -37,6 +37,11 @@
   font-weight: 700;
 }
 
+:root {
+  --green-1: #01A25C;
+  --green-2: #06834D;
+}
+
 body {
   font-family: 'Gotham', sans-serif;
   font-weight: 400;
@@ -54,8 +59,12 @@ a {
   position: relative;
 }
 
-.colorgreen {
-  color: #01A25C;
+.colorgreen-1 {
+  color: var(--green-1);
+}
+
+.colorgreen-2 {
+  color: var(--green-2);
 }
 
 h2 {
@@ -171,6 +180,9 @@ h2 {
   font-family: "HandleGotic";
   font-weight: 400;
   font-size: 1.4rem;
+  -webkit-box-shadow: 7px 10px 11px -7px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 7px 10px 11px -7px rgba(0, 0, 0, 0.4);
+  box-shadow: 7px 10px 11px -7px rgba(0, 0, 0, 0.4);
 }
 
 .btn-hans:hover {
@@ -262,6 +274,24 @@ h2 {
   background-repeat: no-repeat;
   padding-top: 160px;
   padding-bottom: 160px;
+}
+
+.section-servicios-description {
+  background: url('../img/bg-servicios-text.png'), #F8F8FA;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.section-servicios-description img {
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.section-servicios-description p {
+  text-align: justify;
 }
 
 .swiperServicios .swiper-slide {
@@ -390,6 +420,10 @@ footer {
   height: 572px;
 }
 
+.swiperEventos .swiper-slide .card {
+  background: transparent;
+}
+
 .card--eventos-description {
   background-color: #D1FAE8;
   padding: 40px 60px;
@@ -477,7 +511,7 @@ footer {
 }
 
 .section-serviciosMain {
-  background-color: #01A25C;
+  background: url('../img/textura_home_conoce nuestros servicios.png')
 }
 
 .swiperServiciosMain .card-title {
@@ -485,6 +519,14 @@ footer {
   font-family: "HandleGotic";
   font-weight: 700;
   font-size: 1.2rem;
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.swiperServiciosMain .card-img-top {
+  height: 350px;
+  object-fit: cover;
 }
 
 .section-contactanos {
@@ -1130,24 +1172,79 @@ footer .top-title {
   margin-right: auto;
 }
 
+.swiperServicios2,
+.swiperServicios3 {
+  width: 500px;
+  height: 500px;
+  margin-left: initial;
+  margin-right: initial;
+}
 
+.swiperServicios2 .swiper-pagination,
+.swiperServicios3 .swiper-pagination {
+  text-align: end;
+  padding-right: 15px;
+}
 
+.section-servicios-description .swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+  background-color: #fff;
+  opacity: 1;
+}
 
+.section-servicios-description .swiper-pagination-bullet-active {
+  width: 13px;
+  height: 13px;
+  background-color: var(--green-1);
+}
 
+.btn-play-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+.btn-play-wrapper img {
+  max-width: 100px;
+  max-height: 100px;
+}
 
+.btn-hans--whats,
+.btn-hans--whats:hover {
+  background-color: #2F3033;
+  color: #fff;
+  flex: 1
+}
 
+.btn-hans--mail,
+.btn-hans--mail:hover {
+  background-color: #fff;
+  color: #06834D;
+  flex: 1
+}
 
+.section-contactanos .btn-hans img {
+  max-width: 35px;
+  margin-right: 5px;
+}
 
+.section-contactanos .btn-hans {
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: 100%;
+}
 
+.group-buttons {
+  display: flex;
+  gap: 10px;
+}
 
-
-
-
-
-
-
-
+.group-buttons a {
+  flex: 1;
+}
 
 
 
@@ -1219,6 +1316,10 @@ footer .top-title {
     >[class^='col-']:last-child {
       padding-left: 0;
     }
+  }
+
+  .swiperServicios3 {
+    margin-top: -100px;
   }
 }
 

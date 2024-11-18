@@ -25,25 +25,66 @@ const swiperServicios = new Swiper('.swiperServicios', {
 
 const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
   slidesPerView: 1,
+  centeredSlides: true, // Centra la diapositiva activa
   loop: true,
-  spaceBetween: 30,
+  spaceBetween: 20,
   navigation: {
     nextEl: '#button-next-serviciosMain',
     prevEl: '#button-prev-serviciosMain',
   },
   breakpoints: {
+    540: {
+      slidesPerView: 1.5,
+    },
     768: {
-      slidesPerView: 2,
+      slidesPerView: 2.5,
     },
     991: {
+      slidesPerView: 3.5,
+    },
+    1200: {
+      slidesPerView: 4.5,
+    },
+  },
+});
+
+const swiperServicios2 = new Swiper('.swiperServicios2', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination2',
+    clickable: true,
+  },
+});
+
+const swiperServicios3 = new Swiper('.swiperServicios3', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination3',
+    clickable: true,
+  },
+});
+const swiperLogosClientes = new Swiper('.swiperLogosClientes', {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  autoplay: {
+    delay: 2000,
+  },
+  loop: true,
+  breakpoints: {
+    540: {
+      slidesPerView: 2,
+    },
+    768: {
       slidesPerView: 3,
+    },
+    991: {
+      slidesPerView: 4,
     },
     1200: {
       slidesPerView: 5,
     },
   },
 });
-
 const swiperSoftwares = new Swiper('.swiperSoftwares', {
   slidesPerView: 1,
   spaceBetween: 0,
