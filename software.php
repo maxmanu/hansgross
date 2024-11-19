@@ -98,73 +98,41 @@ include("template-parts/header.php");
   </div>
 </header>
 
-<section class="section-servicios-description ptb-100">
+<section class="section-software-description ptb-100">
   <div class="container">
     <div class="row mb-4">
       <div class="col-lg-6">
-        <h2 class="">Accidente de transito</h2>
+        <img src="assets/img/img-logo-software-single.webp" class="img-fluid img-single-software mb-5" alt="...">
+        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
       </div>
-      <div class="col-lg-6">
-        <div class="swiper swiperEventos">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
-              </div>
+      <div class="col-lg-6 text-lg-end text-center">
+        <div class="position-relative mb-3">
+          <a data-fslightbox="gallery" href="https://www.youtube.com/watch?v=3nQNiWdeH2Q">
+            <img src="assets/img/img-person-video.png" alt="" class="img-fluid position-relative img-description">
+            <div class="btn-play-wrapper">
+              <img src="assets/img/btn-play.svg" class="btn-play" alt="">
             </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
+          </a>
         </div>
+        <button class="btn btn-download">
+          <span><img src="assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
+          Descargar Brochure
+        </button>
       </div>
     </div>
-    <div class="row mb-4">
+    <div class="row align-items-center mb-4">
       <div class="col-lg-6">
-        <img src="assets/img/img-card-service.webp" alt="" class="img-fluid">
-      </div>
-      <div class="col-lg-6">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <h5 class="">Accidente de transito</h5>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-      </div>
-      <div class="col-lg-6">
-        <div class="swiper swiperEventos">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="assets/img/img-card.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
+        <div class="wrap wrap2">
+          <img class="imga img-fluid" src="assets/img/dactiloscopia.webp" alt="">
+          <img class="imgb img-fluid" src="assets/img/img-right-soft.webp" alt="">
         </div>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy </p>
+        <a href="#" class="mostrar-mas">Mostrar más</a>
       </div>
     </div>
   </div>

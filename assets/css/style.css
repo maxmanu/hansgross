@@ -1410,6 +1410,67 @@ footer .top-title {
   padding: .675rem .75rem;
 }
 
+.section-software-description {
+  background-color: #fff;
+}
+
+.img-single-software {
+  max-width: 400px;
+}
+
+.img-description {
+  max-width: 500px;
+  border-radius: 25px;
+}
+
+.btn-download {
+  background-color: rgba(194, 242, 221, 0.5);
+  border: 1px solid rgba(123, 168, 147, 1);
+  color: var(--green-2);
+  width: 500px;
+  padding: 15px;
+}
+
+.section-software-description .mostrar-mas {
+  color: #06834D;
+}
+
+.wrap {
+  position: relative;
+  display: inline-flex;
+  margin: 2rem;
+  margin-bottom: 150px;
+}
+
+.imgb {
+  position: absolute;
+  left: 80%;
+  top: 25%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.wrap2 .imga {
+  z-index: 2;
+  border-radius: 15px;
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.wrap2 .imgb {
+  z-index: 1;
+  border-radius: 15px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+
+
+
+
+
 
 
 

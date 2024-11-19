@@ -23,7 +23,7 @@ include("template-parts/header.php");
   <div class="container">
     <div class="row align-items-center mb-5 px-5">
       <div class="col-lg-9 mx-auto">
-        <h2 class="colorgreen">Notas - Eventos</h2>
+        <h2 class="colorgreen-2">Notas - Eventos</h2>
       </div>
       <div class="col-lg-3">
         <select class="form-select select-category" aria-label="Default select example">
@@ -58,7 +58,7 @@ include("template-parts/header.php");
                   <p class="card-category mb-1">Categoría: Criminalística</p>
                   <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
                 </div>
-                <div class="card-footer colorgreen">
+                <div class="card-footer colorgreen-2">
                   <b>Mostrar más</b>
                   <div class="btn-arrows-servicios">
                     <i class="bi bi-arrow-right"></i>
@@ -80,7 +80,7 @@ include("template-parts/header.php");
                   <p class="card-category mb-1">Categoría: Criminalística</p>
                   <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
                 </div>
-                <div class="card-footer colorgreen">
+                <div class="card-footer colorgreen-2">
                   <b>Mostrar más</b>
                   <div class="btn-arrows-servicios">
                     <i class="bi bi-arrow-right"></i>
@@ -102,7 +102,7 @@ include("template-parts/header.php");
                   <p class="card-category mb-1">Categoría: Criminalística</p>
                   <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
                 </div>
-                <div class="card-footer colorgreen">
+                <div class="card-footer colorgreen-2">
                   <b>Mostrar más</b>
                   <div class="btn-arrows-servicios">
                     <i class="bi bi-arrow-right"></i>
@@ -124,7 +124,7 @@ include("template-parts/header.php");
                   <p class="card-category mb-1">Categoría: Criminalística</p>
                   <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
                 </div>
-                <div class="card-footer colorgreen">
+                <div class="card-footer colorgreen-2">
                   <b>Mostrar más</b>
                   <div class="btn-arrows-servicios">
                     <i class="bi bi-arrow-right"></i>
@@ -146,7 +146,7 @@ include("template-parts/header.php");
                   <p class="card-category mb-1">Categoría: Criminalística</p>
                   <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
                 </div>
-                <div class="card-footer colorgreen">
+                <div class="card-footer colorgreen-2">
                   <b>Mostrar más</b>
                   <div class="btn-arrows-servicios">
                     <i class="bi bi-arrow-right"></i>
@@ -168,7 +168,7 @@ include("template-parts/header.php");
                   <p class="card-category mb-1">Categoría: Criminalística</p>
                   <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
                 </div>
-                <div class="card-footer colorgreen">
+                <div class="card-footer colorgreen-2">
                   <b>Mostrar más</b>
                   <div class="btn-arrows-servicios">
                     <i class="bi bi-arrow-right"></i>
