@@ -124,7 +124,6 @@ h2 {
   position: relative;
   width: 100%;
   overflow: hidden;
-  z-index: 9999;
 }
 
 #overlay {
@@ -148,9 +147,9 @@ h2 {
 }
 
 #contenidoDiv {
-  z-index: 3;
   position: relative;
   color: #fff;
+  z-index: 10;
 }
 
 .header-logo {
@@ -193,6 +192,17 @@ h2 {
 .btn-hans--green:hover {
   background-color: #06834D;
   color: #fff;
+}
+
+.btn-hans--course,
+.btn-hans--course:hover {
+  background-color: #2F3033;
+  color: #fff;
+  padding: 5px 65px 10px;
+}
+
+.btn-hans--course i {
+  font-size: 1.8rem;
 }
 
 .btn-hans--white,
@@ -471,7 +481,7 @@ footer {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
   /* Asegúrate de que esté por encima del contenido */
   transition: background-color 0.3s ease;
 }
@@ -539,7 +549,9 @@ footer {
 
 .row-card-servicios .card .btn-hans {
   font-size: 0.8rem;
+  font-weight: 700;
   width: 100%;
+  box-shadow: none;
 }
 
 .pagination .page-item {
@@ -632,13 +644,17 @@ footer {
 
 /* SINGLE COURSE PAGE STYLES*/
 .section-course-features {
-  background-color: rgba(6, 137, 77, .8);
-  padding-top: 50px;
-  padding-bottom: 70px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   color: #fff;
-  margin-top: -360px;
+  margin-top: -488px;
   position: relative;
-  z-index: 9999;
+  z-index: 8;
+}
+
+.bg-green-feature {
+  background-color: rgba(6, 137, 77, .8);
+  padding-bottom: 70px;
 }
 
 .section-course-tabs {
@@ -701,11 +717,17 @@ footer {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  z-index: 99999;
+  z-index: 9;
+  margin-top: -50px;
 }
 
 .card-sidebar .sidebar-feat {
-  padding: 20px 30px 10px;
+  padding: 20px 20px 10px;
+  font-size: 1rem;
+}
+
+.sidebar-feat img {
+  max-width: 30px;
 }
 
 .video-image {
@@ -733,6 +755,9 @@ footer {
 .vr {
   margin-left: 15px;
   margin-right: 15px;
+  width: 2px;
+  background-color: #F33434;
+  opacity: 1;
 }
 
 #accordionPanelsHans .accordion-header {
@@ -753,6 +778,7 @@ footer {
   background-color: #E7663D;
   color: #fff;
   padding: 20px;
+  text-align: center;
 }
 
 .hero-banner--hero {
@@ -761,6 +787,19 @@ footer {
 
 .nav-category-curso .list-group-item {
   background-color: transparent;
+  font-weight: 700;
+  border-width: 0 0 1px 0;
+  border-color: #A09696;
+  border: 0;
+}
+
+.nav-category-curso .list-group-item div {
+  border-bottom: 1px solid #A09696;
+  padding-bottom: 10px;
+}
+
+.list-group-flush>.list-group-item:last-child {
+  border-bottom-width: 1px;
 }
 
 .nav-category-curso p {
@@ -788,14 +827,19 @@ footer {
 
 .btn-category-card {
   position: absolute;
-  top: 3%;
-  left: 2%;
+  top: 5%;
+  left: 4%;
   background-color: #F33434;
   color: #fff;
   padding: 3px 10px;
   border-radius: 7px;
   font-family: "HandleGotic";
   font-weight: 700;
+}
+
+.btn-category-card--green {
+  background-color: #D1FAE8;
+  color: #06834D;
 }
 
 .btn-precio-card {
@@ -823,6 +867,8 @@ footer {
   color: #fff;
   border: 1px solid #06834D;
   padding: 10px 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .btn-card-ver {
@@ -830,6 +876,8 @@ footer {
   color: #06834D;
   border: 1px solid #06834D;
   padding: 10px 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .btn-card-comprar .bi-cart2::before {
@@ -1006,7 +1054,7 @@ footer .top-title {
 
 .section-table-certificados {
   background-color: #fff;
-  z-index: 9999;
+  z-index: 3;
   position: relative;
 }
 
@@ -1246,6 +1294,122 @@ footer .top-title {
   flex: 1;
 }
 
+.section-todos-cursos .card .card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.section-todos-cursos .card .card-category {
+  font-size: 1rem;
+  color: #06834D;
+}
+
+.section-todos-cursos .card .card-text {
+  font-size: 0.8rem;
+}
+
+.section-todos-cursos .card .date-text {
+  font-size: 0.9rem;
+  color: #06834D;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.section-todos-cursos .card .date-text--day {
+  font-size: 1.1rem;
+  color: #06834D;
+}
+
+.section-todos-cursos .card .card-footer {
+  border-top: 0;
+  background: transparent;
+  gap: 3px;
+  padding-top: 0;
+  padding-bottom: 15px;
+}
+
+.section-course-features .date-text {
+  font-size: 1.6rem;
+  font-family: 'HandleGotic';
+  font-weight: 700;
+}
+
+.section-course-features .card-category {
+  font-size: 1.4rem;
+  color: #DBFF01
+}
+
+.section-course-features .card-text {
+  font-size: 1.1rem;
+}
+
+.mostrar-mas {
+  color: #DBFF01;
+  text-decoration: underline;
+}
+
+.bg-green-feature .btn-category-card {
+  position: relative;
+  margin-top: -20px;
+  font-size: 1.5rem;
+  padding: 3px 30px;
+}
+
+#accordionPanelsHans .accordion-header button {
+  font-size: 1.8rem;
+  color: var(--green-2);
+  font-family: 'HandleGotic';
+  font-weight: 700;
+}
+
+#accordionPanelsHans .accordion-button::after {
+  color: var(--green-2);
+}
+
+.title-bloque-tab {
+  color: var(--green-2);
+}
+
+.bloque-free span {
+  font-weight: 700;
+  font-family: 'HandleGotic';
+  font-size: 2rem;
+}
+
+#panelsStayOpen-collapseTwo {
+  background-color: #D1FAE8 !important;
+}
+
+#panelsStayOpen-collapseTwo .accordion-body {
+  padding: 50px 20px;
+}
+
+#panelsStayOpen-collapseTwo .accordion-body p {
+  font-size: 1rem;
+}
+
+.accordion-body .mostrar-mas {
+  color: var(--green-2);
+  text-decoration: underline;
+}
+
+.accordion-price {
+  font-size: 2rem;
+  color: #F33434;
+  font-weight: 700;
+  font-family: 'HandleGotic';
+}
+
+.contact-form .form-label {
+  font-weight: 700;
+  font-family: 'HandleGotic';
+}
+
+.contact-form .form-control {
+  padding: .675rem .75rem;
+}
+
 
 
 
@@ -1354,6 +1518,10 @@ footer .top-title {
   .logo-footer {
     margin-top: 30px;
   }
+
+  .row-card-servicios {
+    margin-top: 15px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -1383,6 +1551,10 @@ footer .top-title {
 @media (max-width: 480px) {
   .banner-title {
     font-size: 2rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1.8rem;
   }
 
   .grid {

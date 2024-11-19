@@ -53,13 +53,13 @@ include("template-parts/header.php");
     <div class="row">
       <div class="col">
         <div class="text-start mb-5">
-          <h2 class="colorgreen">Envíanos un mensaje</h2>
+          <h2 class="colorgreen-2">Envíanos un mensaje</h2>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
         </div>
       </div>
     </div>
 
-    <form class="row g-5">
+    <form class="row g-5 contact-form">
       <div class="col-lg-7">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Nombre y apellido</label>

@@ -32,7 +32,7 @@ include("template-parts/header.php");
     <div class="row align-items-center mb-5">
       <div class="col-lg-12 card card--single mx-auto">
         <div class="row justify-content-end mb-3">
-          <div class="col-auto colorgreen">
+          <div class="col-auto colorgreen-2">
             Compartir
             <span><img src="assets/img/share-svg-icon.svg" class="img-fluid" alt=""></span>
           </div>
@@ -67,7 +67,7 @@ include("template-parts/header.php");
           </div>
         </div>
         <div class="row">
-          <div class="col colorgreen cat-single-text">
+          <div class="col colorgreen-2 cat-single-text">
             Categoría: Criminalística
           </div>
         </div>

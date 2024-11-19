@@ -12,7 +12,7 @@ include("template-parts/header.php");
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
           <h1 class="banner-title pb-4">CRIMINALÍSTICA <br> CIBERNÉTICA</h1>
-          <a href=""><button class="btn btn-hans btn-hans--green">Contáctanos</button></a>
+          <a href="contacto.php"><button class="btn btn-hans btn-hans--green">Contáctanos</button></a>
         </div>
       </div>
     </div>

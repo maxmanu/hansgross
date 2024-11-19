@@ -154,7 +154,7 @@ include("template-parts/header.php");
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
       </div>
       <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
-        <div class="swiper swiperServicios3 mt-3">
+        <div class="swiper swiperServicios3">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="card">

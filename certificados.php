@@ -45,7 +45,7 @@ include("template-parts/header.php");
           <table class="table">
             <thead class="table-light">
               <tr>
-                <th scope="col">Código</th>
+                <th scope="col" class="ps-5">Código</th>
                 <th scope="col">Certificado</th>
                 <th scope="col" class="text-center">Visualizar</th>
                 <th scope="col" class="text-center">Descargar</th>
@@ -53,13 +53,13 @@ include("template-parts/header.php");
             </thead>
             <tbody>
               <tr>
-                <th>0010828092022</th>
+                <th><img src="assets/img/icon-diploma.png" class="img-fluid me-1" alt="...">0010828092022</th>
                 <td>Certificado Curso Forense</td>
                 <td class="text-center"><img src="assets/img/icon-eye.png" class="img-fluid icon-table" alt=""></td>
                 <td class="text-center"><img src="assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></td>
               </tr>
               <tr>
-                <th>0140828092022</th>
+                <th><img src="assets/img/icon-diploma.png" class="img-fluid me-1" alt="...">0140828092022</th>
                 <td>Curso In-House de Siniestros Vehiculares</td>
                 <td class="text-center"><img src="assets/img/icon-eye.png" class="img-fluid icon-table" alt=""></td>
                 <td class="text-center"><img src="assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></td>
