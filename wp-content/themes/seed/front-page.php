@@ -61,33 +61,7 @@ get_header();
     <div class="grid">
       <div class="swiper swiperEventos">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-title">Criminalista cibernética y Informática Forense</p>
-                <p class="card-text">17 de octubre | 7:00 pm a 8:00 pm</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-title">Criminalista cibernética y Informática Forense</p>
-                <p class="card-text">17 de octubre | 7:00 pm a 8:00 pm</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-title">Criminalista cibernética y Informática Forense</p>
-                <p class="card-text">17 de octubre | 7:00 pm a 8:00 pm</p>
-              </div>
-            </div>
-          </div>
+
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -100,16 +74,16 @@ get_header();
           </div>
         </div>
         <div class="grid" style="margin-top: 20px;">
-          <div id="webinars" class="card card--btn-event active text-bg-dark">
+          <div id="webinars" data-category-slug="webinars" class="card card--btn-event active text-bg-dark">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
-              <p class="">Webinars</p>
+              <p>Webinars</p>
             </div>
           </div>
-          <div id="cursos" class="card card--btn-event text-bg-dark">
+          <div id="cursos" data-category-slug="cursos" class="card card--btn-event text-bg-dark">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
-              <p class="">Cursos</p>
+              <p>Cursos</p>
             </div>
           </div>
         </div>

@@ -380,3 +380,98 @@ function registrar_cpt_eventos()
   register_post_type('eventos', $args);
 }
 add_action('init', 'registrar_cpt_eventos');
+
+/**
+ * CATEGORÍAS EVENTOS CPT
+ */
+
+function registrar_taxonomia_categorias_eventos()
+{
+  $labels = array(
+    'name'              => _x('Categorías de Eventos', 'taxonomy general name', 'tu-text-domain'),
+    'singular_name'     => _x('Categoría de Evento', 'taxonomy singular name', 'tu-text-domain'),
+    'search_items'      => __('Buscar categorías', 'tu-text-domain'),
+    'all_items'         => __('Todas las categorías', 'tu-text-domain'),
+    'parent_item'       => __('Categoría superior', 'tu-text-domain'),
+    'parent_item_colon' => __('Categoría superior:', 'tu-text-domain'),
+    'edit_item'         => __('Editar categoría', 'tu-text-domain'),
+    'update_item'       => __('Actualizar categoría', 'tu-text-domain'),
+    'add_new_item'      => __('Añadir nueva categoría', 'tu-text-domain'),
+    'new_item_name'     => __('Nombre de la nueva categoría', 'tu-text-domain'),
+    'menu_name'         => __('Categorías de Eventos', 'tu-text-domain'),
+  );
+
+  $args = array(
+    'hierarchical'      => true, // true para categorías, false para etiquetas (tags)
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array('slug' => 'categorias-eventos'),
+  );
+
+  register_taxonomy('categorias_eventos', array('eventos'), $args);
+}
+add_action('init', 'registrar_taxonomia_categorias_eventos');
+
+
+
+function load_event_posts_by_category()
+{
+  if (!isset($_GET['category_slug'])) {
+    wp_send_json_error('No se especificó la categoría.');
+    return;
+  }
+
+  $category_slug = sanitize_text_field($_GET['category_slug']);
+
+  // Cambiar la consulta para usar la taxonomía personalizada
+  $query = new WP_Query([
+    'post_type' => 'eventos',
+    'tax_query' => [
+      [
+        'taxonomy' => 'categorias_eventos', // Nombre de tu taxonomía
+        'field'    => 'slug',             // Consulta por slug
+        'terms'    => $category_slug,     // Slug de la categoría seleccionada
+      ],
+    ],
+    'posts_per_page' => 5, // Cambiar según necesidad
+  ]);
+
+  if ($query->have_posts()) {
+    $posts = [];
+
+    while ($query->have_posts()) {
+      $query->the_post();
+      $posts[] = [
+        'title' => get_the_title(),
+        'excerpt' => get_the_excerpt(),
+        'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
+        'date' => get_the_date(),
+        'link' => get_permalink(),
+      ];
+    }
+
+    wp_reset_postdata();
+
+    wp_send_json_success($posts);
+  } else {
+    wp_send_json_error('No se encontraron posts para esta categoría.');
+  }
+}
+add_action('wp_ajax_load_event_posts_by_category', 'load_event_posts_by_category');
+add_action('wp_ajax_nopriv_load_event_posts_by_category', 'load_event_posts_by_category');
+
+
+
+
+function enqueue_custom_scripts()
+{
+  wp_enqueue_script('custom-js', get_template_directory_uri() . '/js/custom.js', ['jquery'], null, true);
+
+  // Pasar la URL de admin-ajax.php al script
+  wp_localize_script('custom-js', 'wp_ajax_data', [
+    'ajax_url' => admin_url('admin-ajax.php'),
+  ]);
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');

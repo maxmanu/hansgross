@@ -1252,14 +1252,14 @@ footer .top-title {
   padding-right: 15px;
 }
 
-.section-servicios-description .swiper-pagination-bullet {
+.swiper-pagination-bullet {
   width: 13px;
   height: 13px;
   background-color: #fff;
   opacity: 1;
 }
 
-.section-servicios-description .swiper-pagination-bullet-active {
+.swiper-pagination-bullet-active {
   width: 13px;
   height: 13px;
   background-color: var(--green-1);

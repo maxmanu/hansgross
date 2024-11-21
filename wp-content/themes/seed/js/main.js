@@ -2,12 +2,12 @@
  * CAROUSEL SWIPER
  */
 
-const swiperEventos = new Swiper('.swiperEventos', {
-  loop: true,
-  pagination: {
-    el: '.swiper-pagination',
-  },
-});
+// const swiperEventos = new Swiper('.swiperEventos', {
+//   loop: true,
+//   pagination: {
+//     el: '.swiper-pagination',
+//   },
+// });
 
 const swiperServicios = new Swiper('.swiperServicios', {
   slidesPerView: 1,

@@ -1,4 +1,4 @@
-wp-config.php
-wp-config-local.php
-wp-config-dev.php
-debug.log
+/*
+!.gitignore
+!/wp-content/
+wp-content/debug.log
