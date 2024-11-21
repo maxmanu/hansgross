@@ -1,0 +1,1642 @@
+/*!
+Theme Name: seed
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: seed
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: "Gotham";
+  src: url("assets/fonts/Gotham-Book.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("assets/fonts/Gotham-Bold.otf");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("assets/fonts/Gotham_Black.otf");
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "HandleGotic";
+  src: url("assets/fonts/Handelgothic-Light.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "HandleGotic";
+  src: url("assets/fonts/Handelgothic-Bold.TTF");
+  font-style: normal;
+  font-weight: 700;
+}
+
+:root {
+  --green-1: #01A25C;
+  --green-2: #06834D;
+}
+
+body {
+  font-family: 'Gotham', sans-serif;
+  font-weight: 400;
+  background-color: #F8F8FA;
+  font-size: 1.1rem;
+}
+
+/* header {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .4);
+} */
+
+a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.colorgreen-1 {
+  color: var(--green-1);
+}
+
+.colorgreen-2 {
+  color: var(--green-2);
+}
+
+h2 {
+  font-family: "HandleGotic";
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+}
+
+.navbar-hans a:after {
+  background: none repeat scroll 0 0 transparent;
+  top: 0;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.navbar-hans a:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+.navbar-hans a.active:after {
+  background: none repeat scroll 0 0 transparent;
+  top: 0;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 0;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 100%;
+}
+
+.banner-title {
+  font-family: "HandleGotic";
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+.banner-subtitle {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.hero-banner {
+  min-height: 750px;
+  padding-top: 200px;
+}
+
+#miDiv {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+.ptb-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.ptb-50 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#contenidoDiv {
+  position: relative;
+  color: #fff;
+  z-index: 10;
+}
+
+.header-logo {
+  height: 70px;
+}
+
+#navbarExample1 {
+  justify-content: end;
+}
+
+#navbarExample1 .nav-link {
+  color: #fff;
+}
+
+#navbarExample1 .nav-item {
+  margin: 0 10px;
+}
+
+#mainNavbar nav {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.btn-hans {
+  border-radius: 7px;
+  padding: 10px 50px;
+  font-family: "HandleGotic";
+  font-weight: 400;
+  font-size: 1.4rem;
+  -webkit-box-shadow: 7px 10px 11px -7px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 7px 10px 11px -7px rgba(0, 0, 0, 0.4);
+  box-shadow: 7px 10px 11px -7px rgba(0, 0, 0, 0.4);
+}
+
+.btn-hans:hover {
+  color: inherit;
+}
+
+.btn-hans--green,
+.btn-hans--green:hover {
+  background-color: #06834D;
+  color: #fff;
+}
+
+.btn-hans--course,
+.btn-hans--course:hover {
+  background-color: #2F3033;
+  color: #fff;
+  padding: 5px 65px 10px;
+}
+
+.btn-hans--course i {
+  font-size: 1.8rem;
+}
+
+.btn-hans--white,
+.btn-hans--white:hover {
+  background-color: #FAFAFA;
+  color: #0E0E0E;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  border: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiperEventos .swiper-horizontal>.swiper-pagination-bullets,
+.swiperEventos .swiper-pagination-bullets.swiper-pagination-horizontal {
+  top: 2%;
+  left: 3%;
+  width: auto;
+}
+
+.section-certificados {
+  background-image: url('assets/img/bg-boxes.png'), url('assets/img/bg-section-certificados.webp');
+  background-repeat: repeat, no-repeat;
+  background-size: contain, cover;
+}
+
+.section-softwares {
+  background-image: url('assets/img/bg-software-empleados.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.section-mision {
+  background-image: url('assets/img/bg-section-mision.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1000px rgb(220 220 220 / 40%);
+}
+
+.section-eventos {
+  background-image: url('assets/img/textura_home_eventos academicos.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section-servicios {
+  background-image: url('assets/img/textura_home_conoce nuestros servicios.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  overflow: hidden;
+}
+
+.section-quienes-somos {
+  background: rgb(41, 42, 44);
+  background: linear-gradient(90deg, rgba(41, 42, 44, 1) 0%, rgba(72, 75, 81, 1) 100%);
+}
+
+.section-equipo {
+  background: url('assets/img/bg-equipo.png'), #D1FAE8;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 160px;
+  padding-bottom: 160px;
+}
+
+.section-servicios-description {
+  background: url('assets/img/bg-servicios-text.png'), #F8F8FA;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.section-servicios-description img {
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.section-servicios-description p {
+  text-align: justify;
+}
+
+.swiperServicios .swiper-slide {
+  width: 35%;
+  display: block;
+}
+
+#button-prev-servicios,
+#button-next-servicios {
+  position: relative;
+  margin-top: 0;
+}
+
+#button-prev-servicios {
+  margin-right: 20px;
+}
+
+.square {
+  display: block;
+  border-radius: 8px;
+  height: 40px;
+  width: 40px;
+  background-color: #06834D;
+  margin-bottom: 8px;
+}
+
+.square--equipo {
+  height: 10px;
+  width: 10px;
+  margin-top: 50%;
+  border-radius: 0;
+  background-color: #D1FAE8;
+}
+
+.square--grey {
+  background-color: #9DC2B2;
+}
+
+.card-eq {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  background-color: rgba(6, 131, 77, .7);
+  max-width: 100%;
+  width: 300px;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+.card-eq p {
+  font-size: 1.4rem;
+}
+
+.row--mision,
+.row--vision {
+  min-height: 400px;
+}
+
+.row--mision .col-lg-6:nth-child(2) {
+  background-color: #fff;
+  padding: 80px;
+}
+
+.row--vision {
+  /* background: url('assets/img/bg-boxes-vision.png') no-repeat 0 0 / contain, #06834D; */
+  background: #06834D;
+  color: #fff;
+}
+
+.row--vision .col-lg-8 {
+  padding: 80px;
+}
+
+.bottom-footer {
+  padding: 15px;
+  background-color: #292D2B;
+  color: rgba(255, 255, 255, .8);
+}
+
+footer {
+  background-color: #0B5636;
+  background-image: url('assets/img/textura_footer.png');
+}
+
+.top-footer {
+  padding-bottom: 40px;
+}
+
+.row-contact {
+  background-color: #06442A;
+  margin-bottom: 50px;
+}
+
+.col-menu-tab {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.section-clientes {
+  background-color: #fff;
+}
+
+.section-clientes p {
+  font-size: 1.5rem;
+  color: #008943;
+}
+
+.section-eventos .card {
+  border-radius: 30px;
+}
+
+.section-eventos .card .card-body {
+  padding: 15px 95px 25px 25px;
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.section-eventos .card .card-title {
+  font-size: 1.8rem;
+  color: #08653D;
+  font-family: "HandleGotic";
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.swiperEventos .swiper-slide {
+  height: 572px;
+}
+
+.swiperEventos .swiper-slide .card {
+  background: transparent;
+}
+
+.card--eventos-description {
+  background-color: #D1FAE8;
+  padding: 40px 60px;
+}
+
+.section-certificados .btn-hans--white {
+  padding: 10px 75px;
+}
+
+.section-softwares .container .row:first-child {
+  padding-top: 140px;
+}
+
+.row-softwares {
+  margin-top: 130px;
+}
+
+.row-footer-menu a {
+  color: #01A25C;
+  font-weight: bold;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links a img {
+  width: 27px;
+  height: 27px;
+}
+
+#mainNavbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  /* Asegúrate de que esté por encima del contenido */
+  transition: background-color 0.3s ease;
+}
+
+#mainNavbar.scrolled {
+  background-color: #06834da6;
+  /* Fondo oscuro */
+  color: white;
+  /* Color del texto */
+}
+
+#mainNavbar.scrolled .nav-link {
+  color: white;
+  /* Color de los enlaces al hacer scroll */
+}
+
+.btn-arrows-servicios {
+  position: relative;
+  margin-top: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background-color: #E4ECF1;
+  color: #292A2C;
+}
+
+.btn-arrows-servicios i,
+.btn-arrows-servicios i {
+  font-size: 20px;
+}
+
+.btn-arrows-servicios:hover,
+.btn-arrows-servicios:hover {
+  background-color: #292A2C;
+  color: #fff;
+}
+
+.section-serviciosMain {
+  background: url('assets/img/textura_home_conoce nuestros servicios.png')
+}
+
+.swiperServiciosMain .card-title {
+  color: #08653D;
+  font-family: "HandleGotic";
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.swiperServiciosMain .card-img-top {
+  height: 350px;
+  object-fit: cover;
+}
+
+.section-contactanos {
+  background-color: #D1FAE8;
+}
+
+.row-card-servicios>.col {
+  margin-bottom: 40px;
+}
+
+.row-card-servicios .card .btn-hans {
+  font-size: 0.8rem;
+  font-weight: 700;
+  width: 100%;
+  box-shadow: none;
+}
+
+.pagination .page-item {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #01A25C;
+}
+
+.pagination .page-link {
+  color: #01A25C;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid #01A25C;
+  width: 30px;
+  height: 35px;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #01A25C;
+  color: #fff;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.swiperSoftwares {
+  position: static;
+}
+
+.swiperSoftwares .card {
+  border-radius: 0;
+}
+
+.swiperSoftwares .swiper-slide {
+  text-align: center;
+}
+
+.swiperSoftwares .btn-arrows-servicios {
+  margin-top: -50px;
+  background-color: #01A25C;
+  color: #fff;
+}
+
+.swiperSoftwares .swiper-button-next,
+.swiperSoftwares .swiper-button-prev {
+  padding: 5px;
+  background-color: #545454;
+}
+
+.swiperSoftwares .swiper-button-next:after,
+.swiperSoftwares .swiper-button-prev:after {
+  display: none;
+}
+
+.card-software {
+  padding: 50px 20px;
+  background-color: #fff;
+  height: 190px;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-slide:nth-child(2n) .card-software {
+  background-color: #F1F1F1;
+}
+
+.swiperServicios .card-title {
+  text-align: center;
+  color: #08653D;
+  font-family: "HandleGotic";
+}
+
+#webinars,
+#cursos {
+  cursor: pointer;
+}
+
+/* SINGLE COURSE PAGE STYLES*/
+.section-course-features {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  margin-top: -488px;
+  position: relative;
+  z-index: 8;
+}
+
+.bg-green-feature {
+  background-color: rgba(6, 137, 77, .8);
+  padding-bottom: 70px;
+}
+
+.section-course-tabs {
+  background-color: #F8F8FA;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#accordionPanelsHans {
+  z-index: 20;
+  position: relative;
+}
+
+#accordionPanelsHans .accordion-item {
+  margin-bottom: 50px;
+  background-color: transparent;
+  border: 0;
+}
+
+#accordionPanelsHans .accordion-button {
+  border-radius: 20px;
+}
+
+#accordionPanelsHans .accordion-button:not(.collapsed) {
+  background-color: #D1FAE8;
+}
+
+.accordion-item:first-of-type>.accordion-header .accordion-button {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.section-sidebar-feat {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.section-sidebar-feat.fixed {
+  position: fixed;
+  top: 100px;
+  width: 100%;
+  /* Ajusta el ancho si es necesario */
+  z-index: 10;
+  /* Para asegurarte de que esté sobre otros elementos */
+}
+
+.section-sidebar-feat.absolute-bottom {
+  position: absolute;
+  top: initial;
+  bottom: 0;
+  width: 100%;
+  /* Asegúrate de que ocupe el espacio deseado */
+}
+
+.card-sidebar {
+  background-color: #fff;
+  max-width: 450px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  z-index: 9;
+  margin-top: -50px;
+}
+
+.card-sidebar .sidebar-feat {
+  padding: 20px 20px 10px;
+  font-size: 1rem;
+}
+
+.sidebar-feat img {
+  max-width: 30px;
+}
+
+.video-image {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.sidebar-feat .d-flex {
+  max-width: 320px;
+}
+
+.btn-pdf {
+  max-width: 300px;
+}
+
+.text-price {
+  color: #F33434;
+  font-size: 2.8rem;
+  font-family: "HandleGotic";
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.vr {
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 2px;
+  background-color: #F33434;
+  opacity: 1;
+}
+
+#accordionPanelsHans .accordion-header {
+  margin-bottom: 20px;
+}
+
+#accordionPanelsHans .accordion-collapse {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bloque-tab {
+  margin-bottom: 15px;
+}
+
+.bloque-free {
+  background-color: #E7663D;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-banner--hero {
+  min-height: 900px;
+}
+
+.nav-category-curso .list-group-item {
+  background-color: transparent;
+  font-weight: 700;
+  border-width: 0 0 1px 0;
+  border-color: #A09696;
+  border: 0;
+}
+
+.nav-category-curso .list-group-item div {
+  border-bottom: 1px solid #A09696;
+  padding-bottom: 10px;
+}
+
+.list-group-flush>.list-group-item:last-child {
+  border-bottom-width: 1px;
+}
+
+.nav-category-curso p {
+  color: #06834D;
+  font-family: "HandleGotic";
+  font-weight: 700;
+  font-size: 1.2rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.nav-category-curso p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  /* Tamaño del cuadrado */
+  height: 10px;
+  background-color: #06834D;
+  /* Color del cuadrado */
+  border-radius: 3px;
+}
+
+.btn-category-card {
+  position: absolute;
+  top: 5%;
+  left: 4%;
+  background-color: #F33434;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 7px;
+  font-family: "HandleGotic";
+  font-weight: 700;
+}
+
+.btn-category-card--green {
+  background-color: #D1FAE8;
+  color: #06834D;
+}
+
+.btn-precio-card {
+  position: absolute;
+  bottom: 3%;
+  right: 2%;
+  background-color: #fff;
+  color: #F33434;
+  padding: 3px 10px;
+  border-radius: 7px;
+  font-family: "HandleGotic";
+  font-weight: 700;
+}
+
+.card-footer {
+  display: inline-flex;
+}
+
+.card-footer>a {
+  flex: 1
+}
+
+.btn-card-comprar {
+  background-color: #06834D;
+  color: #fff;
+  border: 1px solid #06834D;
+  padding: 10px 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-card-ver {
+  background-color: transparent;
+  color: #06834D;
+  border: 1px solid #06834D;
+  padding: 10px 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.btn-card-comprar .bi-cart2::before {
+  font-size: 1rem;
+}
+
+.card--btn-event:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(1, 162, 92);
+  background: linear-gradient(0deg, rgba(1, 162, 92, 1) 0%, rgba(0, 60, 34, 0) 100%);
+  opacity: .7;
+}
+
+.card--btn-event.active:before {
+  opacity: 0;
+}
+
+.card--btn-event .card-img-overlay {
+  top: initial;
+}
+
+.card--btn-event .card-img-overlay p {
+  font-size: 2rem;
+}
+
+#button-prev-software,
+#button-next-software {
+  top: 45%;
+}
+
+.swiperSoftwares .swiper-button-next,
+.swiperSoftwares .swiper-button-prev {
+  width: 30px;
+  height: 30px;
+}
+
+.arrow-soft {
+  max-width: 10px;
+}
+
+footer .top-title {
+  margin-bottom: 0;
+}
+
+.decor-green {
+  content: "";
+  position: absolute;
+  top: -15%;
+  left: 15%;
+  width: 100%;
+  height: 130%;
+  background: #08663D;
+}
+
+.icon-fot {
+  max-width: 35px;
+}
+
+.row-contact h6 {
+  font-size: 0.8rem;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.splide__slide img {
+  width: 100%;
+  height: auto;
+}
+
+.splide {
+  padding: 4rem;
+}
+
+.section-equipo .card {
+  border-radius: 15px;
+}
+
+.splide__pagination__page {
+  height: 13px;
+  width: 13px;
+}
+
+.splide__pagination li {
+  margin: 3px;
+}
+
+.splide__pagination__page {
+  background: #fff;
+  opacity: 1;
+}
+
+.splide__pagination__page.is-active {
+  background: #06834D;
+}
+
+.splide__arrow {
+  border-radius: 5px;
+  background: #CFD4D7;
+  height: 45px;
+  width: 45px;
+}
+
+.splide__arrow--prev {
+  left: 0
+}
+
+.splide__arrow--next {
+  right: 0;
+}
+
+.splide__arrow svg {
+  margin-top: 4px;
+}
+
+.splide__arrow:hover:not(:disabled) {
+  background: #292A2C;
+}
+
+.splide__arrow:hover:not(:disabled) svg {
+  fill: #fff;
+}
+
+.section-mision p {
+  font-size: 1.375rem;
+  padding-left: 10px;
+}
+
+.col--mision {
+  min-height: 300px
+}
+
+.card-search {
+  background: #03111C;
+  padding: 50px 50px 20px 50px;
+  color: #fff;
+  border-radius: 30px;
+}
+
+.btn--search {
+  background-color: #06834D;
+  color: #fff;
+}
+
+.card-search .input-group {
+  max-width: 750px;
+}
+
+.card-search .input-group>.form-control {
+  flex: 4;
+}
+
+.card-search .input-group .btn {
+  flex: 1;
+}
+
+.table-light {
+  background: #85E5BB;
+}
+
+.table>:not(caption)>*>* {
+  background-color: transparent;
+}
+
+.icon-table {
+  max-width: 30px;
+}
+
+.section-table-certificados {
+  background-color: #fff;
+  z-index: 3;
+  position: relative;
+}
+
+.name-student {
+  font-family: "HandleGotic";
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #000;
+}
+
+.card-search {
+  margin-top: -85px;
+}
+
+.software-page .btn-arrows-servicios {
+  display: none;
+}
+
+.software-page .row-softwares {
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.section-blog {
+  background-color: #D1FAE8;
+  padding-top: 55px;
+  padding-bottom: 50px;
+}
+
+.section-blog .social-links a img {
+  width: 45px;
+  height: 45px;
+}
+
+.card--blog {
+  padding: 15px;
+
+  .card-body {
+    padding: 1rem 0;
+
+    .card-title {
+      font-size: 1.3rem;
+      font-family: 'HandleGotic';
+      font-weight: 700;
+    }
+
+    .card-category {
+      font-size: 0.9rem;
+      color: #06834D;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: #5A5252;
+    }
+  }
+
+  .card-footer {
+    align-items: center;
+    justify-content: end;
+    background-color: transparent;
+    border-top: none;
+    padding-right: 0;
+    padding-left: 0;
+
+    .btn-arrows-servicios {
+      background-color: #000000;
+      color: #fff;
+    }
+  }
+
+  .btn-category-card {
+    top: initial;
+    bottom: 5%;
+    left: 3%;
+    background-color: #DBFF01;
+    color: #06834D;
+  }
+
+  .card-img-top {
+    border-radius: 10px;
+  }
+
+  .card-title {
+    color: #06834D;
+  }
+}
+
+.navbar-toggler {
+  background-color: #ffffff;
+}
+
+#mainNavbar.menu-expanded {
+  background-color: #06834d;
+  /* Fondo oscuro al expandir el menú */
+  transition: background-color 0.3s ease;
+}
+
+.card--single {
+  padding: 50px 100px 65px;
+}
+
+.img-single {
+  border-radius: 10px;
+}
+
+.btn-date-single {
+  background-color: #DBFF01;
+  color: #06834D;
+}
+
+.section-text-blog p {
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+.title-post-recomendados {
+  color: #06834d;
+  font-size: 1.8rem;
+  font-family: 'HandleGotic';
+  font-weight: 700;
+}
+
+.date-single {
+  background-color: #DBFF01;
+  color: #06834D;
+  padding: 5px 25px;
+  border-radius: 10px;
+  font-family: 'HandleGotic';
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.select-category {
+  padding-left: 35px;
+}
+
+/* .btn-category,
+.btn-category:hover,
+.btn-category:first-child:active,
+:not(.btn-check)+.btn-category:active {
+  background-color: #fff !important;
+  color: #06834D !important;
+  min-width: 160px;
+} */
+
+.autor-single-text,
+.cat-single-text {
+  font-size: 1.2rem;
+}
+
+.boxes-decor {
+  position: absolute;
+  width: 95%;
+  left: 3%;
+  top: 0;
+  background-image: url('assets/img/bg-boxes-vision.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiperServicios2,
+.swiperServicios3 {
+  width: 500px;
+  height: 500px;
+  margin-left: initial;
+  margin-right: initial;
+}
+
+.swiperServicios2 .swiper-pagination,
+.swiperServicios3 .swiper-pagination {
+  text-align: end;
+  padding-right: 15px;
+}
+
+.section-servicios-description .swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+  background-color: #fff;
+  opacity: 1;
+}
+
+.section-servicios-description .swiper-pagination-bullet-active {
+  width: 13px;
+  height: 13px;
+  background-color: var(--green-1);
+}
+
+.btn-play-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-play-wrapper img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.btn-hans--whats,
+.btn-hans--whats:hover {
+  background-color: #2F3033;
+  color: #fff;
+  flex: 1
+}
+
+.btn-hans--mail,
+.btn-hans--mail:hover {
+  background-color: #fff;
+  color: #06834D;
+  flex: 1
+}
+
+.section-contactanos .btn-hans img {
+  max-width: 35px;
+  margin-right: 5px;
+}
+
+.section-contactanos .btn-hans {
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: 100%;
+}
+
+.group-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.group-buttons a {
+  flex: 1;
+}
+
+.section-todos-cursos .card .card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.section-todos-cursos .card .card-category {
+  font-size: 1rem;
+  color: #06834D;
+}
+
+.section-todos-cursos .card .card-text {
+  font-size: 0.8rem;
+}
+
+.section-todos-cursos .card .date-text {
+  font-size: 0.9rem;
+  color: #06834D;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.section-todos-cursos .card .date-text--day {
+  font-size: 1.1rem;
+  color: #06834D;
+}
+
+.section-todos-cursos .card .card-footer {
+  border-top: 0;
+  background: transparent;
+  gap: 3px;
+  padding-top: 0;
+  padding-bottom: 15px;
+}
+
+.section-course-features .date-text {
+  font-size: 1.6rem;
+  font-family: 'HandleGotic';
+  font-weight: 700;
+}
+
+.section-course-features .card-category {
+  font-size: 1.4rem;
+  color: #DBFF01
+}
+
+.section-course-features .card-text {
+  font-size: 1.1rem;
+}
+
+.mostrar-mas {
+  color: #DBFF01;
+  text-decoration: underline;
+}
+
+.bg-green-feature .btn-category-card {
+  position: relative;
+  margin-top: -20px;
+  font-size: 1.5rem;
+  padding: 3px 30px;
+}
+
+#accordionPanelsHans .accordion-header button {
+  font-size: 1.8rem;
+  color: var(--green-2);
+  font-family: 'HandleGotic';
+  font-weight: 700;
+}
+
+#accordionPanelsHans .accordion-button::after {
+  color: var(--green-2);
+}
+
+.title-bloque-tab {
+  color: var(--green-2);
+}
+
+.bloque-free span {
+  font-weight: 700;
+  font-family: 'HandleGotic';
+  font-size: 2rem;
+}
+
+#panelsStayOpen-collapseTwo {
+  background-color: #D1FAE8 !important;
+}
+
+#panelsStayOpen-collapseTwo .accordion-body {
+  padding: 50px 20px;
+}
+
+#panelsStayOpen-collapseTwo .accordion-body p {
+  font-size: 1rem;
+}
+
+.accordion-body .mostrar-mas {
+  color: var(--green-2);
+  text-decoration: underline;
+}
+
+.accordion-price {
+  font-size: 2rem;
+  color: #F33434;
+  font-weight: 700;
+  font-family: 'HandleGotic';
+}
+
+.contact-form .form-label {
+  font-weight: 700;
+  font-family: 'HandleGotic';
+}
+
+.contact-form .form-control {
+  padding: .675rem .75rem;
+}
+
+.section-software-description {
+  background-color: #fff;
+}
+
+.img-single-software {
+  max-width: 400px;
+}
+
+.img-description {
+  max-width: 500px;
+  border-radius: 25px;
+}
+
+.btn-download {
+  background-color: rgba(194, 242, 221, 0.5);
+  border: 1px solid rgba(123, 168, 147, 1);
+  color: var(--green-2);
+  width: 500px;
+  padding: 15px;
+}
+
+.section-software-description .mostrar-mas {
+  color: #06834D;
+}
+
+.wrap {
+  position: relative;
+  display: inline-flex;
+  margin: 2rem;
+  margin-bottom: 150px;
+}
+
+.imgb {
+  position: absolute;
+  left: 80%;
+  top: 25%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.wrap2 .imga {
+  z-index: 2;
+  border-radius: 15px;
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.wrap2 .imgb {
+  z-index: 1;
+  border-radius: 15px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------MIN-WIDTH*--------*/
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #button-prev-software {
+    left: -10px;
+  }
+
+  #button-next-software {
+    right: -10px;
+  }
+
+  .col-right-event {
+    height: 572px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .section-eventos .card {
+    height: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-fluid-right {
+    max-width: calc(100% - (100% - 960px) / 2);
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .section-mision .vision-text {
+    padding-left: 30px;
+  }
+
+  .container-fluid-right .row {
+    margin-right: 0;
+    margin-left: 0;
+
+    >[class*=' col-']:last-child,
+    >[class^='col-']:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .container-fluid-left {
+    max-width: calc(100% - (100% - 960px) / 2);
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .container-fluid-left .row {
+    margin-left: 0;
+
+    >[class*=' col-']:last-child,
+    >[class^='col-']:last-child {
+      padding-left: 0;
+    }
+  }
+
+  .swiperServicios3 {
+    margin-top: -100px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .container-fluid-right {
+    max-width: calc(100% - (100% - 1200px) / 2);
+  }
+
+  .container-fluid-left {
+    max-width: calc(100% - (100% - 1200px) / 2);
+  }
+}
+
+@media (min-width: 1400px) {
+  .container-fluid-right {
+    max-width: calc(100% - (100% - 1320px) / 2);
+  }
+
+  .container-fluid-left {
+    max-width: calc(100% - (100% - 1320px) / 2);
+  }
+}
+
+
+/*------MAX-WIDTH*--------*/
+@media (max-width: 1200px) {
+  .social-links {
+    margin-bottom: 30px;
+  }
+
+  .logo-footer {
+    margin-top: 30px;
+  }
+
+  .row-card-servicios {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .section-sidebar-feat {
+    display: none;
+  }
+
+  .navbar-hans a:hover:after {
+    width: 0;
+  }
+
+  .navbar-hans a.active:after {
+    width: 0;
+  }
+
+  #navbarExample1 .nav-link.active {
+    color: #000;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-title {
+    font-size: 2rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1.8rem;
+  }
+
+  .grid {
+    display: block;
+  }
+}
