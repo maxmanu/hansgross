@@ -66,8 +66,11 @@ const swiperServicios3 = new Swiper('.swiperServicios3', {
 const swiperLogosClientes = new Swiper('.swiperLogosClientes', {
   slidesPerView: 1,
   spaceBetween: 30,
+  speed: 6500,
+  freeMode: true,
+  disableOnInteraction: false,
   autoplay: {
-    delay: 2000,
+    delay: 0,
   },
   loop: true,
   breakpoints: {

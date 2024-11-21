@@ -1483,9 +1483,18 @@ footer .top-title {
   object-fit: cover;
 }
 
+.swiper-free-mode>.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
 
+.swiperLogosClientes {
+  pointer-events: none;
+}
 
-
+.obi-link:hover {
+  color: inherit;
+  text-decoration: underline;
+}
 
 
 

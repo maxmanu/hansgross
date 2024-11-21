@@ -10,7 +10,7 @@ get_header();
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
           <h1 class="banner-title pb-4">CRIMINALÍSTICA <br> CIBERNÉTICA</h1>
-          <a href="contacto.php"><button class="btn btn-hans btn-hans--green">Contáctanos</button></a>
+          <a href="/contactanos"><button class="btn btn-hans btn-hans--green">Contáctanos</button></a>
         </div>
       </div>
     </div>
@@ -127,7 +127,7 @@ get_header();
       <div class="col-lg-4 text-center text-white">
         <h2>Certificados</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-        <a href=""><button class="btn btn-hans btn-hans--white mt-4">Buscar</button></a>
+        <a href="/certificados"><button class="btn btn-hans btn-hans--white mt-4">Buscar</button></a>
       </div>
       <div class="col-lg-4">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-decor-right.png" class="card-img" alt="...">
@@ -203,7 +203,7 @@ get_header();
       <div class="col-lg-5 ms-auto text-white">
         <h2 class="colorgreen">Software empleados</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <a href=""><button class="btn btn-hans btn-hans--white mt-4">Ver más</button></a>
+        <a href="/softwares"><button class="btn btn-hans btn-hans--white mt-4">Ver más</button></a>
       </div>
     </div>
     <div class="row row-softwares">
