@@ -141,7 +141,16 @@ get_header();
               while ($query->have_posts()) : $query->the_post(); ?>
                 <div class="swiper-slide">
                   <div class="card">
-                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+                    <?php
+                    // Verificar si el post tiene miniatura
+                    if (has_post_thumbnail()) {
+                      $thumbnail_url = get_the_post_thumbnail_url();
+                    } else {
+                      // URL externa de la imagen por defecto
+                      $thumbnail_url = 'https://placehold.co/600x460';
+                    }
+                    ?>
+                    <img src="<?php echo $thumbnail_url; ?>" class="card-img-top" alt="<?php echo esc_attr(get_the_title()); ?>">
                     <div class="card-body">
                       <a href="<?php echo get_permalink() ?>">
                         <p class="card-title"><?php echo get_the_title() ?></p>
