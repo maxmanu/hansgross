@@ -70,7 +70,7 @@ get_header();
           <div class="card-content pt-5">
             <h2 class="colorgreen">Webinars</h2>
             <p>Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.</p>
-            <a href=""><button class="btn btn-hans btn-hans--green">Ver más</button></a>
+            <a href="/academico"><button class="btn btn-hans btn-hans--green">Ver más</button></a>
           </div>
         </div>
         <div class="grid" style="margin-top: 20px;">
@@ -131,38 +131,28 @@ get_header();
         <div class="decor-green"></div>
         <div class="swiper swiperServicios">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Accidente de transito</p>
+            <?php
+            $args = array(
+              'post_type' => 'servicios',
+              'paged' => $paged,
+            );
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+              while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="swiper-slide">
+                  <div class="card">
+                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <a href="<?php echo get_permalink() ?>">
+                        <p class="card-title"><?php echo get_the_title() ?></p>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Accidente de transito</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Accidente de transito</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Accidente de transito</p>
-                </div>
-              </div>
-            </div>
+            <?php endwhile;
+            }
+            wp_reset_postdata();
+            ?>
           </div>
           <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
@@ -184,70 +174,28 @@ get_header();
       <div class="col position-relative">
         <div class="swiper swiperSoftwares">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-amped.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-magnet.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-salvation.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-mobil.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-3dsystems.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-oxygen.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-oxygen.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card-software">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-oxygen.png" class="card-img-top" alt="...">
-              </div>
-              <div class="btn btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
+            <?php
+            $args = array(
+              'post_type' => 'softwares',
+              'paged' => $paged,
+            );
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+              while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="swiper-slide">
+                  <div class="card-software">
+                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+                  </div>
+                  <a href="<?php echo get_permalink() ?>">
+                    <div class="btn btn-arrows-servicios">
+                      <i class="bi bi-arrow-right"></i>
+                    </div>
+                  </a>
+                </div>
+            <?php endwhile;
+            }
+            wp_reset_postdata();
+            ?>
           </div>
           <!-- If we need navigation buttons -->
           <div id="button-prev-software" class="swiper-button-prev">

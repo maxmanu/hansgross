@@ -5,9 +5,7 @@ get_header();
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-academico.webp); background-repeat: no-repeat; background-size: cover">
   <div id="overlay"></div>
   <div id="contenidoDiv">
-    <?php
-    include("template-parts/navbar.php");
-    ?>
+    <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
@@ -32,55 +30,29 @@ get_header();
     <div class="row">
       <div class="col">
         <div class="swiper swiperServiciosMain">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Accidente de transito</h5>
+          <div class="swiper-wrapper text-center">
+            <?php
+            $args = array(
+              'post_type' => 'servicios',
+              'paged' => $paged,
+            );
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+              while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="swiper-slide">
+                  <div class="card">
+                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+                    <div class="card-footer justify-content-center">
+                      <a href="<?php echo get_permalink() ?>">
+                        <h5 class="card-title"><?php echo get_the_title() ?></h5>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/balistica-forense.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Balística forense</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Accidente de transito</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/balistica-forense.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Balística forense</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
-                </div>
-              </div>
-            </div>
+            <?php endwhile;
+            }
+            wp_reset_postdata();
+            ?>
           </div>
         </div>
       </div>
@@ -104,7 +76,7 @@ get_header();
   <div class="container">
     <div class="row mb-5">
       <div class="col-lg-6">
-        <h2 class="colorgreen-2">Accidente de transito</h2>
+        <h2 class="colorgreen-2"><?php echo get_the_title() ?></h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
       </div>
@@ -149,7 +121,7 @@ get_header();
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <h2 class="colorgreen-2">Accidente de transito</h2>
+        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
       </div>
@@ -179,33 +151,7 @@ get_header();
   </div>
 </section>
 
-<section class="section-contactanos ptb-50">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-5">
-        <h2 class="colorgreen">Contáctanos</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-        <div class="group-buttons mt-5">
-          <a href="contacto.php">
-            <button class="btn btn-hans btn-hans--whats">
-              <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-svg-whats.svg" alt=""></span>
-              Por Whatsapp
-            </button>
-          </a>
-          <a href="contacto.php">
-            <button class="btn btn-hans btn-hans--mail">
-              <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-svg-mail.svg" alt=""></span>
-              Ver más
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-7">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/decor-contactanos.png" alt="" class="img-fluid">
-      </div>
-    </div>
-  </div>
-</section>
+<?php get_template_part('template-parts/content', 'cta'); ?>
 
 <?php
 get_footer();

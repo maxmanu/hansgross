@@ -475,3 +475,414 @@ function enqueue_custom_scripts()
   ]);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+
+/**
+ * SERVICIOS CPT
+ */
+function registrar_cpt_servicios()
+{
+  $labels = array(
+    'name'                  => _x('Servicios', 'Post type general name', 'tu-text-domain'),
+    'singular_name'         => _x('Servicio', 'Post type singular name', 'tu-text-domain'),
+    'menu_name'             => _x('Servicios', 'Admin Menu text', 'tu-text-domain'),
+    'name_admin_bar'        => _x('Servicio', 'Add New on Toolbar', 'tu-text-domain'),
+    'add_new'               => __('Añadir nuevo', 'tu-text-domain'),
+    'add_new_item'          => __('Añadir nuevo servicio', 'tu-text-domain'),
+    'new_item'              => __('Nuevo servicio', 'tu-text-domain'),
+    'edit_item'             => __('Editar servicio', 'tu-text-domain'),
+    'view_item'             => __('Ver servicio', 'tu-text-domain'),
+    'all_items'             => __('Todos los servicios', 'tu-text-domain'),
+    'search_items'          => __('Buscar servicios', 'tu-text-domain'),
+    'parent_item_colon'     => __('Servicio superior:', 'tu-text-domain'),
+    'not_found'             => __('No se encontraron servicios.', 'tu-text-domain'),
+    'not_found_in_trash'    => __('No se encontraron servicios en la papelera.', 'tu-text-domain'),
+    'featured_image'        => _x('Imagen destacada', 'Overrides the “Featured Image” phrase for this post type.', 'tu-text-domain'),
+    'set_featured_image'    => _x('Establecer imagen destacada', 'Overrides the “Set featured image” phrase for this post type.', 'tu-text-domain'),
+    'remove_featured_image' => _x('Eliminar imagen destacada', 'Overrides the “Remove featured image” phrase for this post type.', 'tu-text-domain'),
+    'use_featured_image'    => _x('Usar como imagen destacada', 'Overrides the “Use as featured image” phrase for this post type.', 'tu-text-domain'),
+    'archives'              => _x('Archivo de servicios', 'The post type archive label used in nav menus.', 'tu-text-domain'),
+    'insert_into_item'      => _x('Insertar en el servicio', 'Overrides the “Insert into post” phrase.', 'tu-text-domain'),
+    'uploaded_to_this_item' => _x('Subido a este servicio', 'Overrides the “Uploaded to this post” phrase.', 'tu-text-domain'),
+    'filter_items_list'     => _x('Filtrar lista de servicios', 'Screen reader text for the filter links.', 'tu-text-domain'),
+    'items_list_navigation' => _x('Navegación de lista de servicios', 'Screen reader text for the pagination.', 'tu-text-domain'),
+    'items_list'            => _x('Lista de servicios', 'Screen reader text for the items list.', 'tu-text-domain'),
+  );
+
+  $args = array(
+    'labels'             => $labels,
+    'public'             => true,
+    'publicly_queryable' => true,
+    'show_ui'            => true,
+    'show_in_menu'       => true,
+    'query_var'          => true,
+    'rewrite'            => array('slug' => 'lista-servicios'),
+    'capability_type'    => 'post',
+    'has_archive'        => true,
+    'hierarchical'       => false,
+    'menu_position'      => 5,
+    'menu_icon'          => 'dashicons-hammer', // Cambia el ícono si lo deseas.
+    'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
+  );
+
+  register_post_type('servicios', $args);
+}
+add_action('init', 'registrar_cpt_servicios');
+
+/**
+ * SOFTWARES CPT
+ */
+function registrar_cpt_softwares()
+{
+  $labels = array(
+    'name'                  => _x('Softwares', 'Post type general name', 'tu-text-domain'),
+    'singular_name'         => _x('Software', 'Post type singular name', 'tu-text-domain'),
+    'menu_name'             => _x('Softwares', 'Admin Menu text', 'tu-text-domain'),
+    'name_admin_bar'        => _x('Software', 'Add New on Toolbar', 'tu-text-domain'),
+    'add_new'               => __('Añadir nuevo', 'tu-text-domain'),
+    'add_new_item'          => __('Añadir nuevo software', 'tu-text-domain'),
+    'new_item'              => __('Nuevo software', 'tu-text-domain'),
+    'edit_item'             => __('Editar software', 'tu-text-domain'),
+    'view_item'             => __('Ver software', 'tu-text-domain'),
+    'all_items'             => __('Todos los softwares', 'tu-text-domain'),
+    'search_items'          => __('Buscar softwares', 'tu-text-domain'),
+    'parent_item_colon'     => __('Software superior:', 'tu-text-domain'),
+    'not_found'             => __('No se encontraron softwares.', 'tu-text-domain'),
+    'not_found_in_trash'    => __('No se encontraron softwares en la papelera.', 'tu-text-domain'),
+    'featured_image'        => _x('Imagen destacada', 'Overrides the “Featured Image” phrase for this post type.', 'tu-text-domain'),
+    'set_featured_image'    => _x('Establecer imagen destacada', 'Overrides the “Set featured image” phrase for this post type.', 'tu-text-domain'),
+    'remove_featured_image' => _x('Eliminar imagen destacada', 'Overrides the “Remove featured image” phrase for this post type.', 'tu-text-domain'),
+    'use_featured_image'    => _x('Usar como imagen destacada', 'Overrides the “Use as featured image” phrase for this post type.', 'tu-text-domain'),
+    'archives'              => _x('Archivo de softwares', 'The post type archive label used in nav menus.', 'tu-text-domain'),
+    'insert_into_item'      => _x('Insertar en el software', 'Overrides the “Insert into post” phrase.', 'tu-text-domain'),
+    'uploaded_to_this_item' => _x('Subido a este software', 'Overrides the “Uploaded to this post” phrase.', 'tu-text-domain'),
+    'filter_items_list'     => _x('Filtrar lista de softwares', 'Screen reader text for the filter links.', 'tu-text-domain'),
+    'items_list_navigation' => _x('Navegación de lista de softwares', 'Screen reader text for the pagination.', 'tu-text-domain'),
+    'items_list'            => _x('Lista de softwares', 'Screen reader text for the items list.', 'tu-text-domain'),
+  );
+
+  $args = array(
+    'labels'             => $labels,
+    'public'             => true,
+    'publicly_queryable' => true,
+    'show_ui'            => true,
+    'show_in_menu'       => true,
+    'query_var'          => true,
+    'rewrite'            => array('slug' => 'lista-softwares'),
+    'capability_type'    => 'post',
+    'has_archive'        => true,
+    'hierarchical'       => false,
+    'menu_position'      => 5,
+    'menu_icon'          => 'dashicons-desktop', // Ícono del menú (puedes cambiarlo).
+    'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
+  );
+
+  register_post_type('softwares', $args);
+}
+add_action('init', 'registrar_cpt_softwares');
+
+
+/**
+ * AJAX PÁGINA ACADÉMICO
+ */
+
+function mostrar_selector_categorias()
+{
+  $categorias = get_terms([
+    'taxonomy' => 'categorias_eventos',
+    'hide_empty' => true,
+  ]);
+
+  if (!empty($categorias) && !is_wp_error($categorias)) {
+    echo '<ul class="list-group list-group-flush" id="lista-categorias-eventos">';
+    foreach ($categorias as $categoria) {
+      echo '<li class="list-group-item" data-categoria="' . esc_attr($categoria->term_id) . '"><div>' . esc_html($categoria->name) . '</div></li>';
+    }
+    echo '</ul>';
+  }
+}
+add_shortcode('selector_categorias_eventos', 'mostrar_selector_categorias');
+
+
+function cargar_script_ajax_listado()
+{
+?>
+  <script>
+    jQuery(document).ready(function($) {
+      var $listaCategorias = $('#lista-categorias-eventos');
+      var $resultadosEventos = $('#resultados-eventos');
+      var categoriaActiva = null;
+
+      // Cargar eventos iniciales
+      function cargarEventos(pagina = 1) {
+        $.ajax({
+          url: '<?php echo admin_url("admin-ajax.php"); ?>',
+          type: 'POST',
+          data: {
+            action: categoriaActiva ? 'filtrar_eventos' : 'cargar_todos_eventos',
+            paged: pagina,
+            categoria_id: categoriaActiva // Enviar categoría activa solo si existe
+          },
+          beforeSend: function() {
+            $resultadosEventos.html('<p>Cargando eventos...</p>');
+          },
+          success: function(response) {
+            $resultadosEventos.html(response);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error al cargar los eventos iniciales:', error);
+            $resultadosEventos.html('<p>Hubo un error al cargar los eventos.</p>');
+          }
+        });
+      }
+
+      // Cargar la primera página al cargar la página
+      cargarEventos();
+
+      // Manejar el clic en los botones de paginación
+      $resultadosEventos.on('click', '.page-link', function(e) {
+        e.preventDefault(); // Evitar recarga de página
+        var pagina = $(this).data('pagina');
+        cargarEventos(pagina); // Cargar la página correspondiente
+      });
+
+      // Filtrar eventos por categoría
+      $listaCategorias.on('click', 'li', function() {
+        var $categoria = $(this);
+
+        if ($categoria.hasClass('activo')) {
+          console.log('Categoría ya activa.');
+          return;
+        }
+
+        categoriaActiva = $categoria.data('categoria'); // Actualizar la categoría activa
+        $listaCategorias.find('li').removeClass('activo');
+        $categoria.addClass('activo');
+
+        cargarEventos(1); // Cargar eventos filtrados desde la primera página
+      });
+
+    });
+  </script>
+<?php
+}
+add_action('wp_footer', 'cargar_script_ajax_listado');
+
+
+
+
+function filtrar_eventos()
+{
+  $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+  $categoria_id = isset($_POST['categoria_id']) ? intval($_POST['categoria_id']) : 0;
+
+  $args = [
+    'post_type' => 'eventos',
+    'posts_per_page' => 6, // Todos los eventos
+    'paged'          => $paged,
+  ];
+
+  if ($categoria_id) {
+    $args['tax_query'] = [
+      [
+        'taxonomy' => 'categorias_eventos',
+        'field'    => 'term_id',
+        'terms'    => $categoria_id,
+      ],
+    ];
+  }
+
+  $eventos = new WP_Query($args);
+
+  if ($eventos->have_posts()) {
+    echo '<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4">';
+    while ($eventos->have_posts()) {
+      $eventos->the_post();
+      // Obtener las categorías del evento
+      $categorias = get_the_terms(get_the_ID(), 'categorias_eventos');
+      $nombres_categorias = $categorias && !is_wp_error($categorias)
+        ? implode(', ', wp_list_pluck($categorias, 'name'))
+        : 'Sin categoría';
+
+      // Inicializar clases dinámicas
+      $clase_categoria = 'btn-category-card';
+      if ($categorias && !is_wp_error($categorias)) {
+        foreach ($categorias as $categoria) {
+          if ($categoria->slug === 'webinars') { // Cambia 'webinars' por el slug de tu categoría
+            $clase_categoria .= ' btn-category-card--green';
+            break;
+          }
+        }
+      }
+
+      echo '<div class="col">';
+      echo '<div class="card h-100">';
+      echo '<div class="position-relative">';
+      echo '<div class="' . esc_attr($clase_categoria) . '">' . esc_html($nombres_categorias) . '</div>';
+      echo ' <img src="' . wp_get_attachment_url(get_post_thumbnail_id()) . '" class="card-img-top" alt="...">';
+      echo '<div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>';
+      echo '</div>';
+      echo '<div class="card-body">';
+      echo '<div class="row">';
+      echo '<div class="col-2 text-center">';
+      echo '<p class="date-text">SET</p>';
+      echo '<p class="date-text date-text--day">18</p>';
+      echo '</div>';
+      echo '<div class="col-10">';
+      echo '<h5 class="card-title">' . get_the_title() . '</h5>';
+      echo '<p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>';
+      echo '<p class="card-text">' . get_the_excerpt() . '</p>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '<div class="card-footer">';
+      echo '<a href="">';
+      echo '<button class="btn btn-hans btn-card-comprar">';
+      echo '<i class="bi bi-cart2 pr-2"></i>';
+      echo '<span>Comprar</span>';
+      echo '</button>';
+      echo '</a>';
+      echo '<a href="' .  get_permalink() . '"><button class="btn btn-hans btn-card-ver">Ver más</button></a>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+    }
+    echo '</div>';
+
+    // Generar paginación
+    $total_pages = $eventos->max_num_pages;
+    if ($total_pages > 1) {
+      echo '<div class="row mt-4">';
+      echo '<div class="col">';
+      echo '<nav aria-label="Page navigation">';
+      echo '<ul class="pagination justify-content-end">';
+
+      for ($i = 1; $i <= $total_pages; $i++) {
+        $active_class = $i == $paged ? ' active' : '';
+        echo '<li class="page-item' . $active_class . '">';
+        echo '<a class="page-link" href="#" data-pagina="' . $i . '">' . $i . '</a>';
+        echo '</li>';
+      }
+
+      echo '</ul>';
+      echo '</nav>';
+      echo '</div>';
+      echo '</div>';
+    }
+  } else {
+    echo '<p>No se encontraron eventos.</p>';
+  }
+
+  wp_die();
+}
+add_action('wp_ajax_filtrar_eventos', 'filtrar_eventos');
+add_action('wp_ajax_nopriv_filtrar_eventos', 'filtrar_eventos');
+
+
+function cargar_todos_eventos()
+{
+  // Obtener la página actual desde AJAX (si no se pasa, usar la primera página).
+  $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+  $categoria_id = isset($_POST['categoria_id']) ? absint($_POST['categoria_id']) : 0;
+
+  $args = [
+    'post_type' => 'eventos',
+    'posts_per_page' => 6, // Todos los eventos
+    'paged'          => $paged,
+  ];
+
+  if ($categoria_id) {
+    $args['tax_query'] = [
+      [
+        'taxonomy' => 'categorias_eventos',
+        'field'    => 'term_id',
+        'terms'    => $categoria_id,
+      ],
+    ];
+  }
+
+  $eventos = new WP_Query($args);
+
+  if ($eventos->have_posts()) {
+    echo '<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4">';
+    while ($eventos->have_posts()) {
+      $eventos->the_post();
+      // Obtener las categorías del evento
+      $categorias = get_the_terms(get_the_ID(), 'categorias_eventos');
+      $nombres_categorias = $categorias && !is_wp_error($categorias)
+        ? implode(', ', wp_list_pluck($categorias, 'name'))
+        : 'Sin categoría';
+
+      // Inicializar clases dinámicas
+      $clase_categoria = 'btn-category-card';
+      if ($categorias && !is_wp_error($categorias)) {
+        foreach ($categorias as $categoria) {
+          if ($categoria->slug === 'webinars') { // Cambia 'webinars' por el slug de tu categoría
+            $clase_categoria .= ' btn-category-card--green';
+            break;
+          }
+        }
+      }
+
+      echo '<div class="col">';
+      echo '<div class="card h-100">';
+      echo '<div class="position-relative">';
+      echo '<div class="' . esc_attr($clase_categoria) . '">' . esc_html($nombres_categorias) . '</div>';
+      echo ' <img src="' . wp_get_attachment_url(get_post_thumbnail_id()) . '" class="card-img-top" alt="...">';
+      echo '<div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>';
+      echo '</div>';
+      echo '<div class="card-body">';
+      echo '<div class="row">';
+      echo '<div class="col-2 text-center">';
+      echo '<p class="date-text">SET</p>';
+      echo '<p class="date-text date-text--day">18</p>';
+      echo '</div>';
+      echo '<div class="col-10">';
+      echo '<h5 class="card-title">' . get_the_title() . '</h5>';
+      echo '<p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>';
+      echo '<p class="card-text">' . get_the_excerpt() . '</p>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '<div class="card-footer">';
+      echo '<a href="">';
+      echo '<button class="btn btn-hans btn-card-comprar">';
+      echo '<i class="bi bi-cart2 pr-2"></i>';
+      echo '<span>Comprar</span>';
+      echo '</button>';
+      echo '</a>';
+      echo '<a href="' .  get_permalink() . '"><button class="btn btn-hans btn-card-ver">Ver más</button></a>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+    }
+    echo '</div>';
+
+    // Agregar los botones de paginación
+    $total_pages = $eventos->max_num_pages;
+    if ($total_pages > 1) {
+      echo '<div class="row">';
+      echo '<div class="col">';
+      echo '<nav aria-label="Page navigation example">';
+      echo '<ul class="pagination justify-content-end">';
+
+      for ($i = 1; $i <= $total_pages; $i++) {
+        $active_class = $i == $paged ? ' active' : '';
+        echo '<li class="page-item' . $active_class . '">';
+        echo '<a class="page-link" href="#" data-pagina="' . $i . '">' . $i . '</a>';
+        echo '</li>';
+      }
+
+      echo '</ul>';
+      echo '</nav>';
+      echo '</div>';
+      echo '</div>';
+    }
+  } else {
+    echo '<p>No hay eventos disponibles.</p>';
+  }
+
+  wp_die();
+}
+add_action('wp_ajax_cargar_todos_eventos', 'cargar_todos_eventos');
+add_action('wp_ajax_nopriv_cargar_todos_eventos', 'cargar_todos_eventos');

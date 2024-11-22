@@ -31,57 +31,31 @@ get_header();
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col px-0">
         <div class="swiper swiperServiciosMain">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Accidente de transito</h5>
+          <div class="swiper-wrapper text-center">
+            <?php
+            $args = array(
+              'post_type' => 'servicios',
+              'paged' => $paged,
+            );
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+              while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="swiper-slide">
+                  <div class="card">
+                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+                    <div class="card-footer justify-content-center">
+                      <a href="<?php echo get_permalink() ?>">
+                        <h5 class="card-title"><?php echo get_the_title() ?></h5>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/balistica-forense.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Balística forense</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Accidente de transito</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/balistica-forense.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Balística forense</h5>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-                <div class="card-footer justify-content-center">
-                  <h5 class="card-title">Dactiloscopia</h5>
-                </div>
-              </div>
-            </div>
+            <?php endwhile;
+            }
+            wp_reset_postdata();
+            ?>
           </div>
         </div>
       </div>
@@ -101,7 +75,7 @@ get_header();
   </div>
 </section>
 
-<section class="section-servicios-description ptb-100">
+<!-- <section class="section-servicios-description ptb-100">
   <div class="container">
     <div class="row mb-5">
       <div class="col-lg-6">
@@ -178,7 +152,7 @@ get_header();
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <?php get_template_part('template-parts/content', 'cta'); ?>
 

@@ -5,9 +5,7 @@ get_header();
 <header id="miDiv" class="continer-fluid software-page" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-softwares.webp); background-repeat: no-repeat; background-size: cover">
   <div id="overlay"></div>
   <div id="contenidoDiv">
-    <?php
-    include("template-parts/navbar.php");
-    ?>
+    <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-8">
@@ -138,23 +136,7 @@ get_header();
   </div>
 </section>
 
-<section class="section-contactanos ptb-50">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-5">
-        <h2 class="colorgreen">Contáctanos</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-        <div class="">
-          <a href="/contactanos"><button class="btn btn-hans btn-hans--green">Por Whatsapp</button></a>
-          <a href="/contactanos"><button class="btn btn-hans btn-hans--green">Ver más</button></a>
-        </div>
-      </div>
-      <div class="col-lg-7">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/decor-contactanos.png" alt="" class="img-fluid">
-      </div>
-    </div>
-  </div>
-</section>
+<?php get_template_part('template-parts/content', 'cta'); ?>
 
 <?php
 get_footer();

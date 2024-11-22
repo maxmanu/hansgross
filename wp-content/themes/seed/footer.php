@@ -159,34 +159,20 @@
 
 <?php wp_footer(); ?>
 
-<?php if (is_page_template('page-templates/t_page_laboratorio.php')) { ?>
+<?php if (is_page_template('page-templates/t_page_nosotros.php')) { ?>
   <script>
-    const swiper = new Swiper('.swiper', {
-      slidesPerView: 4,
-      spaceBetween: 30,
-      loop: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 50,
-        },
-      },
+    /**
+     * SPLIDE CAROUSEL
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+      var splide = new Splide('.splide', {
+        type: 'loop',
+        perPage: 3,
+        gap: 30,
+        pagination: true,
+        arrowPath: 'M23.7529 4.004C22.8517 3.08804 22.8517 1.60293 23.7529 0.686971C24.6542 -0.22899 26.1151 -0.22899 27.0164 0.686971L39.3241 13.1964C39.7747 13.6542 40 14.2546 40 14.8548C40 15.1728 39.9377 15.4762 39.8249 15.7526C39.7123 16.0291 39.5454 16.2883 39.3241 16.5132L27.0164 29.0225C26.1151 29.9385 24.6542 29.9385 23.7529 29.0225C22.8517 28.1065 22.8517 26.6216 23.7529 25.7057L32.121 17.2003H2.30769C1.03323 17.2003 -7.15256e-07 16.1501 -7.15256e-07 14.8548C-7.15256e-07 13.5594 1.03323 12.5093 2.30769 12.5093H32.121L23.7529 4.004Z',
+      });
+      splide.mount();
     });
   </script>
 <?php } ?>

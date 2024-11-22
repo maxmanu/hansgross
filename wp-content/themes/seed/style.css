@@ -880,7 +880,8 @@ footer {
   flex: 1
 }
 
-.btn-card-comprar {
+.btn-card-comprar,
+.btn-card-comprar:hover {
   background-color: #06834D;
   color: #fff;
   border: 1px solid #06834D;
@@ -889,7 +890,8 @@ footer {
   border-bottom-right-radius: 0;
 }
 
-.btn-card-ver {
+.btn-card-ver,
+.btn-card-ver:hover {
   background-color: transparent;
   color: #06834D;
   border: 1px solid #06834D;
@@ -1316,6 +1318,7 @@ footer .top-title {
   font-size: 1.2rem;
   font-weight: 700;
   color: #000000;
+  font-family: 'HandleGotic';
 }
 
 .section-todos-cursos .card .card-category {
@@ -1496,7 +1499,14 @@ footer .top-title {
   text-decoration: underline;
 }
 
+/* #lista-categorias-eventos li:hover {
+  background-color: #eaeaea;
+}
+*/
 
+#lista-categorias-eventos li.activo {
+  color: var(--green-2);
+}
 
 
 

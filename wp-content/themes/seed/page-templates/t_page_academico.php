@@ -31,14 +31,17 @@ get_header();
       <div class="col-xl-2">
         <div class="nav-category-curso mb-5">
           <p>Académico</p>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item colorgreen-2">
               <div>Cursos</div>
             </li>
             <li class="list-group-item">
               <div>Webinars</div>
             </li>
-          </ul>
+          </ul> -->
+          <?php
+          echo do_shortcode('[selector_categorias_eventos]')
+          ?>
         </div>
         <div class="nav-category-curso">
           <p>Categoría</p>
@@ -53,195 +56,10 @@ get_header();
         </div>
       </div>
       <div class="col-xl-10">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4">
-          <div class="col">
-            <div class="card h-100">
-              <div class="position-relative">
-                <div class="btn-category-card">Curso</div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-                <div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-2 text-center">
-                    <p class="date-text">SET</p>
-                    <P class="date-text date-text--day">18</P>
-                  </div>
-                  <div class="col-10">
-                    <h5 class="card-title">Informática Forense</h5>
-                    <p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>
-                    <p class="card-text">Enfrentemos exitosamente diversos tipos de crímenes cibernéticos. Enfrentemos exitosamente.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="single-curso.php">
-                  <button class="btn btn-hans btn-card-comprar">
-                    <i class="bi bi-cart2 pr-2"></i>
-                    <span>Comprar</span>
-                  </button>
-                </a>
-                <a href="single-curso.php"><button class="btn btn-hans btn-card-ver">Ver más</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <div class="position-relative">
-                <div class="btn-category-card btn-category-card--green">Webinar</div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-                <div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-2 text-center">
-                    <p class="date-text">SET</p>
-                    <P class="date-text date-text--day">18</P>
-                  </div>
-                  <div class="col-10">
-                    <h5 class="card-title">Informática Forense</h5>
-                    <p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>
-                    <p class="card-text">Enfrentemos exitosamente diversos tipos de crímenes cibernéticos. Enfrentemos exitosamente.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="single-curso.php">
-                  <button class="btn btn-hans btn-card-comprar">
-                    <i class="bi bi-cart2 pr-2"></i>
-                    <span>Comprar</span>
-                  </button>
-                </a>
-                <a href="single-curso.php"><button class="btn btn-hans btn-card-ver">Ver más</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <div class="position-relative">
-                <div class="btn-category-card">Curso</div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-                <div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-2 text-center">
-                    <p class="date-text">SET</p>
-                    <P class="date-text date-text--day">18</P>
-                  </div>
-                  <div class="col-10">
-                    <h5 class="card-title">Informática Forense</h5>
-                    <p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>
-                    <p class="card-text">Enfrentemos exitosamente diversos tipos de crímenes cibernéticos. Enfrentemos exitosamente.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="single-curso.php">
-                  <button class="btn btn-hans btn-card-comprar">
-                    <i class="bi bi-cart2 pr-2"></i>
-                    <span>Comprar</span>
-                  </button>
-                </a>
-                <a href="single-curso.php"><button class="btn btn-hans btn-card-ver">Ver más</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <div class="position-relative">
-                <div class="btn-category-card btn-category-card--green">Webinar</div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-                <div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-2 text-center">
-                    <p class="date-text">SET</p>
-                    <P class="date-text date-text--day">18</P>
-                  </div>
-                  <div class="col-10">
-                    <h5 class="card-title">Informática Forense</h5>
-                    <p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>
-                    <p class="card-text">Enfrentemos exitosamente diversos tipos de crímenes cibernéticos. Enfrentemos exitosamente.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="single-curso.php">
-                  <button class="btn btn-hans btn-card-comprar">
-                    <i class="bi bi-cart2 pr-2"></i>
-                    <span>Comprar</span>
-                  </button>
-                </a>
-                <a href="single-curso.php"><button class="btn btn-hans btn-card-ver">Ver más</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <div class="position-relative">
-                <div class="btn-category-card">Curso</div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-                <div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-2 text-center">
-                    <p class="date-text">SET</p>
-                    <P class="date-text date-text--day">18</P>
-                  </div>
-                  <div class="col-10">
-                    <h5 class="card-title">Informática Forense</h5>
-                    <p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>
-                    <p class="card-text">Enfrentemos exitosamente diversos tipos de crímenes cibernéticos. Enfrentemos exitosamente.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="single-curso.php">
-                  <button class="btn btn-hans btn-card-comprar">
-                    <i class="bi bi-cart2 pr-2"></i>
-                    <span>Comprar</span>
-                  </button>
-                </a>
-                <a href="single-curso.php"><button class="btn btn-hans btn-card-ver">Ver más</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <div class="position-relative">
-                <div class="btn-category-card btn-category-card--green">Webinar</div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-                <div class="btn-precio-card"><sup>S/</sup>59<sup>.99</sup></div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-2 text-center">
-                    <p class="date-text">SET</p>
-                    <P class="date-text date-text--day">18</P>
-                  </div>
-                  <div class="col-10">
-                    <h5 class="card-title">Informática Forense</h5>
-                    <p class="card-category mb-2"><b>Categoría:</b> Criminalística</p>
-                    <p class="card-text">Enfrentemos exitosamente diversos tipos de crímenes cibernéticos. Enfrentemos exitosamente.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="single-curso.php">
-                  <button class="btn btn-hans btn-card-comprar">
-                    <i class="bi bi-cart2 pr-2"></i>
-                    <span>Comprar</span>
-                  </button>
-                </a>
-                <a href="single-curso.php"><button class="btn btn-hans btn-card-ver">Ver más</button></a>
-              </div>
-            </div>
-          </div>
+        <div id="resultados-eventos">
+
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col">
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-end">
@@ -251,7 +69,7 @@ get_header();
               </ul>
             </nav>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

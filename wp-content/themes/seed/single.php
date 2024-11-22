@@ -5,9 +5,7 @@ get_header();
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-blog.webp); background-repeat: no-repeat; background-size: cover; background-position:center;">
   <div id="overlay"></div>
   <div id="contenidoDiv">
-    <?php
-    include("template-parts/navbar.php");
-    ?>
+    <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
