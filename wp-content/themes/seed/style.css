@@ -311,6 +311,13 @@ h2 {
   background-position: center;
 }
 
+.section-software-description {
+  background: url('assets/img/bg-servicios-text.png'), #fff;
+  background-repeat: repeat;
+  background-position: center;
+  ;
+}
+
 .section-servicios-description img {
   height: 500px;
   width: 500px;
@@ -1442,10 +1449,6 @@ tbody>:not(caption)>*>* {
   padding: .875rem .75rem;
 }
 
-.section-software-description {
-  background-color: #fff;
-}
-
 .img-single-software {
   max-width: 400px;
 }
@@ -1455,7 +1458,8 @@ tbody>:not(caption)>*>* {
   border-radius: 25px;
 }
 
-.btn-download {
+.btn-download,
+.btn-download:hover {
   background-color: rgba(194, 242, 221, 0.5);
   border: 1px solid rgba(123, 168, 147, 1);
   color: var(--green-2);

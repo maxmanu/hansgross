@@ -20,70 +20,23 @@ get_header();
         <div class="col position-relative">
           <div class="swiper swiperSoftwares">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-amped.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-magnet.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-salvation.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-mobil.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-3dsystems.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-oxygen.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-oxygen.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card-software">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-oxygen.png" class="card-img-top" alt="...">
-                </div>
-                <div class="btn btn-arrows-servicios">
-                  <i class="bi bi-arrow-right"></i>
-                </div>
-              </div>
+              <?php
+              $args = array(
+                'post_type' => 'softwares',
+                'paged' => $paged,
+              );
+              $query = new WP_Query($args);
+              if ($query->have_posts()) {
+                while ($query->have_posts()) : $query->the_post(); ?>
+                  <div class="swiper-slide">
+                    <div class="card-software">
+                      <a href="<?php echo get_permalink() ?>"><img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="..."></a>
+                    </div>
+                  </div>
+              <?php endwhile;
+              }
+              wp_reset_postdata();
+              ?>
             </div>
             <!-- If we need navigation buttons -->
             <div id="button-prev-software" class="swiper-button-prev">
@@ -99,7 +52,7 @@ get_header();
   </div>
 </header>
 
-<section class="section-software-description ptb-100">
+<!-- <section class="section-software-description ptb-100">
   <div class="container">
     <div class="row mb-4">
       <div class="col-lg-6">
@@ -137,7 +90,7 @@ get_header();
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <?php get_template_part('template-parts/content', 'cta'); ?>
 
