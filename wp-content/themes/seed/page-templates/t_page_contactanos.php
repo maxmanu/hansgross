@@ -60,13 +60,13 @@ get_header();
       </div>
     </div>
 
-    <form class="row g-5 contact-form">
+    <form class="row g-md-5 contact-form">
       <div class="col-lg-7">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Nombre y apellido</label>
           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
-        <div class="row">
+        <div class="row mb-3 mb-md-0">
           <div class="col">
             <label for="exampleFormControlInput1" class="form-label">Celular</label>
             <input type="text" class="form-control" placeholder="" aria-label="First name">

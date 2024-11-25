@@ -926,13 +926,172 @@ function registrar_cpt_certificados()
     'query_var'          => true,
     'rewrite'            => array('slug' => 'certificados'),
     'capability_type'    => 'post',
-    'has_archive'        => true,
+    'has_archive'        => false,
     'hierarchical'       => false,
     'menu_position'      => 5,
     'menu_icon'          => 'dashicons-awards', // Cambia el ícono si lo deseas.
-    'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
+    'supports'           => array('title'),
   );
 
   register_post_type('certificados', $args);
 }
 add_action('init', 'registrar_cpt_certificados');
+
+
+add_action('cmb2_admin_init', 'crear_campos_certificados');
+function crear_campos_certificados()
+{
+  // Crear un metabox para el CPT "certificados"
+  $cmb = new_cmb2_box(array(
+    'id'            => 'certificados_metabox',
+    'title'         => __('Información de Certificados', 'textdomain'),
+    'object_types'  => array('certificados'), // Aplica al Custom Post Type "certificados"
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true,
+  ));
+
+  // Campo repetidor (group field)
+  $group_field_id = $cmb->add_field(array(
+    'id'          => 'grupo_certificados',
+    'type'        => 'group',
+    'description' => __('Añade información de certificados', 'textdomain'),
+    'options'     => array(
+      'group_title'   => __('Certificado {#}', 'textdomain'), // Título para cada grupo
+      'add_button'    => __('Añadir Certificado', 'textdomain'),
+      'remove_button' => __('Eliminar Certificado', 'textdomain'),
+      'sortable'      => true, // Permitir reordenar
+    ),
+  ));
+
+  // Subcampo: Número de código
+  $cmb->add_group_field($group_field_id, array(
+    'name' => __('Número de Código', 'textdomain'),
+    'id'   => 'numero_codigo',
+    'type' => 'text',
+    'attributes' => array(
+      'placeholder' => __('Ej: 12345', 'textdomain'),
+    ),
+  ));
+
+  // Subcampo: Nombre del Certificado
+  $cmb->add_group_field($group_field_id, array(
+    'name' => __('Nombre del Certificado', 'textdomain'),
+    'id'   => 'nombre_certificado',
+    'type' => 'text',
+    'attributes' => array(
+      'placeholder' => __('Ej: Certificado de Excelencia', 'textdomain'),
+    ),
+  ));
+
+  // Subcampo: Subir PDF
+  $cmb->add_group_field($group_field_id, array(
+    'name' => __('Subir PDF del Certificado', 'textdomain'),
+    'id'   => 'archivo_pdf',
+    'type' => 'file',
+    'options' => array(
+      'url' => false, // Ocultar campo URL adicional
+    ),
+    'text' => array(
+      'add_upload_file_text' => __('Subir PDF', 'textdomain'),
+    ),
+  ));
+}
+
+add_action('wp_ajax_buscar_certificados', 'buscar_certificados');
+add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados');
+
+function buscar_certificados()
+{
+  $query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
+
+  if (empty($query)) {
+    wp_send_json(array(
+      'titulo' => '',
+      'contenido' => '<p>Por favor, escribe algo para buscar.</p>'
+    ));
+  }
+
+  $args = array(
+    'post_type' => 'certificados',
+    'post_status' => 'publish',
+    'title' => $query,
+    'posts_per_page' => 1,
+  );
+
+  $certificados = new WP_Query($args);
+
+  if ($certificados->have_posts()) {
+    $certificados->the_post();
+
+    // Obtener título del post
+    $titulo = get_the_title();
+
+    // Obtener los custom fields
+    $custom_fields = get_post_meta(get_the_ID(), 'grupo_certificados', true);
+    $contenido = '';
+
+    if (!empty($custom_fields)) {
+      foreach ($custom_fields as $field) {
+        $codigo = isset($field['numero_codigo']) ? esc_html($field['numero_codigo']) : '';
+        $nombre = isset($field['nombre_certificado']) ? esc_html($field['nombre_certificado']) : '';
+        $pdf = isset($field['archivo_pdf']) ? esc_url($field['archivo_pdf']) : '';
+
+        $contenido .= '<tr>';
+        $contenido .= '<th>';
+        $contenido .= '<img src="' . get_template_directory_uri() . '/assets/img/icon-diploma.png" class="img-fluid me-3" alt="...">';
+        if ($codigo) {
+          $contenido .= '<span>' . $codigo . '</span>';
+        }
+        $contenido .= '</th>';
+        $contenido .= '<td>';
+        $contenido .= '<div class="pt-3">';
+        if ($nombre) {
+          $contenido .= '<span>' . $nombre . '</span>';
+        }
+        $contenido .= '</div>';
+        $contenido .= '</td>';
+        $contenido .= '<td class="text-center">';
+        $contenido .= '<div class="pt-3">';
+        if ($pdf) {
+          $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-eye.png" class="img-fluid icon-table" alt="..."></a>';
+        }
+        $contenido .= '</div>';
+        $contenido .= '</td>';
+        $contenido .= '<td class="text-center">';
+        $contenido .= '<div class="pt-3">';
+        if ($pdf) {
+          $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></a>';
+        }
+        $contenido .= '</div>';
+        $contenido .= '</td>';
+        $contenido .= '</tr>';
+      }
+    } else {
+      $contenido .= '<p>No se encontraron detalles para este certificado.</p>';
+    }
+
+    wp_send_json(array(
+      'titulo' => $titulo,
+      'contenido' => $contenido
+    ));
+  } else {
+    wp_send_json(array(
+      'titulo' => '',
+      'contenido' => '<p>No se encontró ningún certificado con el título exacto "' . esc_html($query) . '".</p>'
+    ));
+  }
+}
+
+
+
+function cargar_scripts_buscador()
+{
+  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
+
+  // Agregar el objeto AJAX
+  wp_localize_script('buscador-certificados', 'ajax_object', array(
+    'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
+  ));
+}
+add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');

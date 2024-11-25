@@ -23,48 +23,37 @@ get_header();
 <section class="section-table-certificados">
   <div class="container">
     <div class="row mb-5">
-      <div class="col-lg-10 mx-auto">
+      <div class="col-lg-11 mx-auto">
         <div class="card-search">
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has dummy text of the printing and typesetting industry. Lorem Ipsum has and typesetting industry. Lorem Ipsum has</p>
+          <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has dummy text of the printing and typesetting industry. Lorem Ipsum has and typesetting industry. Lorem Ipsum has</p>
           <div class="input-group mb-3 mx-auto">
-            <input type="text" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
+            <input type="text" id="buscador-certificados" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
             <button class="btn btn--search" type="button" id="button-addon2">Buscar</button>
           </div>
         </div>
       </div>
     </div>
     <div class="row mb-3">
-      <div class="col-lg-10 mx-auto">
+      <div class="col-lg-11 mx-auto">
         <p>Alumno:</p>
-        <p class="name-student">Alberto Álvarez Mejía</p>
+        <p class="name-student" id="resultado-titulo"></p>
       </div>
     </div>
     <div class="row mb-3">
-      <div class="col-lg-10 mx-auto">
+      <div class="col-lg-11 mx-auto">
         <p>Resultados:</p>
         <div class="table-responsive">
           <table class="table">
             <thead class="table-light">
               <tr>
-                <th scope="col" class="ps-5">Código</th>
+                <th scope="col" class="first-title-table">Código</th>
                 <th scope="col">Certificado</th>
                 <th scope="col" class="text-center">Visualizar</th>
                 <th scope="col" class="text-center">Descargar</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid me-1" alt="...">0010828092022</th>
-                <td>Certificado Curso Forense</td>
-                <td class="text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-eye.png" class="img-fluid icon-table" alt=""></td>
-                <td class="text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></td>
-              </tr>
-              <tr>
-                <th><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid me-1" alt="...">0140828092022</th>
-                <td>Curso In-House de Siniestros Vehiculares</td>
-                <td class="text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-eye.png" class="img-fluid icon-table" alt=""></td>
-                <td class="text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></td>
-              </tr>
+            <tbody id="resultado-busqueda">
+
             </tbody>
           </table>
         </div>

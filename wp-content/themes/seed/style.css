@@ -1038,7 +1038,7 @@ footer .top-title {
 
 .card-search {
   background: #03111C;
-  padding: 50px 50px 20px 50px;
+  padding: 70px 100px 40px 100px;
   color: #fff;
   border-radius: 30px;
 }
@@ -1054,6 +1054,7 @@ footer .top-title {
 
 .card-search .input-group>.form-control {
   flex: 4;
+  padding: .875rem 2rem;
 }
 
 .card-search .input-group .btn {
@@ -1066,6 +1067,12 @@ footer .top-title {
 
 .table>:not(caption)>*>* {
   background-color: transparent;
+  font-weight: 400;
+  border-bottom-width: 0;
+}
+
+tbody>:not(caption)>*>* {
+  padding: .8rem .5rem;
 }
 
 .icon-table {
@@ -1427,8 +1434,12 @@ footer .top-title {
   font-family: 'HandleGotic';
 }
 
+.contact-form textarea.form-control {
+  padding: 1.1rem .75rem;
+}
+
 .contact-form .form-control {
-  padding: .675rem .75rem;
+  padding: .875rem .75rem;
 }
 
 .section-software-description {
@@ -1507,6 +1518,13 @@ footer .top-title {
 #lista-categorias-eventos li.activo {
   color: var(--green-2);
 }
+
+.first-title-table {
+  padding-left: 61px !important;
+}
+
+
+
 
 
 

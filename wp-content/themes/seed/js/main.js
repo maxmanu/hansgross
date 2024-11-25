@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     changeContent(
       'Webinars',
       'Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
-      '#'
+      '/academico'
     );
 
     // Añade los eventos de clic a cada botón para cambiar el contenido y el estado activo
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       changeContent(
         'Webinars',
         'Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
-        '#'
+        '/academico'
       );
     });
 
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       changeContent(
         'Cursos',
         'Descubre una variedad de cursos diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
-        '#'
+        '/academico'
       );
     });
   } else {

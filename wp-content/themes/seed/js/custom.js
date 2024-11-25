@@ -77,3 +77,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+jQuery(document).ready(function ($) {
+  $('#buscador-certificados').on('keyup', function () {
+    var query = $(this).val();
+
+    $.ajax({
+      url: ajax_object.ajax_url,
+      type: 'POST',
+      data: {
+        action: 'buscar_certificados',
+        query: query,
+      },
+      beforeSend: function () {
+        $('#resultado-titulo').html(''); // Limpia el título previo
+        $('#resultado-busqueda').html('<p>Buscando...</p>'); // Muestra un mensaje de carga
+      },
+      success: function (response) {
+        if (response.titulo) {
+          $('#resultado-titulo').html('<h3>' + response.titulo + '</h3>'); // Muestra el título en su div
+        }
+        if (response.contenido) {
+          $('#resultado-busqueda').html(response.contenido); // Muestra los detalles (custom fields)
+        }
+      },
+      error: function () {
+        $('#resultado-titulo').html('');
+        $('#resultado-busqueda').html('<p>Hubo un error. Intenta de nuevo.</p>');
+      },
+    });
+  });
+});

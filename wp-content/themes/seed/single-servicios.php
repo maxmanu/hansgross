@@ -28,7 +28,7 @@ get_header();
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col px-0">
         <div class="swiper swiperServiciosMain">
           <div class="swiper-wrapper text-center">
             <?php
