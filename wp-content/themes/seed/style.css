@@ -1527,12 +1527,48 @@ tbody>:not(caption)>*>* {
   padding-left: 61px !important;
 }
 
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+}
+
+.error-message2 {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+}
 
 
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
 
+#form-status {
+  margin-top: 15px;
+  font-weight: bold;
+}
 
-
-
+#formLoading {
+  display: none;
+  /* Ocultarlo por defecto */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Espacio entre el ícono y el texto */
+  margin-top: 10px;
+  /* Separación con el botón */
+  color: #555;
+  font-size: 1rem;
+}
 
 
 

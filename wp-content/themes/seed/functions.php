@@ -257,39 +257,52 @@ add_action('admin_menu', function () {
   remove_menu_page('edit-comments.php');
 });
 
-// Formulario de Contacto
-function custom_contact_form_handler()
+function process_contact_form()
 {
-  $name    = sanitize_text_field($_POST['name']);
-  $email   = sanitize_email($_POST['email']);
-  $asunto    = sanitize_text_field($_POST['asunto']);
-  $message = esc_textarea($_POST['message']);
-  $redirect_url = esc_url($_POST['redirect_url']);
+  // Verificar si es una solicitud AJAX
+  if (defined('DOING_AJAX') && DOING_AJAX) {
+    // Validar los datos recibidos
+    if (
+      isset($_POST['name'], $_POST['email'], $_POST['celular'], $_POST['message']) &&
+      filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+    ) {
+      $name = sanitize_text_field($_POST['name']);
+      $celular = sanitize_text_field($_POST['celular']);
+      $email = sanitize_email($_POST['email']);
+      $message = sanitize_textarea_field($_POST['message']);
 
-  $to      = 'info@laforse-hg.com';
-  $subject = 'Nuevo mensaje de contacto';
-  $headers = array('Content-Type: text/html; charset=UTF-8', 'From: ' . $name . ' <' . $email . '>');
+      // Enviar correo
+      $to = 'maxcamina@gmail.com, info@hansgross.com.pe, info@obi.com.pe'; // Reemplaza con tu correo deseado
+      $headers = ['Content-Type: text/html; charset=UTF-8', 'From: ' . $name . ' <' . $email . '>'];
+      $body = "
+                <strong>Nombre:</strong> $name <br>
+                <strong>Correo:</strong> $email <br>
+                <strong>Celular:</strong> $celular <br>
+                <strong>Mensaje:</strong> <br>$message
+            ";
 
-  $body = "Nombre: $name<br>";
-  $body .= "Correo electrónico: $email<br>";
-  $body .= "Asunto: $subject<br>";
-  $body .= "Mensaje: $message<br>";
-
-  if (wp_mail($to, $subject, $body, $headers)) {
-    // Éxito en el envío del correo
-    $redirect_url = add_query_arg('status', 'success', $redirect_url);
+      if (wp_mail($to, 'Nuevo mensaje de contacto', $body, $headers)) {
+        // Respuesta de éxito
+        wp_send_json_success(['message' => 'Formulario enviado correctamente.']);
+      } else {
+        // Respuesta de error al enviar el correo
+        wp_send_json_error(['message' => 'Hubo un error al enviar el correo.']);
+      }
+    } else {
+      // Respuesta de error por validación
+      wp_send_json_error(['message' => 'Los datos enviados son inválidos.']);
+    }
   } else {
-    // Error en el envío del correo
-    $redirect_url = add_query_arg('status', 'error', $redirect_url);
+    // Respuesta de error (datos inválidos)
+    wp_send_json_error(['message' => 'Por favor, completa todos los campos correctamente.']);
   }
-
-  // Redirige a la página con el mensaje de éxito o error
-  wp_redirect($redirect_url);
-  exit();
+  // Terminar correctamente la ejecución del script
+  wp_die();
 }
+add_action('wp_ajax_send_contact_form', 'process_contact_form');
+add_action('wp_ajax_nopriv_send_contact_form', 'process_contact_form');
 
-add_action('admin_post_nopriv_custom_contact_form', 'custom_contact_form_handler');
-add_action('admin_post_custom_contact_form', 'custom_contact_form_handler');
+
 
 // Remove Categories and Tags
 // add_action('init', 'myprefix_remove_tax');

@@ -176,6 +176,131 @@
     });
   </script>
 <?php } ?>
+<?php if (is_page_template('page-templates/t_page_contactanos.php')) { ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contactForm');
+      const formStatus = document.getElementById('formStatus');
+      const formLoading = document.getElementById('formLoading'); // Spinner
+
+      form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Previene el envío por defecto
+
+        // Limpiar mensajes de error previos
+        const errorMessages = form.querySelectorAll('.error-message');
+        errorMessages.forEach((msg) => msg.remove());
+
+        // Ocultar mensajes previos y mostrar el spinner
+        formStatus.textContent = '';
+        formLoading.style.display = 'block'; // Muestra el spinner (puedes usar 'block' si no tienes estilos flex)
+
+        // Validar los campos
+        let isValid = true;
+
+        // Validación de nombre y apellido (máximo 50 caracteres)
+        const nameInput = form.querySelector('[name="name"]');
+        if (!nameInput.value.trim()) {
+          showError(nameInput, 'Por favor, ingresa tu nombre.');
+          isValid = false;
+        } else if (nameInput.value.trim().length > 50) {
+          showError(nameInput, 'El nombre no debe superar los 50 caracteres.');
+          isValid = false;
+        }
+
+        // Validación de email (máximo 80 caracteres)
+        const emailInput = form.querySelector('[name="email"]');
+        if (!emailInput.value.trim()) {
+          showError(emailInput, 'Por favor, ingresa tu correo.');
+          isValid = false;
+        } else if (!isValidEmail(emailInput.value.trim())) {
+          showError(emailInput, 'Por favor, ingresa un correo válido.');
+          isValid = false;
+        } else if (emailInput.value.trim().length > 80) {
+          showError(emailInput, 'El correo no debe superar los 80 caracteres.');
+          isValid = false;
+        }
+
+        // Validación de celular (máximo 20 dígitos)
+        const celularInput = form.querySelector('[name="celular"]');
+        if (celularInput.value.trim() && !/^\d+$/.test(celularInput.value.trim())) {
+          showError(celularInput, 'Por favor, ingresa solo números en el celular.');
+          isValid = false;
+        } else if (celularInput.value.trim().length > 20) {
+          showError(celularInput, 'El celular no debe superar los 20 dígitos.');
+          isValid = false;
+        }
+
+        // Validación de mensaje (máximo 500 caracteres)
+        const messageInput = form.querySelector('[name="message"]');
+        if (!messageInput.value.trim()) {
+          showError(messageInput, 'Por favor, ingresa tu mensaje.');
+          isValid = false;
+        } else if (messageInput.value.trim().length > 500) {
+          showError(messageInput, 'El mensaje no debe superar los 500 caracteres.');
+          isValid = false;
+        }
+
+        // Si hay errores, no enviar el formulario
+        if (!isValid) {
+          formStatus.textContent = 'Por favor, corrige los errores antes de enviar.';
+          formStatus.style.color = 'red';
+          formLoading.style.display = 'none'; // Oculta el spinner
+          return;
+        }
+
+        // Si pasa las validaciones, enviar los datos al servidor
+        const formData = new FormData(form);
+
+        try {
+          const endpoint = form.getAttribute('action');
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+
+          if (result.success) {
+            formStatus.textContent = result.data.message;
+            formStatus.style.color = 'green';
+            form.reset(); // Reinicia el formulario
+          } else {
+            formStatus.textContent = result.data.message;
+            formStatus.style.color = 'red';
+          }
+        } catch (error) {
+          console.error('Error al enviar el formulario:', error);
+          formStatus.textContent = 'Hubo un problema al enviar el formulario.';
+          formStatus.style.color = 'red';
+        } finally {
+          // Ocultar el spinner una vez que se procese la respuesta
+          formLoading.style.display = 'none';
+        }
+      });
+
+      // Función para mostrar errores debajo de cada campo
+      function showError(input, message) {
+        const error = document.createElement('div');
+        error.className = 'error-message';
+        error.textContent = message;
+        error.style.color = 'red';
+        error.style.fontSize = '0.9em';
+        error.style.marginTop = '4px';
+        input.parentNode.appendChild(error);
+      }
+
+      // Validación de email (regex simple)
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    });
+  </script>
+<?php } ?>
 
 </body>
 
