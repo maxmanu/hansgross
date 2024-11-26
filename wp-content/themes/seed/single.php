@@ -37,7 +37,7 @@ get_header();
         </div>
         <div class="row align-items-center">
           <div class="col-lg-9 mx-auto">
-            <h2 class="colorgreen">Lorem Ipsum is simply</h2>
+            <h2 class="colorgreen"><?php echo get_the_title() ?></h2>
           </div>
           <div class="col-xl-3">
             <div class="social-links justify-content-end">
@@ -100,7 +100,47 @@ get_header();
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4">
-      <div class="col px-0">
+      <?php
+      $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 3,
+      );
+      $query = new WP_Query($args);
+      if ($query->have_posts()) {
+        while ($query->have_posts()) : $query->the_post(); ?>
+          <div class="col">
+            <div class="card card--blog h-100">
+              <div class="position-relative">
+                <div class="btn-category-card">23 de Setiembre</div>
+                <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><?php echo get_the_title() ?></h5>
+                <p class="card-text mb-1">Por Rodrigo Esteban</p>
+                <?php
+                // Obtener las categorías del post
+                $categories = get_the_category();
+                // Verificar si el post tiene categorías
+                if (!empty($categories)) {
+                  // Mostrar la primera categoría
+                  echo '<p class="card-category mb-1">Categoría: ' . esc_html($categories[0]->name) . '</p>';
+                }
+                ?>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
+              </div>
+              <div class="card-footer colorgreen-2">
+                <div><a href="<?php echo get_the_permalink() ?>">Mostrar más</a></div>
+                <div class="btn-arrows-servicios">
+                  <a href="<?php echo get_the_permalink() ?>"><i class="bi bi-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+      <?php endwhile;
+      }
+      wp_reset_postdata();
+      ?>
+      <!-- <div class="col">
         <a href="">
           <div class="card card--blog h-100">
             <div class="position-relative">
@@ -113,7 +153,7 @@ get_header();
               <p class="card-category mb-1">Categoría: Criminalística</p>
               <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
             </div>
-            <div class="card-footer colorgreen">
+            <div class="card-footer colorgreen-2">
               <b>Mostrar más</b>
               <div class="btn-arrows-servicios">
                 <i class="bi bi-arrow-right"></i>
@@ -122,7 +162,7 @@ get_header();
           </div>
         </a>
       </div>
-      <div class="col px-0">
+      <div class="col">
         <a href="">
           <div class="card card--blog h-100">
             <div class="position-relative">
@@ -135,7 +175,7 @@ get_header();
               <p class="card-category mb-1">Categoría: Criminalística</p>
               <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
             </div>
-            <div class="card-footer colorgreen">
+            <div class="card-footer colorgreen-2">
               <b>Mostrar más</b>
               <div class="btn-arrows-servicios">
                 <i class="bi bi-arrow-right"></i>
@@ -144,7 +184,7 @@ get_header();
           </div>
         </a>
       </div>
-      <div class="col px-0">
+      <div class="col">
         <a href="">
           <div class="card card--blog h-100">
             <div class="position-relative">
@@ -157,7 +197,7 @@ get_header();
               <p class="card-category mb-1">Categoría: Criminalística</p>
               <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
             </div>
-            <div class="card-footer colorgreen">
+            <div class="card-footer colorgreen-2">
               <b>Mostrar más</b>
               <div class="btn-arrows-servicios">
                 <i class="bi bi-arrow-right"></i>
@@ -165,7 +205,7 @@ get_header();
             </div>
           </div>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

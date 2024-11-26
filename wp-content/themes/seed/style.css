@@ -77,6 +77,10 @@ a {
   position: relative;
 }
 
+a:hover {
+  color: inherit;
+}
+
 .colorgreen-1 {
   color: var(--green-1);
 }
@@ -534,6 +538,10 @@ footer {
   color: #292A2C;
 }
 
+.section-blog .btn-arrows-servicios {
+  padding: 2px 8px;
+}
+
 .btn-arrows-servicios i,
 .btn-arrows-servicios i {
   font-size: 20px;
@@ -821,6 +829,7 @@ footer {
 .nav-category-curso .list-group-item div {
   border-bottom: 1px solid #A09696;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .list-group-flush>.list-group-item:last-child {
@@ -856,7 +865,7 @@ footer {
   left: 4%;
   background-color: #F33434;
   color: #fff;
-  padding: 3px 10px;
+  padding: 3px 20px;
   border-radius: 7px;
   font-family: "HandleGotic";
   font-weight: 700;
@@ -1511,7 +1520,6 @@ tbody>:not(caption)>*>* {
 
 .obi-link:hover {
   color: inherit;
-  text-decoration: underline;
 }
 
 /* #lista-categorias-eventos li:hover {
@@ -1519,7 +1527,8 @@ tbody>:not(caption)>*>* {
 }
 */
 
-#lista-categorias-eventos li.activo {
+#lista-categorias-eventos li.activo,
+#lista-etiquetas-eventos li.activo {
   color: var(--green-2);
 }
 
@@ -1569,6 +1578,88 @@ tbody>:not(caption)>*>* {
   color: #555;
   font-size: 1rem;
 }
+
+.card--blog .card-img-top {
+  max-height: 257px;
+  object-fit: cover;
+}
+
+.section-blog select {
+  /*Empezamos eliminando el caret de systema*/
+  -moz-appearance: none;
+  /*Firefox legacy*/
+  -webkit-appearance: none;
+  /* Chromes legacy*/
+  appearance: none;
+  /*Y a continuación añadimos el nuestro como background*/
+  background-image: url('assets/img/caret-select.svg');
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  /*Lo posicionamos a la derecha*/
+  padding-right: 24px;
+  /*le damos algo de espacio para que el caret no se superponga al texto*/
+  color: #06834D;
+  font-weight: 400;
+  font-family: 'HandleGotic';
+}
+
+.section-blog select option {
+  background: #F8F8FA;
+  color: #000;
+}
+
+.decor-green2 {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  /* Tamaño del cuadrado */
+  height: 10px;
+  background-color: #06834D;
+  /* Color del cuadrado */
+  border-radius: 3px;
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.swiperServicios .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1681,6 +1772,10 @@ tbody>:not(caption)>*>* {
 }
 
 @media (max-width: 991px) {
+  .decor-green {
+    display: none;
+  }
+
   .section-sidebar-feat {
     display: none;
   }
@@ -1701,6 +1796,15 @@ tbody>:not(caption)>*>* {
 @media (max-width: 768px) {
   .hero-banner {
     min-height: 500px;
+  }
+
+  .swiperEventos .swiper-slide {
+    height: 100%;
+  }
+
+  .card--eventos-description,
+  #cursos {
+    margin-top: 15px;
   }
 }
 

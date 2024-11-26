@@ -31,28 +31,15 @@ get_header();
       <div class="col-xl-2">
         <div class="nav-category-curso mb-5">
           <p>Académico</p>
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item colorgreen-2">
-              <div>Cursos</div>
-            </li>
-            <li class="list-group-item">
-              <div>Webinars</div>
-            </li>
-          </ul> -->
           <?php
-          echo do_shortcode('[selector_categorias_eventos]')
+          echo do_shortcode('[selector_categorias_eventos]');
           ?>
         </div>
         <div class="nav-category-curso">
           <p>Categoría</p>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item colorgreen-2">
-              <div>Criminalística</div>
-            </li>
-            <li class="list-group-item">
-              <div>Informática</div>
-            </li>
-          </ul>
+          <?php
+          echo do_shortcode('[selector_etiquetas_eventos]');
+          ?>
         </div>
       </div>
       <div class="col-xl-10">

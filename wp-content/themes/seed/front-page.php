@@ -24,7 +24,7 @@ get_header();
         <p class="mb-0">NUESTROS CLIENTES</p>
       </div>
       <div class="col-lg-9">
-        <div class="swiper swiperLogosClientes">
+        <div class="swiper swiperLogosClientes logos">
           <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
               <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/chimu-logo.png" alt="" class="img-fluid"></div>
@@ -98,7 +98,7 @@ get_header();
       <div class="col-lg-4">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-decor-left.png" class="card-img" alt="...">
       </div>
-      <div class="col-lg-4 text-center text-white">
+      <div class="col-lg-4 text-center text-white my-5 my-lg-1">
         <h2>Certificados</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         <a href="/certificados"><button class="btn btn-hans btn-hans--white mt-4">Buscar</button></a>
@@ -127,7 +127,7 @@ get_header();
           </div>
         </div>
       </div>
-      <div class="col-lg-8 position-relative">
+      <div class="col-lg-8 position-relative mt-5 mt-lg-1">
         <div class="decor-green"></div>
         <div class="swiper swiperServicios">
           <div class="swiper-wrapper">
@@ -140,7 +140,7 @@ get_header();
             if ($query->have_posts()) {
               while ($query->have_posts()) : $query->the_post(); ?>
                 <div class="swiper-slide">
-                  <div class="card">
+                  <div class="card h-100">
                     <?php
                     // Verificar si el post tiene miniatura
                     if (has_post_thumbnail()) {

@@ -176,6 +176,35 @@
     });
   </script>
 <?php } ?>
+<?php if (is_page_template('page-templates/t_page_blog.php')) { ?>
+  <script>
+    jQuery(document).ready(function($) {
+      // Hacer la solicitud AJAX cuando se carga la página inicialmente
+      function loadPosts(categoryId = '') {
+        $.ajax({
+          url: '<?php echo admin_url('admin-ajax.php'); ?>',
+          type: 'GET',
+          data: {
+            action: 'filter_posts_by_category',
+            category: categoryId
+          },
+          success: function(response) {
+            $('#posts-container').html(response); // Muestra los posts filtrados
+          }
+        });
+      }
+
+      // Cargar todos los posts al principio
+      loadPosts();
+
+      // Hacer la solicitud AJAX cuando se cambia la categoría
+      $('#category-filter').change(function() {
+        var categoryId = $(this).val(); // Obtiene el ID de la categoría seleccionada
+        loadPosts(categoryId); // Llama a la función para cargar los posts filtrados
+      });
+    });
+  </script>
+<?php } ?>
 <?php if (is_page_template('page-templates/t_page_contactanos.php')) { ?>
   <script>
     document.addEventListener('DOMContentLoaded', function() {

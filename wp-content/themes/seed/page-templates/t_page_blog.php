@@ -26,61 +26,56 @@ get_header();
       <div class="col-lg-9 mx-auto">
         <h2 class="colorgreen-2">Notas - Eventos</h2>
       </div>
-      <div class="col-lg-3">
-        <select class="form-select select-category" aria-label="Default select example">
-          <option selected>Categoría</option>
-          <option value="criminalistica">Criminalística</option>
-          <option value="informatica">Informática</option>
-        </select>
-        <!-- <div class="dropdown">
-          <button class="btn btn-category dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categoría
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Criminalística</a></li>
-            <li><a class="dropdown-item" href="#">Informática</a></li>
-          </ul>
-        </div> -->
+      <div class="col-lg-3 pb-3">
+        <form id="category-filter-form">
+          <select class="form-select select-category" id="category-filter" name="category">
+            <option value="">Categoría</option>
+            <?php
+            // Obtener todas las categorías
+            $categories = get_categories();
+            foreach ($categories as $category) {
+              echo '<option value="' . $category->term_id . '">' . $category->name . '</option>';
+            }
+            ?>
+          </select>
+        </form>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4">
-          <?php
-          $args = array(
-            'post_type' => 'post',
-            'paged' => $paged,
-          );
-          $query = new WP_Query($args);
-          if ($query->have_posts()) {
-            while ($query->have_posts()) : $query->the_post(); ?>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4" id="posts-container">
+          <!-- <?php
+                $args = array(
+                  'post_type' => 'post',
+                  'paged' => $paged,
+                );
+                $query = new WP_Query($args);
+                if ($query->have_posts()) {
+                  while ($query->have_posts()) : $query->the_post(); ?>
               <div class="col">
-                <a href="single.php">
-                  <div class="card card--blog h-100">
-                    <div class="position-relative">
-                      <div class="btn-category-card">23 de Setiembre</div>
-                      <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title"><?php echo get_the_title() ?></h5>
-                      <p class="card-text mb-1">Por Rodrigo Esteban</p>
-                      <p class="card-category mb-1">Categoría: Criminalística</p>
-                      <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
-                    </div>
-                    <div class="card-footer colorgreen-2">
-                      <b><a href="<?php echo get_permalink() ?>">Mostrar más</a></b>
-                      <div class="btn-arrows-servicios">
-                        <i class="bi bi-arrow-right"></i>
-                      </div>
-
+                <div class="card card--blog h-100">
+                  <div class="position-relative">
+                    <div class="btn-category-card">23 de Setiembre</div>
+                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo get_the_title() ?></h5>
+                    <p class="card-text mb-1">Por Rodrigo Esteban</p>
+                    <p class="card-category mb-1">Categoría: Criminalística</p>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
+                  </div>
+                  <div class="card-footer colorgreen-2">
+                    <div><a href="<?php echo get_the_permalink() ?>">Mostrar más</a></div>
+                    <div class="btn-arrows-servicios">
+                      <a href="<?php echo get_the_permalink() ?>"><i class="bi bi-arrow-right"></i></a>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
           <?php endwhile;
-          }
-          wp_reset_postdata();
-          ?>
+                }
+                wp_reset_postdata();
+          ?> -->
         </div>
         <!-- <div class="row">
           <div class="col">
