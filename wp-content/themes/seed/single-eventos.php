@@ -64,7 +64,7 @@ get_header();
                 </div>
               </div>
             </div>
-            <a><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>
+            <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>
           </div>
         </div>
       </div>
@@ -99,18 +99,26 @@ get_header();
               </div>
               <div class="col-10">
                 <h1 class="banner-title"><?php echo get_the_title() ?></h1>
-                <!-- <?php
-                      $categories = get_the_category();
-                      // Verificar si el post tiene categorías
-                      if (!empty($categories)) {
-                        // Obtener la primera categoría
-                        $first_category = $categories[0];
-                        echo '<p class="card-category mb-2">Categoría:';
-                        echo esc_html($first_category->name);
-                        echo '</p>';
-                      }
-                      ?> -->
-                <p class="card-category mb-2">Categoría: Criminalística</p>
+                <p class="card-category mb-2">
+                  <?php
+                  // Especifica la taxonomía de etiquetas (por defecto es 'post_tag', pero podría ser personalizada)
+                  $taxonomy = 'etiquetas_eventos'; // Cambia si usas una taxonomía personalizada
+
+                  // Obtener todas las etiquetas (términos) del post actual
+                  $terms = get_the_terms(get_the_ID(), $taxonomy);
+
+                  // Verificar si hay etiquetas y no hay errores
+                  if (!empty($terms) && !is_wp_error($terms)) {
+                    echo 'Etiquetas: ';
+                    foreach ($terms as $term) {
+                      // Mostrar cada etiqueta con su enlace
+                      echo  esc_html($term->name);
+                    }
+                  } else {
+                    echo 'No hay etiquetas.';
+                  }
+                  ?>
+                </p>
                 <p class="card-text mb-5">Actualmente las empresas y organizaciones deben estar preparadas para enfrentar exitosamente diversos tipos de crímenes cibernéticos, los cuales se suscitan y afectan sus sistemas de cómputo y redes....</p>
                 <!-- <a href="#" class="mostrar-mas">Mostrar más</a> -->
               </div>

@@ -37,7 +37,7 @@ get_header();
         </div>
         <div class="row align-items-center">
           <div class="col-lg-9 mx-auto">
-            <h2 class="colorgreen"><?php echo get_the_title() ?></h2>
+            <h2 class="colorgreen">Lorem Ipsum is simply</h2>
           </div>
           <div class="col-xl-3">
             <div class="social-links justify-content-end">
@@ -117,15 +117,7 @@ get_header();
               <div class="card-body">
                 <h5 class="card-title"><?php echo get_the_title() ?></h5>
                 <p class="card-text mb-1">Por Rodrigo Esteban</p>
-                <?php
-                // Obtener las categorías del post
-                $categories = get_the_category();
-                // Verificar si el post tiene categorías
-                if (!empty($categories)) {
-                  // Mostrar la primera categoría
-                  echo '<p class="card-category mb-1">Categoría: ' . esc_html($categories[0]->name) . '</p>';
-                }
-                ?>
+                <p class="card-category mb-1">Categoría: Criminalística</p>
                 <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
               </div>
               <div class="card-footer colorgreen-2">
