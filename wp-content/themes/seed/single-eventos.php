@@ -254,8 +254,8 @@ get_header();
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid" alt="...">
                       </div>
                       <div class="flex-grow-1 ms-3">
-                        <p>Costo del Certificado: </p>
-                        <p class="accordion-price">S/30 o US$10</p>
+                        <p class="costo-certificado-tab">Costo del Certificado: </p>
+                        <p class="accordion-price"><sup>S/</sup> 30 o <sup>US$ </sup>10</p>
                         <p>(Podrá acceder a la grabación del evento)</p>
                       </div>
                     </div>
@@ -276,10 +276,10 @@ get_header();
               <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
                 <div class="accordion-body">
                   <div class="row align-items-center">
-                    <div class="col-lg-5">
+                    <div class="col-lg-4">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/yape-hansgross.png" class="img-fluid" alt="...">
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-8">
                       <p class="title-bloque-tab">Cuenta Corriente BCP soles</p>
                       <p>Número de Cuenta : 191-9851512-0-20<br> CCI : 00219100985151202056</p>
                       <br>
@@ -291,7 +291,7 @@ get_header();
                   <div class="row mt-5">
                     <div class="col">
                       <p class="title-bloque-tab">Pagos internacionales</p>
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-niubiz.webp" class="img-fluid" alt="...">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-niubiz.webp" class="img-fluid" style="max-width:300px;" alt="...">
                     </div>
                   </div>
                 </div>

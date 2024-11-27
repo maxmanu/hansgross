@@ -1423,6 +1423,7 @@ tbody>:not(caption)>*>* {
 
 .title-bloque-tab {
   color: var(--green-2);
+  font-weight: 700;
 }
 
 .bloque-free span {
@@ -1436,7 +1437,7 @@ tbody>:not(caption)>*>* {
 }
 
 #panelsStayOpen-collapseTwo .accordion-body {
-  padding: 50px 20px;
+  padding: 70px 40px;
 }
 
 #panelsStayOpen-collapseTwo .accordion-body p {
@@ -1675,7 +1676,10 @@ tbody>:not(caption)>*>* {
   min-width: 125px;
 }
 
-
+.costo-certificado-tab {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
 
 
 
