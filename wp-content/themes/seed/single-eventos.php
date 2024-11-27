@@ -21,14 +21,14 @@ get_header();
           <div class="card-sidebar text-center">
             <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a>
             <div class="d-inline-flex mb-3">
-              <p class="text-price">S/370<sup>.99</sup></p>
-              <div class="vr"></div>
-              <p class="text-price">$95</p>
+              <p class="text-price"><sup class="sup-price">S/ </sup>370<sup>.99</sup></p>
+              <div class="vr my-auto"></div>
+              <p class="text-price"><sup class="sup-price">$ </sup>95</p>
             </div>
             <a href=""><button class="btn btn-hans btn-hans--course mb-3"><i class="bi bi-cart2 pe-2"></i>Comprar</button></a>
             <div class="sidebar-feat mb-3">
-              <div class="d-flex align-items-center mb-3 mx-auto">
-                <div class="">
+              <div class="d-flex mb-3 mx-auto text-start">
+                <div class="feat-event-text">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-fecha.png" class="img-fluid me-2" alt="...">
                   <b>Fecha:</b>
                 </div>
@@ -36,8 +36,8 @@ get_header();
                   18 de setiembre del 2024
                 </div>
               </div>
-              <div class="d-flex align-items-center mb-3 mx-auto">
-                <div class="">
+              <div class="d-flex mb-3 mx-auto text-start">
+                <div class="feat-event-text">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-reloj.png" class="img-fluid me-2" alt="...">
                   <b>Horario:</b>
                 </div>
@@ -45,8 +45,8 @@ get_header();
                   Viernes y Sábado <br> De 10:00 am a 1:00 pm
                 </div>
               </div>
-              <div class="d-flex align-items-center mb-3 mx-auto">
-                <div class="">
+              <div class="d-flex mb-3 mx-auto text-start">
+                <div class="feat-event-text">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-brochure.png" class="img-fluid me-2" alt="...">
                   <b>Brochure:</b>
                 </div>
@@ -54,8 +54,8 @@ get_header();
                   Digital
                 </div>
               </div>
-              <div class="d-flex align-items-center mx-auto">
-                <div class="">
+              <div class="d-flex mx-auto text-start">
+                <div class="feat-event-text">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid me-2" alt="...">
                   <b>Avalado:</b>
                 </div>
@@ -64,7 +64,7 @@ get_header();
                 </div>
               </div>
             </div>
-            <a><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-3"></a>
+            <a><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@ get_header();
   <section class="section-course-tabs">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 me-auto">
+        <div class="col-lg-8 me-auto">
           <div class="accordion" id="accordionPanelsHans">
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -220,12 +220,12 @@ get_header();
                         <div class="card-eq">
                           <div class="container">
                             <div class="row justify-content-center">
-                              <div class="col-2">
+                              <div class="col-1">
                                 <span class="square square--equipo"></span>
                               </div>
                               <div class="col-auto">
                                 <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                                <small>Gerente general</small>
+                                <small>Ponente</small>
                               </div>
                             </div>
                           </div>
@@ -234,7 +234,6 @@ get_header();
                     </div>
                     <div class="col-lg-7">
                       <p>ISC2 Certified in Cybersecurity (CC), LPI Security Essentials Certificate, EXIN Ethical Hacking Foundation Certificate, LPI Linux Essentials Certficate, IT Masters Certificate of Achievement en Network Security Administrador, Hacking Coundtermeasures, Cisco CCNA Security, Information Security Incident Handling, Digital Forensics, Cybersecurity Management, Cyber Warfare and Terrorism, Enterprise Cyber Security Fundamentals, Phishing Countermeasures, Pen Testing, Basic Technology Certificate Autopsy Basics and Hand On, ICSI Certified Network Security Specialist (CNSS) y OPEN-SEC Ethical Hacker (OSEH). </p>
-                      <a href="#" class="mostrar-mas">Mostrar más</a>
                     </div>
                   </div>
                 </div>

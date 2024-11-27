@@ -697,6 +697,14 @@ footer {
   padding-bottom: 50px;
 }
 
+.section-course-tabs .card-eq {
+  width: 265px;
+}
+
+.section-course-tabs .square--equipo {
+  margin-top: 10px;
+}
+
 #accordionPanelsHans {
   z-index: 20;
   position: relative;
@@ -761,7 +769,7 @@ footer {
 }
 
 .sidebar-feat img {
-  max-width: 30px;
+  max-width: 22px;
 }
 
 .video-image {
@@ -771,7 +779,7 @@ footer {
 }
 
 .sidebar-feat .d-flex {
-  max-width: 320px;
+  max-width: 341px;
 }
 
 .btn-pdf {
@@ -792,6 +800,7 @@ footer {
   width: 2px;
   background-color: #F33434;
   opacity: 1;
+  height: 45px;
 }
 
 #accordionPanelsHans .accordion-header {
@@ -1434,6 +1443,10 @@ tbody>:not(caption)>*>* {
   font-size: 1rem;
 }
 
+#panelsStayOpen-collapseTwo .accordion-body .card-title {
+  font-size: 1.2rem;
+}
+
 .accordion-body .mostrar-mas {
   color: var(--green-2);
   text-decoration: underline;
@@ -1653,6 +1666,22 @@ tbody>:not(caption)>*>* {
 .page-template-t_page_softwares #button-next-software {
   top: 51%;
 }
+
+.sup-price {
+  font-size: .65em;
+}
+
+.feat-event-text {
+  min-width: 125px;
+}
+
+
+
+
+
+
+
+
 
 
 
