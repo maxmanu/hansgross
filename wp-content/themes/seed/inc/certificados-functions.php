@@ -52,6 +52,10 @@ function registrar_cpt_certificados()
 }
 add_action('init', 'registrar_cpt_certificados');
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * CUSTOM FIELDS CERTIFICADOS
+ */
 add_action('cmb2_admin_init', 'crear_campos_certificados');
 function crear_campos_certificados()
 {
@@ -111,6 +115,12 @@ function crear_campos_certificados()
     ),
   ));
 }
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * FUNCIONALIDAD BUSCAR CERTIFICADOS
+ */
 
 add_action('wp_ajax_buscar_certificados', 'buscar_certificados');
 add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados');
@@ -199,7 +209,7 @@ function buscar_certificados()
 
 function cargar_scripts_buscador()
 {
-  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
+  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/custom-certificados.js', array('jquery'), null, true);
 
   // Agregar el objeto AJAX
   wp_localize_script('buscador-certificados', 'ajax_object', array(

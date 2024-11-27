@@ -28,7 +28,7 @@ get_header();
           <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has dummy text of the printing and typesetting industry. Lorem Ipsum has and typesetting industry. Lorem Ipsum has</p>
           <div class="input-group mb-3 mx-auto">
             <input type="text" id="buscador-certificados" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
-            <button class="btn btn--search" type="button" id="button-addon2">Buscar</button>
+            <button class="btn btn--search" type="button" id="button-buscar-certificados">Buscar</button>
           </div>
         </div>
       </div>
