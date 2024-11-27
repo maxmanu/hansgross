@@ -658,6 +658,7 @@ footer {
   height: 190px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .swiper-slide:nth-child(2n) .card-software {
@@ -1554,7 +1555,6 @@ tbody>:not(caption)>*>* {
   border-radius: 5px;
 }
 
-
 .error-message {
   color: red;
   font-size: 0.9em;
@@ -1649,7 +1649,10 @@ tbody>:not(caption)>*>* {
   justify-content: center;
 }
 
-
+.page-template-t_page_softwares #button-prev-software,
+.page-template-t_page_softwares #button-next-software {
+  top: 51%;
+}
 
 
 
