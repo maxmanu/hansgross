@@ -197,13 +197,13 @@ function buscar_certificados()
   }
 }
 
-function cargar_scripts_buscador()
-{
-  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
+// function cargar_scripts_buscador()
+// {
+//   wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
 
-  // Agregar el objeto AJAX
-  wp_localize_script('buscador-certificados', 'ajax_object', array(
-    'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
-  ));
-}
-add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');
+//   // Agregar el objeto AJAX
+//   wp_localize_script('buscador-certificados', 'ajax_object', array(
+//     'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
+//   ));
+// }
+// add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');

@@ -98,10 +98,21 @@ get_header();
                 <P class="date-text date-text--day">18</P>
               </div>
               <div class="col-10">
-                <h1 class="banner-title">Informática Forense</h1>
+                <h1 class="banner-title"><?php echo get_the_title() ?></h1>
+                <!-- <?php
+                      $categories = get_the_category();
+                      // Verificar si el post tiene categorías
+                      if (!empty($categories)) {
+                        // Obtener la primera categoría
+                        $first_category = $categories[0];
+                        echo '<p class="card-category mb-2">Categoría:';
+                        echo esc_html($first_category->name);
+                        echo '</p>';
+                      }
+                      ?> -->
                 <p class="card-category mb-2">Categoría: Criminalística</p>
                 <p class="card-text mb-5">Actualmente las empresas y organizaciones deben estar preparadas para enfrentar exitosamente diversos tipos de crímenes cibernéticos, los cuales se suscitan y afectan sus sistemas de cómputo y redes....</p>
-                <a href="#" class="mostrar-mas">Mostrar más</a>
+                <!-- <a href="#" class="mostrar-mas">Mostrar más</a> -->
               </div>
             </div>
           </div>
