@@ -133,7 +133,7 @@ function mostrar_selector_categorias()
   if (!empty($categorias) && !is_wp_error($categorias)) {
     echo '<ul class="list-group list-group-flush" id="lista-categorias-eventos">';
     foreach ($categorias as $categoria) {
-      echo '<li class="list-group-item" data-categoria="' . esc_attr($categoria->term_id) . '"><div>' . esc_html($categoria->name) . '</div></li>';
+      echo '<li class="list-group-item" data-categoria="' . esc_attr($categoria->term_id) . '" data-slug="' . esc_attr($categoria->slug) . '"><div>' . esc_html($categoria->name) . '</div></li>';
     }
     echo '</ul>';
   }
@@ -157,106 +157,28 @@ function mostrar_selector_etiquetas()
 }
 add_shortcode('selector_etiquetas_eventos', 'mostrar_selector_etiquetas');
 
-function cargar_script_ajax_listado()
-{
-?>
-  <script>
-    jQuery(document).ready(function($) {
-      var $listaCategorias = $('#lista-categorias-eventos');
-      var $listaEtiquetas = $('#lista-etiquetas-eventos');
-      var $resultadosEventos = $('#resultados-eventos');
-      var categoriaActiva = null;
-      var etiquetaActiva = null;
-
-      // Cargar eventos iniciales
-      function cargarEventos(pagina = 1) {
-        $.ajax({
-          url: '<?php echo admin_url("admin-ajax.php"); ?>',
-          type: 'POST',
-          data: {
-            action: categoriaActiva || etiquetaActiva ? 'filtrar_eventos' : 'cargar_todos_eventos',
-            paged: pagina,
-            categoria_id: categoriaActiva, // Enviar categoría activa solo si existe
-            etiqueta_id: etiquetaActiva // Enviar etiqueta activa solo si existe
-          },
-          beforeSend: function() {
-            $resultadosEventos.html('<p>Cargando eventos...</p>');
-          },
-          success: function(response) {
-            $resultadosEventos.html(response);
-          },
-          error: function(xhr, status, error) {
-            console.error('Error al cargar los eventos iniciales:', error);
-            $resultadosEventos.html('<p>Hubo un error al cargar los eventos.</p>');
-          }
-        });
-      }
-
-      // Cargar la primera página al cargar la página
-      cargarEventos();
-
-      // Manejar el clic en los botones de paginación
-      $resultadosEventos.on('click', '.page-link', function(e) {
-        e.preventDefault(); // Evitar recarga de página
-        var pagina = $(this).data('pagina');
-        cargarEventos(pagina); // Cargar la página correspondiente
-      });
-
-      // Filtrar eventos por categoría
-      $listaCategorias.on('click', 'li', function() {
-        var $categoria = $(this);
-
-        if ($categoria.hasClass('activo')) {
-          console.log('Categoría ya activa.');
-          return;
-        }
-
-        categoriaActiva = $categoria.data('categoria'); // Actualizar la categoría activa
-        etiquetaActiva = null; // Reiniciar etiqueta activa al seleccionar categoría
-        $listaCategorias.find('li').removeClass('activo');
-        $listaEtiquetas.find('li').removeClass('activo'); // Quitar selección de etiquetas
-        $categoria.addClass('activo');
-
-        cargarEventos(1); // Cargar eventos filtrados desde la primera página
-      });
-
-      // Filtrar eventos por etiqueta
-      $listaEtiquetas.on('click', 'li', function() {
-        var $etiqueta = $(this);
-
-        if ($etiqueta.hasClass('activo')) {
-          return;
-        }
-
-        etiquetaActiva = $etiqueta.data('etiqueta'); // Actualizar la etiqueta activa
-        categoriaActiva = null; // Reiniciar categoría activa al seleccionar etiqueta
-        $listaEtiquetas.find('li').removeClass('activo');
-        $listaCategorias.find('li').removeClass('activo'); // Quitar selección de categorías
-        $etiqueta.addClass('activo');
-
-        cargarEventos(1); // Cargar eventos filtrados desde la primera página
-      });
-
-
-    });
-  </script>
-<?php
-}
-add_action('wp_footer', 'cargar_script_ajax_listado');
-
 function cargar_todos_eventos()
 {
   // Obtener la página actual desde AJAX (si no se pasa, usar la primera página).
   $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+  $categoria_slug = isset($_POST['categoria_slug']) ? sanitize_text_field($_POST['categoria_slug']) : '';
   $categoria_id = isset($_POST['categoria_id']) ? absint($_POST['categoria_id']) : 0;
   $etiqueta_id = isset($_POST['etiqueta_id']) ? absint($_POST['etiqueta_id']) : 0; // ID de la etiqueta seleccionada
-
 
   $args = [
     'post_type' => 'eventos',
     'posts_per_page' => 6, // Todos los eventos
     'paged'          => $paged,
   ];
+
+  // Filtrar por categoría (slug)
+  if (!empty($categoria_slug)) {
+    $args['tax_query'][] = [
+      'taxonomy' => 'categorias_eventos', // Cambia esto por tu taxonomía
+      'field'    => 'slug',
+      'terms'    => $categoria_slug,
+    ];
+  }
 
   // Filtrar por categoría si está presente
   if ($categoria_id) {
@@ -377,6 +299,7 @@ add_action('wp_ajax_nopriv_cargar_todos_eventos', 'cargar_todos_eventos');
 function filtrar_eventos()
 {
   $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+  $categoria_slug = isset($_GET['categoria']) ? sanitize_text_field($_GET['categoria']) : '';
   $categoria_id = isset($_POST['categoria_id']) ? intval($_POST['categoria_id']) : 0;
   $etiqueta_id = isset($_POST['etiqueta_id']) ? intval($_POST['etiqueta_id']) : 0;
 
@@ -386,6 +309,17 @@ function filtrar_eventos()
     'paged'          => $paged,
     'tax_query'      => [], // Inicializamos la consulta de taxonomías
   ];
+
+  // Filtrar por categoría si se pasa un slug
+  if (!empty($categoria_slug)) {
+    $args['tax_query'] = [
+      [
+        'taxonomy' => 'categorias_eventos', // Cambia esto por tu taxonomía
+        'field'    => 'slug',
+        'terms'    => $categoria_slug,
+      ],
+    ];
+  }
 
   // Filtrar por categoría, si está presente
   if ($categoria_id) {
@@ -551,3 +485,111 @@ function load_event_posts_by_category()
 }
 add_action('wp_ajax_load_event_posts_by_category', 'load_event_posts_by_category');
 add_action('wp_ajax_nopriv_load_event_posts_by_category', 'load_event_posts_by_category');
+
+
+function cargar_script_ajax_listado()
+{
+?>
+  <script>
+    jQuery(document).ready(function($) {
+      var $listaCategorias = $('#lista-categorias-eventos');
+      var $listaEtiquetas = $('#lista-etiquetas-eventos');
+      var $resultadosEventos = $('#resultados-eventos');
+      var categoriaActiva = null;
+      var etiquetaActiva = null;
+      var categoriaSlug = new URLSearchParams(window.location.search).get('categoria'); // Obtener categoría desde la URL
+
+      // Cargar eventos iniciales
+      function cargarEventos(pagina = 1) {
+        $.ajax({
+          url: '<?php echo admin_url("admin-ajax.php"); ?>',
+          type: 'POST',
+          data: {
+            action: categoriaActiva || etiquetaActiva ? 'filtrar_eventos' : 'cargar_todos_eventos',
+            paged: pagina,
+            categoria_slug: categoriaSlug, // Enviar el slug de la categoría seleccionada
+            categoria_id: categoriaActiva, // Enviar categoría activa solo si existe
+            etiqueta_id: etiquetaActiva // Enviar etiqueta activa solo si existe
+          },
+          beforeSend: function() {
+            $resultadosEventos.html('<p>Cargando eventos...</p>');
+          },
+          success: function(response) {
+            $resultadosEventos.html(response);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error al cargar los eventos:', error);
+            $resultadosEventos.html('<p>Hubo un error al cargar los eventos.</p>');
+          }
+        });
+      }
+
+      // Cargar la primera página al cargar la página
+      cargarEventos();
+
+      // Asignar la clase "activo" a la categoría seleccionada por el slug de la URL
+      if (categoriaSlug) {
+        var $categoriaInicial = $listaCategorias.find('li[data-slug="' + categoriaSlug + '"]'); // Encuentra el elemento con el slug correspondiente
+        if ($categoriaInicial.length) {
+          categoriaActiva = $categoriaInicial.data('categoria'); // Establece como categoría activa
+          $listaCategorias.find('li').removeClass('activo'); // Elimina la clase de todas las categorías
+          $categoriaInicial.addClass('activo'); // Adiciona la clase "activo" a la categoría inicial
+        }
+      }
+
+      // Filtrar eventos por categoría
+      $listaCategorias.on('click', 'li', function() {
+        var $categoria = $(this);
+
+        // Si la categoría ya está activa (incluye la categoría seleccionada inicialmente), desactívala y muestra todos los eventos
+        if ($categoria.hasClass('activo')) {
+          categoriaActiva = null; // Reiniciar la categoría activa
+          categoriaSlug = null; // Reiniciar el slug de la categoría
+          $categoria.removeClass('activo'); // Quitar la clase activa
+          cargarEventos(1); // Cargar todos los eventos
+          return;
+        }
+
+        // Si es una nueva categoría, actívala y carga los eventos correspondientes
+        categoriaActiva = $categoria.data('categoria'); // Actualizar la categoría activa
+        etiquetaActiva = null; // Reiniciar etiqueta activa al seleccionar categoría
+        $listaCategorias.find('li').removeClass('activo');
+        $listaEtiquetas.find('li').removeClass('activo'); // Quitar selección de etiquetas
+        $categoria.addClass('activo');
+
+        cargarEventos(1); // Cargar eventos filtrados desde la primera página
+      });
+
+      // Filtrar eventos por etiqueta
+      $listaEtiquetas.on('click', 'li', function() {
+        var $etiqueta = $(this);
+
+        // Si la etiqueta ya está activa, desactívala y muestra todos los eventos
+        if ($etiqueta.hasClass('activo')) {
+          etiquetaActiva = null; // Reiniciar la etiqueta activa
+          $etiqueta.removeClass('activo'); // Quitar la clase activa
+          cargarEventos(1); // Cargar todos los eventos
+          return;
+        }
+
+        // Si es una nueva etiqueta, actívala y carga los eventos correspondientes
+        etiquetaActiva = $etiqueta.data('etiqueta'); // Actualizar la etiqueta activa
+        categoriaActiva = null; // Reiniciar categoría activa al seleccionar etiqueta
+        $listaEtiquetas.find('li').removeClass('activo');
+        $listaCategorias.find('li').removeClass('activo'); // Quitar selección de categorías
+        $etiqueta.addClass('activo');
+
+        cargarEventos(1); // Cargar eventos filtrados desde la primera página
+      });
+
+      // Manejar el clic en los botones de paginación
+      $resultadosEventos.on('click', '.page-link', function(e) {
+        e.preventDefault(); // Evitar recarga de página
+        var pagina = $(this).data('pagina');
+        cargarEventos(pagina); // Cargar la página correspondiente
+      });
+    });
+  </script>
+<?php
+}
+add_action('wp_footer', 'cargar_script_ajax_listado');

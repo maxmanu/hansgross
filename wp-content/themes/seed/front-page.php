@@ -1,16 +1,24 @@
 <?php
 get_header();
+$subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
+$titulo_de_seccion_eventos = get_post_meta(get_the_ID(), 'titulo_de_seccion_eventos', true);
+$subtitulo_de_seccion_eventos = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_eventos', true);
+$descripcion_webinars = get_post_meta(get_the_ID(), 'descripcion_webinars', true);
+$descripcion_cursos = get_post_meta(get_the_ID(), 'descripcion_cursos', true);
 ?>
 
-<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-home.webp); background-repeat: no-repeat; background-size: cover">
+<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover">
   <div id="overlay"></div>
   <div id="contenidoDiv">
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title pb-4">CRIMINALÍSTICA <br> CIBERNÉTICA</h1>
-          <a href="/contactanos"><button class="btn btn-hans btn-hans--green">Contáctanos</button></a>
+          <h1 class="banner-title pb-4"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($subtitulo)): ?>
+            <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
+          <?php endif; ?>
+          <a href="<?php echo esc_url(get_permalink(33)); ?>"><button class="btn btn-hans btn-hans--green">Contáctanos</button></a>
         </div>
       </div>
     </div>
@@ -26,24 +34,21 @@ get_header();
       <div class="col-lg-9">
         <div class="swiper swiperLogosClientes logos">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide">
-              <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/chimu-logo.png" alt="" class="img-fluid"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/asbac-logo.png" alt="" class="img-fluid"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/mapfre-logo.png" alt="" class="img-fluid"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/marina-logo.png" alt="" class="img-fluid"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/caja-logo.png" alt="" class="img-fluid"></div>
-            </div>
-            <div class="swiper-slide">
-              <div class="col text-center"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/chimu-logo.png" alt="" class="img-fluid"></div>
-            </div>
+            <?php
+            // Obtiene los valores del grupo repetidor
+            $galeria = get_post_meta(get_the_ID(), 'galeria_imagenes', true);
+
+            if (!empty($galeria)): ?>
+
+              <?php foreach ($galeria as $imagen):
+                $url = !empty($imagen['logo']) ? esc_url($imagen['logo']) : '';
+              ?>
+                <div class="swiper-slide">
+                  <div class="col text-center"><img src="<?php echo $url; ?>" alt="" class="img-fluid"></div>
+                </div>
+              <?php endforeach; ?>
+
+            <?php endif; ?>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -53,10 +58,19 @@ get_header();
 </section>
 
 <section class="section-eventos ptb-100">
-  <div class="text-center mb-5">
-    <h2 class="colorgreen-2">Eventos Académicos</h2>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center mb-5">
+        <?php if (!empty($titulo_de_seccion_eventos)): ?>
+          <h2 class="colorgreen-2"><?php echo esc_html($titulo_de_seccion_eventos); ?></h2>
+        <?php endif; ?>
+        <?php if (!empty($subtitulo_de_seccion_eventos)): ?>
+          <p><?php echo esc_html($subtitulo_de_seccion_eventos); ?></p>
+        <?php endif; ?>
+      </div>
+    </div>
   </div>
+
   <div class="container">
     <div class="grid">
       <div class="swiper swiperEventos">
@@ -68,19 +82,17 @@ get_header();
       <div class="col-right-event">
         <div class="card card--eventos-description">
           <div class="card-content pt-5">
-            <h2 class="colorgreen">Webinars</h2>
-            <p>Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.</p>
-            <a href="/academico"><button class="btn btn-hans btn-hans--green">Ver más</button></a>
+
           </div>
         </div>
         <div class="grid" style="margin-top: 20px;">
-          <div id="webinars" data-category-slug="webinars" class="card card--btn-event active text-bg-dark">
+          <div id="webinars" data-category-slug="webinars" data-link="/academico?categoria=webinars" data-content="<?php echo esc_attr($descripcion_webinars); ?>" class="card card--btn-event active text-bg-dark">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
               <p>Webinars</p>
             </div>
           </div>
-          <div id="cursos" data-category-slug="cursos" class="card card--btn-event text-bg-dark">
+          <div id="cursos" data-category-slug="cursos" data-link="/academico?categoria=cursos" data-content="<?php echo esc_attr($descripcion_cursos); ?>" class="card card--btn-event text-bg-dark">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
               <p>Cursos</p>

@@ -230,6 +230,11 @@ require get_template_directory() . '/inc/software-functions.php';
 require get_template_directory() . '/inc/noticias-functions.php';
 
 /**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/inc/home-page-functions.php';
+
+/**
  * RADIO BUTTONS CATEGORÍAS
  */
 add_action('admin_footer', 'categoryRadioButton');
@@ -249,3 +254,33 @@ function categoryEventosRadioButton()
     echo '.each(function(){this.type="radio"});</script>';
   }
 }
+
+
+/**
+ * CUSTOM FIELDS GENERICAS
+ */
+
+add_action('cmb2_admin_init', 'cmb2_custom_fields_para_paginas');
+
+function cmb2_custom_fields_para_paginas()
+{
+  // Crea un nuevo meta box
+  $cmb = new_cmb2_box(array(
+    'id'           => 'custom_fields_paginas', // ID único para el meta box
+    'title'        => 'Subtítulo de Página', // Título del meta box
+    'object_types' => array('page'), // Se aplica solo a páginas
+    'context'      => 'normal', // Contexto: normal, side o advanced
+    'priority'     => 'high', // Prioridad: high o low
+    'show_names'   => true, // Mostrar nombres de los campos
+  ));
+
+  // Agregar un campo de texto
+  $cmb->add_field(array(
+    'name' => 'Subtítulo', // Etiqueta del campo
+    'desc' => 'Ingrese un subtítulo para la página.', // Descripción del campo
+    'id'   => 'pagina_subtitulo', // ID único del campo
+    'type' => 'text', // Tipo de campo (texto)
+  ));
+}
+
+add_action('cmb2_admin_init', 'cmb2_custom_fields_inicio');

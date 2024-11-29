@@ -148,15 +148,19 @@ window.addEventListener('scroll', function () {
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Obtén los elementos de los botones y la descripción
-  const webinarsBtn = document.getElementById('webinars');
-  const cursosBtn = document.getElementById('cursos');
-  const descriptionCard = document.querySelector('.card--eventos-description .card-content');
+  // Obtén las tarjetas y el contenedor de descripción
+  const cards = document.querySelectorAll('.card--btn-event'); // Todas las tarjetas
+  const descriptionCard = document.querySelector('.card--eventos-description .card-content'); // Contenedor de descripción
 
-  // Verifica que los elementos existan
-  if (webinarsBtn && cursosBtn && descriptionCard) {
-    // Función para cambiar el contenido
-    function changeContent(title, content, link) {
+  // Verifica que existan las tarjetas y el contenedor
+  if (cards && descriptionCard) {
+    // Función para cambiar el contenido dinámico
+    function changeContent(card) {
+      const title = card.querySelector('.card-img-overlay p').textContent; // Título desde el HTML
+      const content = card.getAttribute('data-content'); // Descripción desde atributo data-content
+      const link = card.getAttribute('data-link'); // Enlace desde atributo data-link
+
+      // Actualiza dinámicamente el contenido
       descriptionCard.innerHTML = `
         <h2 class="colorgreen">${title}</h2>
         <p>${content}</p>
@@ -165,43 +169,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Función para manejar la clase activa
-    function setActiveButton(selectedButton) {
-      // Remueve la clase activa de ambos botones
-      webinarsBtn.classList.remove('active');
-      cursosBtn.classList.remove('active');
-
-      // Agrega la clase activa al botón seleccionado
-      selectedButton.classList.add('active');
+    function setActiveCard(selectedCard) {
+      // Remueve la clase activa de todas las tarjetas
+      cards.forEach((card) => card.classList.remove('active'));
+      // Agrega la clase activa a la tarjeta seleccionada
+      selectedCard.classList.add('active');
     }
 
-    // Asigna la clase activa y cambia el contenido al cargar la página
-    setActiveButton(webinarsBtn);
-    changeContent(
-      'Webinars',
-      'Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
-      '/academico'
-    );
-
-    // Añade los eventos de clic a cada botón para cambiar el contenido y el estado activo
-    webinarsBtn.addEventListener('click', () => {
-      setActiveButton(webinarsBtn);
-      changeContent(
-        'Webinars',
-        'Descubre una variedad de webinars diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
-        '/academico'
-      );
+    // Añade eventos de clic a cada tarjeta
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        // Cambia la tarjeta activa
+        setActiveCard(card);
+        // Actualiza el contenido basado en la tarjeta seleccionada
+        changeContent(card);
+      });
     });
 
-    cursosBtn.addEventListener('click', () => {
-      setActiveButton(cursosBtn);
-      changeContent(
-        'Cursos',
-        'Descubre una variedad de cursos diseñados para mejorar tus habilidades en distintas áreas de conocimiento.',
-        '/academico'
-      );
-    });
+    // Inicializa el contenido con la tarjeta que tiene la clase "active" al cargar la página
+    const activeCard = document.querySelector('.card--btn-event.active');
+    if (activeCard) {
+      changeContent(activeCard);
+    }
   } else {
-    console.error('No se encontraron todos los elementos necesarios en el DOM.');
+    console.error('No se encontraron las tarjetas o el contenedor de descripción.');
   }
 });
 
