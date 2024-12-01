@@ -3,17 +3,21 @@
 Template Name:  Certificados
 */
 get_header();
+$subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
+$texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
 ?>
 
-<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-certificados.webp); background-repeat: no-repeat; background-size: cover; background-position:center;">
+<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover; background-position:center;">
   <div id="overlay"></div>
   <div id="contenidoDiv">
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title">CERTIFICADOS</h1>
-          <p class="banner-subtitle">Contribuir con objetividad <br> y apego a la verdad.</p>
+          <h1 class="banner-title"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($subtitulo)): ?>
+            <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -25,7 +29,9 @@ get_header();
     <div class="row mb-5">
       <div class="col-lg-11 mx-auto">
         <div class="card-search">
-          <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has dummy text of the printing and typesetting industry. Lorem Ipsum has and typesetting industry. Lorem Ipsum has</p>
+          <?php if (!empty($texto_buscador)): ?>
+            <p class="pb-3"><?php echo esc_html($texto_buscador); ?></p>
+          <?php endif; ?>
           <div class="input-group mb-3 mx-auto">
             <input type="text" id="buscador-certificados" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
             <button class="btn btn--search" type="button" id="button-buscar-certificados">Buscar</button>

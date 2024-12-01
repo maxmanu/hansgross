@@ -3,17 +3,31 @@
 Template Name:  Nosotros
 */
 get_header();
+$subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
+$titulo = get_post_meta(get_the_ID(), 'nosotros_titulo', true);
+$descripcion = get_post_meta(get_the_ID(), 'nosotros_descripcion', true);
+$imagen_1 = get_post_meta(get_the_ID(), 'nosotros_imagen_1', true);
+$imagen_2 = get_post_meta(get_the_ID(), 'nosotros_imagen_2', true);
+$titulo_de_seccion_equipo = get_post_meta(get_the_ID(), 'titulo_de_seccion_equipo', true);
+$subtitulo_de_seccion_equipo = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_equipo', true);
+$colaboradores = get_post_meta(get_the_ID(), 'grupo_colaboradores', true);
+$mision = get_post_meta(get_the_ID(), 'mision', true);
+$vision = get_post_meta(get_the_ID(), 'vision', true);
+$imagen_mision = get_post_meta(get_the_ID(), 'imagen_mision', true);
+$imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
 ?>
 
-<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-nosotros.webp); background-repeat: no-repeat; background-size: cover">
+<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover">
   <div id="overlay"></div>
   <div id="contenidoDiv">
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title">NOSOTROS</h1>
-          <p class="banner-subtitle">Contribuir con objetividad y apego a la verdad.</p>
+          <h1 class="banner-title"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($subtitulo)): ?>
+            <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -29,9 +43,16 @@ get_header();
             <span class="square"></span>
           </div>
           <div class="col">
-            <h2 class="">Quiénes Somos</h2>
-            <p class="text-justify">Hans Gross es una empresa líder con más de 23 años de experiencia brindando servicios periciales particulares. Siempre vanguardista en el uso de tecnologías forenses dedicadas a resolver controversias o responder incertidumbre dentro de los procesos judiciales o administrativos de la mano de nuestro personal altamente calificado en las diversas disciplinas criminalísticas.</p>
-            <p class="text-justify">Actualmente Hans Gross cuenta con la representación de diversas marcas reconocidas en el mundo de la Criminalística y es proveedor de las principales entidades estatales dedicadas a la investigación criminal.</p>
+            <?php
+            if ($titulo) {
+              echo '<h2>' . esc_html($titulo) . '</h2>';
+            }
+            ?>
+            <?php
+            if ($descripcion) {
+              echo '<div class="text-justify">' . wpautop($descripcion) . '</div>';
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -46,206 +67,60 @@ get_header();
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
-        <h2 class="colorgreen">Nuestro equipo</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <?php if (!empty($titulo_de_seccion_equipo)): ?>
+          <h2 class="colorgreen-2"><?php echo esc_html($titulo_de_seccion_equipo); ?></h2>
+        <?php endif; ?>
+        <?php if (!empty($subtitulo_de_seccion_equipo)): ?>
+          <p><?php echo esc_html($subtitulo_de_seccion_equipo); ?></p>
+        <?php endif; ?>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="col">
-        <div class="swiper swiperEquipo">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0">Alberto Álvarez</p>
-                        <p class="card-text">Gerente general</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0">Alberto Álvarez</p>
-                        <p class="card-text">Gerente general</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-        <div id="button-prev-equipo" class="swiper-button-prev"></div>
-        <div id="button-next-equipo" class="swiper-button-next"></div>
-      </div>
-    </div> -->
     <div class="row">
       <section class="splide" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
-                <div class="card-eq">
-                  <div class="container">
-                    <div class="row justify-content-center">
-                      <div class="col-2">
-                        <span class="square square--equipo"></span>
-                      </div>
-                      <div class="col-auto">
-                        <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                        <small>Gerente general</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+
+          <?php
+          // Obtén los colaboradores del campo group
+          $colaboradores = get_post_meta(get_the_ID(), 'grupo_colaboradores', true);
+
+          // Verifica que existan colaboradores
+          if (!empty($colaboradores)) {
+            echo '<ul class="splide__list">';
+            foreach ($colaboradores as $colaborador) {
+              // Recuperar los valores del colaborador
+              $nombre = isset($colaborador['nombre_colaborador']) ? esc_html($colaborador['nombre_colaborador']) : '';
+              $cargo = isset($colaborador['cargo_colaborador']) ? esc_html($colaborador['cargo_colaborador']) : '';
+              $imagen = isset($colaborador['imagen_colaborador']) ? esc_url($colaborador['imagen_colaborador']) : '';
+
+              // Generar HTML dinámico para cada colaborador
+              echo '<li class="splide__slide">';
+              echo '  <div class="card">';
+              if ($imagen) {
+                echo '    <img src="' . $imagen . '" class="card-img-top" alt="' . $nombre . '">';
+              } else {
+                // Si no hay imagen, opcionalmente puedes mostrar una imagen por defecto
+                echo '    <img src="' . get_template_directory_uri() . '/assets/img/img-equipo.webp" class="card-img-top" alt="' . $nombre . '">';
+              }
+              echo '    <div class="card-eq">';
+              echo '      <div class="container">';
+              echo '        <div class="row justify-content-center">';
+              echo '          <div class="col-2">';
+              echo '            <span class="square square--equipo"></span>';
+              echo '          </div>';
+              echo '          <div class="col-auto">';
+              echo '            <p class="card-title mb-0"><b>' . $nombre . '</b></p>';
+              echo '            <small>' . $cargo . '</small>';
+              echo '          </div>';
+              echo '        </div>';
+              echo '      </div>';
+              echo '    </div>';
+              echo '  </div>';
+              echo '</li>';
+            }
+            echo '</ul>';
+          }
+          ?>
+
         </div>
       </section>
     </div>
@@ -254,7 +129,11 @@ get_header();
 <section class="section-mision ptb-100">
   <div class="container">
     <div class="row row--mision">
-      <div class="col-lg-6 col--mision" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/img-mision.webp); background-repeat: no-repeat; background-size: cover;background-position:center;">
+      <div
+        class="col-lg-6 col--mision"
+        style="background-image: url(<?php if ($imagen_mision) {
+                                        echo esc_url($imagen_mision);
+                                      } ?>); background-repeat: no-repeat; background-size: cover;background-position:center;">
         <div class="row h-100 align-items-end pb-4 ps-4">
           <div class="col-auto">
             <span class="square"></span>
@@ -265,13 +144,21 @@ get_header();
         </div>
       </div>
       <div class="col-lg-6 d-flex align-items-center">
-        <p>Contribuir con objetividad y apego a la verdad, a resolver controversias o responder incertidumbres dentro de los procesos judiciales y/o administrativos que requieran nuestros servicios. Fomentar el interés por la Criminalística, ofreciendo capacitaciones de calidad empleando nuevas tecnologías</p>
+        <?php
+        if ($mision) {
+          echo '<p>' . esc_html($mision) . '</p>';
+        }
+        ?>
       </div>
     </div>
     <div class="row row--vision position-relative">
       <div class="boxes-decor"></div>
       <div class="col-lg-8 d-flex align-items-center">
-        <p class="vision-text">Consolidarnos como empresa líder brindando servicios en probática pericial en las diversas especialidades de la Criminalística. Ser reconocidos como empresa éticamente profesional de trabajo objetivo.</p>
+        <?php
+        if ($vision) {
+          echo '<p class="vision-text">' . esc_html($vision) . '</p>';
+        }
+        ?>
       </div>
       <div class="col-lg-4">
         <div class="row h-100 align-items-end pb-5 ps-4">

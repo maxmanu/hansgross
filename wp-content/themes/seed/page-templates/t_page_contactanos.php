@@ -3,17 +3,28 @@
 Template Name:  Contactanos
 */
 get_header();
+$subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
+$titulo_de_seccion_informacion = get_post_meta(get_the_ID(), 'titulo_de_seccion_informacion', true);
+$subtitulo_de_seccion_informacion = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_informacion', true);
+$titulo_de_seccion_formulario = get_post_meta(get_the_ID(), 'titulo_de_seccion_formulario', true);
+$subtitulo_de_seccion_formulario = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_formulario', true);
+$opciones_generales = get_option('mi_configuracion_general');
+$celular = isset($opciones_generales['celular_contacto']) ? esc_html($opciones_generales['celular_contacto']) : '';
+$correo = isset($opciones_generales['correo_contacto']) ? esc_html($opciones_generales['correo_contacto']) : '';
+$direccion = isset($opciones_generales['direccion_contacto']) ? esc_html($opciones_generales['direccion_contacto']) : '';
 ?>
 
-<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-contacto.webp); background-repeat: no-repeat; background-size: cover; background-position:center;">
+<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover; background-position:center;">
   <div id="overlay"></div>
   <div id="contenidoDiv">
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title">CONTÁCTANOS</h1>
-          <p class="banner-subtitle">Contribuir con objetividad <br> y apego a la verdad.</p>
+          <h1 class="banner-title"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($subtitulo)): ?>
+            <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -24,8 +35,12 @@ get_header();
   <div class="container">
     <div class="row mb-5">
       <div class="col-lg-8 mx-auto text-center">
-        <h2 class="colorgreen-2">Información de contacto</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <?php if (!empty($titulo_de_seccion_informacion)): ?>
+          <h2 class="colorgreen-2"><?php echo esc_html($titulo_de_seccion_informacion); ?></h2>
+        <?php endif; ?>
+        <?php if (!empty($subtitulo_de_seccion_informacion)): ?>
+          <p><?php echo esc_html($subtitulo_de_seccion_informacion); ?></p>
+        <?php endif; ?>
       </div>
     </div>
     <div class="row mb-3">
@@ -33,15 +48,27 @@ get_header();
         <div class="row">
           <div class="col-md-4 text-center">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-green-whatsapp.png" class="img-fluid mb-4" alt="...">
-            <p class="colorgreen-2">+51 971 596 045</p>
+            <?php
+            if ($celular) {
+              echo '<p class="colorgreen-2">' . esc_html($celular) . '</p>';
+            }
+            ?>
           </div>
           <div class="col-md-4 text-center">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-green-email.png" class="img-fluid mb-4" alt="...">
-            <p class="colorgreen-2">info@hansgross.com.pe</p>
+            <?php
+            if ($correo) {
+              echo '<p class="colorgreen-2">' . esc_html($correo) . '</p>';
+            }
+            ?>
           </div>
           <div class="col-md-4 text-center">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-green-map.png" class="img-fluid mb-4" alt="...">
-            <p class="colorgreen-2">Av. América Oeste Mz. M Lt. 07 - A Ofc. 603 Urb. Natasha Alta Trujillo - Perú</p>
+            <?php
+            if ($direccion) {
+              echo '<p class="colorgreen-2">' . esc_html($direccion) . '</p>';
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -54,8 +81,12 @@ get_header();
     <div class="row">
       <div class="col">
         <div class="text-start mb-5">
-          <h2 class="colorgreen-2">Envíanos un mensaje</h2>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+          <?php if (!empty($titulo_de_seccion_formulario)): ?>
+            <h2 class="colorgreen-2"><?php echo esc_html($titulo_de_seccion_formulario); ?></h2>
+          <?php endif; ?>
+          <?php if (!empty($subtitulo_de_seccion_formulario)): ?>
+            <p><?php echo esc_html($subtitulo_de_seccion_formulario); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </div>

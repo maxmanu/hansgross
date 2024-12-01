@@ -91,6 +91,94 @@ function cmb2_custom_fields_inicio()
       'id'   => 'descripcion_cursos', // ID único del campo
       'type' => 'text', // Tipo de campo
     ));
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    $cmb = new_cmb2_box(array(
+      'id'           => 'custom_fields_inicio_2', // ID único del meta box
+      'title'        => 'Sección Certificados', // Título del meta box
+      'object_types' => array('page'), // Se aplica a páginas
+      'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
+      'context'      => 'normal', // Ubicación: normal, side o advanced
+      'priority'     => 'high', // Prioridad del meta box
+      'show_names'   => true, // Muestra los nombres de los campos
+    ));
+
+    // Campo de texto
+    $cmb->add_field(array(
+      'name' => 'Título de sección', // Nombre del campo
+      // 'desc' => 'Ingresa un texto destacado para mostrar en la página de inicio.', // Descripción del campo
+      'id'   => 'titulo_de_seccion_certificados', // ID único del campo
+      'type' => 'text', // Tipo de campo
+    ));
+
+    // Campo de texto
+    $cmb->add_field(array(
+      'name' => 'Subtítulo de sección', // Nombre del campo
+      // 'desc' => 'Ingresa un texto destacado para mostrar en la página de inicio.', // Descripción del campo
+      'id'   => 'subtitulo_de_seccion_certificados', // ID único del campo
+      'type' => 'text', // Tipo de campo
+    ));
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    $cmb = new_cmb2_box(array(
+      'id'           => 'custom_fields_inicio_3', // ID único del meta box
+      'title'        => 'Sección Servicios', // Título del meta box
+      'object_types' => array('page'), // Se aplica a páginas
+      'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
+      'context'      => 'normal', // Ubicación: normal, side o advanced
+      'priority'     => 'high', // Prioridad del meta box
+      'show_names'   => true, // Muestra los nombres de los campos
+    ));
+
+    // Campo de texto
+    $cmb->add_field(array(
+      'name' => 'Título de sección', // Nombre del campo
+      // 'desc' => 'Ingresa un texto destacado para mostrar en la página de inicio.', // Descripción del campo
+      'id'   => 'titulo_de_seccion_servicios', // ID único del campo
+      'type' => 'text', // Tipo de campo
+      'sanitization_cb' => false, // Desactiva sanitización predeterminada
+      'escape_cb'       => false, // Desactiva escape al mostrar
+    ));
+
+    // Campo de texto
+    $cmb->add_field(array(
+      'name' => 'Subtítulo de sección', // Nombre del campo
+      // 'desc' => 'Ingresa un texto destacado para mostrar en la página de inicio.', // Descripción del campo
+      'id'   => 'subtitulo_de_seccion_servicios', // ID único del campo
+      'type' => 'text', // Tipo de campo
+    ));
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    $cmb = new_cmb2_box(array(
+      'id'           => 'custom_fields_inicio_4', // ID único del meta box
+      'title'        => 'Sección Softwares', // Título del meta box
+      'object_types' => array('page'), // Se aplica a páginas
+      'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
+      'context'      => 'normal', // Ubicación: normal, side o advanced
+      'priority'     => 'high', // Prioridad del meta box
+      'show_names'   => true, // Muestra los nombres de los campos
+    ));
+
+    // Campo de texto
+    $cmb->add_field(array(
+      'name' => 'Título de sección', // Nombre del campo
+      // 'desc' => 'Ingresa un texto destacado para mostrar en la página de inicio.', // Descripción del campo
+      'id'   => 'titulo_de_seccion_softwares', // ID único del campo
+      'type' => 'text', // Tipo de campo
+      'sanitization_cb' => false, // Desactiva sanitización predeterminada
+      'escape_cb'       => false, // Desactiva escape al mostrar
+    ));
+
+    // Campo de texto
+    $cmb->add_field(array(
+      'name' => 'Subtítulo de sección', // Nombre del campo
+      // 'desc' => 'Ingresa un texto destacado para mostrar en la página de inicio.', // Descripción del campo
+      'id'   => 'subtitulo_de_seccion_softwares', // ID único del campo
+      'type' => 'text', // Tipo de campo
+    ));
   }
 }
 

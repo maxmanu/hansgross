@@ -39,9 +39,9 @@ function registrar_cpt_softwares()
     'show_ui'            => true,
     'show_in_menu'       => true,
     'query_var'          => true,
-    'rewrite'            => array('slug' => 'lista-softwares'),
+    'rewrite'            => array('slug' => 'softwares'),
     'capability_type'    => 'post',
-    'has_archive'        => true,
+    'has_archive'        => false,
     'hierarchical'       => false,
     'menu_position'      => 5,
     'menu_icon'          => 'dashicons-desktop', // Ícono del menú (puedes cambiarlo).

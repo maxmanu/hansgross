@@ -1,16 +1,21 @@
 <?php
 get_header();
+$subtitulo = get_post_meta(36, 'pagina_subtitulo', true);
+$titulo = get_post_meta(36, 'servicios_titulo', true);
+$descripcion = get_post_meta(36, 'servicios_descripcion', true);
 ?>
 
-<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-academico.webp); background-repeat: no-repeat; background-size: cover">
+<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id(36)) ?>); background-repeat: no-repeat; background-size: cover">
   <div id="overlay"></div>
   <div id="contenidoDiv">
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title">SERVICIOS</h1>
-          <p class="banner-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+          <h1 class="banner-title"><?php echo get_the_title(36) ?></h1>
+          <?php if (!empty($subtitulo)): ?>
+            <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -21,8 +26,16 @@ get_header();
   <div class="container">
     <div class="row mb-4">
       <div class="col-lg-8 mx-auto text-center">
-        <h2>Nuestros Servicios</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+        <?php
+        if ($titulo) {
+          echo '<h2>' . esc_html($titulo) . '</h2>';
+        }
+        ?>
+        <?php
+        if ($descripcion) {
+          echo '<p>' . esc_html($descripcion) . '</p>';
+        }
+        ?>
       </div>
     </div>
   </div>

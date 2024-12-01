@@ -5,6 +5,12 @@ $titulo_de_seccion_eventos = get_post_meta(get_the_ID(), 'titulo_de_seccion_even
 $subtitulo_de_seccion_eventos = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_eventos', true);
 $descripcion_webinars = get_post_meta(get_the_ID(), 'descripcion_webinars', true);
 $descripcion_cursos = get_post_meta(get_the_ID(), 'descripcion_cursos', true);
+$titulo_de_seccion_certificados = get_post_meta(get_the_ID(), 'titulo_de_seccion_certificados', true);
+$subtitulo_de_seccion_certificados = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_certificados', true);
+$titulo_de_seccion_servicios = get_post_meta(get_the_ID(), 'titulo_de_seccion_servicios', true);
+$subtitulo_de_seccion_servicios = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_servicios', true);
+$titulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'titulo_de_seccion_softwares', true);
+$subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_softwares', true);
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover">
@@ -111,8 +117,12 @@ $descripcion_cursos = get_post_meta(get_the_ID(), 'descripcion_cursos', true);
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-decor-left.png" class="card-img" alt="...">
       </div>
       <div class="col-lg-4 text-center text-white my-5 my-lg-1">
-        <h2>Certificados</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <?php if (!empty($titulo_de_seccion_certificados)): ?>
+          <h2><?php echo esc_html($titulo_de_seccion_certificados); ?></h2>
+        <?php endif; ?>
+        <?php if (!empty($subtitulo_de_seccion_certificados)): ?>
+          <p><?php echo esc_html($subtitulo_de_seccion_certificados); ?></p>
+        <?php endif; ?>
         <a href="/certificados"><button class="btn btn-hans btn-hans--white mt-4">Buscar</button></a>
       </div>
       <div class="col-lg-4">
@@ -127,8 +137,12 @@ $descripcion_cursos = get_post_meta(get_the_ID(), 'descripcion_cursos', true);
     <div class="row">
       <div class="col-lg-4">
         <div class="col-section-title text-white mt-5">
-          <h2 class="title-carousel-section mb-0">Conoce <br> Nuestros servicios</h2>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+          <?php if (!empty($titulo_de_seccion_servicios)): ?>
+            <h2 class="title-carousel-section mb-0 campo-texto"><?php echo $titulo_de_seccion_servicios; ?></h2>
+          <?php endif; ?>
+          <?php if (!empty($subtitulo_de_seccion_servicios)): ?>
+            <p><?php echo esc_html($subtitulo_de_seccion_servicios); ?></p>
+          <?php endif; ?>
           <div class="d-flex justify-content-start arrows-swipper position-relative pt-4">
             <div id="button-prev-servicios" class="btn-arrows-servicios ms-0 me-2">
               <i class="bi bi-arrow-left"></i>
@@ -186,8 +200,12 @@ $descripcion_cursos = get_post_meta(get_the_ID(), 'descripcion_cursos', true);
   <div class="container">
     <div class="row">
       <div class="col-lg-5 ms-auto text-white">
-        <h2 class="colorgreen">Software empleados</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
+        <?php if (!empty($titulo_de_seccion_softwares)): ?>
+          <h2 class="colorgreen-2"><?php echo $titulo_de_seccion_softwares; ?></h2>
+        <?php endif; ?>
+        <?php if (!empty($subtitulo_de_seccion_softwares)): ?>
+          <p><?php echo esc_html($subtitulo_de_seccion_softwares); ?></p>
+        <?php endif; ?>
         <a href="/softwares"><button class="btn btn-hans btn-hans--white mt-4">Ver más</button></a>
       </div>
     </div>

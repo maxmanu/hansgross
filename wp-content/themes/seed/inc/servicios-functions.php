@@ -39,9 +39,9 @@ function registrar_cpt_servicios()
     'show_ui' => true,
     'show_in_menu' => true,
     'query_var' => true,
-    'rewrite' => array('slug' => 'lista-servicios'),
+    'rewrite' => array('slug' => 'servicios'),
     'capability_type' => 'post',
-    'has_archive' => true,
+    'has_archive' => false,
     'hierarchical' => false,
     'menu_position' => 5,
     'menu_icon' => 'dashicons-hammer', // Cambia el ícono si lo deseas.
@@ -51,3 +51,11 @@ function registrar_cpt_servicios()
   register_post_type('servicios', $args);
 }
 add_action('init', 'registrar_cpt_servicios');
+
+// function priorizar_pagina_sobre_archive($query)
+// {
+//   if (!is_admin() && $query->is_main_query() && is_post_type_archive('servicios') && get_page_by_path('servicios')) {
+//     $query->set_404(); // Forzar un 404 para el archivo del CPT
+//   }
+// }
+// add_action('pre_get_posts', 'priorizar_pagina_sobre_archive');

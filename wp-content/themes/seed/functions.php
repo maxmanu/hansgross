@@ -208,31 +208,15 @@ add_filter('get_the_archive_title_prefix', '__return_false');
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/eventos-functions.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
 require get_template_directory() . '/inc/servicios-functions.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
 require get_template_directory() . '/inc/certificados-functions.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
 require get_template_directory() . '/inc/software-functions.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
 require get_template_directory() . '/inc/noticias-functions.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
 require get_template_directory() . '/inc/home-page-functions.php';
+require get_template_directory() . '/inc/nosotros-page-functions.php';
+require get_template_directory() . '/inc/servicios-page-functions.php';
+require get_template_directory() . '/inc/certificados-page-functions.php';
+require get_template_directory() . '/inc/contactanos-page-functions.php';
 
 /**
  * RADIO BUTTONS CATEGORÍAS
@@ -284,3 +268,154 @@ function cmb2_custom_fields_para_paginas()
 }
 
 add_action('cmb2_admin_init', 'cmb2_custom_fields_inicio');
+
+
+/**
+ * CUSTOM FIELDS PÁGINA DE OPCIONES
+ */
+
+add_action('cmb2_admin_init', 'mi_pagina_de_opciones');
+
+function mi_pagina_de_opciones()
+{
+  // Configuración de la página de opciones
+  $cmb_options = new_cmb2_box(array(
+    'id'           => 'configuracion_general', // ID único
+    'title'        => 'Configuración General', // Título de la página
+    'object_types' => array('options-page'), // Define que es una página de opciones
+    'option_key'   => 'mi_configuracion_general', // Clave para guardar las opciones
+    'menu_title'   => 'Generales', // Título del menú en el admin
+    'position'     => 25, // Posición en el menú de admin (25 = debajo de "Comentarios")
+    'icon_url'     => 'dashicons-admin-generic', // Icono del menú
+    'capability'   => 'manage_options', // Capacidad necesaria para acceder a la página
+  ));
+
+  $cmb_options->add_field(array(
+    'name' => 'Logo del Sitio',
+    'desc' => 'Sube un logo para el sitio web.',
+    'id'   => 'logo_sitio',
+    'type' => 'file', // Campo para subir archivos
+  ));
+
+  // Campo de Celular
+  $cmb_options->add_field(array(
+    'name' => 'Número de celular',
+    'id'   => 'celular_contacto',
+    'type' => 'text',
+    'desc' => 'Introduce el número de Celular.',
+  ));
+
+  // Campo de Correo
+  $cmb_options->add_field(array(
+    'name' => 'Correo Electrónico',
+    'id'   => 'correo_contacto',
+    'type' => 'text_email',
+    'desc' => 'Introduce el correo electrónico de contacto.',
+  ));
+
+  // Campo de Dirección
+  $cmb_options->add_field(array(
+    'name' => 'Dirección',
+    'id'   => 'direccion_contacto',
+    'type' => 'textarea_small',
+    'desc' => 'Introduce la dirección de la empresa o contacto.',
+  ));
+
+  // Campo de Facebook
+  $cmb_options->add_field(array(
+    'name' => 'Facebook',
+    'id'   => 'facebook_url',
+    'type' => 'text_url',
+    'desc' => 'Introduce la URL de tu página de Facebook.',
+  ));
+
+  // Campo de Instagram
+  $cmb_options->add_field(array(
+    'name' => 'Instagram',
+    'id'   => 'instagram_url',
+    'type' => 'text_url',
+    'desc' => 'Introduce la URL de tu perfil de Instagram.',
+  ));
+
+  // Campo de LinkedIn
+  $cmb_options->add_field(array(
+    'name' => 'LinkedIn',
+    'id'   => 'linkedin_url',
+    'type' => 'text_url',
+    'desc' => 'Introduce la URL de tu perfil de LinkedIn.',
+  ));
+
+  // Campo de WhatsApp
+  $cmb_options->add_field(array(
+    'name' => 'Número de WhatsApp',
+    'id'   => 'whatsapp_contacto',
+    'type' => 'text',
+    'desc' => 'Introduce el número de WhatsApp.',
+  ));
+
+  // Texto CTA
+  $cmb_options->add_field(array(
+    'name' => 'Call to Acción',
+    'id'   => 'call_to_action',
+    'type' => 'textarea',
+    'desc' => 'Introduce una descripción para el call to action de la página de servicios y softwares.',
+  ));
+}
+
+
+/**
+ * PERMITIR SUBIDA DE SVG
+ */
+function permitir_carga_svg($mimes)
+{
+  // Agrega soporte para SVG
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'permitir_carga_svg');
+
+function sanitizar_svg($file)
+{
+  if ($file['type'] === 'image/svg+xml') {
+    $svg_content = file_get_contents($file['tmp_name']);
+
+    // Lista blanca de etiquetas y atributos permitidos
+    $allowed_tags = array(
+      'svg'     => array(
+        'xmlns'       => true,
+        'viewBox'     => true,
+        'fill'        => true,
+        'stroke'      => true,
+        'width'       => true,
+        'height'      => true,
+      ),
+      'g'       => array('fill' => true, 'stroke' => true),
+      'path'    => array('d' => true, 'fill' => true, 'stroke' => true),
+      'rect'    => array('x' => true, 'y' => true, 'width' => true, 'height' => true, 'fill' => true),
+      'circle'  => array('cx' => true, 'cy' => true, 'r' => true, 'fill' => true),
+      'polygon' => array('points' => true, 'fill' => true, 'stroke' => true),
+      'line'    => array('x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'stroke' => true),
+      'title'   => array(),
+    );
+
+    // Limpia el contenido del SVG
+    $sanitized_content = wp_kses($svg_content, $allowed_tags);
+
+    // Guarda el archivo sanitizado
+    file_put_contents($file['tmp_name'], $sanitized_content);
+  }
+
+  return $file;
+}
+add_filter('wp_handle_upload_prefilter', 'sanitizar_svg');
+
+function mostrar_svg_biblioteca_medios($response, $attachment, $meta)
+{
+  if ($response['type'] === 'image' && $response['subtype'] === 'svg+xml') {
+    $response['sizes'] = array();
+    $response['image'] = true;
+    $response['type'] = 'image/svg+xml';
+  }
+  return $response;
+}
+add_filter('wp_prepare_attachment_for_js', 'mostrar_svg_biblioteca_medios', 10, 3);

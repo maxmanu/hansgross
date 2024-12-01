@@ -1681,8 +1681,22 @@ tbody>:not(caption)>*>* {
   font-size: 1.5rem;
 }
 
+.campo-texto::after {
+  content: '\A';
+  /* Inserta un salto de línea */
+  white-space: pre;
+  /* Asegura que el salto de línea se respete */
+}
 
+.campo-texto {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.logo-footer {
+  max-width: 180px;
+}
 
 
 

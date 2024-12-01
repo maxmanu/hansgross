@@ -1,7 +1,15 @@
+<?php
+$opciones_generales = get_option('mi_configuracion_general');
+$logo_sitio = isset($opciones_generales['logo_sitio']) ? $opciones_generales['logo_sitio'] : '';
+?>
 <div id="mainNavbar" class="container-fluid">
   <nav class="container navbar navbar-expand-lg navbar-light">
     <a href="/">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LOGO.svg" alt="" class="img-fluid header-logo" />
+      <?php
+      if ($logo_sitio) {
+        echo '<img src="' . esc_url($logo_sitio) . '" class="img-fluid header-logo" alt="Logo de página" />';
+      }
+      ?>
     </a>
     <button class="navbar-toggler px-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarExample1" aria-controls="navbarExample1" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -39,7 +47,7 @@
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_softwares.php')) {
                                   echo "active";
-                                } ?>" href="/softwares">Software</a>
+                                } ?>" href="/softwares">Softwares</a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_blog.php')) {

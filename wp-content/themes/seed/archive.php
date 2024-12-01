@@ -12,7 +12,7 @@ get_header();
 ?>
 <?php get_template_part('template-parts/content', 'nav'); ?>
 <main>
-
+  ARCHIVE GENERAL
 </main>
 
 <?php

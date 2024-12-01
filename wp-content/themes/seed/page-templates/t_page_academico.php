@@ -3,17 +3,20 @@
 Template Name:  Académico
 */
 get_header();
+$subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
 ?>
 
-<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-academico.webp); background-repeat: no-repeat; background-size: cover">
+<header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover">
   <div id="overlay"></div>
   <div id="contenidoDiv">
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title">ACADÉMICO</h1>
-          <p class="banner-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+          <h1 class="banner-title"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($subtitulo)): ?>
+            <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
