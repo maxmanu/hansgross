@@ -1698,7 +1698,42 @@ tbody>:not(caption)>*>* {
   max-width: 180px;
 }
 
+/* Botón de compartir (móvil) */
+#share-button-container {
+  margin-top: 10px;
+  text-align: center;
+}
 
+#share-post-btn {
+  background-color: #0073aa;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#share-post-btn:hover {
+  background-color: #005880;
+}
+
+/* Botón de copiar (escritorio) */
+#copy-button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#copy-post-url {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+}
 
 
 

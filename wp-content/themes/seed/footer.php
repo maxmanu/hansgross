@@ -374,23 +374,44 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
 <?php if (is_single()) { ?>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      const shareButtonContainer = document.getElementById('share-button-container');
+      const copyButtonContainer = document.getElementById('copy-button-container');
       const shareButton = document.getElementById('share-post-btn');
+      const copyButton = document.getElementById('copy-link-btn');
+      const copyMessage = document.getElementById('copy-link-message');
+      const postUrlField = document.getElementById('copy-post-url');
 
-      shareButton.addEventListener('click', function() {
-        if (navigator.share) {
+      // Detectar si la Web Share API está disponible
+      if (navigator.share) {
+        // Mostrar el botón de compartir (móvil)
+        shareButtonContainer.style.display = 'block';
+
+        // Configurar el botón de compartir
+        shareButton.addEventListener('click', function() {
           navigator.share({
-            title: "<?php echo esc_js($post_title); ?>",
-            text: "Mira este post: <?php echo esc_js($post_title); ?>",
-            url: "<?php echo esc_url($post_url); ?>"
+            title: document.title,
+            text: "Mira este post: " + document.title,
+            url: window.location.href
           }).then(() => {
             console.log('¡Contenido compartido exitosamente!');
           }).catch((error) => {
             console.error('Hubo un error al compartir:', error);
           });
-        } else {
-          alert('La funcionalidad de compartir no es compatible con este navegador.');
-        }
-      });
+        });
+      } else {
+        // Mostrar el botón de copiar (escritorio)
+        copyButtonContainer.style.display = 'block';
+
+        // Configurar el botón de copiar
+        copyButton.addEventListener('click', function() {
+          postUrlField.select(); // Seleccionar el texto del input
+          document.execCommand('copy'); // Copiar al portapapeles
+          copyMessage.style.display = 'inline'; // Mostrar el mensaje de éxito
+          setTimeout(() => {
+            copyMessage.style.display = 'none'; // Ocultar el mensaje después de 2 segundos
+          }, 2000);
+        });
+      }
     });
   </script>
 <?php } ?>

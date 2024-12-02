@@ -41,10 +41,19 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
       <div class="col-lg-12 card card--single mx-auto">
         <div class="row justify-content-end mb-3">
           <div class="col-auto colorgreen-2">
-            <a href="" target="_blank" id="share-post-btn">
-              Compartir
-              <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/share-svg-icon.svg" class="img-fluid" alt=""></span>
-            </a>
+            <!-- Botón para compartir (móvil) -->
+            <div id="share-button-container" style="display: none;">
+              <a href="" target="_blank" id="share-post-btn">
+                Compartir
+                <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/share-svg-icon.svg" class="img-fluid" alt=""></span>
+              </a>
+            </div>
+            <!-- Botón para copiar el enlace (escritorio) -->
+            <div id="copy-button-container" style="display: none;">
+              <input type="text" hidden id="copy-post-url" value="<?php echo esc_url($post_url); ?>" readonly>
+              <a id="copy-link-btn">Compartir <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/share-svg-icon.svg" class="img-fluid" alt=""></span></a><br>
+              <small id="copy-link-message" style="display: none; color: green;">¡Enlace copiado!</small>
+            </div>
           </div>
         </div>
         <div class="row align-items-center">
