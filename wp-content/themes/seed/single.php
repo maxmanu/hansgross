@@ -1,6 +1,13 @@
 <?php
 get_header();
 $subtitulo = get_post_meta(31, 'pagina_subtitulo', true);
+$post_url = get_permalink();
+$post_title = get_the_title();
+// Generar los enlaces
+$facebook_url = "https://www.facebook.com/sharer.php?u={$post_url}";
+// $twitter_url = "https://twitter.com/intent/tweet?url={$post_url}&text={$post_title}";
+$linkedin_url = "https://www.linkedin.com/shareArticle?mini=true&url={$post_url}&title={$post_title}";
+$whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id(31)) ?>); background-repeat: no-repeat; background-size: cover; background-position:center;">
@@ -34,26 +41,28 @@ $subtitulo = get_post_meta(31, 'pagina_subtitulo', true);
       <div class="col-lg-12 card card--single mx-auto">
         <div class="row justify-content-end mb-3">
           <div class="col-auto colorgreen-2">
-            Compartir
-            <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/share-svg-icon.svg" class="img-fluid" alt=""></span>
+            <a href="" target="_blank" id="share-post-btn">
+              Compartir
+              <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/share-svg-icon.svg" class="img-fluid" alt=""></span>
+            </a>
           </div>
         </div>
         <div class="row align-items-center">
           <div class="col-lg-9 mx-auto">
-            <h2 class="colorgreen">Lorem Ipsum is simply</h2>
+            <h2 class="colorgreen"><?php echo get_the_title() ?></h2>
           </div>
           <div class="col-xl-3">
             <div class="social-links justify-content-end">
-              <a href="#" class="me-2" target="_blank">
+              <a href="<?php echo esc_url($facebook_url); ?>" class="me-2" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook-svg-icon.svg" alt="" class="img-fluid">
               </a>
-              <a href="#" class="me-2" target="_blank">
+              <!-- <a href="<?php echo esc_url($twitter_url); ?>" class="me-2" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram-svg-icon.svg" alt="" class="img-fluid">
-              </a>
-              <a href="#" class="me-2" target="_blank">
+              </a> -->
+              <a href="<?php echo esc_url($linkedin_url); ?>" class="me-2" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/linkedin-svg-icon.svg" alt="" class="img-fluid">
               </a>
-              <a href="#" class="" target="_blank">
+              <a href="<?php echo esc_url($whatsapp_url); ?>" class="" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/whatsapp-svg-icon.svg" alt="" class="img-fluid">
               </a>
             </div>
@@ -135,72 +144,6 @@ $subtitulo = get_post_meta(31, 'pagina_subtitulo', true);
       }
       wp_reset_postdata();
       ?>
-      <!-- <div class="col">
-        <a href="">
-          <div class="card card--blog h-100">
-            <div class="position-relative">
-              <div class="btn-category-card">23 de Setiembre</div>
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Lorem Ipsum is simply</h5>
-              <p class="card-text mb-1">Por Rodrigo Esteban</p>
-              <p class="card-category mb-1">Categoría: Criminalística</p>
-              <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
-            </div>
-            <div class="card-footer colorgreen-2">
-              <b>Mostrar más</b>
-              <div class="btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col">
-        <a href="">
-          <div class="card card--blog h-100">
-            <div class="position-relative">
-              <div class="btn-category-card">23 de Setiembre</div>
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Lorem Ipsum is simply</h5>
-              <p class="card-text mb-1">Por Rodrigo Esteban</p>
-              <p class="card-category mb-1">Categoría: Criminalística</p>
-              <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
-            </div>
-            <div class="card-footer colorgreen-2">
-              <b>Mostrar más</b>
-              <div class="btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col">
-        <a href="">
-          <div class="card card--blog h-100">
-            <div class="position-relative">
-              <div class="btn-category-card">23 de Setiembre</div>
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-academico.webp" class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Lorem Ipsum is simply</h5>
-              <p class="card-text mb-1">Por Rodrigo Esteban</p>
-              <p class="card-category mb-1">Categoría: Criminalística</p>
-              <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
-            </div>
-            <div class="card-footer colorgreen-2">
-              <b>Mostrar más</b>
-              <div class="btn-arrows-servicios">
-                <i class="bi bi-arrow-right"></i>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div> -->
     </div>
   </div>
 </section>

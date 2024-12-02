@@ -371,6 +371,29 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
     });
   </script>
 <?php } ?>
+<?php if (is_single()) { ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const shareButton = document.getElementById('share-post-btn');
+
+      shareButton.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({
+            title: "<?php echo esc_js($post_title); ?>",
+            text: "Mira este post: <?php echo esc_js($post_title); ?>",
+            url: "<?php echo esc_url($post_url); ?>"
+          }).then(() => {
+            console.log('¡Contenido compartido exitosamente!');
+          }).catch((error) => {
+            console.error('Hubo un error al compartir:', error);
+          });
+        } else {
+          alert('La funcionalidad de compartir no es compatible con este navegador.');
+        }
+      });
+    });
+  </script>
+<?php } ?>
 
 </body>
 
