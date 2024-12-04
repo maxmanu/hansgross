@@ -57,7 +57,18 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
         </div>
       </div>
       <div class="col-lg-6 offset-lg-1">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-quienes-somos.webp" class="img-fluid" alt="">
+        <div class="image-float">
+          <span class="box-decor-1"></span>
+          <img src="<?php if ($imagen_1) {
+                      echo esc_url($imagen_1);
+                    } ?>" class="img-fluid image-float__left" alt="">
+          <img src="<?php if ($imagen_2) {
+                      echo esc_url($imagen_2);
+                    } ?>" class="img-fluid image-float__right" alt="">
+          <span class="box-decor-2"></span>
+          <span class="box-decor-3"></span>
+        </div>
+        <!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-quienes-somos.webp" class="img-fluid mt-5" alt=""> -->
       </div>
     </div>
   </div>
@@ -126,7 +137,11 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
     </div>
   </div>
 </section>
-<section class="section-mision ptb-100">
+<section
+  class="section-mision ptb-100"
+  style="background-image: url(<?php if ($imagen_fondo) {
+                                  echo esc_url($imagen_fondo);
+                                } ?>);background-repeat: no-repeat;background-size: cover;">
   <div class="container">
     <div class="row row--mision">
       <div

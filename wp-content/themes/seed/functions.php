@@ -217,6 +217,8 @@ require get_template_directory() . '/inc/nosotros-page-functions.php';
 require get_template_directory() . '/inc/servicios-page-functions.php';
 require get_template_directory() . '/inc/certificados-page-functions.php';
 require get_template_directory() . '/inc/contactanos-page-functions.php';
+require get_template_directory() . '/inc/blog-page-functions.php';
+require get_template_directory() . '/inc/academico-page-functions.php';
 
 /**
  * RADIO BUTTONS CATEGORÍAS
@@ -355,10 +357,30 @@ function mi_pagina_de_opciones()
 
   // Texto CTA
   $cmb_options->add_field(array(
-    'name' => 'Call to Acción',
+    'name' => 'Call to Action',
     'id'   => 'call_to_action',
     'type' => 'textarea',
     'desc' => 'Introduce una descripción para el call to action de la página de servicios y softwares.',
+  ));
+
+  $cmb_options->add_field(array(
+    'name'         => 'Imagen de Call to Action',
+    'desc'         => 'Sube una imagen.',
+    'id'           => 'imagen_cta',
+    'type'         => 'file',
+    'options'      => array(
+      'url' => false, // Oculta el campo de URL adicional (opcional)
+    ),
+    'text'         => array(
+      'add_upload_file_text' => 'Añadir imagen' // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/jpeg',
+        'image/png',
+      ),
+    ),
+    'preview_size' => array(300, 300), // Tamaño del preview en el administrador
   ));
 }
 
@@ -419,3 +441,84 @@ function mostrar_svg_biblioteca_medios($response, $attachment, $meta)
   return $response;
 }
 add_filter('wp_prepare_attachment_for_js', 'mostrar_svg_biblioteca_medios', 10, 3);
+
+
+/**
+ * MESES DEL AÑO EN ESPAÑOL
+ */
+
+if (!function_exists('traducir_mes')) {
+  /**
+   * Función para traducir los nombres de los meses al español.
+   *
+   * @param string $fecha Fecha con el nombre del mes en inglés.
+   * @return string Fecha con el nombre del mes traducido al español.
+   */
+  function traducir_mes($fecha)
+  {
+    // Array de traducción de meses al español
+    $meses = array(
+      'January' => 'Enero',
+      'February' => 'Febrero',
+      'March' => 'Marzo',
+      'April' => 'Abril',
+      'May' => 'Mayo',
+      'June' => 'Junio',
+      'July' => 'Julio',
+      'August' => 'Agosto',
+      'September' => 'Septiembre',
+      'October' => 'Octubre',
+      'November' => 'Noviembre',
+      'December' => 'Diciembre'
+    );
+
+    // Reemplazar el nombre del mes en inglés por su equivalente en español
+    return strtr($fecha, $meses);
+  }
+}
+
+
+/**
+ * DESACTIVAR EDITOR WYSWYG POR DEFECTO EN LOS POST
+ */
+function disable_default_editor_for_posts()
+{
+  // Desactiva el editor para el tipo de post 'post'
+  remove_post_type_support('post', 'editor');
+}
+add_action('init', 'disable_default_editor_for_posts');
+
+
+
+
+
+
+
+
+
+function enqueue_jquery_ui_sortable()
+{
+  if (is_admin()) {
+    wp_enqueue_script('jquery-ui-sortable');
+  }
+}
+add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
+
+
+/**
+ * SORTEABLE JS
+ */
+// function enqueue_cmb2_sortable_script()
+// {
+//   if (is_admin()) {
+//     error_log('Script cargado'); // Verifica si esta línea aparece en los logs
+//     wp_enqueue_script(
+//       'cmb2-sortable-custom',
+//       get_template_directory_uri() . '/js/cmb2-sortable.js',
+//       array('sortable'),
+//       '1.0.0',
+//       true
+//     );
+//   }
+// }
+// add_action('admin_enqueue_scripts', 'enqueue_cmb2_sortable_script');

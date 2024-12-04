@@ -117,10 +117,10 @@ $direccion = isset($opciones_generales['direccion_contacto']) ? esc_html($opcion
       </div>
       <div class="col-12 text-center">
         <input type="hidden" name="redirect_url" value="<?php echo esc_url(get_permalink()); ?>"> <!-- URL actual -->
-        <button class="btn btn-hans btn-hans--green" type="submit">Enviar</button>
+        <button class="btn-hans btn-hans--green" type="submit">Enviar</button>
       </div>
     </form>
-    <div class="mt-3">
+    <div class="mt-3 text-center">
       <div id="formLoading" style="display: none;">
         <i class="bi bi-arrow-clockwise"></i>
         <span>Enviando...</span>

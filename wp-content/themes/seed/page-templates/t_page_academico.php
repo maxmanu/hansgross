@@ -4,6 +4,7 @@ Template Name:  Académico
 */
 get_header();
 $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
+$titulo_section = get_post_meta(get_the_ID(), 'titulo_seccion_todos_eventos_academicos', true);
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover">
@@ -27,7 +28,9 @@ $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
   <div class="container">
     <div class="row">
       <div class="col-lg-10 offset-lg-2 mb-5">
-        <h2 class="colorgreen-2">Todos los cursos y webinars</h2>
+        <?php if (!empty($titulo_section)): ?>
+          <h2 class="colorgreen-2"><?php echo esc_html($titulo_section); ?></h2>
+        <?php endif; ?>
       </div>
     </div>
     <div class="row gx-md-5">

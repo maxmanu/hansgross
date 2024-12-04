@@ -45,7 +45,7 @@ function registrar_cpt_eventos()
     'hierarchical'       => false,
     'menu_position'      => 20,
     'menu_icon'          => 'dashicons-calendar-alt',
-    'supports'           => array('title', 'editor', 'excerpt', 'thumbnail'),
+    'supports'           => array('title', 'excerpt', 'thumbnail'),
   );
 
   register_post_type('eventos', $args);
@@ -114,12 +114,14 @@ add_action('init', 'registrar_taxonomia_etiquetas_eventos');
 
 function enqueue_custom_scripts()
 {
-  wp_enqueue_script('custom-js', get_template_directory_uri() . '/js/custom.js', ['jquery'], null, true);
+  if (is_front_page()) {
+    wp_enqueue_script('custom-js', get_template_directory_uri() . '/js/custom.js', ['jquery'], null, true);
 
-  // Pasar la URL de admin-ajax.php al script
-  wp_localize_script('custom-js', 'wp_ajax_data', [
-    'ajax_url' => admin_url('admin-ajax.php'),
-  ]);
+    // Pasar la URL de admin-ajax.php al script
+    wp_localize_script('custom-js', 'wp_ajax_data', [
+      'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+  }
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
@@ -593,3 +595,150 @@ function cargar_script_ajax_listado()
 <?php
 }
 add_action('wp_footer', 'cargar_script_ajax_listado');
+
+/*
+ CUSTOM FIELDS
+*/
+add_action('cmb2_admin_init', 'cmb2_eventos_metaboxes');
+function cmb2_eventos_metaboxes()
+{
+  // Crear un nuevo metabox para el CPT 'eventos'
+  $cmb = new_cmb2_box(array(
+    'id'            => 'eventos_metabox',
+    'title'         => __('Detalles del Evento', 'textdomain'),
+    'object_types'  => array('eventos'), // Custom Post Type
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true, // Mostrar etiquetas de los campos
+  ));
+
+  $cmb->add_field(array(
+    'name' => __('Descripción del Curso o Webinar', 'textdomain'),
+    'id'   => 'evento_descripcion',
+    'type' => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true,
+      'media_buttons' => false,
+      'textarea_rows' => 6,
+    ),
+  ));
+
+  // Campo para la fecha
+  $cmb->add_field(array(
+    'name' => __('Fecha del Servicio', 'textdomain'),
+    'id'   => 'servicio_fecha',
+    'type' => 'text_date', // Selector de fecha
+    'date_format' => 'Y-m-d', // Formato de fecha
+  ));
+
+  // Campo de texto para el horario
+  $cmb->add_field(array(
+    'name' => __('Horario del Servicio', 'textdomain'),
+    'id'   => 'servicio_horario',
+    'type' => 'text',
+  ));
+
+  // Campo para subir un archivo PDF informativo
+  $cmb->add_field(array(
+    'name' => __('PDF Informativo', 'textdomain'),
+    'id'   => 'servicio_pdf',
+    'type' => 'file', // Campo para subir archivos
+    'options' => array(
+      'url' => false, // Esconde el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => __('Subir PDF', 'textdomain'), // Texto del botón
+    ),
+  ));
+
+  // Campo WYSIWYG para el temario
+  $cmb->add_field(array(
+    'name' => __('Temario', 'textdomain'),
+    'id'   => 'servicio_temario',
+    'type' => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true, // Añadir etiquetas <p> automáticamente
+      'media_buttons' => true, // Mostrar botón para subir medios
+      'textarea_rows' => 10, // Número de filas del textarea
+    ),
+  ));
+
+  // Campo de texto para el nombre del ponente
+  $cmb->add_field(array(
+    'name' => __('Nombre del Ponente', 'textdomain'),
+    'id'   => 'ponente_nombre',
+    'type' => 'text',
+  ));
+
+  // Campo de texto para el cargo del ponente
+  $cmb->add_field(array(
+    'name' => __('Cargo del Ponente', 'textdomain'),
+    'id'   => 'ponente_cargo',
+    'type' => 'text',
+  ));
+
+  // Campo para subir la imagen del ponente
+  $cmb->add_field(array(
+    'name' => __('Imagen del Ponente', 'textdomain'),
+    'id'   => 'ponente_imagen',
+    'type' => 'file',
+    'options' => array(
+      'url' => false, // Esconde el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => __('Subir Imagen', 'textdomain'), // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array('image/jpeg', 'image/png'), // Restringir a imágenes
+    ),
+  ));
+
+  // Campo WYSIWYG para la descripción del ponente
+  $cmb->add_field(array(
+    'name' => __('Descripción del Ponente', 'textdomain'),
+    'id'   => 'ponente_descripcion',
+    'type' => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true,
+      'media_buttons' => false,
+      'textarea_rows' => 6,
+    ),
+  ));
+
+  // Campo numérico para el precio en soles
+  $cmb->add_field(array(
+    'name' => __('Precio en Soles (S/)', 'textdomain'),
+    'id'   => 'precio_soles',
+    'type' => 'text_money', // Campo para dinero
+    'before_field' => 'S/ ', // Símbolo antes del campo
+  ));
+
+  // Campo numérico para el precio en dólares
+  $cmb->add_field(array(
+    'name' => __('Precio en Dólares ($)', 'textdomain'),
+    'id'   => 'precio_dolares',
+    'type' => 'text_money', // Campo para dinero
+    'before_field' => '$ ', // Símbolo antes del campo
+  ));
+
+  // Campo para subir un video o imagen
+  $cmb->add_field(array(
+    'name' => __('Video o Imagen', 'textdomain'),
+    'id'   => 'video_imagen',
+    'type' => 'file',
+    'options' => array(
+      'url' => false, // Esconde el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => __('Subir Video o Imagen', 'textdomain'), // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/jpeg',
+        'image/png',
+        'video/mp4',
+        'video/webm'
+      ), // Permitir imágenes y videos
+    ),
+  ));
+}

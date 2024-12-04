@@ -4,6 +4,7 @@ Template Name:  Blog
 */
 get_header();
 $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
+$titulo_seccion = get_post_meta(get_the_ID(), 'titulo_seccion_noticias', true);
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>); background-repeat: no-repeat; background-size: cover; background-position:center;">
@@ -27,7 +28,11 @@ $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
   <div class="container">
     <div class="row align-items-center mb-5 px-5">
       <div class="col-lg-9 mx-auto">
-        <h2 class="colorgreen-2">Notas - Eventos</h2>
+        <?php
+        if (!empty($titulo_seccion)) {
+          echo '<h2 class="colorgreen-2">' . esc_html($titulo_seccion) . '</h2>';
+        }
+        ?>
       </div>
       <div class="col-lg-3 pb-3">
         <form id="category-filter-form">
@@ -47,38 +52,7 @@ $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
     <div class="row">
       <div class="col">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4" id="posts-container">
-          <!-- <?php
-                $args = array(
-                  'post_type' => 'post',
-                  'paged' => $paged,
-                );
-                $query = new WP_Query($args);
-                if ($query->have_posts()) {
-                  while ($query->have_posts()) : $query->the_post(); ?>
-              <div class="col">
-                <div class="card card--blog h-100">
-                  <div class="position-relative">
-                    <div class="btn-category-card">23 de Setiembre</div>
-                    <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title"><?php echo get_the_title() ?></h5>
-                    <p class="card-text mb-1">Por Rodrigo Esteban</p>
-                    <p class="card-category mb-1">Categoría: Criminalística</p>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
-                  </div>
-                  <div class="card-footer colorgreen-2">
-                    <div><a href="<?php echo get_the_permalink() ?>">Mostrar más</a></div>
-                    <div class="btn-arrows-servicios">
-                      <a href="<?php echo get_the_permalink() ?>"><i class="bi bi-arrow-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          <?php endwhile;
-                }
-                wp_reset_postdata();
-          ?> -->
+
         </div>
         <!-- <div class="row">
           <div class="col">

@@ -1,5 +1,30 @@
 <?php
 get_header();
+$categorias = get_the_terms(get_the_ID(), 'categorias_eventos');
+$nombres_categorias = $categorias && !is_wp_error($categorias)
+  ? implode(', ', wp_list_pluck($categorias, 'name'))
+  : 'Sin categoría';
+$clase_categoria = 'btn-category-card';
+if ($categorias && !is_wp_error($categorias)) {
+  foreach ($categorias as $categoria) {
+    if ($categoria->slug === 'webinars') { // Cambia 'webinars' por el slug de tu categoría
+      $clase_categoria .= ' btn-category-card--green';
+      break;
+    }
+  }
+}
+$descripcion_servicio = get_post_meta(get_the_ID(), 'evento_descripcion', true);
+$fecha = get_post_meta(get_the_ID(), 'servicio_fecha', true);
+$horario = get_post_meta(get_the_ID(), 'servicio_horario', true);
+$pdf_url = get_post_meta(get_the_ID(), 'servicio_pdf', true);
+$temario = get_post_meta(get_the_ID(), 'servicio_temario', true);
+$ponente_nombre = get_post_meta(get_the_ID(), 'ponente_nombre', true);
+$ponente_cargo = get_post_meta(get_the_ID(), 'ponente_cargo', true);
+$ponente_imagen = get_post_meta(get_the_ID(), 'ponente_imagen', true);
+$ponente_descripcion = get_post_meta(get_the_ID(), 'ponente_descripcion', true);
+$precio_soles = get_post_meta(get_the_ID(), 'precio_soles', true);
+$precio_dolares = get_post_meta(get_the_ID(), 'precio_dolares', true);
+$video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-single-curso.webp); background-repeat: no-repeat; background-size: cover; background-position:center;">
@@ -19,32 +44,91 @@ get_header();
       <div class="row">
         <div class="col-md-4 offset-md-8">
           <div class="card-sidebar text-center">
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a>
+            <!-- Mostrar video o imagen -->
+            <?php if ($video_imagen): ?>
+              <?php
+              $file_type = wp_check_filetype($video_imagen);
+              if (in_array($file_type['ext'], array('mp4', 'webm'))) : ?>
+                <video controls style="max-width: 100%; height: auto;">
+                  <source src="<?php echo esc_url($video_imagen); ?>" type="<?php echo esc_attr($file_type['type']); ?>">
+                  Tu navegador no soporta la reproducción de video.
+                </video>
+              <?php else: ?>
+                <img src="<?php echo esc_url($video_imagen); ?>" alt="Imagen del Servicio" style="max-width: 100%; height: auto;">
+              <?php endif; ?>
+            <?php endif; ?>
+            <!-- <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a> -->
             <div class="d-inline-flex mb-3">
-              <p class="text-price"><sup class="sup-price">S/ </sup>370<sup>.99</sup></p>
+              <p class="text-price"><sup class="sup-price">S/ </sup>
+                <?php
+                if ($precio_soles) {
+                  // Asegurarte de que el precio tenga dos decimales
+                  $precio_formateado = number_format($precio_soles, 2, '.', ''); // Formato: 123.45
+
+                  // Separar parte entera y decimales
+                  list($parte_entera, $decimales) = explode('.', $precio_formateado);
+
+                  // Construir el HTML con <sup> para los decimales
+                  echo '<span>' . esc_html($parte_entera) . '<sup>.' . esc_html($decimales) . '</sup></span>';
+                }
+                ?>
+              </p>
               <div class="vr my-auto"></div>
-              <p class="text-price"><sup class="sup-price">$ </sup>95</p>
+              <p class="text-price"><sup class="sup-price">$ </sup>
+                <?php
+                if ($precio_dolares) {
+                  // Asegurarte de que el precio tenga dos decimales
+                  $precio_formateado = number_format($precio_dolares, 2, '.', ''); // Formato: 123.45
+
+                  // Separar parte entera y decimales
+                  list($parte_entera, $decimales) = explode('.', $precio_formateado);
+
+                  // Construir el HTML con <sup> para los decimales
+                  echo '<span>' . esc_html($parte_entera) . '<sup>.' . esc_html($decimales) . '</sup></span>';
+                }
+                ?>
+              </p>
             </div>
-            <a href=""><button class="btn btn-hans btn-hans--course mb-3"><i class="bi bi-cart2 pe-2"></i>Comprar</button></a>
+            <?php
+            // Generar enlace de WhatsApp
+            $nombre_evento = get_the_title();
+            $mensaje = rawurlencode("Hola, estoy interesado en el evento: $nombre_evento");
+            $whatsapp_url = "https://wa.me/51971596045?text=$mensaje"; // Cambia el número por el tuyo
+            ?>
+            <a target="_blank" href="<?php echo esc_url($whatsapp_url) ?>"><button class="btn btn-hans btn-hans--course mb-3"><i class="bi bi-cart2 pe-2"></i>Comprar</button></a>
             <div class="sidebar-feat mb-3">
-              <div class="d-flex mb-3 mx-auto text-start">
-                <div class="feat-event-text">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-fecha.png" class="img-fluid me-2" alt="...">
-                  <b>Fecha:</b>
+              <?php if ($fecha): ?>
+                <div class="d-flex mb-3 mx-auto text-start">
+                  <div class="feat-event-text">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-fecha.png" class="img-fluid me-2" alt="...">
+                    <b>Fecha:</b>
+                  </div>
+                  <div class="ms-3">
+                    <?php
+                    if ($fecha) {
+                      // Convertir la fecha del meta a timestamp
+                      $timestamp = strtotime($fecha);
+                      // Formatear la fecha al estilo '3 de diciembre, 2024'
+                      $fecha_formateada = date_i18n('j \d\e F, Y', $timestamp);
+                      $fecha_es = traducir_mes($fecha_formateada);
+                      // Mostrar la fecha formateada
+                      echo '<span> ' . esc_html($fecha_es) . '</span>';
+                    }
+                    ?>
+                  </div>
                 </div>
-                <div class="ms-3">
-                  18 de setiembre del 2024
+              <?php endif; ?>
+              <?php if ($horario): ?>
+                <div class="d-flex mb-3 mx-auto text-start">
+                  <div class="feat-event-text">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-reloj.png" class="img-fluid me-2" alt="...">
+                    <b>Horario:</b>
+                  </div>
+                  <div class="ms-3 text-start">
+                    <?php echo esc_html($horario); ?>
+                  </div>
                 </div>
-              </div>
-              <div class="d-flex mb-3 mx-auto text-start">
-                <div class="feat-event-text">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-reloj.png" class="img-fluid me-2" alt="...">
-                  <b>Horario:</b>
-                </div>
-                <div class="ms-3 text-start">
-                  Viernes y Sábado <br> De 10:00 am a 1:00 pm
-                </div>
-              </div>
+              <?php endif; ?>
               <div class="d-flex mb-3 mx-auto text-start">
                 <div class="feat-event-text">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-brochure.png" class="img-fluid me-2" alt="...">
@@ -64,7 +148,9 @@ get_header();
                 </div>
               </div>
             </div>
-            <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>
+            <?php if ($pdf_url): ?>
+              <a target="_blank" href="<?php echo esc_url($pdf_url); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -87,15 +173,64 @@ get_header();
       <div class="container">
         <div class="row">
           <div class="col-auto me-auto ms-4">
-            <div class="btn-category-card">Curso</div>
+            <?php
+            $nombres_categorias = $categorias && !is_wp_error($categorias)
+              ? implode(', ', wp_list_pluck($categorias, 'name'))
+              : 'Sin categoría';
+            $clase_categoria = 'btn-category-card';
+            if ($categorias && !is_wp_error($categorias)) {
+              foreach ($categorias as $categoria) {
+                if ($categoria->slug === 'webinars') { // Cambia 'webinars' por el slug de tu categoría
+                  $clase_categoria .= ' btn-category-card--green';
+                  break;
+                }
+              }
+            }
+            ?>
+            <div class="<?php echo esc_attr($clase_categoria) ?>"><?php echo esc_html($nombres_categorias) ?></div>
           </div>
         </div>
         <div class="row pt-4">
           <div class="col-md-8 me-auto">
             <div class="row">
               <div class="col-2 text-center pt-3">
-                <p class="date-text">SET</p>
-                <P class="date-text date-text--day">18</P>
+                <p class="date-text text-uppercase">
+                  <?php
+                  if ($fecha) {
+                    $timestamp = strtotime($fecha);
+                    // Obtener la abreviatura en inglés
+                    $mes_abreviado = date('M', $timestamp);
+                    // Arreglo para traducir las abreviaturas al español
+                    $meses_traducidos = array(
+                      'Jan' => 'ene',
+                      'Feb' => 'feb',
+                      'Mar' => 'mar',
+                      'Apr' => 'abr',
+                      'May' => 'may',
+                      'Jun' => 'jun',
+                      'Jul' => 'jul',
+                      'Aug' => 'ago',
+                      'Sep' => 'sep',
+                      'Oct' => 'oct',
+                      'Nov' => 'nov',
+                      'Dec' => 'dic',
+                    );
+                    // Traducir al español
+                    $mes_espanol = isset($meses_traducidos[$mes_abreviado]) ? $meses_traducidos[$mes_abreviado] : $mes_abreviado;
+                    // Mostrar el mes traducido
+                    echo '<span>' . esc_html($mes_espanol) . '</span>';
+                  }
+                  ?>
+                </p>
+                <p class="date-text date-text--day">
+                  <?php
+                  if ($fecha) {
+                    $timestamp = strtotime($fecha);
+                    $fecha_formateada = date_i18n('j', $timestamp);
+                    echo '<span> ' . esc_html($fecha_formateada) . '</span>';
+                  }
+                  ?>
+                </p>
               </div>
               <div class="col-10">
                 <h1 class="banner-title"><?php echo get_the_title() ?></h1>
@@ -119,8 +254,9 @@ get_header();
                   }
                   ?>
                 </p>
-                <p class="card-text mb-5">Actualmente las empresas y organizaciones deben estar preparadas para enfrentar exitosamente diversos tipos de crímenes cibernéticos, los cuales se suscitan y afectan sus sistemas de cómputo y redes....</p>
-                <!-- <a href="#" class="mostrar-mas">Mostrar más</a> -->
+                <?php if ($descripcion_servicio): ?>
+                  <div class="card-text mb-5"><?php echo wp_kses_post($descripcion_servicio); ?></div>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -142,81 +278,9 @@ get_header();
               </h2>
               <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                 <div class="accordion-body">
-                  <div class="bloque-tab">
-                    <strong class="title-bloque-tab">Bloque uno</strong>
-                    <ul>
-                      <li>Proceso de investigación forense</li>
-                      <li>Evolución del sistema de archivos windows</li>
-                      <li>FTK Imager</li>
-                      <li>Adquisición de la memoria RAM</li>
-                      <li>Evidencia encriptada</li>
-                      <li>Obtener archivos protegidos</li>
-                      <li>Imagen con contenidos personalizado</li>
-                      <li>Discos de estado sólido (SSD)</li>
-                      <li>Nivelación de uso y SSD Trim</li>
-                      <li>Artefactos forenses en SSD</li>
-                    </ul>
-                  </div>
-                  <div class="bloque-tab">
-                    <strong class="title-bloque-tab">Bloque dos</strong>
-                    <ul>
-                      <li>Proceso de investigación forense</li>
-                      <li>Evolución del sistema de archivos windows</li>
-                      <li>FTK Imager</li>
-                      <li>Adquisición de la memoria RAM</li>
-                      <li>Evidencia encriptada</li>
-                      <li>Obtener archivos protegidos</li>
-                      <li>Imagen con contenidos personalizado</li>
-                      <li>Discos de estado sólido (SSD)</li>
-                      <li>Nivelación de uso y SSD Trim</li>
-                      <li>Artefactos forenses en SSD</li>
-                    </ul>
-                  </div>
-                  <div class="bloque-tab">
-                    <strong class="title-bloque-tab">Bloque tres</strong>
-                    <ul>
-                      <li>Proceso de investigación forense</li>
-                      <li>Evolución del sistema de archivos windows</li>
-                      <li>FTK Imager</li>
-                      <li>Adquisición de la memoria RAM</li>
-                      <li>Evidencia encriptada</li>
-                      <li>Obtener archivos protegidos</li>
-                      <li>Imagen con contenidos personalizado</li>
-                      <li>Discos de estado sólido (SSD)</li>
-                      <li>Nivelación de uso y SSD Trim</li>
-                      <li>Artefactos forenses en SSD</li>
-                    </ul>
-                  </div>
-                  <div class="bloque-tab">
-                    <strong class="title-bloque-tab">Bloque cuatro</strong>
-                    <ul>
-                      <li>Proceso de investigación forense</li>
-                      <li>Evolución del sistema de archivos windows</li>
-                      <li>FTK Imager</li>
-                      <li>Adquisición de la memoria RAM</li>
-                      <li>Evidencia encriptada</li>
-                      <li>Obtener archivos protegidos</li>
-                      <li>Imagen con contenidos personalizado</li>
-                      <li>Discos de estado sólido (SSD)</li>
-                      <li>Nivelación de uso y SSD Trim</li>
-                      <li>Artefactos forenses en SSD</li>
-                    </ul>
-                  </div>
-                  <div class="bloque-tab">
-                    <strong class="title-bloque-tab">Bloque cinco</strong>
-                    <ul>
-                      <li>Proceso de investigación forense</li>
-                      <li>Evolución del sistema de archivos windows</li>
-                      <li>FTK Imager</li>
-                      <li>Adquisición de la memoria RAM</li>
-                      <li>Evidencia encriptada</li>
-                      <li>Obtener archivos protegidos</li>
-                      <li>Imagen con contenidos personalizado</li>
-                      <li>Discos de estado sólido (SSD)</li>
-                      <li>Nivelación de uso y SSD Trim</li>
-                      <li>Artefactos forenses en SSD</li>
-                    </ul>
-                  </div>
+                  <?php if ($temario): ?>
+                    <div class="card-text mb-5"><?php echo wp_kses_post($temario); ?></div>
+                  <?php endif; ?>
                 </div>
                 <div class="bloque-free">
                   LLévate <span class="mx-2">GRATIS</span> Libro de “Fundamentos de Forense Digital”
@@ -235,7 +299,9 @@ get_header();
                   <div class="row align-items-center">
                     <div class="col-lg-5">
                       <div class="card">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-equipo.webp" class="card-img-top" alt="...">
+                        <?php if ($ponente_imagen): ?>
+                          <img src="<?php echo esc_url($ponente_imagen); ?>" alt="<?php echo esc_attr($ponente_nombre); ?>" class="card-img-top">
+                        <?php endif; ?>
                         <div class="card-eq">
                           <div class="container">
                             <div class="row justify-content-center">
@@ -243,8 +309,8 @@ get_header();
                                 <span class="square square--equipo"></span>
                               </div>
                               <div class="col-auto">
-                                <p class="card-title mb-0"><b>Alberto Álvarez</b></p>
-                                <small>Ponente</small>
+                                <p class="card-title mb-0"><b><?php echo esc_html($ponente_nombre); ?></b></p>
+                                <small><?php echo esc_html($ponente_cargo); ?></small>
                               </div>
                             </div>
                           </div>
@@ -252,7 +318,9 @@ get_header();
                       </div>
                     </div>
                     <div class="col-lg-7">
-                      <p>ISC2 Certified in Cybersecurity (CC), LPI Security Essentials Certificate, EXIN Ethical Hacking Foundation Certificate, LPI Linux Essentials Certficate, IT Masters Certificate of Achievement en Network Security Administrador, Hacking Coundtermeasures, Cisco CCNA Security, Information Security Incident Handling, Digital Forensics, Cybersecurity Management, Cyber Warfare and Terrorism, Enterprise Cyber Security Fundamentals, Phishing Countermeasures, Pen Testing, Basic Technology Certificate Autopsy Basics and Hand On, ICSI Certified Network Security Specialist (CNSS) y OPEN-SEC Ethical Hacker (OSEH). </p>
+                      <?php if ($ponente_descripcion): ?>
+                        <div><?php echo wp_kses_post($ponente_descripcion); ?></div>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -267,7 +335,7 @@ get_header();
               </h2>
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  <div class="">
+                  <div class="costo-certificado">
                     <div class="d-flex">
                       <div class="flex-shrink-0">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid" alt="...">
@@ -295,19 +363,23 @@ get_header();
               <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
                 <div class="accordion-body">
                   <div class="row align-items-center">
-                    <div class="col-lg-4">
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/yape-hansgross.png" class="img-fluid" alt="...">
-                    </div>
-                    <div class="col-lg-8">
-                      <p class="title-bloque-tab">Cuenta Corriente BCP soles</p>
-                      <p>Número de Cuenta : 191-9851512-0-20<br> CCI : 00219100985151202056</p>
-                      <br>
-                      <p class="title-bloque-tab">Cuenta Corriente INTERBANK soles</p>
-                      <p>Número de Cuenta : 200-3002908296 <br> CCI : 003-200-003002908296-30</p>
-                      <p>Titular: HANS GROSS EIRL</p>
+                    <div class="col-lg-8 mx-auto text-center text-lg-start">
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/yape-hansgross.png" class="img-fluid img-yape" alt="...">
+                        </div>
+                        <div class="col-lg-8 mt-3 mt-lg-0">
+                          <p class="title-bloque-tab">Cuenta Corriente BCP soles</p>
+                          <p>Número de Cuenta : 191-9851512-0-20<br> CCI : 00219100985151202056</p>
+                          <br>
+                          <p class="title-bloque-tab">Cuenta Corriente INTERBANK soles</p>
+                          <p>Número de Cuenta : 200-3002908296 <br> CCI : 003-200-003002908296-30</p>
+                          <p>Titular: HANS GROSS EIRL</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="row mt-5">
+                  <div class="row mt-5 text-center">
                     <div class="col">
                       <p class="title-bloque-tab">Pagos internacionales</p>
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-niubiz.webp" class="img-fluid" style="max-width:300px;" alt="...">

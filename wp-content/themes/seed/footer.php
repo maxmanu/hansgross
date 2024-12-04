@@ -217,6 +217,62 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
     });
   </script>
 <?php } ?>
+<?php if (is_front_page()) { ?>
+  <script>
+    /**
+     * BOTONES CERTIFICADOS
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Obtén las tarjetas y el contenedor de descripción
+      const cards = document.querySelectorAll('.card--btn-event'); // Todas las tarjetas
+      const descriptionCard = document.querySelector('.card--eventos-description .card-content'); // Contenedor de descripción
+
+      // Verifica que existan las tarjetas y el contenedor
+      if (cards && descriptionCard) {
+        // Función para cambiar el contenido dinámico
+        function changeContent(card) {
+          const title = card.querySelector('.card-img-overlay p').textContent; // Título desde el HTML
+          const content = card.getAttribute('data-content'); // Descripción desde atributo data-content
+          const link = card.getAttribute('data-link'); // Enlace desde atributo data-link
+
+          // Actualiza dinámicamente el contenido
+          descriptionCard.innerHTML = `
+          <h2 class="colorgreen">${title}</h2>
+          <p>${content}</p>
+          <a href="${link}"><button class="btn btn-hans btn-hans--green">Ver más</button></a>
+          `;
+        }
+
+        // Función para manejar la clase activa
+        function setActiveCard(selectedCard) {
+          // Remueve la clase activa de todas las tarjetas
+          cards.forEach((card) => card.classList.remove('active'));
+          // Agrega la clase activa a la tarjeta seleccionada
+          selectedCard.classList.add('active');
+        }
+
+        // Añade eventos de clic a cada tarjeta
+        cards.forEach((card) => {
+          card.addEventListener('click', () => {
+            // Cambia la tarjeta activa
+            setActiveCard(card);
+            // Actualiza el contenido basado en la tarjeta seleccionada
+            changeContent(card);
+          });
+        });
+
+        // Inicializa el contenido con la tarjeta que tiene la clase "active" al cargar la página
+        const activeCard = document.querySelector('.card--btn-event.active');
+        if (activeCard) {
+          changeContent(activeCard);
+        }
+      } else {
+        console.error('No se encontraron las tarjetas o el contenedor de descripción.');
+      }
+    });
+  </script>
+<?php } ?>
+
 <?php if (is_page_template('page-templates/t_page_blog.php')) { ?>
   <script>
     jQuery(document).ready(function($) {
@@ -267,13 +323,22 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
         // Validar los campos
         let isValid = true;
 
-        // Validación de nombre y apellido (máximo 50 caracteres)
+        // Validación de nombre y apellido
         const nameInput = form.querySelector('[name="name"]');
+        const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/;
+        // Validar si está vacío
         if (!nameInput.value.trim()) {
-          showError(nameInput, 'Por favor, ingresa tu nombre.');
+          showError(nameInput, 'Por favor, ingresa tu nombre y apellido.');
           isValid = false;
+
+          // Validar si supera los 50 caracteres
         } else if (nameInput.value.trim().length > 50) {
           showError(nameInput, 'El nombre no debe superar los 50 caracteres.');
+          isValid = false;
+
+          // Validar si contiene caracteres no permitidos
+        } else if (!nameRegex.test(nameInput.value.trim())) {
+          showError(nameInput, 'El nombre solo puede contener letras y espacios.');
           isValid = false;
         }
 
@@ -312,7 +377,7 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
 
         // Si hay errores, no enviar el formulario
         if (!isValid) {
-          formStatus.textContent = 'Por favor, corrige los errores antes de enviar.';
+          formStatus.textContent = '';
           formStatus.style.color = 'red';
           formLoading.style.display = 'none'; // Oculta el spinner
           return;
@@ -371,7 +436,7 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
     });
   </script>
 <?php } ?>
-<?php if (is_single()) { ?>
+<?php if (is_single() && get_post_type() === 'post') { ?>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const shareButtonContainer = document.getElementById('share-button-container');
@@ -412,6 +477,44 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
           }, 2000);
         });
       }
+    });
+  </script>
+<?php } ?>
+<?php if (is_single() && get_post_type() === 'eventos') { ?>
+  <script>
+    /**
+     * FIXED SIDEBAR SINGLE COURSE
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener('scroll', function() {
+        var section = document.querySelector('.section-sidebar-feat');
+        var headerHeight = document.querySelector('header').offsetHeight; // Altura del header
+        var footer = document.querySelector('footer'); // Selecciona el footer
+        var footerOffsetTop = footer.offsetTop; // La posición del footer desde la parte superior de la página
+        var sectionHeight = section.offsetHeight; // Altura de la sección
+        var accordion = document.querySelector('#accordionPanelsHans'); // Selecciona el acordeón
+        var allPanels = accordion.querySelectorAll('.collapse'); // Selecciona todos los tabs del acordeón
+
+        // Función para verificar si todos los paneles están abiertos
+        function areAllTabsOpen() {
+          return Array.from(allPanels).every(panel => panel.classList.contains('show'));
+        }
+
+        // Si el scroll supera la altura del header, la sección se vuelve fixed
+        if (window.scrollY >= headerHeight && window.scrollY + sectionHeight < footerOffsetTop) {
+          section.classList.add('fixed');
+          section.classList.remove('absolute-bottom');
+        }
+        // Si la sección alcanza el footer y todos los tabs están abiertos
+        else if (window.scrollY + sectionHeight >= footerOffsetTop && areAllTabsOpen()) {
+          section.classList.remove('fixed');
+          section.classList.add('absolute-bottom');
+        }
+        // Si está por encima del header, vuelve a la posición original
+        else {
+          section.classList.remove('fixed', 'absolute-bottom');
+        }
+      });
     });
   </script>
 <?php } ?>

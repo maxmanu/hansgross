@@ -45,9 +45,130 @@ function registrar_cpt_softwares()
     'hierarchical'       => false,
     'menu_position'      => 5,
     'menu_icon'          => 'dashicons-desktop', // Ícono del menú (puedes cambiarlo).
-    'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
+    'supports'           => array('title', 'thumbnail'),
   );
 
   register_post_type('softwares', $args);
 }
 add_action('init', 'registrar_cpt_softwares');
+
+add_action('cmb2_admin_init', 'cmb2_add_software_fields');
+
+function cmb2_add_software_fields()
+{
+  $cmb = new_cmb2_box(array(
+    'id'            => 'software_metabox_2', // ID único del metabox
+    'title'         => __('Primera Fila de Contenido', 'textdomain'), // Título del metabox
+    'object_types'  => array('softwares'), // Tipos de contenido donde se aplicará
+    'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
+    'priority'      => 'high', // Prioridad del metabox
+    'show_names'    => true, // Mostrar etiquetas del campo
+  ));
+
+  $cmb->add_field(array(
+    'name'       => __('Texto de primera fila', 'textdomain'), // Etiqueta del campo
+    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'id'         => 'texto_fila_1', // ID único del campo
+    'type'    => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true, // use wpautop?
+      'media_buttons' => false, // show insert/upload button(s)
+      'teeny'         => false, // Usa el editor estándar (no simplificado)
+    ),
+    'custom_required' => true, // Indica que el campo es obligatorio.
+  ));
+
+  $cmb->add_field(array(
+    'name'         => 'Video o Imagen',
+    'desc'         => 'Sube un video o imagen.',
+    'id'           => 'video_software',
+    'type'         => 'file',
+    'options'      => array(
+      'url' => false, // Oculta el campo de URL adicional (opcional)
+    ),
+    'text'         => array(
+      'add_upload_file_text' => 'Añadir video o imagen' // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/jpeg',
+        'image/png',
+        'video/mp4',
+        'video/webm'
+      ), // Permitir imágenes y videos
+    ),
+    'preview_size' => array(300, 300), // Tamaño del preview en el administrador
+  ));
+
+  $cmb->add_field(array(
+    'name'         => 'Brochure',
+    'desc'         => 'Sube un pdf.',
+    'id'           => 'brochure_software',
+    'type'         => 'file',
+    'options'      => array(
+      'url' => false, // Oculta el campo de URL adicional (opcional)
+    ),
+    'text'         => array(
+      'add_upload_file_text' => 'Añadir archivo' // Texto del botón
+    ),
+    'query_args'   => array(
+      'type' => 'pdf', // Tipos de archivo permitidos
+    ),
+    'preview_size' => array(300, 300), // Tamaño del preview en el administrador
+  ));
+
+  //--------------------------------------------------------------------------------
+
+  $cmb = new_cmb2_box(array(
+    'id'            => 'software_metabox_3', // ID único del metabox
+    'title'         => __('Segunda Fila de Contenido', 'textdomain'), // Título del metabox
+    'object_types'  => array('softwares'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
+    'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
+    'priority'      => 'high', // Prioridad del metabox
+    'show_names'    => true, // Mostrar etiquetas del campo
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Imagen 1', // Nombre del campo
+    'desc' => 'Sube una imagen', // Descripción opcional
+    'id'   => 'imagen_left', // ID único del campo
+    'type' => 'file', // Tipo de campo
+    'options' => array(
+      'url' => true, // Permitir la URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir imagen', // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => 'image', // Limitar a imágenes
+    ),
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Imagen 2', // Nombre del campo
+    'desc' => 'Sube una imagen', // Descripción opcional
+    'id'   => 'imagen_right', // ID único del campo
+    'type' => 'file', // Tipo de campo
+    'options' => array(
+      'url' => true, // Permitir la URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir imagen', // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => 'image', // Limitar a imágenes
+    ),
+  ));
+
+  $cmb->add_field(array(
+    'name'       => __('Texto de segunda fila', 'textdomain'), // Etiqueta del campo
+    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'id'         => 'texto_fila_2', // ID único del campo
+    'type'    => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true, // use wpautop?
+      'media_buttons' => false, // show insert/upload button(s)
+      'teeny'         => false, // Usa el editor estándar (no simplificado)
+    ),
+  ));
+}

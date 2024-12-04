@@ -3,6 +3,12 @@ get_header();
 $subtitulo = get_post_meta(36, 'pagina_subtitulo', true);
 $titulo = get_post_meta(36, 'servicios_titulo', true);
 $descripcion = get_post_meta(36, 'servicios_descripcion', true);
+$texto_fila_1 = get_post_meta(get_the_ID(), 'texto_fila_1', true);
+$galeria_fila_1 = get_post_meta(get_the_ID(), 'galeria_fila_1', true);
+$video_url = get_post_meta(get_the_ID(), 'video_cmb2', true);
+$texto_fila_2 = get_post_meta(get_the_ID(), 'texto_fila_2', true);
+$texto_fila_3 = get_post_meta(get_the_ID(), 'texto_fila_3', true);
+$galeria_fila_3 = get_post_meta(get_the_ID(), 'galeria_fila_3', true);
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id(36)) ?>); background-repeat: no-repeat; background-size: cover">
@@ -85,87 +91,104 @@ $descripcion = get_post_meta(36, 'servicios_descripcion', true);
   </div>
 </section>
 
-<section class="section-servicios-description ptb-100">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-lg-6">
-        <h2 class="colorgreen-2"><?php echo get_the_title() ?></h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-      </div>
-      <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
-        <div class="swiper swiperServicios2 mt-3">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card-service.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination swiper-pagination2"></div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-5 align-items-center">
-      <div class="col-lg-6 text-lg-start text-center">
-        <div class="position-relative mb-3">
-          <a data-fslightbox="gallery" href="https://www.youtube.com/watch?v=3nQNiWdeH2Q">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative">
-            <div class="btn-play-wrapper">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-      </div>
-      <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
-        <div class="swiper swiperServicios3">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="card">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" class="card-img-top" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination swiper-pagination3"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<?php get_template_part('template-parts/content', 'cta'); ?>
-
 <?php
-get_footer();
-?>
+if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
+  <section class="section-servicios-description ptb-100">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-6">
+          <h2 class="colorgreen-2"><?php echo get_the_title() ?></h2>
+          <?php
+          echo '<div class="contenido-fila">';
+          echo wp_kses_post(wpautop($texto_fila_1));
+          echo '</div>';
+          ?>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+          <div class="swiper swiperServicios2 mt-3">
+            <?php
+            if ($galeria_fila_1) {
+              echo '<div class="swiper-wrapper">';
+              foreach (
+                $galeria_fila_1 as $url => $archivo
+              ) {
+                echo '<div class="swiper-slide">';
+                echo '<div class="card">';
+                echo '<img src="' . esc_url($archivo) . '" alt="imagen" class="card-img-top">';
+                echo '</div>';
+                echo '</div>';
+              }
+              echo '</div>';
+            } else {
+              echo '<p>No hay imágenes.</p>';
+            }
+            ?>
+            <div class="swiper-pagination swiper-pagination2"></div>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
+    <?php
+    if (!empty($video_url) && !empty($texto_fila_2)) : ?>
+      <div class="row mb-5 align-items-center">
+        <div class="col-lg-6 text-lg-start text-center">
+          <div class="position-relative mb-3">
+            <a data-fslightbox="gallery" href="<?php echo esc_url($video_url) ?>">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative">
+              <div class="btn-play-wrapper">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <?php
+          echo '<div class="contenido-fila">';
+          echo wp_kses_post(wpautop($texto_fila_2));
+          echo '</div>';
+          ?>
+        </div>
+      </div>
+    <?php endif; ?>
+    <?php
+    if (!empty($video_url) && !empty($texto_fila_2) && !empty($texto_fila_3) && !empty($galeria_fila_3)) : ?>
+      <div class="row">
+        <div class="col-lg-6">
+          <?php
+          echo '<div class="contenido-fila">';
+          echo wp_kses_post(wpautop($texto_fila_3));
+          echo '</div>';
+          ?>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+          <div class="swiper swiperServicios3">
+            <?php
+            if ($galeria_fila_3) {
+              echo '<div class="swiper-wrapper">';
+              foreach (
+                $galeria_fila_3 as $url => $archivo
+              ) {
+                echo '<div class="swiper-slide">';
+                echo '<div class="card">';
+                echo '<img src="' . esc_url($archivo) . '" alt="imagen" class="card-img-top">';
+                echo '</div>';
+                echo '</div>';
+              }
+              echo '</div>';
+            } else {
+              echo '<p>No hay imágenes.</p>';
+            }
+            ?>
+            <div class="swiper-pagination swiper-pagination3"></div>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
+    </div>
+  </section>
+
+  <?php get_template_part('template-parts/content', 'cta'); ?>
+
+  <?php
+  get_footer();
+  ?>

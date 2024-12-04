@@ -274,9 +274,9 @@ h2 {
 }
 
 .section-mision {
-  background-image: url('assets/img/bg-section-mision.webp');
+  /* background-image: url('assets/img/bg-section-mision.webp');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   box-shadow: inset 0 0 0 1000px rgb(220 220 220 / 40%);
 }
 
@@ -1676,6 +1676,10 @@ tbody>:not(caption)>*>* {
   min-width: 125px;
 }
 
+.costo-certificado {
+  margin-left: 46px;
+}
+
 .costo-certificado-tab {
   font-weight: 700;
   font-size: 1.5rem;
@@ -1698,34 +1702,6 @@ tbody>:not(caption)>*>* {
   max-width: 180px;
 }
 
-/* Botón de compartir (móvil) */
-#share-button-container {
-  margin-top: 10px;
-  text-align: center;
-}
-
-#share-post-btn {
-  background-color: #0073aa;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#share-post-btn:hover {
-  background-color: #005880;
-}
-
-/* Botón de copiar (escritorio) */
-#copy-button-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
 #copy-post-url {
   flex: 1;
   padding: 8px;
@@ -1735,11 +1711,84 @@ tbody>:not(caption)>*>* {
   color: #333;
 }
 
+#contactForm .btn-hans {
+  border: 0;
+}
 
+.image-float {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 200px;
+}
 
+.image-float img {
+  border-radius: 25px;
+  height: 350px;
+  width: 350px;
+  object-fit: cover;
+}
 
+.image-float__left {
+  z-index: 1;
+}
 
+.image-float__right {
+  z-index: 2;
+  position: absolute;
+  left: 40%;
+  top: 28%;
+}
 
+.box-decor-1 {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 70%;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background: grey;
+}
+
+.box-decor-2 {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background: grey;
+}
+
+.box-decor-3 {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background: #08663D;
+}
+
+.section-quienes-somos .square {
+  margin-top: 7px;
+}
+
+#panelsStayOpen-collapseOne .accordion-body {
+  margin-left: 45px;
+}
+
+#panelsStayOpen-collapseOne h2 {
+  font-size: 1.8rem;
+  color: var(--green-2);
+}
+
+.img-yape {
+  max-width: 300px;
+  width: 100%;
+}
 
 
 
@@ -1889,6 +1938,10 @@ tbody>:not(caption)>*>* {
   #cursos {
     margin-top: 15px;
   }
+
+  .card--single {
+    padding: 50px 40px 65px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1902,5 +1955,9 @@ tbody>:not(caption)>*>* {
 
   .grid {
     display: block;
+  }
+
+  .date-single {
+    font-size: 0.9rem;
   }
 }

@@ -1,6 +1,13 @@
 <?php
 get_header();
 $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
+$texto_fila_1 = get_post_meta(get_the_ID(), 'texto_fila_1', true);
+$galeria_fila_1 = get_post_meta(get_the_ID(), 'galeria_fila_1', true);
+$video_imagen = get_post_meta(get_the_ID(), 'video_software', true);
+$brochure = get_post_meta(get_the_ID(), 'brochure_software', true);
+$texto_fila_2 = get_post_meta(get_the_ID(), 'texto_fila_2', true);
+$image_left = get_post_meta(get_the_ID(), 'imagen_left', true);
+$image_right = get_post_meta(get_the_ID(), 'imagen_right', true);
 ?>
 
 <header id="miDiv" class="continer-fluid software-page" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id(38)) ?>); background-repeat: no-repeat; background-size: cover">
@@ -51,46 +58,77 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
     </div>
   </div>
 </header>
+<?php
+if (!empty($texto_fila_1) && !empty($video_imagen)) : ?>
+  <section class="section-software-description ptb-100">
+    <div class="container">
 
-<section class="section-software-description ptb-100">
-  <div class="container">
-    <div class="row mb-4">
-      <div class="col-lg-6">
-        <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="img-fluid img-single-software mb-5" alt="...">
-        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
+      <div class="row mb-4">
+        <div class="col-lg-6">
+          <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="img-fluid img-single-software mb-5" alt="...">
+          <?php
+          echo '<div class="contenido-fila">';
+          echo wp_kses_post(wpautop($texto_fila_1));
+          echo '</div>';
+          ?>
+        </div>
+        <div class="col-lg-6 text-lg-end text-center">
+          <div class="position-relative mb-3">
+            <?php if ($video_imagen): ?>
+              <?php
+              $file_type = wp_check_filetype($video_imagen);
+              if (in_array($file_type['ext'], array('mp4', 'webm'))) : ?>
+                <a data-fslightbox="gallery" href="<?php echo esc_url($video_imagen) ?>">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative img-description">
+                  <div class="btn-play-wrapper">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+                  </div>
+                </a>
+              <?php else: ?>
+                <img src="<?php echo esc_url($video_imagen) ?>" alt="Imagen del Servicio" class="img-fluid rounded">
+              <?php endif; ?>
+            <?php endif; ?>
+            <!-- <a data-fslightbox="gallery" href="<?php echo esc_url($video_url) ?>">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative img-description">
+              <div class="btn-play-wrapper">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+              </div>
+            </a> -->
+          </div>
+          <?php
+          if ($brochure) { ?>
+            <a href="<?php echo esc_url($brochure) ?>">
+              <button class="btn btn-download">
+                <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
+                Descargar Brochure
+              </button>
+            </a>
+          <?php }
+          ?>
+        </div>
       </div>
-      <div class="col-lg-6 text-lg-end text-center">
-        <div class="position-relative mb-3">
-          <a data-fslightbox="gallery" href="https://www.youtube.com/watch?v=3nQNiWdeH2Q">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative img-description">
-            <div class="btn-play-wrapper">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+
+      <?php
+      if (!empty($image_left) && !empty($image_right) && !empty($texto_fila_2)) : ?>
+        <div class="row align-items-center mb-4">
+          <div class="col-lg-6">
+            <div class="wrap wrap2">
+              <img class="imga img-fluid" src="<?php echo esc_url($image_left) ?>" alt="">
+              <img class="imgb img-fluid" src="<?php echo esc_url($image_right) ?>" alt="">
             </div>
-          </a>
+          </div>
+          <div class="col-lg-6">
+            <?php
+            echo '<div class="contenido-fila">';
+            echo wp_kses_post(wpautop($texto_fila_2));
+            echo '</div>';
+            ?>
+          </div>
         </div>
-        <button class="btn btn-download">
-          <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
-          Descargar Brochure
-        </button>
-      </div>
+      <?php endif; ?>
     </div>
-    <div class="row align-items-center mb-4">
-      <div class="col-lg-6">
-        <div class="wrap wrap2">
-          <img class="imga img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" alt="">
-          <img class="imgb img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/img-right-soft.webp" alt="">
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy </p>
-      </div>
-    </div>
-  </div>
-</section>
-
+  </section>
+<?php endif; ?>
 <?php get_template_part('template-parts/content', 'cta'); ?>
 
 <?php

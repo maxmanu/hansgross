@@ -3,6 +3,13 @@ get_header();
 $subtitulo = get_post_meta(31, 'pagina_subtitulo', true);
 $post_url = get_permalink();
 $post_title = get_the_title();
+$author_name = get_post_meta(get_the_ID(), 'custom_author_name', true);
+$categories = get_the_category();
+$texto_fila_1 = get_post_meta(get_the_ID(), 'texto_fila_1', true);
+$imagen_fila_1 = get_post_meta(get_the_ID(), 'imagen_fila_1', true);
+$texto_fila_2 = get_post_meta(get_the_ID(), 'texto_fila_2', true);
+$texto_fila_3 = get_post_meta(get_the_ID(), 'texto_fila_3', true);
+$imagen_fila_3 = get_post_meta(get_the_ID(), 'imagen_fila_3', true);
 // Generar los enlaces
 $facebook_url = "https://www.facebook.com/sharer.php?u={$post_url}";
 // $twitter_url = "https://twitter.com/intent/tweet?url={$post_url}&text={$post_title}";
@@ -79,39 +86,83 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
         </div>
         <div class="row mt-3 justify-content-between">
           <div class="col-auto autor-single-text">
-            Por Rodrigo Esteban
+            Por:
+            <?php
+            if (!empty($author_name)) {
+              echo '<span> ' . esc_html($author_name) . '</span>';
+            }
+            ?>
           </div>
           <div class="col-auto">
-            <div class="date-single">23 de Setiembre</div>
+            <?php
+            // Obtener la fecha de publicación con el formato deseado
+            $fecha_publicacion = get_the_date('j \d\e F, Y');
+            // Convertir el nombre del mes a español (si es necesario)
+            $fecha_publicacion_es = traducir_mes($fecha_publicacion);
+            // Mostrar la fecha
+            echo '<div class="date-single">' . esc_html($fecha_publicacion_es) . '</div>';
+            ?>
           </div>
         </div>
         <div class="row">
           <div class="col colorgreen-2 cat-single-text">
-            Categoría: Criminalística
+            Categoría:
+            <?php
+            if (!empty($categories)) {
+              // Obtener la primera categoría
+              $first_category = $categories[0];
+              // Mostrar el nombre y enlace de la primera categoría
+              echo '<span>' . esc_html($first_category->name) . '</span>';
+            } else {
+              // Mensaje alternativo si no hay categorías
+              echo '';
+            }
+            ?>
           </div>
         </div>
         <div class="section-text-blog">
-          <div class="row mt-5">
-            <div class="col-md-5">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy </p>
+          <?php
+          if (!empty($texto_fila_1) && !empty($imagen_fila_1)) : ?>
+            <div class="row mt-5">
+              <div class="col-md-5">
+                <?php
+                echo '<div class="contenido-fila">';
+                echo wp_kses_post(wpautop($texto_fila_1));
+                echo '</div>';
+                ?>
+              </div>
+              <div class="col-md-7">
+                <img src="<?php echo esc_url($imagen_fila_1); ?>" class="img-fluid img-single" alt="">
+              </div>
             </div>
-            <div class="col-md-7">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-nosotros.webp" class="img-fluid img-single" alt="">
+          <?php endif; ?>
+          <?php
+          if (!empty($texto_fila_1)) : ?>
+            <div class="row mt-4">
+              <div class="col-md-12">
+                <?php
+                echo '<div class="contenido-fila">';
+                echo wp_kses_post(wpautop($texto_fila_2));
+                echo '</div>';
+                ?>
+              </div>
             </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col-md-12">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy </p>
+          <?php endif; ?>
+          <?php
+          if (!empty($texto_fila_3) && !empty($imagen_fila_3)) : ?>
+            <div class="row mt-4">
+              <div class="col-md-7">
+                <img src="<?php echo esc_url($imagen_fila_3); ?>" class="img-fluid img-single" alt="">
+              </div>
+              <div class="col-md-5">
+                <?php
+                echo '<div class="contenido-fila">';
+                echo wp_kses_post(wpautop($texto_fila_3));
+                echo '</div>';
+                ?>
+              </div>
             </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col-md-7">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/bg-hero-nosotros.webp" class="img-fluid img-single" alt="">
-            </div>
-            <div class="col-md-5">
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy </p>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -132,14 +183,32 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
           <div class="col">
             <div class="card card--blog h-100">
               <div class="position-relative">
-                <div class="btn-category-card">23 de Setiembre</div>
+                <div class="btn-category-card">
+                  <?php
+                  $fecha_publicacion = get_the_date('j \d\e F, Y');
+                  $fecha_publicacion_es = traducir_mes($fecha_publicacion);
+                  echo '<span>' . esc_html($fecha_publicacion_es) . '</span>';
+                  ?>
+                </div>
                 <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="card-title"><?php echo get_the_title() ?></h5>
-                <p class="card-text mb-1">Por Rodrigo Esteban</p>
-                <p class="card-category mb-1">Categoría: Criminalística</p>
-                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing .</p>
+                <p class="card-text mb-1">Por
+                  <?php
+                  $custom_author_name = get_post_meta(get_the_ID(), 'custom_author_name', true);
+                  echo !empty($custom_author_name) ? esc_html($custom_author_name) : 'Autor desconocido';
+                  ?>
+                </p>
+                <p class="card-category mb-1">Categoría:
+                  <?php
+                  $categories = get_the_category();
+                  if (!empty($categories)) {
+                    echo '<span>' . esc_html($categories[0]->name) . '</span>';
+                  }
+                  ?>
+                </p>
+                <p class="card-text"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 20, '...')); ?></p>
               </div>
               <div class="card-footer colorgreen-2">
                 <div><a href="<?php echo get_the_permalink() ?>">Mostrar más</a></div>
