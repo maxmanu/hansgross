@@ -283,7 +283,10 @@ $video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
                   <?php endif; ?>
                 </div>
                 <div class="bloque-free">
-                  LLévate <span class="mx-2">GRATIS</span> Libro de “Fundamentos de Forense Digital”
+                  <div class="">LLévate</div>
+                  <div class=""><span class="mx-3">GRATIS</span></div>
+                  <div class="">Libro de “Fundamentos de Forense Digital</div>
+                  <!-- LLévate <span class="mx-2">GRATIS</span> Libro de “Fundamentos de Forense Digital” -->
                 </div>
               </div>
             </div>

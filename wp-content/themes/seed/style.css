@@ -698,7 +698,7 @@ footer {
 }
 
 .section-course-tabs .card-eq {
-  width: 265px;
+  width: 235px;
 }
 
 .section-course-tabs .square--equipo {
@@ -822,6 +822,9 @@ footer {
   color: #fff;
   padding: 20px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-banner--hero {
@@ -1446,6 +1449,7 @@ tbody>:not(caption)>*>* {
 
 #panelsStayOpen-collapseTwo .accordion-body .card-title {
   font-size: 1.2rem;
+  font-family: 'HandleGotic';
 }
 
 .accordion-body .mostrar-mas {
@@ -1941,6 +1945,10 @@ tbody>:not(caption)>*>* {
 
   .card--single {
     padding: 50px 40px 65px;
+  }
+
+  .bloque-free {
+    display: block;
   }
 }
 
