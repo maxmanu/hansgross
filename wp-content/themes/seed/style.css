@@ -1794,6 +1794,16 @@ tbody>:not(caption)>*>* {
   width: 100%;
 }
 
+.card-video-imagen {
+  height: 234px;
+}
+
+.card-video-imagen img {
+  width: 100%;
+  height: 234px;
+  object-fit: cover;
+}
+
 
 
 

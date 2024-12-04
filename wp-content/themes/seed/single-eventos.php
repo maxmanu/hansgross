@@ -44,19 +44,21 @@ $video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
       <div class="row">
         <div class="col-md-4 offset-md-8">
           <div class="card-sidebar text-center">
-            <!-- Mostrar video o imagen -->
-            <?php if ($video_imagen): ?>
-              <?php
-              $file_type = wp_check_filetype($video_imagen);
-              if (in_array($file_type['ext'], array('mp4', 'webm'))) : ?>
-                <video controls style="max-width: 100%; height: auto;">
-                  <source src="<?php echo esc_url($video_imagen); ?>" type="<?php echo esc_attr($file_type['type']); ?>">
-                  Tu navegador no soporta la reproducción de video.
-                </video>
-              <?php else: ?>
-                <img src="<?php echo esc_url($video_imagen); ?>" alt="Imagen del Servicio" style="max-width: 100%; height: auto;">
+            <div class="card-video-imagen">
+              <!-- Mostrar video o imagen -->
+              <?php if ($video_imagen): ?>
+                <?php
+                $file_type = wp_check_filetype($video_imagen);
+                if (in_array($file_type['ext'], array('mp4', 'webm'))) : ?>
+                  <video controls style="max-width: 100%; height: auto;">
+                    <source src="<?php echo esc_url($video_imagen); ?>" type="<?php echo esc_attr($file_type['type']); ?>">
+                    Tu navegador no soporta la reproducción de video.
+                  </video>
+                <?php else: ?>
+                  <img src="<?php echo esc_url($video_imagen); ?>" alt="Imagen del Servicio">
+                <?php endif; ?>
               <?php endif; ?>
-            <?php endif; ?>
+            </div>
             <!-- <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a> -->
             <div class="d-inline-flex mb-3">
               <p class="text-price"><sup class="sup-price">S/ </sup>

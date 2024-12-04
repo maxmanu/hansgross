@@ -488,25 +488,33 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
     document.addEventListener('DOMContentLoaded', function() {
       window.addEventListener('scroll', function() {
         var section = document.querySelector('.section-sidebar-feat');
-        var headerHeight = document.querySelector('header').offsetHeight; // Altura del header
-        var footer = document.querySelector('footer'); // Selecciona el footer
-        var footerOffsetTop = footer.offsetTop; // La posición del footer desde la parte superior de la página
-        var sectionHeight = section.offsetHeight; // Altura de la sección
-        var accordion = document.querySelector('#accordionPanelsHans'); // Selecciona el acordeón
-        var allPanels = accordion.querySelectorAll('.collapse'); // Selecciona todos los tabs del acordeón
+        var header = document.querySelector('header');
+        var footer = document.querySelector('footer');
+        var courseTabs = document.querySelector('.section-course-tabs'); // Sección de los tabs
 
-        // Función para verificar si todos los paneles están abiertos
-        function areAllTabsOpen() {
-          return Array.from(allPanels).every(panel => panel.classList.contains('show'));
+        if (!section || !header || !footer || !courseTabs) return; // Asegurarse de que los elementos existan
+
+        var headerHeight = header.offsetHeight; // Altura del header
+        var footerOffsetTop = footer.offsetTop; // Posición del footer desde el top
+        var sectionHeight = section.offsetHeight; // Altura de la sección
+        var courseTabsHeight = courseTabs.offsetHeight; // Altura de la sección de los tabs
+        var scrollPosition = window.scrollY; // Posición del scroll actual desde el top
+        var sectionBottom = scrollPosition + sectionHeight; // La parte inferior de la sección en el scroll
+        var footerThreshold = footerOffsetTop - 85; // 85px por arriba del inicio del footer
+
+        // Si la altura de la sección "section-course-tabs" es menor a 700px, salir sin aplicar clases
+        if (courseTabsHeight < 700) {
+          section.classList.remove('fixed', 'absolute-bottom'); // Asegurarse de que no tenga clases
+          return;
         }
 
-        // Si el scroll supera la altura del header, la sección se vuelve fixed
-        if (window.scrollY >= headerHeight && window.scrollY + sectionHeight < footerOffsetTop) {
+        // Si el scroll supera la altura del header y la parte inferior de la sección no ha alcanzado el umbral del footer
+        if (scrollPosition >= headerHeight && sectionBottom < footerThreshold) {
           section.classList.add('fixed');
           section.classList.remove('absolute-bottom');
         }
-        // Si la sección alcanza el footer y todos los tabs están abiertos
-        else if (window.scrollY + sectionHeight >= footerOffsetTop && areAllTabsOpen()) {
+        // Si la parte inferior de la sección alcanza o supera el umbral del footer
+        else if (sectionBottom >= footerThreshold) {
           section.classList.remove('fixed');
           section.classList.add('absolute-bottom');
         }
