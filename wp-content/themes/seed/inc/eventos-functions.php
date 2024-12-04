@@ -169,6 +169,7 @@ function cargar_todos_eventos()
 
   $args = [
     'post_type' => 'eventos',
+    'post_status' => 'publish',
     'posts_per_page' => 6, // Todos los eventos
     'paged'          => $paged,
   ];
@@ -307,6 +308,7 @@ function filtrar_eventos()
 
   $args = [
     'post_type' => 'eventos',
+    'post_status' => 'publish',
     'posts_per_page' => 6, // Todos los eventos
     'paged'          => $paged,
     'tax_query'      => [], // Inicializamos la consulta de taxonomías

@@ -122,11 +122,112 @@ function crear_campos_certificados()
  * FUNCIONALIDAD BUSCAR CERTIFICADOS
  */
 
+// add_action('wp_ajax_buscar_certificados', 'buscar_certificados');
+// add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados');
+
+// function buscar_certificados()
+// {
+//   $query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
+
+//   if (empty($query)) {
+//     wp_send_json(array(
+//       'titulo' => '',
+//       'contenido' => '<p>Por favor, escribe algo para buscar.</p>'
+//     ));
+//   }
+
+//   $args = array(
+//     'post_type' => 'certificados',
+//     'post_status' => 'publish',
+//     'title' => $query,
+//     'posts_per_page' => 1,
+//   );
+
+//   $certificados = new WP_Query($args);
+
+//   if ($certificados->have_posts()) {
+//     $certificados->the_post();
+
+//     // Obtener título del post
+//     $titulo = get_the_title();
+
+//     // Obtener los custom fields
+//     $custom_fields = get_post_meta(get_the_ID(), 'grupo_certificados', true);
+//     $contenido = '';
+
+//     if (!empty($custom_fields)) {
+//       foreach ($custom_fields as $field) {
+//         $codigo = isset($field['numero_codigo']) ? esc_html($field['numero_codigo']) : '';
+//         $nombre = isset($field['nombre_certificado']) ? esc_html($field['nombre_certificado']) : '';
+//         $pdf = isset($field['archivo_pdf']) ? esc_url($field['archivo_pdf']) : '';
+
+//         $contenido .= '<tr>';
+//         $contenido .= '<th>';
+//         $contenido .= '<img src="' . get_template_directory_uri() . '/assets/img/icon-diploma.png" class="img-fluid me-3" alt="...">';
+//         if ($codigo) {
+//           $contenido .= '<span>' . $codigo . '</span>';
+//         }
+//         $contenido .= '</th>';
+//         $contenido .= '<td>';
+//         $contenido .= '<div class="pt-3">';
+//         if ($nombre) {
+//           $contenido .= '<span>' . $nombre . '</span>';
+//         }
+//         $contenido .= '</div>';
+//         $contenido .= '</td>';
+//         $contenido .= '<td class="text-center">';
+//         $contenido .= '<div class="pt-3">';
+//         if ($pdf) {
+//           $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-eye.png" class="img-fluid icon-table" alt="..."></a>';
+//         }
+//         $contenido .= '</div>';
+//         $contenido .= '</td>';
+//         $contenido .= '<td class="text-center">';
+//         $contenido .= '<div class="pt-3">';
+//         if ($pdf) {
+//           $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></a>';
+//         }
+//         $contenido .= '</div>';
+//         $contenido .= '</td>';
+//         $contenido .= '</tr>';
+//       }
+//     } else {
+//       $contenido .= '<p>No se encontraron detalles para este certificado.</p>';
+//     }
+
+//     wp_send_json(array(
+//       'titulo' => $titulo,
+//       'contenido' => $contenido
+//     ));
+//   } else {
+//     wp_send_json(array(
+//       'titulo' => '',
+//       'contenido' => '<p>No se encontró ningún certificado con el título exacto "' . esc_html($query) . '".</p>'
+//     ));
+//   }
+// }
+
+function cargar_scripts_buscador()
+{
+  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/custom-certificados.js', array('jquery'), null, true);
+
+  // Agregar el objeto AJAX
+  wp_localize_script('buscador-certificados', 'ajax_object', array(
+    'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
+  ));
+}
+add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');
+
+/**
+ * FUNCIONALIDAD BUSCAR CERTIFICADOS
+ */
+
 add_action('wp_ajax_buscar_certificados', 'buscar_certificados');
 add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados');
 
 function buscar_certificados()
 {
+  // Obtener el parámetro de búsqueda
   $query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
 
   if (empty($query)) {
@@ -136,15 +237,21 @@ function buscar_certificados()
     ));
   }
 
+  // Modificar la consulta para buscar por título exacto
+  add_filter('posts_where', 'filtrar_busqueda_por_titulo');
+
   $args = array(
     'post_type' => 'certificados',
     'post_status' => 'publish',
-    'title' => $query,
-    'posts_per_page' => 1,
+    'posts_per_page' => 1, // Un solo resultado
   );
 
   $certificados = new WP_Query($args);
 
+  // Quitar el filtro después de la consulta
+  remove_filter('posts_where', 'filtrar_busqueda_por_titulo');
+
+  // Preparar la respuesta
   if ($certificados->have_posts()) {
     $certificados->the_post();
 
@@ -195,6 +302,8 @@ function buscar_certificados()
       $contenido .= '<p>No se encontraron detalles para este certificado.</p>';
     }
 
+    wp_reset_postdata(); // Restablecer la consulta
+
     wp_send_json(array(
       'titulo' => $titulo,
       'contenido' => $contenido
@@ -207,13 +316,15 @@ function buscar_certificados()
   }
 }
 
-function cargar_scripts_buscador()
+/**
+ * Filtro para buscar por título exacto
+ */
+function filtrar_busqueda_por_titulo($where)
 {
-  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/custom-certificados.js', array('jquery'), null, true);
-
-  // Agregar el objeto AJAX
-  wp_localize_script('buscador-certificados', 'ajax_object', array(
-    'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
-  ));
+  global $wpdb;
+  if (isset($_POST['query']) && !empty($_POST['query'])) {
+    $titulo = sanitize_text_field($_POST['query']);
+    $where .= $wpdb->prepare(" AND {$wpdb->posts}.post_title = %s", $titulo);
+  }
+  return $where;
 }
-add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');
