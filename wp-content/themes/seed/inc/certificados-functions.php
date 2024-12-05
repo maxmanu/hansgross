@@ -207,124 +207,143 @@ function crear_campos_certificados()
 //   }
 // }
 
-function cargar_scripts_buscador()
+// function cargar_scripts_buscador()
+// {
+//   wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/custom-certificados.js', array('jquery'), null, true);
+
+//   // Agregar el objeto AJAX
+//   wp_localize_script('buscador-certificados', 'ajax_object', array(
+//     'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
+//   ));
+// }
+// add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function buscar_certificados_ajax()
 {
-  wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/custom-certificados.js', array('jquery'), null, true);
-
-  // Agregar el objeto AJAX
-  wp_localize_script('buscador-certificados', 'ajax_object', array(
-    'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
-  ));
-}
-add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');
-
-/**
- * FUNCIONALIDAD BUSCAR CERTIFICADOS
- */
-
-add_action('wp_ajax_buscar_certificados', 'buscar_certificados');
-add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados');
-
-function buscar_certificados()
-{
-  // Obtener el parámetro de búsqueda
-  $query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
-
-  if (empty($query)) {
-    wp_send_json(array(
-      'titulo' => '',
-      'contenido' => '<p>Por favor, escribe algo para buscar.</p>'
-    ));
+  // Verifica que la solicitud sea válida
+  if (!isset($_POST['search'])) {
+    wp_send_json_error('No se recibió el término de búsqueda.');
+    wp_die();
   }
 
-  // Modificar la consulta para buscar por título exacto
-  add_filter('posts_where', 'filtrar_busqueda_por_titulo');
+  // Limpia el término de búsqueda
+  $search_term = sanitize_text_field($_POST['search']);
 
-  $args = array(
-    'post_type' => 'certificados',
-    'post_status' => 'publish',
-    'posts_per_page' => 1, // Un solo resultado
+  // Configura la consulta personalizada
+  $args = [
+    'post_type'      => 'certificados',
+    'posts_per_page' => -1,
+    's'              => $search_term,
+  ];
+
+  $query = new WP_Query($args);
+
+  // Genera el HTML de respuesta
+  if ($query->have_posts()) {
+    $response = '<div class="accordion accordion-flush" id="accordion-certificados">';
+    while ($query->have_posts()) {
+      $query->the_post();
+
+      $post_id = get_the_ID(); // ID del certificado
+
+      $response .= sprintf(
+        '<div class="accordion-item">
+                <h2 class="accordion-header" id="heading-%1$s">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-%1$s" aria-expanded="false" aria-controls="collapse-%1$s">
+                        %2$s
+                    </button>
+                </h2>
+                <div id="collapse-%1$s" class="accordion-collapse collapse" aria-labelledby="heading-%1$s" data-bs-parent="#accordion-certificados">
+                    <div class="accordion-body" id="detalles-certificado-%1$s">
+                        <!-- Los detalles del certificado se cargarán aquí mediante AJAX -->
+                        <p>Cargando detalles...</p>
+                    </div>
+                </div>
+            </div>',
+        $post_id, // ID único
+        get_the_title() // Título del certificado
+      );
+    }
+    $response .= '</div>';
+  } else {
+    $response = '<p>No se encontraron certificados.</p>';
+  }
+
+
+  wp_reset_postdata();
+
+  // Envía la respuesta
+  echo $response;
+  wp_die(); // Finaliza la ejecución de la función correctamente
+}
+add_action('wp_ajax_buscar_certificados', 'buscar_certificados_ajax');
+add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados_ajax');
+
+
+
+function obtener_detalles_certificado()
+{
+  if (!isset($_POST['post_id'])) {
+    wp_send_json_error('No se proporcionó el ID del certificado.');
+    wp_die();
+  }
+
+  $post_id = intval($_POST['post_id']);
+
+  // Obtén los datos del campo repetidor
+  $grupo_certificados = get_post_meta($post_id, 'grupo_certificados', true);
+
+  if (!$grupo_certificados) {
+    echo '<p>No se encontraron datos para este certificado.</p>';
+    wp_die();
+  }
+
+  // Genera la tabla con los datos del campo repetidor
+  $output = '<table class="table table-striped table-bordered">';
+  $output .= '<thead>
+                    <tr>
+                        <th>Número de Código</th>
+                        <th>Nombre del Certificado</th>
+                        <th>Archivo PDF</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+  foreach ($grupo_certificados as $certificado) {
+    $numero_codigo = esc_html($certificado['numero_codigo']);
+    $nombre_certificado = esc_html($certificado['nombre_certificado']);
+    $archivo_pdf = esc_url($certificado['archivo_pdf']);
+
+    $output .= "<tr>
+                        <td>{$numero_codigo}</td>
+                        <td>{$nombre_certificado}</td>
+                        <td><a href='{$archivo_pdf}' target='_blank'>Ver PDF</a></td>
+                    </tr>";
+  }
+
+  $output .= '</tbody></table>';
+
+  echo $output;
+  wp_die();
+}
+add_action('wp_ajax_obtener_detalles_certificado', 'obtener_detalles_certificado');
+add_action('wp_ajax_nopriv_obtener_detalles_certificado', 'obtener_detalles_certificado');
+
+
+
+function encolar_scripts_certificados()
+{
+  wp_enqueue_script(
+    'certificados-ajax-script',
+    get_template_directory_uri() . '/js/custom-certificados.js', // Ajusta según tu estructura
+    ['jquery'], // Dependencia de jQuery
+    null,
+    true
   );
 
-  $certificados = new WP_Query($args);
-
-  // Quitar el filtro después de la consulta
-  remove_filter('posts_where', 'filtrar_busqueda_por_titulo');
-
-  // Preparar la respuesta
-  if ($certificados->have_posts()) {
-    $certificados->the_post();
-
-    // Obtener título del post
-    $titulo = get_the_title();
-
-    // Obtener los custom fields
-    $custom_fields = get_post_meta(get_the_ID(), 'grupo_certificados', true);
-    $contenido = '';
-
-    if (!empty($custom_fields)) {
-      foreach ($custom_fields as $field) {
-        $codigo = isset($field['numero_codigo']) ? esc_html($field['numero_codigo']) : '';
-        $nombre = isset($field['nombre_certificado']) ? esc_html($field['nombre_certificado']) : '';
-        $pdf = isset($field['archivo_pdf']) ? esc_url($field['archivo_pdf']) : '';
-
-        $contenido .= '<tr>';
-        $contenido .= '<th>';
-        $contenido .= '<img src="' . get_template_directory_uri() . '/assets/img/icon-diploma.png" class="img-fluid me-3" alt="...">';
-        if ($codigo) {
-          $contenido .= '<span>' . $codigo . '</span>';
-        }
-        $contenido .= '</th>';
-        $contenido .= '<td>';
-        $contenido .= '<div class="pt-3">';
-        if ($nombre) {
-          $contenido .= '<span>' . $nombre . '</span>';
-        }
-        $contenido .= '</div>';
-        $contenido .= '</td>';
-        $contenido .= '<td class="text-center">';
-        $contenido .= '<div class="pt-3">';
-        if ($pdf) {
-          $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-eye.png" class="img-fluid icon-table" alt="..."></a>';
-        }
-        $contenido .= '</div>';
-        $contenido .= '</td>';
-        $contenido .= '<td class="text-center">';
-        $contenido .= '<div class="pt-3">';
-        if ($pdf) {
-          $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></a>';
-        }
-        $contenido .= '</div>';
-        $contenido .= '</td>';
-        $contenido .= '</tr>';
-      }
-    } else {
-      $contenido .= '<p>No se encontraron detalles para este certificado.</p>';
-    }
-
-    wp_reset_postdata(); // Restablecer la consulta
-
-    wp_send_json(array(
-      'titulo' => $titulo,
-      'contenido' => $contenido
-    ));
-  } else {
-    wp_send_json(array(
-      'titulo' => '',
-      'contenido' => '<p>No se encontró ningún certificado con el título exacto "' . esc_html($query) . '".</p>'
-    ));
-  }
+  // Pasa la variable `ajaxurl` al script
+  wp_localize_script('certificados-ajax-script', 'ajaxurl', admin_url('admin-ajax.php'));
 }
-
-/**
- * Filtro para buscar por título exacto
- */
-function filtrar_busqueda_por_titulo($where)
-{
-  global $wpdb;
-  if (isset($_POST['query']) && !empty($_POST['query'])) {
-    $titulo = sanitize_text_field($_POST['query']);
-    $where .= $wpdb->prepare(" AND {$wpdb->posts}.post_title = %s", $titulo);
-  }
-  return $where;
-}
+add_action('wp_enqueue_scripts', 'encolar_scripts_certificados');

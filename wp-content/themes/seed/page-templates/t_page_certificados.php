@@ -32,19 +32,21 @@ $texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
           <?php if (!empty($texto_buscador)): ?>
             <p class="pb-3"><?php echo esc_html($texto_buscador); ?></p>
           <?php endif; ?>
-          <div class="input-group mb-3 mx-auto">
-            <input type="text" id="buscador-certificados" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
-            <button class="btn btn--search" type="button" id="button-buscar-certificados">Buscar</button>
-          </div>
+          <form id="search-certificados-form">
+            <div class="input-group mb-3 mx-auto">
+              <input type="text" id="search-certificados" name="search" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
+              <button class="btn btn--search" type="button" id="search-certificados-button">Buscar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-lg-11 mx-auto">
-        <p>Alumno:</p>
-        <p class="name-student" id="resultado-titulo"></p>
+        <div id="certificados-results"></div>
       </div>
     </div>
+    <!--
     <div class="row mb-3">
       <div class="col-lg-11 mx-auto">
         <p>Resultados:</p>
@@ -64,7 +66,7 @@ $texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
           </table>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 
