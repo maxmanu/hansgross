@@ -12,7 +12,7 @@ $texto_fila_3 = get_post_meta(get_the_ID(), 'texto_fila_3', true);
 $imagen_fila_3 = get_post_meta(get_the_ID(), 'imagen_fila_3', true);
 // Generar los enlaces
 $facebook_url = "https://www.facebook.com/sharer.php?u={$post_url}";
-// $twitter_url = "https://twitter.com/intent/tweet?url={$post_url}&text={$post_title}";
+$twitter_url = "https://twitter.com/intent/tweet?url={$post_url}&text={$post_title}";
 $linkedin_url = "https://www.linkedin.com/shareArticle?mini=true&url={$post_url}&title={$post_title}";
 $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
 ?>
@@ -65,16 +65,16 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
         </div>
         <div class="row align-items-center">
           <div class="col-lg-9 mx-auto">
-            <h2 class="colorgreen"><?php echo get_the_title() ?></h2>
+            <h2 class="colorgreen-2"><?php echo get_the_title() ?></h2>
           </div>
           <div class="col-xl-3">
             <div class="social-links justify-content-end">
               <a href="<?php echo esc_url($facebook_url); ?>" class="me-2" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook-svg-icon.svg" alt="" class="img-fluid">
               </a>
-              <!-- <a href="<?php echo esc_url($twitter_url); ?>" class="me-2" target="_blank">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram-svg-icon.svg" alt="" class="img-fluid">
-              </a> -->
+              <a href="<?php echo esc_url($twitter_url); ?>" class="me-2" target="_blank">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/x-svg-icon.svg" alt="" class="img-fluid">
+              </a>
               <a href="<?php echo esc_url($linkedin_url); ?>" class="me-2" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/linkedin-svg-icon.svg" alt="" class="img-fluid">
               </a>

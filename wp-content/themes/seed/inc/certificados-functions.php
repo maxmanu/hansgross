@@ -223,8 +223,8 @@ function crear_campos_certificados()
 function buscar_certificados_ajax()
 {
   // Verifica que la solicitud sea válida
-  if (!isset($_POST['search'])) {
-    wp_send_json_error('No se recibió el término de búsqueda.');
+  if (!isset($_POST['search']) || empty($_POST['search'])) {
+    wp_send_json_error(['message' => 'No se recibió el término de búsqueda.']);
     wp_die();
   }
 
@@ -241,45 +241,75 @@ function buscar_certificados_ajax()
   $query = new WP_Query($args);
 
   // Genera el HTML de respuesta
+  $num_resultados = 0; // Inicializa el contador
+  $response = '';
+
   if ($query->have_posts()) {
-    $response = '<div class="accordion accordion-flush" id="accordion-certificados">';
+    // Cuenta los certificados válidos
     while ($query->have_posts()) {
       $query->the_post();
 
-      $post_id = get_the_ID(); // ID del certificado
+      $post_id = get_the_ID();
+      $grupo_certificados = get_post_meta($post_id, 'grupo_certificados', true);
 
-      $response .= sprintf(
-        '<div class="accordion-item">
-                <h2 class="accordion-header" id="heading-%1$s">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-%1$s" aria-expanded="false" aria-controls="collapse-%1$s">
-                        %2$s
-                    </button>
-                </h2>
-                <div id="collapse-%1$s" class="accordion-collapse collapse" aria-labelledby="heading-%1$s" data-bs-parent="#accordion-certificados">
-                    <div class="accordion-body" id="detalles-certificado-%1$s">
-                        <!-- Los detalles del certificado se cargarán aquí mediante AJAX -->
-                        <p>Cargando detalles...</p>
-                    </div>
-                </div>
-            </div>',
-        $post_id, // ID único
-        get_the_title() // Título del certificado
-      );
+      if (!empty($grupo_certificados)) {
+        $num_resultados++; // Incrementa el contador solo si hay contenido válido
+      }
     }
-    $response .= '</div>';
+
+    // Si hay certificados válidos, genera el HTML
+    if ($num_resultados > 0) {
+      $response .= '<div class="accordion accordion-flush" id="accordion-certificados">';
+
+      // Reinicia el loop para generar los resultados
+      $query->rewind_posts();
+      while ($query->have_posts()) {
+        $query->the_post();
+
+        $post_id = get_the_ID();
+        $grupo_certificados = get_post_meta($post_id, 'grupo_certificados', true);
+
+        if (empty($grupo_certificados)) {
+          continue; // Salta los certificados sin contenido válido
+        }
+
+        $response .= sprintf(
+          '<div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-%1$s">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-%1$s" aria-expanded="false" aria-controls="collapse-%1$s">
+                                %2$s
+                            </button>
+                        </h2>
+                        <div id="collapse-%1$s" class="accordion-collapse collapse" aria-labelledby="heading-%1$s" data-bs-parent="#accordion-certificados">
+                            <div class="accordion-body" id="detalles-certificado-%1$s">
+                                <!-- Los detalles del certificado se cargarán aquí mediante AJAX -->
+                                <p>Cargando detalles...</p>
+                            </div>
+                        </div>
+                    </div>',
+          $post_id, // ID único
+          get_the_title() // Título del certificado
+        );
+      }
+
+      $response .= '</div>';
+    } else {
+      // No hay certificados con contenido válido
+      $response = '<p>No se encontraron certificados con información válida.</p>';
+    }
   } else {
+    // No hay posts que coincidan con la búsqueda
     $response = '<p>No se encontraron certificados.</p>';
   }
 
-
   wp_reset_postdata();
 
-  // Envía la respuesta
-  echo $response;
-  wp_die(); // Finaliza la ejecución de la función correctamente
+  // Envía la respuesta con los datos generados
+  wp_send_json_success(['html' => $response, 'count' => $num_resultados]);
 }
 add_action('wp_ajax_buscar_certificados', 'buscar_certificados_ajax');
 add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados_ajax');
+
 
 
 
@@ -301,12 +331,14 @@ function obtener_detalles_certificado()
   }
 
   // Genera la tabla con los datos del campo repetidor
-  $output = '<table class="table table-striped table-bordered">';
-  $output .= '<thead>
+  $output = '<div class="table-responsive-xl">';
+  $output = '<table class="table">';
+  $output .= '<thead class="table-light">
                     <tr>
-                        <th>Número de Código</th>
-                        <th>Nombre del Certificado</th>
-                        <th>Archivo PDF</th>
+                        <th scope="col" class="first-title-table">Código</th>
+                        <th scope="col">Certificado</th>
+                        <th scope="col" class="text-center">Visualizar</th>
+                        <th scope="col" class="text-center">Descargar</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -317,13 +349,35 @@ function obtener_detalles_certificado()
     $archivo_pdf = esc_url($certificado['archivo_pdf']);
 
     $output .= "<tr>
-                        <td>{$numero_codigo}</td>
-                        <td>{$nombre_certificado}</td>
-                        <td><a href='{$archivo_pdf}' target='_blank'>Ver PDF</a></td>
-                    </tr>";
+                    <td>
+                        <img src='" . get_template_directory_uri() . "/assets/img/icon-diploma.png' class='img-fluid' alt='...'>
+                        <span>{$numero_codigo}</span>
+                    </td>
+                    <td>
+                        <div class='pt-3'>
+                            <span>{$nombre_certificado}</span>
+                        </div>
+                    </td>
+                    <td class='text-center'>
+                        <div class='pt-3'>
+                            <a href='{$archivo_pdf}' target='_blank'>
+                                <img src='" . get_template_directory_uri() . "/assets/img/icon-eye.png' class='img-fluid icon-table' alt='...'>
+                            </a>
+                        </div>
+                    </td>
+                    <td class='text-center'>
+                        <div class='pt-3'>
+                            <a href='{$archivo_pdf}' download target='_blank'>
+                                <img src='" . get_template_directory_uri() . "/assets/img/icon-expediente.png' class='img-fluid icon-table' alt=''>
+                            </a>
+                        </div>
+                    </td>
+                </tr>";
   }
 
   $output .= '</tbody></table>';
+  $output .= '</div>';
+
 
   echo $output;
   wp_die();

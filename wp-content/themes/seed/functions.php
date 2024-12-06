@@ -363,10 +363,48 @@ function mi_pagina_de_opciones()
     'desc' => 'Introduce una descripción para el call to action de la página de servicios y softwares.',
   ));
 
+  // Imagen CTA
   $cmb_options->add_field(array(
     'name'         => 'Imagen de Call to Action',
     'desc'         => 'Sube una imagen.',
     'id'           => 'imagen_cta',
+    'type'         => 'file',
+    'options'      => array(
+      'url' => false, // Oculta el campo de URL adicional (opcional)
+    ),
+    'text'         => array(
+      'add_upload_file_text' => 'Añadir imagen' // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/jpeg',
+        'image/png',
+      ),
+    ),
+    'preview_size' => array(300, 300), // Tamaño del preview en el administrador
+  ));
+
+  // Campo numérico para el precio en soles
+  $cmb_options->add_field(array(
+    'name' => __('Precio del Certificado en Soles (S/)', 'textdomain'),
+    'id'   => 'precio_soles_certificado',
+    'type' => 'text', // Campo para dinero
+    'before_field' => 'S/ ', // Símbolo antes del campo
+  ));
+
+  // Campo numérico para el precio en dólares
+  $cmb_options->add_field(array(
+    'name' => __('Precio del Certificado en Dólares ($)', 'textdomain'),
+    'id'   => 'precio_dolares_certificado',
+    'type' => 'text', // Campo para dinero
+    'before_field' => '$ ', // Símbolo antes del campo
+  ));
+
+  // Imagen del Tab Certificados
+  $cmb_options->add_field(array(
+    'name'         => 'Imagen referencial de Certificado',
+    'desc'         => 'Sube una imagen.',
+    'id'           => 'imagen_certificado',
     'type'         => 'file',
     'options'      => array(
       'url' => false, // Oculta el campo de URL adicional (opcional)

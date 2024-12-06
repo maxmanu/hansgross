@@ -13,6 +13,7 @@ if ($categorias && !is_wp_error($categorias)) {
     }
   }
 }
+$opciones_generales = get_option('mi_configuracion_general');
 $descripcion_servicio = get_post_meta(get_the_ID(), 'evento_descripcion', true);
 $fecha = get_post_meta(get_the_ID(), 'servicio_fecha', true);
 $horario = get_post_meta(get_the_ID(), 'servicio_horario', true);
@@ -25,6 +26,13 @@ $ponente_descripcion = get_post_meta(get_the_ID(), 'ponente_descripcion', true);
 $precio_soles = get_post_meta(get_the_ID(), 'precio_soles', true);
 $precio_dolares = get_post_meta(get_the_ID(), 'precio_dolares', true);
 $video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
+$libro_gratis = get_post_meta(get_the_ID(), 'libro_gratis', true);
+$precio_soles_certificado =
+  isset($opciones_generales['precio_soles_certificado']) ? $opciones_generales['precio_soles_certificado'] : '';
+$precio_dolares_certificado  =
+  isset($opciones_generales['precio_dolares_certificado']) ? $opciones_generales['precio_dolares_certificado'] : '';
+$imagen_certificado =
+  isset($opciones_generales['imagen_certificado']) ? $opciones_generales['imagen_certificado'] : '';
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/bg-single-curso.webp); background-repeat: no-repeat; background-size: cover; background-position:center;">
@@ -284,12 +292,13 @@ $video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
                     <div class="card-text mb-5"><?php echo wp_kses_post($temario); ?></div>
                   <?php endif; ?>
                 </div>
-                <div class="bloque-free">
-                  <div class="">LLévate</div>
-                  <div class=""><span class="mx-3">GRATIS</span></div>
-                  <div class="">Libro de “Fundamentos de Forense Digital</div>
-                  <!-- LLévate <span class="mx-2">GRATIS</span> Libro de “Fundamentos de Forense Digital” -->
-                </div>
+                <?php if ($libro_gratis): ?>
+                  <div class="bloque-free">
+                    <div class="">LLévate</div>
+                    <div class=""><span class="mx-3">GRATIS</span></div>
+                    <div class=""><?php echo esc_html($libro_gratis); ?></div>
+                  </div>
+                <?php endif; ?>
               </div>
             </div>
             <div class="accordion-item">
@@ -347,13 +356,23 @@ $video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
                       </div>
                       <div class="flex-grow-1 ms-3">
                         <p class="costo-certificado-tab">Costo del Certificado: </p>
-                        <p class="accordion-price"><sup>S/</sup> 30 o <sup>US$ </sup>10</p>
+                        <p class="accordion-price">
+                          <sup>S/</sup>
+                          <?php if ($precio_soles_certificado):  echo esc_html($precio_soles_certificado);
+                          endif; ?>
+                          o
+                          <sup>US$ </sup>
+                          <?php if ($precio_dolares_certificado):  echo esc_html($precio_dolares_certificado);
+                          endif; ?>
+                        </p>
                         <p>(Podrá acceder a la grabación del evento)</p>
                       </div>
                     </div>
                   </div>
                   <div class="text-center">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-tab-people.png" class="img-fluid mt-2" alt="">
+                    <?php if ($imagen_certificado): ?>
+                      <img src="<?php echo esc_url($imagen_certificado); ?>" alt="imagen-certificado" class="img-fluid mt-2">
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>

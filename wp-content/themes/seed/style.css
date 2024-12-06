@@ -358,8 +358,8 @@ h2 {
 }
 
 .square--equipo {
-  height: 10px;
-  width: 10px;
+  height: 13px;
+  width: 13px;
   margin-top: 50%;
   border-radius: 0;
   background-color: #D1FAE8;
@@ -382,6 +382,7 @@ h2 {
 
 .card-eq p {
   font-size: 1.4rem;
+  font-family: 'HandleGotic';
 }
 
 .row--mision,
@@ -1552,7 +1553,7 @@ tbody>:not(caption)>*>* {
 }
 
 .first-title-table {
-  padding-left: 61px !important;
+  padding-left: 75px !important;
 }
 
 .success-message {
@@ -1804,10 +1805,25 @@ tbody>:not(caption)>*>* {
   object-fit: cover;
 }
 
+.accordion-button::after {
+  width: 28px;
+  height: 15px;
+}
 
+.accordion-button::after,
+.accordion-button:not(.collapsed)::after {
+  background-image: url('assets/img/caret-select.svg');
+}
 
+.accordion-button::after {
+  width: 28px;
+  height: 15px;
+  background-size: 100%;
+}
 
-
+.accordion-button:not(.collapsed) {
+  color: inherit;
+}
 
 
 

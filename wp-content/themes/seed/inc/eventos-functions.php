@@ -743,4 +743,10 @@ function cmb2_eventos_metaboxes()
       ), // Permitir imágenes y videos
     ),
   ));
+
+  $cmb->add_field(array(
+    'name' => __('Gratis', 'textdomain'),
+    'id'   => 'libro_gratis',
+    'type' => 'text', // Campo para dinero
+  ));
 }

@@ -1,86 +1,45 @@
-// jQuery(document).ready(function ($) {
-//   // Manejar clic en el botón de búsqueda
-//   $('#button-buscar-certificados').on('click', function () {
-//     var query = $('#buscador-certificados').val().trim(); // Obtiene y limpia el texto del input
-
-//     if (query === '') {
-//       // Mostrar mensaje si el campo está vacío
-//       $('#resultado-titulo').html('<p>Por favor, escribe algo para buscar.</p>');
-//       $('#resultado-busqueda').html('');
-//       return;
-//     }
-
-//     // Desactiva el botón mientras se realiza la búsqueda
-//     var $button = $(this);
-//     $button.prop('disabled', true);
-
-//     // Realiza la solicitud AJAX
-//     $.ajax({
-//       url: ajax_object.ajax_url, // URL de admin-ajax.php
-//       type: 'POST',
-//       data: {
-//         action: 'buscar_certificados', // Acción de PHP
-//         query: query, // Término de búsqueda
-//       },
-//       beforeSend: function () {
-//         // Limpia los resultados previos y muestra un mensaje de carga
-//         $('#resultado-titulo').html('');
-//         $('#resultado-busqueda').html('<p>Buscando...</p>');
-//       },
-//       success: function (response) {
-//         // Verificar si hay un título en la respuesta
-//         if (response.titulo) {
-//           $('#resultado-titulo').html('<h3>' + response.titulo + '</h3>'); // Muestra el título
-//         } else {
-//           $('#resultado-titulo').html(''); // Limpia si no hay título
-//         }
-
-//         // Verificar si hay contenido en la respuesta
-//         if (response.contenido) {
-//           $('#resultado-busqueda').html(response.contenido); // Muestra los detalles
-//         } else {
-//           $('#resultado-busqueda').html('<p>No se encontraron resultados.</p>'); // Mensaje vacío
-//         }
-//       },
-//       error: function () {
-//         // Manejo de errores
-//         $('#resultado-titulo').html('');
-//         $('#resultado-busqueda').html('<p>Hubo un error en la búsqueda. Intenta nuevamente.</p>');
-//       },
-//       complete: function () {
-//         // Reactiva el botón después de finalizar la solicitud
-//         $button.prop('disabled', false);
-//       },
-//     });
-//   });
-// });
-
 jQuery(document).ready(function ($) {
+  // Desactiva el comportamiento por defecto del "Enter" en el input de búsqueda
+  $('#search-certificados').on('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Evita que se envíe el formulario o realice la búsqueda
+    }
+  });
+
   $('#search-certificados-button').on('click', function () {
-    const searchQuery = $('#search-certificados').val(); // Obtén el valor del input
-    const resultsContainer = $('#certificados-results'); // Contenedor de resultados
+    const searchQuery = $('#search-certificados').val();
+    const resultsContainer = $('#certificados-results');
+    const resultsCount = $('#results-count');
 
     if (searchQuery.length > 2) {
-      // Asegúrate de que el término tenga al menos 3 caracteres
       $.ajax({
-        url: ajaxurl, // URL para la solicitud AJAX
+        url: ajaxurl,
         type: 'POST',
         data: {
-          action: 'buscar_certificados', // Nombre del callback PHP
+          action: 'buscar_certificados',
           search: searchQuery,
         },
         beforeSend: function () {
-          resultsContainer.html('<p>Buscando...</p>'); // Mensaje de carga
+          resultsContainer.html('<p>Buscando certificados...</p>');
+          resultsCount.text('');
         },
         success: function (response) {
-          resultsContainer.html(response); // Muestra los resultados
+          if (response.success) {
+            resultsContainer.html(response.data.html);
+            resultsCount.text(`Resultados encontrados: ${response.data.count}`);
+          } else {
+            resultsContainer.html('<p>No se encontraron resultados.</p>');
+            resultsCount.text('');
+          }
         },
         error: function () {
           resultsContainer.html('<p>Ocurrió un error. Por favor, intenta de nuevo.</p>');
+          resultsCount.text('');
         },
       });
     } else {
       resultsContainer.html('<p>Por favor, introduce al menos 3 caracteres.</p>');
+      resultsCount.text('');
     }
   });
 });

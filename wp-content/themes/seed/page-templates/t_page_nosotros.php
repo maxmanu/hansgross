@@ -116,7 +116,7 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
               echo '      <div class="container">';
               echo '        <div class="row justify-content-center">';
               echo '          <div class="col-2">';
-              echo '            <span class="square square--equipo"></span>';
+              echo '            <span class="square square--equipo ms-auto"></span>';
               echo '          </div>';
               echo '          <div class="col-auto">';
               echo '            <p class="card-title mb-0"><b>' . $nombre . '</b></p>';

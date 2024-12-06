@@ -43,30 +43,10 @@ $texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
     </div>
     <div class="row mb-3">
       <div class="col-lg-11 mx-auto">
+        <div id="results-count" class="mb-3"></div>
         <div id="certificados-results"></div>
       </div>
     </div>
-    <!--
-    <div class="row mb-3">
-      <div class="col-lg-11 mx-auto">
-        <p>Resultados:</p>
-        <div class="table-responsive">
-          <table class="table">
-            <thead class="table-light">
-              <tr>
-                <th scope="col" class="first-title-table">Código</th>
-                <th scope="col">Certificado</th>
-                <th scope="col" class="text-center">Visualizar</th>
-                <th scope="col" class="text-center">Descargar</th>
-              </tr>
-            </thead>
-            <tbody id="resultado-busqueda">
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div> -->
   </div>
 </section>
 
