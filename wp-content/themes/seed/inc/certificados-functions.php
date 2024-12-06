@@ -102,6 +102,21 @@ function crear_campos_certificados()
     ),
   ));
 
+  // Campo de texto para el año
+  $cmb->add_group_field(
+    $group_field_id,
+    array(
+      'name'       => 'Año', // Etiqueta del campo
+      'desc'       => 'Introduce un año de 4 dígitos', // Descripción del campo
+      'id'         => 'year_field', // ID único para el campo
+      'type'       => 'text', // Tipo de campo
+      'attributes' => array(
+        'placeholder' => '2024', // Placeholder para el campo
+        'type'        => 'number', // Solo permite números
+      ),
+    ),
+  );
+
   // Subcampo: Subir PDF
   $cmb->add_group_field($group_field_id, array(
     'name' => __('Subir PDF del Certificado', 'textdomain'),
@@ -115,108 +130,6 @@ function crear_campos_certificados()
     ),
   ));
 }
-
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/**
- * FUNCIONALIDAD BUSCAR CERTIFICADOS
- */
-
-// add_action('wp_ajax_buscar_certificados', 'buscar_certificados');
-// add_action('wp_ajax_nopriv_buscar_certificados', 'buscar_certificados');
-
-// function buscar_certificados()
-// {
-//   $query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
-
-//   if (empty($query)) {
-//     wp_send_json(array(
-//       'titulo' => '',
-//       'contenido' => '<p>Por favor, escribe algo para buscar.</p>'
-//     ));
-//   }
-
-//   $args = array(
-//     'post_type' => 'certificados',
-//     'post_status' => 'publish',
-//     'title' => $query,
-//     'posts_per_page' => 1,
-//   );
-
-//   $certificados = new WP_Query($args);
-
-//   if ($certificados->have_posts()) {
-//     $certificados->the_post();
-
-//     // Obtener título del post
-//     $titulo = get_the_title();
-
-//     // Obtener los custom fields
-//     $custom_fields = get_post_meta(get_the_ID(), 'grupo_certificados', true);
-//     $contenido = '';
-
-//     if (!empty($custom_fields)) {
-//       foreach ($custom_fields as $field) {
-//         $codigo = isset($field['numero_codigo']) ? esc_html($field['numero_codigo']) : '';
-//         $nombre = isset($field['nombre_certificado']) ? esc_html($field['nombre_certificado']) : '';
-//         $pdf = isset($field['archivo_pdf']) ? esc_url($field['archivo_pdf']) : '';
-
-//         $contenido .= '<tr>';
-//         $contenido .= '<th>';
-//         $contenido .= '<img src="' . get_template_directory_uri() . '/assets/img/icon-diploma.png" class="img-fluid me-3" alt="...">';
-//         if ($codigo) {
-//           $contenido .= '<span>' . $codigo . '</span>';
-//         }
-//         $contenido .= '</th>';
-//         $contenido .= '<td>';
-//         $contenido .= '<div class="pt-3">';
-//         if ($nombre) {
-//           $contenido .= '<span>' . $nombre . '</span>';
-//         }
-//         $contenido .= '</div>';
-//         $contenido .= '</td>';
-//         $contenido .= '<td class="text-center">';
-//         $contenido .= '<div class="pt-3">';
-//         if ($pdf) {
-//           $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-eye.png" class="img-fluid icon-table" alt="..."></a>';
-//         }
-//         $contenido .= '</div>';
-//         $contenido .= '</td>';
-//         $contenido .= '<td class="text-center">';
-//         $contenido .= '<div class="pt-3">';
-//         if ($pdf) {
-//           $contenido .= '<a href="' . $pdf . '" target="_blank"><img src="' . get_template_directory_uri() . '/assets/img/icon-expediente.png" class="img-fluid icon-table" alt=""></a>';
-//         }
-//         $contenido .= '</div>';
-//         $contenido .= '</td>';
-//         $contenido .= '</tr>';
-//       }
-//     } else {
-//       $contenido .= '<p>No se encontraron detalles para este certificado.</p>';
-//     }
-
-//     wp_send_json(array(
-//       'titulo' => $titulo,
-//       'contenido' => $contenido
-//     ));
-//   } else {
-//     wp_send_json(array(
-//       'titulo' => '',
-//       'contenido' => '<p>No se encontró ningún certificado con el título exacto "' . esc_html($query) . '".</p>'
-//     ));
-//   }
-// }
-
-// function cargar_scripts_buscador()
-// {
-//   wp_enqueue_script('buscador-certificados', get_template_directory_uri() . '/js/custom-certificados.js', array('jquery'), null, true);
-
-//   // Agregar el objeto AJAX
-//   wp_localize_script('buscador-certificados', 'ajax_object', array(
-//     'ajax_url' => admin_url('admin-ajax.php'), // URL del endpoint AJAX
-//   ));
-// }
-// add_action('wp_enqueue_scripts', 'cargar_scripts_buscador');
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -250,10 +163,23 @@ function buscar_certificados_ajax()
       $query->the_post();
 
       $post_id = get_the_ID();
-      $grupo_certificados = get_post_meta($post_id, 'grupo_certificados', true);
 
+      // Verifica si hay algún archivo PDF en el repetidor
+      $grupo_certificados = get_post_meta($post_id, 'grupo_certificados', true);
+      $mostrar_certificado = false;
       if (!empty($grupo_certificados)) {
-        $num_resultados++; // Incrementa el contador solo si hay contenido válido
+        // Recorre los elementos del campo repetidor para verificar si existe un archivo PDF
+        foreach ($grupo_certificados as $certificado) {
+          if (!empty($certificado['archivo_pdf'])) {
+            $mostrar_certificado = true;
+            break;
+          }
+        }
+      }
+
+      // Si no hay archivo PDF, no mostrar este certificado
+      if ($mostrar_certificado) {
+        $num_resultados++; // Salta el certificado si no hay archivo PDF
       }
     }
 
@@ -273,20 +199,38 @@ function buscar_certificados_ajax()
           continue; // Salta los certificados sin contenido válido
         }
 
+        // Verifica si hay algún archivo PDF en el repetidor
+        $grupo_certificados = get_post_meta($post_id, 'grupo_certificados', true);
+        $mostrar_certificado = false;
+        if (!empty($grupo_certificados)) {
+          // Recorre los elementos del campo repetidor para verificar si existe un archivo PDF
+          foreach ($grupo_certificados as $certificado) {
+            if (!empty($certificado['archivo_pdf'])) {
+              $mostrar_certificado = true;
+              break;
+            }
+          }
+        }
+
+        // Si no hay archivo PDF, no mostrar este certificado
+        if (!$mostrar_certificado) {
+          continue; // Salta el certificado si no hay archivo PDF
+        }
+
         $response .= sprintf(
           '<div class="accordion-item">
-                        <h2 class="accordion-header" id="heading-%1$s">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-%1$s" aria-expanded="false" aria-controls="collapse-%1$s">
-                                %2$s
-                            </button>
-                        </h2>
-                        <div id="collapse-%1$s" class="accordion-collapse collapse" aria-labelledby="heading-%1$s" data-bs-parent="#accordion-certificados">
-                            <div class="accordion-body" id="detalles-certificado-%1$s">
-                                <!-- Los detalles del certificado se cargarán aquí mediante AJAX -->
-                                <p>Cargando detalles...</p>
-                            </div>
-                        </div>
-                    </div>',
+              <h2 class="accordion-header" id="heading-%1$s">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-%1$s" aria-expanded="false" aria-controls="collapse-%1$s">
+                      %2$s
+                  </button>
+              </h2>
+              <div id="collapse-%1$s" class="accordion-collapse collapse" aria-labelledby="heading-%1$s" data-bs-parent="#accordion-certificados">
+                  <div class="accordion-body" id="detalles-certificado-%1$s">
+                      <!-- Los detalles del certificado se cargarán aquí mediante AJAX -->
+                      <p>Cargando detalles...</p>
+                  </div>
+              </div>
+          </div>',
           $post_id, // ID único
           get_the_title() // Título del certificado
         );
@@ -335,8 +279,9 @@ function obtener_detalles_certificado()
   $output = '<table class="table">';
   $output .= '<thead class="table-light">
                     <tr>
-                        <th scope="col" class="first-title-table">Código</th>
-                        <th scope="col">Certificado</th>
+                        <th scope="col" class="text-center">Código</th>
+                        <th scope="col" class="text-center">Año</th>
+                        <th scope="col" class="text-center">Certificado</th>
                         <th scope="col" class="text-center">Visualizar</th>
                         <th scope="col" class="text-center">Descargar</th>
                     </tr>
@@ -345,15 +290,21 @@ function obtener_detalles_certificado()
 
   foreach ($grupo_certificados as $certificado) {
     $numero_codigo = esc_html($certificado['numero_codigo']);
+    $year_field = esc_html($certificado['year_field']);
     $nombre_certificado = esc_html($certificado['nombre_certificado']);
     $archivo_pdf = esc_url($certificado['archivo_pdf']);
 
     $output .= "<tr>
-                    <td>
+                    <td class='text-center'>
                         <img src='" . get_template_directory_uri() . "/assets/img/icon-diploma.png' class='img-fluid' alt='...'>
                         <span>{$numero_codigo}</span>
                     </td>
-                    <td>
+                    <td class='text-center'>
+                        <div class='pt-3'>
+                            <span>{$year_field}</span>
+                        </div>
+                    </td>
+                    <td class='text-center'>
                         <div class='pt-3'>
                             <span>{$nombre_certificado}</span>
                         </div>
