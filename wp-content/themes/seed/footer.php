@@ -344,6 +344,13 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
 
         // Validación de email (máximo 80 caracteres)
         const emailInput = form.querySelector('[name="email"]');
+        // Función para validar email con una expresión regular
+        const isValidEmail = (email) => {
+          // Validar que el email no contenga caracteres especiales no permitidos
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          return emailRegex.test(email);
+        };
+
         if (!emailInput.value.trim()) {
           showError(emailInput, 'Por favor, ingresa tu correo.');
           isValid = false;
