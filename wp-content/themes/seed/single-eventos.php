@@ -313,10 +313,12 @@ $imagen_certificado =
                   Ponente
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse position-relative">
+                <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:10px;right:20px;"></span>
                 <div class="accordion-body">
                   <div class="row align-items-center">
-                    <div class="col-lg-5">
+                    <div class="col-xl-5 position-relative">
+                      <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-30px;right:0;width:40px;height:40px;"></span>
                       <div class="card">
                         <?php if ($ponente_imagen): ?>
                           <img src="<?php echo esc_url($ponente_imagen); ?>" alt="<?php echo esc_attr($ponente_nombre); ?>" class="card-img-top">
@@ -336,7 +338,7 @@ $imagen_certificado =
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-xl-7">
                       <?php if ($ponente_descripcion): ?>
                         <div><?php echo wp_kses_post($ponente_descripcion); ?></div>
                       <?php endif; ?>

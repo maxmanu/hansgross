@@ -60,17 +60,20 @@ $image_right = get_post_meta(get_the_ID(), 'imagen_right', true);
 </header>
 <?php
 if (!empty($texto_fila_1) && !empty($video_imagen)) : ?>
-  <section class="section-software-description ptb-100">
+  <section class="section-software-description position-relative ptb-100">
+    <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:inherit;left:55%;"></span>
     <div class="container">
-
       <div class="row mb-4">
         <div class="col-lg-6">
           <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="img-fluid img-single-software mb-5" alt="...">
-          <?php
-          echo '<div class="contenido-fila">';
-          echo wp_kses_post(wpautop($texto_fila_1));
-          echo '</div>';
-          ?>
+          <div class="position-relative">
+            <?php
+            echo '<div class="contenido-fila">';
+            echo wp_kses_post(wpautop($texto_fila_1));
+            echo '</div>';
+            ?>
+            <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-30px;right:50px;"></span>
+          </div>
         </div>
         <div class="col-lg-6 text-lg-end text-center">
           <div class="position-relative mb-3">
@@ -111,11 +114,13 @@ if (!empty($texto_fila_1) && !empty($video_imagen)) : ?>
       <?php
       if (!empty($image_left) && !empty($image_right) && !empty($texto_fila_2)) : ?>
         <div class="row align-items-center mb-4">
-          <div class="col-lg-6">
+          <div class="col-lg-6 position-relative">
             <div class="wrap wrap2">
               <img class="imga img-fluid" src="<?php echo esc_url($image_left) ?>" alt="">
               <img class="imgb img-fluid" src="<?php echo esc_url($image_right) ?>" alt="">
             </div>
+            <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:35px;right:30%;width:40px;height:40px;"></span>
+            <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:50px;left:10%;"></span>
           </div>
           <div class="col-lg-6">
             <?php

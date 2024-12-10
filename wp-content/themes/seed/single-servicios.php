@@ -96,18 +96,21 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
 
 <?php
 if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
-  <section class="section-servicios-description ptb-100">
+  <section class="section-servicios-description position-relative">
+    <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:500px;"></span>
     <div class="container">
       <div class="row mb-5">
-        <div class="col-lg-6">
+        <div class="col-lg-6 position-relative">
           <h2 class="colorgreen-2"><?php echo get_the_title() ?></h2>
           <?php
           echo '<div class="contenido-fila">';
           echo wp_kses_post(wpautop($texto_fila_1));
           echo '</div>';
           ?>
+          <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-30px;right:50px;"></span>
+          <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>
         </div>
-        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
           <div class="swiper swiperServicios2 mt-3">
             <?php
             if ($galeria_fila_1) {
@@ -128,6 +131,7 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
             ?>
             <div class="swiper-pagination swiper-pagination2"></div>
           </div>
+          <span class="box-decor-image"></span>
         </div>
       </div>
     <?php endif; ?>
@@ -135,13 +139,14 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
     if (!empty($video_url) && !empty($texto_fila_2)) : ?>
       <div class="row mb-5 align-items-center">
         <div class="col-lg-6 text-lg-start text-center">
-          <div class="position-relative mb-3">
+          <div class="position-relative mb-3 image-column">
             <a data-fslightbox="gallery" href="<?php echo esc_url($video_url) ?>">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative">
               <div class="btn-play-wrapper">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
               </div>
             </a>
+            <span class="box-decor-image" style="top:-30px; right:-30px;"></span>
           </div>
         </div>
         <div class="col-lg-6">
@@ -156,14 +161,15 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
     <?php
     if (!empty($video_url) && !empty($texto_fila_2) && !empty($texto_fila_3) && !empty($galeria_fila_3)) : ?>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 position-relative">
           <?php
           echo '<div class="contenido-fila">';
           echo wp_kses_post(wpautop($texto_fila_3));
           echo '</div>';
           ?>
+          <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:0;"></span>
         </div>
-        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
           <div class="swiper swiperServicios3">
             <?php
             if ($galeria_fila_3) {
@@ -184,10 +190,12 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
             ?>
             <div class="swiper-pagination swiper-pagination3"></div>
           </div>
+          <span class="box-decor-image" style="top:-120px;right:-10px;"></span>
         </div>
       </div>
     <?php endif; ?>
     </div>
+    <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>
   </section>
 
   <?php get_template_part('template-parts/content', 'cta'); ?>

@@ -309,17 +309,18 @@ h2 {
 }
 
 .section-servicios-description {
-  background: url('assets/img/bg-servicios-text.png'), #F8F8FA;
+  /* background: url('assets/img/bg-servicios-text.png'), #F8F8FA; */
   background-repeat: repeat;
   background-size: contain;
   background-position: center;
+  padding-top: 150px;
+  padding-bottom: 100px;
 }
 
 .section-software-description {
-  background: url('assets/img/bg-servicios-text.png'), #fff;
+  /* background: url('assets/img/bg-servicios-text.png'), #fff; */
   background-repeat: repeat;
   background-position: center;
-  ;
 }
 
 .section-servicios-description img {
@@ -327,10 +328,15 @@ h2 {
   width: 500px;
   object-fit: cover;
   border-radius: 25px;
+  z-index: 1;
 }
 
 .section-servicios-description p {
   text-align: justify;
+}
+
+.section-servicios-description .card {
+  border-radius: 25px;
 }
 
 .swiperServicios .swiper-slide {
@@ -1309,6 +1315,7 @@ tbody>:not(caption)>*>* {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .btn-play-wrapper img {
@@ -1825,6 +1832,27 @@ tbody>:not(caption)>*>* {
   color: inherit;
 }
 
+.box-decor-image {
+  content: "";
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: #85E5BC;
+  z-index: 0;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1894,6 +1922,10 @@ tbody>:not(caption)>*>* {
   .swiperServicios3 {
     margin-top: -100px;
   }
+
+  .image-column {
+    width: fit-content;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -1952,6 +1984,10 @@ tbody>:not(caption)>*>* {
 
   #navbarExample1 .nav-link.active {
     color: #000;
+  }
+
+  .box-decor-image {
+    display: none;
   }
 }
 
