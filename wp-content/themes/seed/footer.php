@@ -19,6 +19,7 @@ $facebook = isset($opciones_generales['facebook_url']) ? esc_url($opciones_gener
 $instagram = isset($opciones_generales['instagram_url']) ? esc_url($opciones_generales['instagram_url']) : '';
 $linkedin = isset($opciones_generales['linkedin_url']) ? esc_url($opciones_generales['linkedin_url']) : '';
 $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones_generales['whatsapp_contacto']) : '';
+$texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opciones_generales['texto_whatsapp']) : '';
 ?>
 
 <footer>
@@ -146,7 +147,7 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
             <?php
             if ($whatsapp) {
             ?>
-              <a href="https://wa.me/51<?php echo $whatsapp; ?>?text=Tengo%20una%20consulta" class="mx-2" target="_blank">
+              <a href="https://wa.me/51<?php echo $whatsapp; ?>?text=<?php echo $texto_whatsapp; ?>" class="mx-2" target="_blank">
                 <svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="29.4999" cy="29.4999" r="29.4999" fill="#fff" />
                   <circle cx="29.4999" cy="29.4999" r="28.8853" stroke="white" stroke-opacity="0.5" stroke-width="1.22916" />

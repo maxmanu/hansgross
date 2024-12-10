@@ -215,6 +215,7 @@ require get_template_directory() . '/inc/noticias-functions.php';
 require get_template_directory() . '/inc/home-page-functions.php';
 require get_template_directory() . '/inc/nosotros-page-functions.php';
 require get_template_directory() . '/inc/servicios-page-functions.php';
+require get_template_directory() . '/inc/softwares-page-functions.php';
 require get_template_directory() . '/inc/certificados-page-functions.php';
 require get_template_directory() . '/inc/contactanos-page-functions.php';
 require get_template_directory() . '/inc/blog-page-functions.php';
@@ -353,6 +354,14 @@ function mi_pagina_de_opciones()
     'id'   => 'whatsapp_contacto',
     'type' => 'text',
     'desc' => 'Introduce el número de WhatsApp.',
+  ));
+
+  // Texto Whatsapp CTA
+  $cmb_options->add_field(array(
+    'name' => 'Texto para WhatsApp',
+    'id'   => 'texto_whatsapp',
+    'type' => 'text',
+    'desc' => 'Introduce el texto para WhatsApp.',
   ));
 
   // Texto CTA

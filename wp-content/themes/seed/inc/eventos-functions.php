@@ -233,8 +233,12 @@ function cargar_todos_eventos()
 
       // Generar enlace de WhatsApp
       $nombre_evento = get_the_title();
-      $mensaje = rawurlencode("Hola, estoy interesado en el evento: $nombre_evento");
-      $whatsapp_url = "https://wa.me/51971596045?text=$mensaje"; // Cambia el número por el tuyo
+      $opciones_generales = get_option('mi_configuracion_general');
+      $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones_generales['whatsapp_contacto']) : '';
+      $custom_whatsapp_message = get_post_meta(27, 'texto_whatsapp', true);
+      $whatsapp_message = urlencode($custom_whatsapp_message);
+      $mensaje = rawurlencode($nombre_evento);
+      $whatsapp_url = "https://wa.me/51" . $whatsapp . "?text=" . $whatsapp_message . " " . $mensaje; // Cambia el número por el tuyo
 
       echo '<div class="col">';
       echo '<div class="card h-100">';

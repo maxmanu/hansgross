@@ -9,6 +9,9 @@ $video_url = get_post_meta(get_the_ID(), 'video_cmb2', true);
 $texto_fila_2 = get_post_meta(get_the_ID(), 'texto_fila_2', true);
 $texto_fila_3 = get_post_meta(get_the_ID(), 'texto_fila_3', true);
 $galeria_fila_3 = get_post_meta(get_the_ID(), 'galeria_fila_3', true);
+
+// Obtener el mensaje personalizado del Custom Field de la página principal
+$custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
 ?>
 
 <header id="miDiv" class="continer-fluid" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id(36)) ?>); background-repeat: no-repeat; background-size: cover">

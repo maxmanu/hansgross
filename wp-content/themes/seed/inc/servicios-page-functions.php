@@ -33,6 +33,14 @@ function custom_fields_pagina_servicios()
     'type' => 'textarea',
     'desc' => 'Escribe una descripción detallada para la página.',
   ));
+
+  // Campo de texto: Título
+  $cmb->add_field(array(
+    'name' => 'Mensaje de Whatsapp',
+    'id'   => 'texto_whatsapp',
+    'type' => 'text',
+    'desc' => 'Ingresa el mensaje para whatsapp.',
+  ));
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

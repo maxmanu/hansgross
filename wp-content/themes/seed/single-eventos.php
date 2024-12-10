@@ -27,6 +27,11 @@ $precio_soles = get_post_meta(get_the_ID(), 'precio_soles', true);
 $precio_dolares = get_post_meta(get_the_ID(), 'precio_dolares', true);
 $video_imagen = get_post_meta(get_the_ID(), 'video_imagen', true);
 $libro_gratis = get_post_meta(get_the_ID(), 'libro_gratis', true);
+
+$whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones_generales['whatsapp_contacto']) : '';
+$custom_whatsapp_message = get_post_meta(27, 'texto_whatsapp', true);
+$whatsapp_message = urlencode($custom_whatsapp_message);
+
 $precio_soles_certificado =
   isset($opciones_generales['precio_soles_certificado']) ? $opciones_generales['precio_soles_certificado'] : '';
 $precio_dolares_certificado  =
@@ -102,10 +107,10 @@ $imagen_certificado =
             <?php
             // Generar enlace de WhatsApp
             $nombre_evento = get_the_title();
-            $mensaje = rawurlencode("Hola, estoy interesado en el evento: $nombre_evento");
-            $whatsapp_url = "https://wa.me/51971596045?text=$mensaje"; // Cambia el número por el tuyo
+            // $mensaje = rawurlencode("Hola, estoy interesado en el evento: $nombre_evento");
+            // $whatsapp_url = "https://wa.me/51<?php echo $whatsapp;  
             ?>
-            <a target="_blank" href="<?php echo esc_url($whatsapp_url) ?>"><button class="btn btn-hans btn-hans--course mb-3"><i class="bi bi-cart2 pe-2"></i>Comprar</button></a>
+            <a target="_blank" href="https://wa.me/51<?php echo $whatsapp; ?>?text=<?php echo $whatsapp_message; ?> <?php echo rawurlencode($nombre_evento); ?>"><button class="btn btn-hans btn-hans--course mb-3"><i class="bi bi-cart2 pe-2"></i>Comprar</button></a>
             <div class="sidebar-feat mb-3">
               <?php if ($fecha): ?>
                 <div class="d-flex mb-3 mx-auto text-start">

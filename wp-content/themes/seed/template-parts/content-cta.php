@@ -3,13 +3,21 @@ $opciones_generales = get_option('mi_configuracion_general');
 $cta_text = isset($opciones_generales['call_to_action']) ? esc_html($opciones_generales['call_to_action']) : '';
 $cta_image = isset($opciones_generales['imagen_cta']) ? esc_html($opciones_generales['imagen_cta']) : '';
 $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones_generales['whatsapp_contacto']) : '';
-// Personalizar el texto del mensaje según la página
-$whatsapp_message = "Tengo%20una%20consulta"; // Texto por defecto
+
+// Obtener el mensaje personalizado desde un Custom Field
+// $custom_whatsapp_message = get_post_meta(get_the_ID(), 'texto_whatsapp', true);
+
 if (is_page(36) || is_singular('servicios')) {
-  $whatsapp_message = "Hola,%20tengo%20una%20consulta%20sobre%20los%20servicios";
-} elseif (is_page(38) || is_singular('softwares')) {
-  $whatsapp_message = "Hola,%20necesito%20información%20sobre%20los%20softwares";
+  $custom_whatsapp_message = get_post_meta(36, 'texto_whatsapp', true);
+  $whatsapp_message = urlencode($custom_whatsapp_message);
+} else if (is_page(38) || is_singular('softwares')) {
+  $custom_whatsapp_message = get_post_meta(38, 'texto_whatsapp', true);
+  $whatsapp_message = urlencode($custom_whatsapp_message);
+} else {
+  $whatsapp_message = "Hola,%20tengo%20una%20consulta";
 }
+
+
 ?>
 <section class="section-contactanos ptb-50">
   <div class="container">

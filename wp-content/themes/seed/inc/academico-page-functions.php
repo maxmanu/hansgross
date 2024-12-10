@@ -24,6 +24,13 @@ function custom_fields_pagina_academico()
     'type' => 'text',
     'desc' => 'Escribe un título para la sección.',
   ));
+
+  $cmb->add_field(array(
+    'name' => 'Mensaje de Whatsapp',
+    'id'   => 'texto_whatsapp',
+    'type' => 'text',
+    'desc' => 'Ingresa el mensaje para whatsapp.',
+  ));
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
