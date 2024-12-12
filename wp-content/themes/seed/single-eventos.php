@@ -19,6 +19,8 @@ $fecha = get_post_meta(get_the_ID(), 'servicio_fecha', true);
 $horario = get_post_meta(get_the_ID(), 'servicio_horario', true);
 $pdf_url = get_post_meta(get_the_ID(), 'servicio_pdf', true);
 $temario = get_post_meta(get_the_ID(), 'servicio_temario', true);
+$brochure = get_post_meta(get_the_ID(), 'servicio_brochure', true);
+$avalado = get_post_meta(get_the_ID(), 'servicio_avalado', true);
 $ponente_nombre = get_post_meta(get_the_ID(), 'ponente_nombre', true);
 $ponente_cargo = get_post_meta(get_the_ID(), 'ponente_cargo', true);
 $ponente_imagen = get_post_meta(get_the_ID(), 'ponente_imagen', true);
@@ -144,24 +146,28 @@ $imagen_certificado =
                   </div>
                 </div>
               <?php endif; ?>
-              <div class="d-flex mb-3 mx-auto text-start">
-                <div class="feat-event-text">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-brochure.png" class="img-fluid me-2" alt="...">
-                  <b>Brochure:</b>
+              <?php if ($brochure): ?>
+                <div class="d-flex mb-3 mx-auto text-start">
+                  <div class="feat-event-text">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-brochure.png" class="img-fluid me-2" alt="...">
+                    <b>Brochure:</b>
+                  </div>
+                  <div class="ms-3">
+                    <?php echo esc_html($brochure); ?>
+                  </div>
                 </div>
-                <div class="ms-3">
-                  Digital
+              <?php endif; ?>
+              <?php if ($avalado): ?>
+                <div class="d-flex mx-auto text-start">
+                  <div class="feat-event-text">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid me-2" alt="...">
+                    <b>Avalado:</b>
+                  </div>
+                  <div class="ms-3">
+                    <?php echo esc_html($avalado); ?>
+                  </div>
                 </div>
-              </div>
-              <div class="d-flex mx-auto text-start">
-                <div class="feat-event-text">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid me-2" alt="...">
-                  <b>Avalado:</b>
-                </div>
-                <div class="ms-3">
-                  Hans Gross
-                </div>
-              </div>
+              <?php endif; ?>
             </div>
             <?php if ($pdf_url): ?>
               <a target="_blank" href="<?php echo esc_url($pdf_url); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>

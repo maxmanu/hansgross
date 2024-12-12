@@ -120,6 +120,30 @@ function cmb2_custom_fields_inicio()
       'type' => 'text', // Tipo de campo
     ));
 
+    $cmb->add_field(array(
+      'name' => 'Imagen izquierda', // Nombre del campo
+      'id'   => 'imagen_left', // ID único dentro del grupo
+      'type' => 'file', // Tipo de campo: subir archivo
+      'options' => array(
+        'url' => false, // Oculta el campo de URL
+      ),
+      'text' => array(
+        'add_upload_file_text' => 'Subir Imagen' // Texto del botón de carga
+      ),
+    ));
+
+    $cmb->add_field(array(
+      'name' => 'Imagen derecha', // Nombre del campo
+      'id'   => 'imagen_right', // ID único dentro del grupo
+      'type' => 'file', // Tipo de campo: subir archivo
+      'options' => array(
+        'url' => false, // Oculta el campo de URL
+      ),
+      'text' => array(
+        'add_upload_file_text' => 'Subir Imagen' // Texto del botón de carga
+      ),
+    ));
+
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     $cmb = new_cmb2_box(array(

@@ -22,42 +22,42 @@ $logo_sitio = isset($opciones_generales['logo_sitio']) ? $opciones_generales['lo
         <!-- Left links -->
         <ul class="navbar-nav navbar-hans ps-lg-0" style="padding-left: 0.15rem;padding-top: 0.6rem;">
           <li class="nav-item">
-            <a class="nav-link <?php echo is_front_page() ? 'active' : ''; ?>" href="/">Home</a>
+            <a class="nav-link <?php echo is_front_page() ? 'active' : ''; ?>" href="<?php echo get_permalink(23) ?>"><?php echo esc_html(get_the_title(23)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_nosotros.php')) {
                                   echo "active";
-                                } ?>" href="/nosotros">Nosotros</a>
+                                } ?>" href="<?php echo get_permalink(25) ?>"><?php echo esc_html(get_the_title(25)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_servicios.php')) {
                                   echo "active";
-                                } ?>" href="/servicios">Servicios</a>
+                                } ?>" href="<?php echo get_permalink(36) ?>"><?php echo esc_html(get_the_title(36)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_academico.php')) {
                                   echo "active";
-                                } ?>" href="/academico">Académico</a>
+                                } ?>" href="<?php echo get_permalink(27) ?>"><?php echo esc_html(get_the_title(27)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_certificados.php')) {
                                   echo "active";
-                                } ?>" href="/certificados">Certificados</a>
+                                } ?>" href="<?php echo get_permalink(29) ?>"><?php echo esc_html(get_the_title(29)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_softwares.php')) {
                                   echo "active";
-                                } ?>" href="/softwares">Softwares</a>
+                                } ?>" href="<?php echo get_permalink(38) ?>"><?php echo esc_html(get_the_title(38)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_blog.php')) {
                                   echo "active";
-                                } ?>" href="/blog">Blog</a>
+                                } ?>" href="<?php echo get_permalink(31) ?>"><?php echo esc_html(get_the_title(31)) ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_contactanos.php')) {
                                   echo "active";
-                                } ?>" href="/contactanos">Contáctanos</a>
+                                } ?>" href="<?php echo get_permalink(33) ?>"><?php echo esc_html(get_the_title(33)) ?></a>
           </li>
         </ul>
         <!-- Left links -->

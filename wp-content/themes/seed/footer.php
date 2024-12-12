@@ -22,7 +22,7 @@ $whatsapp = isset($opciones_generales['whatsapp_contacto']) ? esc_html($opciones
 $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opciones_generales['texto_whatsapp']) : '';
 ?>
 
-<footer>
+<footer id="footer">
   <div class="top-footer">
     <div class="container">
       <div class="row align-items-center">
@@ -534,7 +534,29 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
     });
   </script>
 <?php } ?>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('mainNavbar');
+    const footer = document.getElementById('footer');
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navbar.classList.add('hidden'); // Oculta el navbar
+          } else {
+            navbar.classList.remove('hidden'); // Muestra el navbar
+          }
+        });
+      }, {
+        root: null, // Usa el viewport como área de observación
+        threshold: 0.1, // Detecta cuando el 10% del footer es visible
+      }
+    );
+
+    observer.observe(footer);
+  });
+</script>
 </body>
 
 </html>

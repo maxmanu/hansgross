@@ -1,5 +1,6 @@
 <?php
 get_header();
+$titulo_hero = get_post_meta(36, 'pagina_titulo', true);
 $subtitulo = get_post_meta(36, 'pagina_subtitulo', true);
 $titulo = get_post_meta(36, 'servicios_titulo', true);
 $descripcion = get_post_meta(36, 'servicios_descripcion', true);
@@ -21,7 +22,9 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title"><?php echo get_the_title(36) ?></h1>
+          <?php if (!empty($titulo_hero)): ?>
+            <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
+          <?php endif; ?>
           <?php if (!empty($subtitulo)): ?>
             <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
           <?php endif; ?>

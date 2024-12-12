@@ -644,6 +644,18 @@ function cmb2_eventos_metaboxes()
     'type' => 'text',
   ));
 
+  $cmb->add_field(array(
+    'name' => __('Brochure', 'textdomain'),
+    'id'   => 'servicio_brochure',
+    'type' => 'text',
+  ));
+
+  $cmb->add_field(array(
+    'name' => __('Avalado', 'textdomain'),
+    'id'   => 'servicio_avalado',
+    'type' => 'text',
+  ));
+
   // Campo para subir un archivo PDF informativo
   $cmb->add_field(array(
     'name' => __('PDF Informativo', 'textdomain'),

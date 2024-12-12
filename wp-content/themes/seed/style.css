@@ -175,7 +175,7 @@ h2 {
 }
 
 .header-logo {
-  height: 70px;
+  max-width: 200px;
 }
 
 #navbarExample1 {
@@ -488,7 +488,7 @@ footer {
 }
 
 .row-footer-menu a {
-  color: #01A25C;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -519,11 +519,16 @@ footer {
   width: 100%;
   z-index: 999;
   /* Asegúrate de que esté por encima del contenido */
-  transition: background-color 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mainNavbar.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 #mainNavbar.scrolled {
-  background-color: #06834da6;
+  background-color: #06834d;
   /* Fondo oscuro */
   color: white;
   /* Color del texto */

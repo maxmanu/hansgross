@@ -3,6 +3,7 @@
 Template Name:  Certificados
 */
 get_header();
+$titulo_hero = get_post_meta(get_the_ID(), 'pagina_titulo', true);
 $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
 $texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
 ?>
@@ -14,7 +15,9 @@ $texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($titulo_hero)): ?>
+            <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
+          <?php endif; ?>
           <?php if (!empty($subtitulo)): ?>
             <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
           <?php endif; ?>

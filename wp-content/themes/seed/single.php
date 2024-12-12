@@ -1,5 +1,6 @@
 <?php
 get_header();
+$titulo_hero = get_post_meta(31, 'pagina_titulo', true);
 $subtitulo = get_post_meta(31, 'pagina_subtitulo', true);
 $post_url = get_permalink();
 $post_title = get_the_title();
@@ -24,7 +25,9 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title"><?php echo get_the_title(31) ?></h1>
+          <?php if (!empty($titulo_hero)): ?>
+            <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
+          <?php endif; ?>
           <?php if (!empty($subtitulo)): ?>
             <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
           <?php endif; ?>

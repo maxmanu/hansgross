@@ -254,14 +254,20 @@ function cmb2_custom_fields_para_paginas()
   // Crea un nuevo meta box
   $cmb = new_cmb2_box(array(
     'id'           => 'custom_fields_paginas', // ID único para el meta box
-    'title'        => 'Subtítulo de Página', // Título del meta box
+    'title'        => 'Banner de Página', // Título del meta box
     'object_types' => array('page'), // Se aplica solo a páginas
     'context'      => 'normal', // Contexto: normal, side o advanced
     'priority'     => 'high', // Prioridad: high o low
     'show_names'   => true, // Mostrar nombres de los campos
   ));
 
-  // Agregar un campo de texto
+  $cmb->add_field(array(
+    'name' => 'Título', // Etiqueta del campo
+    'desc' => 'Ingrese un título para la página.', // Descripción del campo
+    'id'   => 'pagina_titulo', // ID único del campo
+    'type' => 'text', // Tipo de campo (texto)
+  ));
+
   $cmb->add_field(array(
     'name' => 'Subtítulo', // Etiqueta del campo
     'desc' => 'Ingrese un subtítulo para la página.', // Descripción del campo

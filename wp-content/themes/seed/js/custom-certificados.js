@@ -3,6 +3,7 @@ jQuery(document).ready(function ($) {
   $('#search-certificados').on('keydown', function (e) {
     if (e.key === 'Enter') {
       e.preventDefault(); // Evita que se envíe el formulario o realice la búsqueda
+      $('#search-certificados-button').trigger('click'); // Simula un clic en el botón
     }
   });
 

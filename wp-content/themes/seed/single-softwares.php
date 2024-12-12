@@ -1,5 +1,6 @@
 <?php
 get_header();
+$titulo_hero = get_post_meta(38, 'pagina_titulo', true);
 $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
 $texto_fila_1 = get_post_meta(get_the_ID(), 'texto_fila_1', true);
 $galeria_fila_1 = get_post_meta(get_the_ID(), 'galeria_fila_1', true);
@@ -17,7 +18,9 @@ $image_right = get_post_meta(get_the_ID(), 'imagen_right', true);
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-8">
-          <h1 class="banner-title"><?php echo get_the_title(38) ?></h1>
+          <?php if (!empty($titulo_hero)): ?>
+            <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
+          <?php endif; ?>
           <?php if (!empty($subtitulo)): ?>
             <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
           <?php endif; ?>

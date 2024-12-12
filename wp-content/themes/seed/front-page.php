@@ -1,5 +1,6 @@
 <?php
 get_header();
+$titulo_hero = get_post_meta(get_the_ID(), 'pagina_titulo', true);
 $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
 $titulo_de_seccion_eventos = get_post_meta(get_the_ID(), 'titulo_de_seccion_eventos', true);
 $subtitulo_de_seccion_eventos = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_eventos', true);
@@ -7,6 +8,8 @@ $descripcion_webinars = get_post_meta(get_the_ID(), 'descripcion_webinars', true
 $descripcion_cursos = get_post_meta(get_the_ID(), 'descripcion_cursos', true);
 $titulo_de_seccion_certificados = get_post_meta(get_the_ID(), 'titulo_de_seccion_certificados', true);
 $subtitulo_de_seccion_certificados = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_certificados', true);
+$imagen_left_certificados = get_post_meta(get_the_ID(), 'imagen_left', true);
+$imagen_right_certificados = get_post_meta(get_the_ID(), 'imagen_right', true);
 $titulo_de_seccion_servicios = get_post_meta(get_the_ID(), 'titulo_de_seccion_servicios', true);
 $subtitulo_de_seccion_servicios = get_post_meta(get_the_ID(), 'subtitulo_de_seccion_servicios', true);
 $titulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'titulo_de_seccion_softwares', true);
@@ -20,7 +23,9 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
         <div class="col-md-7">
-          <h1 class="banner-title pb-4"><?php echo get_the_title() ?></h1>
+          <?php if (!empty($titulo_hero)): ?>
+            <h1 class="banner-title pb-4"><?php echo esc_html($titulo_hero); ?></h1>
+          <?php endif; ?>
           <?php if (!empty($subtitulo)): ?>
             <p class="banner-subtitle"><?php echo esc_html($subtitulo); ?></p>
           <?php endif; ?>
@@ -114,7 +119,9 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-decor-left.png" class="card-img" alt="...">
+        <?php if ($imagen_left_certificados) { ?>
+          <img src="<?php echo esc_url($imagen_left_certificados); ?>" class="card-img" alt="...">
+        <?php } ?>
       </div>
       <div class="col-lg-4 text-center text-white my-5 my-lg-1">
         <?php if (!empty($titulo_de_seccion_certificados)): ?>
@@ -126,7 +133,9 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
         <a href="/certificados"><button class="btn btn-hans btn-hans--white mt-4">Buscar</button></a>
       </div>
       <div class="col-lg-4">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-decor-right.png" class="card-img" alt="...">
+        <?php if ($imagen_right_certificados) { ?>
+          <img src="<?php echo esc_url($imagen_right_certificados); ?>" class="card-img" alt="...">
+        <?php } ?>
       </div>
     </div>
   </div>
