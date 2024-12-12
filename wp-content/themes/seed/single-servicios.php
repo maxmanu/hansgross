@@ -113,7 +113,7 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
           <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-30px;right:50px;"></span>
           <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>
         </div>
-        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
+        <!-- <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
           <div class="swiper swiperServicios2 mt-3">
             <?php
             if ($galeria_fila_1) {
@@ -135,7 +135,7 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
             <div class="swiper-pagination swiper-pagination2"></div>
           </div>
           <span class="box-decor-image"></span>
-        </div>
+        </div> -->
       </div>
     <?php endif; ?>
     <?php
@@ -172,7 +172,7 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
           ?>
           <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:0;"></span>
         </div>
-        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
+        <!-- <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
           <div class="swiper swiperServicios3">
             <?php
             if ($galeria_fila_3) {
@@ -194,7 +194,7 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
             <div class="swiper-pagination swiper-pagination3"></div>
           </div>
           <span class="box-decor-image" style="top:-120px;right:-10px;"></span>
-        </div>
+        </div> -->
       </div>
     <?php endif; ?>
     </div>

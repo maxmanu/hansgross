@@ -6,30 +6,44 @@
 function registrar_cpt_eventos()
 {
   $labels = array(
-    'name'                  => _x('Eventos', 'Post type general name', 'tu-text-domain'),
-    'singular_name'         => _x('Evento', 'Post type singular name', 'tu-text-domain'),
-    'menu_name'             => _x('Eventos', 'Admin Menu text', 'tu-text-domain'),
-    'name_admin_bar'        => _x('Evento', 'Add New on Toolbar', 'tu-text-domain'),
-    'add_new'               => __('Añadir nuevo', 'tu-text-domain'),
-    'add_new_item'          => __('Añadir nuevo evento', 'tu-text-domain'),
-    'new_item'              => __('Nuevo evento', 'tu-text-domain'),
-    'edit_item'             => __('Editar evento', 'tu-text-domain'),
-    'view_item'             => __('Ver evento', 'tu-text-domain'),
-    'all_items'             => __('Todos los eventos', 'tu-text-domain'),
-    'search_items'          => __('Buscar eventos', 'tu-text-domain'),
-    'parent_item_colon'     => __('Evento superior:', 'tu-text-domain'),
-    'not_found'             => __('No se encontraron eventos.', 'tu-text-domain'),
-    'not_found_in_trash'    => __('No se encontraron eventos en la papelera.', 'tu-text-domain'),
-    'featured_image'        => _x('Imagen destacada', 'Overrides the “Featured Image” phrase for this post type.', 'tu-text-domain'),
-    'set_featured_image'    => _x('Establecer imagen destacada', 'Overrides the “Set featured image” phrase for this post type.', 'tu-text-domain'),
-    'remove_featured_image' => _x('Eliminar imagen destacada', 'Overrides the “Remove featured image” phrase for this post type.', 'tu-text-domain'),
-    'use_featured_image'    => _x('Usar como imagen destacada', 'Overrides the “Use as featured image” phrase for this post type.', 'tu-text-domain'),
-    'archives'              => _x('Archivo de eventos', 'The post type archive label used in nav menus.', 'tu-text-domain'),
-    'insert_into_item'      => _x('Insertar en el evento', 'Overrides the “Insert into post” phrase.', 'tu-text-domain'),
-    'uploaded_to_this_item' => _x('Subido a este evento', 'Overrides the “Uploaded to this post” phrase.', 'tu-text-domain'),
-    'filter_items_list'     => _x('Filtrar lista de eventos', 'Screen reader text for the filter links.', 'tu-text-domain'),
-    'items_list_navigation' => _x('Navegación de lista de eventos', 'Screen reader text for the pagination.', 'tu-text-domain'),
-    'items_list'            => _x('Lista de eventos', 'Screen reader text for the items list.', 'tu-text-domain'),
+    'name'                  => 'Eventos',
+    'Post type general name',
+    'singular_name'         => 'Evento',
+    'Post type singular name',
+    'menu_name'             => 'Eventos',
+    'Admin Menu text',
+    'name_admin_bar'        => 'Evento',
+    'Add New on Toolbar',
+    'add_new'               => 'Añadir nuevo',
+    'add_new_item'          => 'Añadir nuevo evento',
+    'new_item'              => 'Nuevo evento',
+    'edit_item'             => 'Editar evento',
+    'view_item'             => 'Ver evento',
+    'all_items'             => 'Todos los eventos',
+    'search_items'          => 'Buscar eventos',
+    'parent_item_colon'     => 'Evento superior:',
+    'not_found'             => 'No se encontraron eventos.',
+    'not_found_in_trash'    => 'No se encontraron eventos en la papelera.',
+    'featured_image'        => 'Imagen destacada',
+    'Overrides the “Featured Image” phrase for this post type.',
+    'set_featured_image'    => 'Establecer imagen destacada',
+    'Overrides the “Set featured image” phrase for this post type.',
+    'remove_featured_image' => 'Eliminar imagen destacada',
+    'Overrides the “Remove featured image” phrase for this post type.',
+    'use_featured_image'    => 'Usar como imagen destacada',
+    'Overrides the “Use as featured image” phrase for this post type.',
+    'archives'              => 'Archivo de eventos',
+    'The post type archive label used in nav menus.',
+    'insert_into_item'      => 'Insertar en el evento',
+    'Overrides the “Insert into post” phrase.',
+    'uploaded_to_this_item' => 'Subido a este evento',
+    'Overrides the “Uploaded to this post” phrase.',
+    'filter_items_list'     => 'Filtrar lista de eventos',
+    'Screen reader text for the filter links.',
+    'items_list_navigation' => 'Navegación de lista de eventos',
+    'Screen reader text for the pagination.',
+    'items_list'            => 'Lista de eventos',
+    'Screen reader text for the items list.',
   );
 
   $args = array(
@@ -52,6 +66,171 @@ function registrar_cpt_eventos()
 }
 add_action('init', 'registrar_cpt_eventos');
 
+/*
+ CUSTOM FIELDS
+*/
+add_action('cmb2_admin_init', 'cmb2_eventos_metaboxes');
+function cmb2_eventos_metaboxes()
+{
+  // Crear un nuevo metabox para el CPT 'eventos'
+  $cmb = new_cmb2_box(array(
+    'id'            => 'eventos_metabox',
+    'title'         => 'Detalles del Evento',
+    'object_types'  => array('eventos'), // Custom Post Type
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true, // Mostrar etiquetas de los campos
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Descripción del Curso o Webinar',
+    'id'   => 'evento_descripcion',
+    'type' => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true,
+      'media_buttons' => false,
+      'textarea_rows' => 6,
+    ),
+  ));
+
+  // Campo para la fecha
+  $cmb->add_field(array(
+    'name' => 'Fecha del Servicio',
+    'id'   => 'servicio_fecha',
+    'type' => 'text_date', // Selector de fecha
+    'date_format' => 'Y-m-d', // Formato de fecha
+  ));
+
+  // Campo de texto para el horario
+  $cmb->add_field(array(
+    'name' => 'Horario del Servicio',
+    'id'   => 'servicio_horario',
+    'type' => 'text',
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Brochure',
+    'id'   => 'servicio_brochure',
+    'type' => 'text',
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Avalado',
+    'id'   => 'servicio_avalado',
+    'type' => 'text',
+  ));
+
+  // Campo para subir un archivo PDF informativo
+  $cmb->add_field(array(
+    'name' => 'PDF Informativo',
+    'id'   => 'servicio_pdf',
+    'type' => 'file', // Campo para subir archivos
+    'options' => array(
+      'url' => false, // Esconde el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir PDF', // Texto del botón
+    ),
+  ));
+
+  // Campo WYSIWYG para el temario
+  $cmb->add_field(array(
+    'name' => 'Temario',
+    'id'   => 'servicio_temario',
+    'type' => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true, // Añadir etiquetas <p> automáticamente
+      'media_buttons' => true, // Mostrar botón para subir medios
+      'textarea_rows' => 10, // Número de filas del textarea
+    ),
+  ));
+
+  // Campo de texto para el nombre del ponente
+  $cmb->add_field(array(
+    'name' => 'Nombre del Ponente',
+    'id'   => 'ponente_nombre',
+    'type' => 'text',
+  ));
+
+  // Campo de texto para el cargo del ponente
+  $cmb->add_field(array(
+    'name' => 'Cargo del Ponente',
+    'id'   => 'ponente_cargo',
+    'type' => 'text',
+  ));
+
+  // Campo para subir la imagen del ponente
+  $cmb->add_field(array(
+    'name' => 'Imagen del Ponente',
+    'id'   => 'ponente_imagen',
+    'type' => 'file',
+    'options' => array(
+      'url' => false, // Esconde el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir Imagen', // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array('image/jpeg', 'image/png'), // Restringir a imágenes
+    ),
+  ));
+
+  // Campo WYSIWYG para la descripción del ponente
+  $cmb->add_field(array(
+    'name' => 'Descripción del Ponente',
+    'id'   => 'ponente_descripcion',
+    'type' => 'wysiwyg',
+    'options' => array(
+      'wpautop' => true,
+      'media_buttons' => false,
+      'textarea_rows' => 6,
+    ),
+  ));
+
+  // Campo numérico para el precio en soles
+  $cmb->add_field(array(
+    'name' => 'Precio en Soles (S/)',
+    'id'   => 'precio_soles',
+    'type' => 'text_money', // Campo para dinero
+    'before_field' => 'S/ ', // Símbolo antes del campo
+  ));
+
+  // Campo numérico para el precio en dólares
+  $cmb->add_field(array(
+    'name' => 'Precio en Dólares ($)',
+    'id'   => 'precio_dolares',
+    'type' => 'text_money', // Campo para dinero
+    'before_field' => '$ ', // Símbolo antes del campo
+  ));
+
+  // Campo para subir un video o imagen
+  $cmb->add_field(array(
+    'name' => 'Video o Imagen',
+    'id'   => 'video_imagen',
+    'type' => 'file',
+    'options' => array(
+      'url' => false, // Esconde el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir Video o Imagen', // Texto del botón
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/jpeg',
+        'image/png',
+        'video/mp4',
+        'video/webm'
+      ), // Permitir imágenes y videos
+    ),
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Gratis',
+    'id'   => 'libro_gratis',
+    'type' => 'text', // Campo para dinero
+  ));
+}
+
 /**
  * CATEGORÍAS EVENTOS CPT
  */
@@ -59,17 +238,19 @@ add_action('init', 'registrar_cpt_eventos');
 function registrar_taxonomia_categorias_eventos()
 {
   $labels = array(
-    'name'              => _x('Categorías de Eventos', 'taxonomy general name', 'tu-text-domain'),
-    'singular_name'     => _x('Categoría de Evento', 'taxonomy singular name', 'tu-text-domain'),
-    'search_items'      => __('Buscar categorías', 'tu-text-domain'),
-    'all_items'         => __('Todas las categorías', 'tu-text-domain'),
-    'parent_item'       => __('Categoría superior', 'tu-text-domain'),
-    'parent_item_colon' => __('Categoría superior:', 'tu-text-domain'),
-    'edit_item'         => __('Editar categoría', 'tu-text-domain'),
-    'update_item'       => __('Actualizar categoría', 'tu-text-domain'),
-    'add_new_item'      => __('Añadir nueva categoría', 'tu-text-domain'),
-    'new_item_name'     => __('Nombre de la nueva categoría', 'tu-text-domain'),
-    'menu_name'         => __('Categorías de Eventos', 'tu-text-domain'),
+    'name'              => 'Categorías de Eventos',
+    'taxonomy general name',
+    'singular_name'     => 'Categoría de Evento',
+    'taxonomy singular name',
+    'search_items'      => 'Buscar categorías',
+    'all_items'         => 'Todas las categorías',
+    'parent_item'       => 'Categoría superior',
+    'parent_item_colon' => 'Categoría superior:',
+    'edit_item'         => 'Editar categoría',
+    'update_item'       => 'Actualizar categoría',
+    'add_new_item'      => 'Añadir nueva categoría',
+    'new_item_name'     => 'Nombre de la nueva categoría',
+    'menu_name'         => 'Categorías de Eventos',
   );
 
   $args = array(
@@ -88,15 +269,17 @@ add_action('init', 'registrar_taxonomia_categorias_eventos');
 function registrar_taxonomia_etiquetas_eventos()
 {
   $labels = array(
-    'name'              => _x('Etiquetas de eventos', 'taxonomy general name', 'tu-text-domain'),
-    'singular_name'     => _x('Etiqueta de evento', 'taxonomy singular name', 'tu-text-domain'),
-    'search_items'      => __('Buscar etiquetas', 'tu-text-domain'),
-    'all_items'         => __('Todas las etiquetas', 'tu-text-domain'),
-    'edit_item'         => __('Editar etiqueta', 'tu-text-domain'),
-    'update_item'       => __('Actualizar etiqueta', 'tu-text-domain'),
-    'add_new_item'      => __('Añadir nueva etiqueta', 'tu-text-domain'),
-    'new_item_name'     => __('Nombre de la nueva etiqueta', 'tu-text-domain'),
-    'menu_name'         => __('Etiquetas', 'tu-text-domain'),
+    'name'              => 'Etiquetas de eventos',
+    'taxonomy general name',
+    'singular_name'     => 'Etiqueta de evento',
+    'taxonomy singular name',
+    'search_items'      => 'Buscar etiquetas',
+    'all_items'         => 'Todas las etiquetas',
+    'edit_item'         => 'Editar etiqueta',
+    'update_item'       => 'Actualizar etiqueta',
+    'add_new_item'      => 'Añadir nueva etiqueta',
+    'new_item_name'     => 'Nombre de la nueva etiqueta',
+    'menu_name'         => 'Etiquetas',
   );
 
   $args = array(
@@ -601,168 +784,3 @@ function cargar_script_ajax_listado()
 <?php
 }
 add_action('wp_footer', 'cargar_script_ajax_listado');
-
-/*
- CUSTOM FIELDS
-*/
-add_action('cmb2_admin_init', 'cmb2_eventos_metaboxes');
-function cmb2_eventos_metaboxes()
-{
-  // Crear un nuevo metabox para el CPT 'eventos'
-  $cmb = new_cmb2_box(array(
-    'id'            => 'eventos_metabox',
-    'title'         => __('Detalles del Evento', 'textdomain'),
-    'object_types'  => array('eventos'), // Custom Post Type
-    'context'       => 'normal',
-    'priority'      => 'high',
-    'show_names'    => true, // Mostrar etiquetas de los campos
-  ));
-
-  $cmb->add_field(array(
-    'name' => __('Descripción del Curso o Webinar', 'textdomain'),
-    'id'   => 'evento_descripcion',
-    'type' => 'wysiwyg',
-    'options' => array(
-      'wpautop' => true,
-      'media_buttons' => false,
-      'textarea_rows' => 6,
-    ),
-  ));
-
-  // Campo para la fecha
-  $cmb->add_field(array(
-    'name' => __('Fecha del Servicio', 'textdomain'),
-    'id'   => 'servicio_fecha',
-    'type' => 'text_date', // Selector de fecha
-    'date_format' => 'Y-m-d', // Formato de fecha
-  ));
-
-  // Campo de texto para el horario
-  $cmb->add_field(array(
-    'name' => __('Horario del Servicio', 'textdomain'),
-    'id'   => 'servicio_horario',
-    'type' => 'text',
-  ));
-
-  $cmb->add_field(array(
-    'name' => __('Brochure', 'textdomain'),
-    'id'   => 'servicio_brochure',
-    'type' => 'text',
-  ));
-
-  $cmb->add_field(array(
-    'name' => __('Avalado', 'textdomain'),
-    'id'   => 'servicio_avalado',
-    'type' => 'text',
-  ));
-
-  // Campo para subir un archivo PDF informativo
-  $cmb->add_field(array(
-    'name' => __('PDF Informativo', 'textdomain'),
-    'id'   => 'servicio_pdf',
-    'type' => 'file', // Campo para subir archivos
-    'options' => array(
-      'url' => false, // Esconde el campo de URL
-    ),
-    'text' => array(
-      'add_upload_file_text' => __('Subir PDF', 'textdomain'), // Texto del botón
-    ),
-  ));
-
-  // Campo WYSIWYG para el temario
-  $cmb->add_field(array(
-    'name' => __('Temario', 'textdomain'),
-    'id'   => 'servicio_temario',
-    'type' => 'wysiwyg',
-    'options' => array(
-      'wpautop' => true, // Añadir etiquetas <p> automáticamente
-      'media_buttons' => true, // Mostrar botón para subir medios
-      'textarea_rows' => 10, // Número de filas del textarea
-    ),
-  ));
-
-  // Campo de texto para el nombre del ponente
-  $cmb->add_field(array(
-    'name' => __('Nombre del Ponente', 'textdomain'),
-    'id'   => 'ponente_nombre',
-    'type' => 'text',
-  ));
-
-  // Campo de texto para el cargo del ponente
-  $cmb->add_field(array(
-    'name' => __('Cargo del Ponente', 'textdomain'),
-    'id'   => 'ponente_cargo',
-    'type' => 'text',
-  ));
-
-  // Campo para subir la imagen del ponente
-  $cmb->add_field(array(
-    'name' => __('Imagen del Ponente', 'textdomain'),
-    'id'   => 'ponente_imagen',
-    'type' => 'file',
-    'options' => array(
-      'url' => false, // Esconde el campo de URL
-    ),
-    'text' => array(
-      'add_upload_file_text' => __('Subir Imagen', 'textdomain'), // Texto del botón
-    ),
-    'query_args' => array(
-      'type' => array('image/jpeg', 'image/png'), // Restringir a imágenes
-    ),
-  ));
-
-  // Campo WYSIWYG para la descripción del ponente
-  $cmb->add_field(array(
-    'name' => __('Descripción del Ponente', 'textdomain'),
-    'id'   => 'ponente_descripcion',
-    'type' => 'wysiwyg',
-    'options' => array(
-      'wpautop' => true,
-      'media_buttons' => false,
-      'textarea_rows' => 6,
-    ),
-  ));
-
-  // Campo numérico para el precio en soles
-  $cmb->add_field(array(
-    'name' => __('Precio en Soles (S/)', 'textdomain'),
-    'id'   => 'precio_soles',
-    'type' => 'text_money', // Campo para dinero
-    'before_field' => 'S/ ', // Símbolo antes del campo
-  ));
-
-  // Campo numérico para el precio en dólares
-  $cmb->add_field(array(
-    'name' => __('Precio en Dólares ($)', 'textdomain'),
-    'id'   => 'precio_dolares',
-    'type' => 'text_money', // Campo para dinero
-    'before_field' => '$ ', // Símbolo antes del campo
-  ));
-
-  // Campo para subir un video o imagen
-  $cmb->add_field(array(
-    'name' => __('Video o Imagen', 'textdomain'),
-    'id'   => 'video_imagen',
-    'type' => 'file',
-    'options' => array(
-      'url' => false, // Esconde el campo de URL
-    ),
-    'text' => array(
-      'add_upload_file_text' => __('Subir Video o Imagen', 'textdomain'), // Texto del botón
-    ),
-    'query_args' => array(
-      'type' => array(
-        'image/jpeg',
-        'image/png',
-        'video/mp4',
-        'video/webm'
-      ), // Permitir imágenes y videos
-    ),
-  ));
-
-  $cmb->add_field(array(
-    'name' => __('Gratis', 'textdomain'),
-    'id'   => 'libro_gratis',
-    'type' => 'text', // Campo para dinero
-  ));
-}

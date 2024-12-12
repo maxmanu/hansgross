@@ -6,30 +6,44 @@
 function registrar_cpt_softwares()
 {
   $labels = array(
-    'name'                  => _x('Softwares', 'Post type general name', 'tu-text-domain'),
-    'singular_name'         => _x('Software', 'Post type singular name', 'tu-text-domain'),
-    'menu_name'             => _x('Softwares', 'Admin Menu text', 'tu-text-domain'),
-    'name_admin_bar'        => _x('Software', 'Add New on Toolbar', 'tu-text-domain'),
-    'add_new'               => __('Añadir nuevo', 'tu-text-domain'),
-    'add_new_item'          => __('Añadir nuevo software', 'tu-text-domain'),
-    'new_item'              => __('Nuevo software', 'tu-text-domain'),
-    'edit_item'             => __('Editar software', 'tu-text-domain'),
-    'view_item'             => __('Ver software', 'tu-text-domain'),
-    'all_items'             => __('Todos los softwares', 'tu-text-domain'),
-    'search_items'          => __('Buscar softwares', 'tu-text-domain'),
-    'parent_item_colon'     => __('Software superior:', 'tu-text-domain'),
-    'not_found'             => __('No se encontraron softwares.', 'tu-text-domain'),
-    'not_found_in_trash'    => __('No se encontraron softwares en la papelera.', 'tu-text-domain'),
-    'featured_image'        => _x('Imagen destacada', 'Overrides the “Featured Image” phrase for this post type.', 'tu-text-domain'),
-    'set_featured_image'    => _x('Establecer imagen destacada', 'Overrides the “Set featured image” phrase for this post type.', 'tu-text-domain'),
-    'remove_featured_image' => _x('Eliminar imagen destacada', 'Overrides the “Remove featured image” phrase for this post type.', 'tu-text-domain'),
-    'use_featured_image'    => _x('Usar como imagen destacada', 'Overrides the “Use as featured image” phrase for this post type.', 'tu-text-domain'),
-    'archives'              => _x('Archivo de softwares', 'The post type archive label used in nav menus.', 'tu-text-domain'),
-    'insert_into_item'      => _x('Insertar en el software', 'Overrides the “Insert into post” phrase.', 'tu-text-domain'),
-    'uploaded_to_this_item' => _x('Subido a este software', 'Overrides the “Uploaded to this post” phrase.', 'tu-text-domain'),
-    'filter_items_list'     => _x('Filtrar lista de softwares', 'Screen reader text for the filter links.', 'tu-text-domain'),
-    'items_list_navigation' => _x('Navegación de lista de softwares', 'Screen reader text for the pagination.', 'tu-text-domain'),
-    'items_list'            => _x('Lista de softwares', 'Screen reader text for the items list.', 'tu-text-domain'),
+    'name'                  => 'Softwares',
+    'Post type general name',
+    'singular_name'         => 'Software',
+    'Post type singular name',
+    'menu_name'             => 'Softwares',
+    'Admin Menu text',
+    'name_admin_bar'        => 'Software',
+    'Add New on Toolbar',
+    'add_new'               => 'Añadir nuevo',
+    'add_new_item'          => 'Añadir nuevo software',
+    'new_item'              => 'Nuevo software',
+    'edit_item'             => 'Editar software',
+    'view_item'             => 'Ver software',
+    'all_items'             => 'Todos los softwares',
+    'search_items'          => 'Buscar softwares',
+    'parent_item_colon'     => 'Software superior:',
+    'not_found'             => 'No se encontraron softwares.',
+    'not_found_in_trash'    => 'No se encontraron softwares en la papelera.',
+    'featured_image'        => 'Imagen destacada',
+    'Overrides the “Featured Image” phrase for this post type.',
+    'set_featured_image'    => 'Establecer imagen destacada',
+    'Overrides the “Set featured image” phrase for this post type.',
+    'remove_featured_image' => 'Eliminar imagen destacada',
+    'Overrides the “Remove featured image” phrase for this post type.',
+    'use_featured_image'    => 'Usar como imagen destacada',
+    'Overrides the “Use as featured image” phrase for this post type.',
+    'archives'              => 'Archivo de softwares',
+    'The post type archive label used in nav menus.',
+    'insert_into_item'      => 'Insertar en el software',
+    'Overrides the “Insert into post” phrase.',
+    'uploaded_to_this_item' => 'Subido a este software',
+    'Overrides the “Uploaded to this post” phrase.',
+    'filter_items_list'     => 'Filtrar lista de softwares',
+    'Screen reader text for the filter links.',
+    'items_list_navigation' => 'Navegación de lista de softwares',
+    'Screen reader text for the pagination.',
+    'items_list'            => 'Lista de softwares',
+    'Screen reader text for the items list.',
   );
 
   $args = array(
@@ -58,7 +72,7 @@ function cmb2_add_software_fields()
 {
   $cmb = new_cmb2_box(array(
     'id'            => 'software_metabox_2', // ID único del metabox
-    'title'         => __('Primera Fila de Contenido', 'textdomain'), // Título del metabox
+    'title'         => 'Primera Fila de Contenido', // Título del metabox
     'object_types'  => array('softwares'), // Tipos de contenido donde se aplicará
     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
     'priority'      => 'high', // Prioridad del metabox
@@ -66,8 +80,8 @@ function cmb2_add_software_fields()
   ));
 
   $cmb->add_field(array(
-    'name'       => __('Texto de primera fila', 'textdomain'), // Etiqueta del campo
-    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'name'       => 'Texto de primera fila', // Etiqueta del campo
+    'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
     'id'         => 'texto_fila_1', // ID único del campo
     'type'    => 'wysiwyg',
     'options' => array(
@@ -121,7 +135,7 @@ function cmb2_add_software_fields()
 
   $cmb = new_cmb2_box(array(
     'id'            => 'software_metabox_3', // ID único del metabox
-    'title'         => __('Segunda Fila de Contenido', 'textdomain'), // Título del metabox
+    'title'         => 'Segunda Fila de Contenido', // Título del metabox
     'object_types'  => array('softwares'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
     'priority'      => 'high', // Prioridad del metabox
@@ -161,8 +175,8 @@ function cmb2_add_software_fields()
   ));
 
   $cmb->add_field(array(
-    'name'       => __('Texto de segunda fila', 'textdomain'), // Etiqueta del campo
-    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'name'       => 'Texto de segunda fila', // Etiqueta del campo
+    'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
     'id'         => 'texto_fila_2', // ID único del campo
     'type'    => 'wysiwyg',
     'options' => array(

@@ -88,7 +88,7 @@ function cmb2_add_author_field()
   // Configuración del metabox
   $cmb = new_cmb2_box(array(
     'id'            => 'author_metabox', // ID único del metabox
-    'title'         => __('Información del Autor', 'textdomain'), // Título del metabox
+    'title'         => 'Información del Autor', // Título del metabox
     'object_types'  => array('post'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
     'priority'      => 'high', // Prioridad del metabox
@@ -97,8 +97,8 @@ function cmb2_add_author_field()
 
   // Añadir un campo de texto para el autor
   $cmb->add_field(array(
-    'name'       => __('Nombre del Autor', 'textdomain'), // Etiqueta del campo
-    'desc'       => __('Introduce el nombre del autor.', 'textdomain'), // Descripción debajo del campo
+    'name'       => 'Nombre del Autor', // Etiqueta del campo
+    'desc'       => 'Introduce el nombre del autor.', // Descripción debajo del campo
     'id'         => 'custom_author_name', // ID único del campo
     'type'       => 'text', // Tipo de campo (en este caso, texto)
     // 'attributes' => array(
@@ -110,7 +110,7 @@ function cmb2_add_author_field()
 
   $cmb = new_cmb2_box(array(
     'id'            => 'author_metabox_2', // ID único del metabox
-    'title'         => __('Primera Fila de Contenido', 'textdomain'), // Título del metabox
+    'title'         => 'Primera Fila de Contenido', // Título del metabox
     'object_types'  => array('post'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
     'priority'      => 'high', // Prioridad del metabox
@@ -119,8 +119,8 @@ function cmb2_add_author_field()
 
   // Añadir un campo de texto para el autor
   $cmb->add_field(array(
-    'name'       => __('Texto de primera fila', 'textdomain'), // Etiqueta del campo
-    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'name'       => 'Texto de primera fila', // Etiqueta del campo
+    'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
     'id'         => 'texto_fila_1', // ID único del campo
     'type'    => 'wysiwyg',
     'options' => array(
@@ -139,7 +139,7 @@ function cmb2_add_author_field()
       'url' => false, // Ocultar el campo para la URL del archivo
     ),
     'text' => array(
-      'add_upload_file_text' => __('Subir Imagen', 'cmb2'),
+      'add_upload_file_text' => 'Subir Imagen',
     ),
     'query_args' => array(
       'type' => array('image/jpeg', 'image/png', 'image/gif'), // Solo permite estos formatos de imagen
@@ -151,7 +151,7 @@ function cmb2_add_author_field()
 
   $cmb = new_cmb2_box(array(
     'id'            => 'author_metabox_3', // ID único del metabox
-    'title'         => __('Segunda Fila de Contenido', 'textdomain'), // Título del metabox
+    'title'         => 'Segunda Fila de Contenido', // Título del metabox
     'object_types'  => array('post'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
     'priority'      => 'high', // Prioridad del metabox
@@ -160,8 +160,8 @@ function cmb2_add_author_field()
 
   // Añadir un campo de texto para el autor
   $cmb->add_field(array(
-    'name'       => __('Texto de segunda fila', 'textdomain'), // Etiqueta del campo
-    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'name'       => 'Texto de segunda fila', // Etiqueta del campo
+    'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
     'id'         => 'texto_fila_2', // ID único del campo
     'type'    => 'wysiwyg',
     'options' => array(
@@ -175,7 +175,7 @@ function cmb2_add_author_field()
 
   $cmb = new_cmb2_box(array(
     'id'            => 'author_metabox_4', // ID único del metabox
-    'title'         => __('Tercera Fila de Contenido', 'textdomain'), // Título del metabox
+    'title'         => 'Tercera Fila de Contenido', // Título del metabox
     'object_types'  => array('post'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
     'priority'      => 'high', // Prioridad del metabox
@@ -191,7 +191,7 @@ function cmb2_add_author_field()
       'url' => false, // Ocultar el campo para la URL del archivo
     ),
     'text' => array(
-      'add_upload_file_text' => __('Subir Imagen', 'cmb2'),
+      'add_upload_file_text' => 'Subir Imagen',
     ),
     'query_args' => array(
       'type' => array(
@@ -205,8 +205,8 @@ function cmb2_add_author_field()
 
   // Añadir un campo de texto para el autor
   $cmb->add_field(array(
-    'name'       => __('Texto de tercera fila', 'textdomain'), // Etiqueta del campo
-    'desc'       => __('Introduce una descripción.', 'textdomain'), // Descripción debajo del campo
+    'name'       => 'Texto de tercera fila', // Etiqueta del campo
+    'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
     'id'         => 'texto_fila_3', // ID único del campo
     'type'    => 'wysiwyg',
     'options' => array(

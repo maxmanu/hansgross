@@ -401,7 +401,7 @@ function mi_pagina_de_opciones()
 
   // Campo numérico para el precio en soles
   $cmb_options->add_field(array(
-    'name' => __('Precio del Certificado en Soles (S/)', 'textdomain'),
+    'name' => 'Precio del Certificado en Soles (S/)',
     'id'   => 'precio_soles_certificado',
     'type' => 'text', // Campo para dinero
     'before_field' => 'S/ ', // Símbolo antes del campo
@@ -409,7 +409,7 @@ function mi_pagina_de_opciones()
 
   // Campo numérico para el precio en dólares
   $cmb_options->add_field(array(
-    'name' => __('Precio del Certificado en Dólares ($)', 'textdomain'),
+    'name' => 'Precio del Certificado en Dólares ($)',
     'id'   => 'precio_dolares_certificado',
     'type' => 'text', // Campo para dinero
     'before_field' => '$ ', // Símbolo antes del campo
@@ -549,13 +549,13 @@ add_action('init', 'disable_default_editor_for_posts');
 
 
 
-function enqueue_jquery_ui_sortable()
-{
-  if (is_admin()) {
-    wp_enqueue_script('jquery-ui-sortable');
-  }
-}
-add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
+// function enqueue_jquery_ui_sortable()
+// {
+//   if (is_admin()) {
+//     wp_enqueue_script('jquery-ui-sortable');
+//   }
+// }
+// add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
 
 
 /**

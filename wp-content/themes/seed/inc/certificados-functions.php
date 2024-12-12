@@ -6,30 +6,44 @@
 function registrar_cpt_certificados()
 {
   $labels = array(
-    'name' => _x('Certificados', 'Post type general name', 'tu-text-domain'),
-    'singular_name' => _x('Certificado', 'Post type singular name', 'tu-text-domain'),
-    'menu_name' => _x('Certificados', 'Admin Menu text', 'tu-text-domain'),
-    'name_admin_bar' => _x('Certificado', 'Add New on Toolbar', 'tu-text-domain'),
-    'add_new' => __('Añadir nuevo', 'tu-text-domain'),
-    'add_new_item' => __('Añadir nuevo certificado', 'tu-text-domain'),
-    'new_item' => __('Nuevo certificado', 'tu-text-domain'),
-    'edit_item' => __('Editar certificado', 'tu-text-domain'),
-    'view_item' => __('Ver certificado', 'tu-text-domain'),
-    'all_items' => __('Todos los certificados', 'tu-text-domain'),
-    'search_items' => __('Buscar certificados', 'tu-text-domain'),
-    'parent_item_colon' => __('Certificado superior:', 'tu-text-domain'),
-    'not_found' => __('No se encontraron certificados.', 'tu-text-domain'),
-    'not_found_in_trash' => __('No se encontraron certificados en la papelera.', 'tu-text-domain'),
-    'featured_image' => _x('Imagen destacada', 'Overrides the “Featured Image” phrase for this post type.', 'tu-text-domain'),
-    'set_featured_image' => _x('Establecer imagen destacada', 'Overrides the “Set featured image” phrase for this post type.', 'tu-text-domain'),
-    'remove_featured_image' => _x('Eliminar imagen destacada', 'Overrides the “Remove featured image” phrase for this post type.', 'tu-text-domain'),
-    'use_featured_image' => _x('Usar como imagen destacada', 'Overrides the “Use as featured image” phrase for this post type.', 'tu-text-domain'),
-    'archives' => _x('Archivo de certificados', 'The post type archive label used in nav menus.', 'tu-text-domain'),
-    'insert_into_item' => _x('Insertar en el certificado', 'Overrides the “Insert into post” phrase.', 'tu-text-domain'),
-    'uploaded_to_this_item' => _x('Subido a este certificado', 'Overrides the “Uploaded to this post” phrase.', 'tu-text-domain'),
-    'filter_items_list' => _x('Filtrar lista de certificados', 'Screen reader text for the filter links.', 'tu-text-domain'),
-    'items_list_navigation' => _x('Navegación de lista de certificados', 'Screen reader text for the pagination.', 'tu-text-domain'),
-    'items_list' => _x('Lista de certificados', 'Screen reader text for the items list.', 'tu-text-domain'),
+    'name' => 'Certificados',
+    'Post type general name',
+    'singular_name' => 'Certificado',
+    'Post type singular name',
+    'menu_name' => 'Certificados',
+    'Admin Menu text',
+    'name_admin_bar' => 'Certificado',
+    'Add New on Toolbar',
+    'add_new' => 'Añadir nuevo',
+    'add_new_item' => 'Añadir nuevo certificado',
+    'new_item' => 'Nuevo certificado',
+    'edit_item' => 'Editar certificado',
+    'view_item' => 'Ver certificado',
+    'all_items' => 'Todos los certificados',
+    'search_items' => 'Buscar certificados',
+    'parent_item_colon' => 'Certificado superior:',
+    'not_found' => 'No se encontraron certificados.',
+    'not_found_in_trash' => 'No se encontraron certificados en la papelera.',
+    'featured_image' => 'Imagen destacada',
+    'Overrides the “Featured Image” phrase for this post type.',
+    'set_featured_image' => 'Establecer imagen destacada',
+    'Overrides the “Set featured image” phrase for this post type.',
+    'remove_featured_image' => 'Eliminar imagen destacada',
+    'Overrides the “Remove featured image” phrase for this post type.',
+    'use_featured_image' => 'Usar como imagen destacada',
+    'Overrides the “Use as featured image” phrase for this post type.',
+    'archives' => 'Archivo de certificados',
+    'The post type archive label used in nav menus.',
+    'insert_into_item' => 'Insertar en el certificado',
+    'Overrides the “Insert into post” phrase.',
+    'uploaded_to_this_item' => 'Subido a este certificado',
+    'Overrides the “Uploaded to this post” phrase.',
+    'filter_items_list' => 'Filtrar lista de certificados',
+    'Screen reader text for the filter links.',
+    'items_list_navigation' => 'Navegación de lista de certificados',
+    'Screen reader text for the pagination.',
+    'items_list' => 'Lista de certificados',
+    'Screen reader text for the items list.',
   );
 
   $args = array(
@@ -62,7 +76,7 @@ function crear_campos_certificados()
   // Crear un metabox para el CPT "certificados"
   $cmb = new_cmb2_box(array(
     'id' => 'certificados_metabox',
-    'title' => __('Información de Certificados', 'textdomain'),
+    'title' => 'Información de Certificados',
     'object_types' => array('certificados'), // Aplica al Custom Post Type "certificados"
     'context' => 'normal',
     'priority' => 'high',
@@ -73,32 +87,32 @@ function crear_campos_certificados()
   $group_field_id = $cmb->add_field(array(
     'id' => 'grupo_certificados',
     'type' => 'group',
-    'description' => __('Añade información de certificados', 'textdomain'),
+    'description' => 'Añade información de certificados',
     'options' => array(
-      'group_title' => __('Certificado {#}', 'textdomain'), // Título para cada grupo
-      'add_button'    => __('Añadir Certificado', 'textdomain'),
-      'remove_button' => __('Eliminar Certificado', 'textdomain'),
+      'group_title' => 'Certificado {#}', // Título para cada grupo
+      'add_button'    => 'Añadir Certificado',
+      'remove_button' => 'Eliminar Certificado',
       'sortable'      => true, // Permitir reordenar
     ),
   ));
 
   // Subcampo: Número de código
   $cmb->add_group_field($group_field_id, array(
-    'name' => __('Número de Código', 'textdomain'),
+    'name' => 'Número de Código',
     'id'   => 'numero_codigo',
     'type' => 'text',
     'attributes' => array(
-      'placeholder' => __('Ej: 12345', 'textdomain'),
+      'placeholder' => 'Ej: 12345',
     ),
   ));
 
   // Subcampo: Nombre del Certificado
   $cmb->add_group_field($group_field_id, array(
-    'name' => __('Nombre del Certificado', 'textdomain'),
+    'name' => 'Nombre del Certificado',
     'id'   => 'nombre_certificado',
     'type' => 'text',
     'attributes' => array(
-      'placeholder' => __('Ej: Certificado de Excelencia', 'textdomain'),
+      'placeholder' => 'Ej: Certificado de Excelencia',
     ),
   ));
 
@@ -119,7 +133,7 @@ function crear_campos_certificados()
 
   // Subcampo: Subir PDF
   $cmb->add_group_field($group_field_id, array(
-    'name' => __('Link del Certificado', 'textdomain'),
+    'name' => 'Link del Certificado',
     'id'   => 'link_pdf',
     'type' => 'text_url',
   ));
@@ -334,7 +348,8 @@ function encolar_scripts_certificados()
     true
   );
 
-  // Pasa la variable `ajaxurl` al script
-  wp_localize_script('certificados-ajax-script', 'ajaxurl', admin_url('admin-ajax.php'));
+  // Inserta el valor de ajaxurl como una constante en el script
+  $inline_script = 'const ajaxurl = "' . admin_url('admin-ajax.php') . '";';
+  wp_add_inline_script('certificados-ajax-script', $inline_script);
 }
 add_action('wp_enqueue_scripts', 'encolar_scripts_certificados');
