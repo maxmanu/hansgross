@@ -329,7 +329,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/;
         // Validar si está vacío
         if (!nameInput.value.trim()) {
-          showError(nameInput, 'Por favor, ingresa tu nombre y apellido.');
+          showError(nameInput, 'Ingresa tu nombre y apellido.');
           isValid = false;
 
           // Validar si supera los 50 caracteres
@@ -353,10 +353,10 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         };
 
         if (!emailInput.value.trim()) {
-          showError(emailInput, 'Por favor, ingresa tu correo.');
+          showError(emailInput, 'Ingresa tu correo.');
           isValid = false;
         } else if (!isValidEmail(emailInput.value.trim())) {
-          showError(emailInput, 'Por favor, ingresa un correo válido.');
+          showError(emailInput, 'Ingresa un correo válido.');
           isValid = false;
         } else if (emailInput.value.trim().length > 80) {
           showError(emailInput, 'El correo no debe superar los 80 caracteres.');
@@ -366,7 +366,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         // Validación de celular (máximo 20 dígitos)
         const celularInput = form.querySelector('[name="celular"]');
         if (celularInput.value.trim() && !/^\d+$/.test(celularInput.value.trim())) {
-          showError(celularInput, 'Por favor, ingresa solo números en el celular.');
+          showError(celularInput, 'Ingresa solo números en el celular.');
           isValid = false;
         } else if (celularInput.value.trim().length > 20) {
           showError(celularInput, 'El celular no debe superar los 20 dígitos.');
@@ -376,7 +376,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         // Validación de mensaje (máximo 500 caracteres)
         const messageInput = form.querySelector('[name="message"]');
         if (!messageInput.value.trim()) {
-          showError(messageInput, 'Por favor, ingresa tu mensaje.');
+          showError(messageInput, 'Ingresa tu mensaje.');
           isValid = false;
         } else if (messageInput.value.trim().length > 500) {
           showError(messageInput, 'El mensaje no debe superar los 500 caracteres.');

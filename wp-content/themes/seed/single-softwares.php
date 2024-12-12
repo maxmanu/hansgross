@@ -91,16 +91,10 @@ if (!empty($texto_fila_1) && !empty($video_imagen)) : ?>
                 <img src="<?php echo esc_url($video_imagen) ?>" alt="Imagen del Servicio" class="img-fluid rounded">
               <?php endif; ?>
             <?php endif; ?>
-            <!-- <a data-fslightbox="gallery" href="<?php echo esc_url($video_url) ?>">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative img-description">
-              <div class="btn-play-wrapper">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
-              </div>
-            </a> -->
           </div>
           <?php
           if ($brochure) { ?>
-            <a href="<?php echo esc_url($brochure) ?>">
+            <a href="<?php echo esc_url($brochure) ?>" download>
               <button class="btn btn-download">
                 <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
                 Descargar Brochure

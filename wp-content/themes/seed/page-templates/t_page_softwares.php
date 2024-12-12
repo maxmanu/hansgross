@@ -55,46 +55,6 @@ $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
   </div>
 </header>
 
-<!-- <section class="section-software-description ptb-100">
-  <div class="container">
-    <div class="row mb-4">
-      <div class="col-lg-6">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-logo-software-single.webp" class="img-fluid img-single-software mb-5" alt="...">
-        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy</p>
-      </div>
-      <div class="col-lg-6 text-lg-end text-center">
-        <div class="position-relative mb-3">
-          <a data-fslightbox="gallery" href="https://www.youtube.com/watch?v=3nQNiWdeH2Q">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative img-description">
-            <div class="btn-play-wrapper">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
-            </div>
-          </a>
-        </div>
-        <button class="btn btn-download">
-          <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
-          Descargar Brochure
-        </button>
-      </div>
-    </div>
-    <div class="row align-items-center mb-4">
-      <div class="col-lg-6">
-        <div class="wrap wrap2">
-          <img class="imga img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/dactiloscopia.webp" alt="">
-          <img class="imgb img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/img-right-soft.webp" alt="">
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <h2 class="colorgreen-2">Lorem Ipsum is simply</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. Lorem Ipsum is simply dummy </p>
-        <a href="#" class="mostrar-mas">Mostrar más</a>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <?php get_template_part('template-parts/content', 'cta'); ?>
 
 <?php

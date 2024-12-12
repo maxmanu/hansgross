@@ -119,15 +119,9 @@ function crear_campos_certificados()
 
   // Subcampo: Subir PDF
   $cmb->add_group_field($group_field_id, array(
-    'name' => __('Subir PDF del Certificado', 'textdomain'),
-    'id'   => 'archivo_pdf',
-    'type' => 'file',
-    'options' => array(
-      'url' => false, // Ocultar campo URL adicional
-    ),
-    'text' => array(
-      'add_upload_file_text' => __('Subir PDF', 'textdomain'),
-    ),
+    'name' => __('Link del Certificado', 'textdomain'),
+    'id'   => 'link_pdf',
+    'type' => 'text_url',
   ));
 }
 
@@ -170,7 +164,7 @@ function buscar_certificados_ajax()
       if (!empty($grupo_certificados)) {
         // Recorre los elementos del campo repetidor para verificar si existe un archivo PDF
         foreach ($grupo_certificados as $certificado) {
-          if (!empty($certificado['archivo_pdf'])) {
+          if (!empty($certificado['link_pdf'])) {
             $mostrar_certificado = true;
             break;
           }
@@ -205,7 +199,7 @@ function buscar_certificados_ajax()
         if (!empty($grupo_certificados)) {
           // Recorre los elementos del campo repetidor para verificar si existe un archivo PDF
           foreach ($grupo_certificados as $certificado) {
-            if (!empty($certificado['archivo_pdf'])) {
+            if (!empty($certificado['link_pdf'])) {
               $mostrar_certificado = true;
               break;
             }
@@ -283,7 +277,6 @@ function obtener_detalles_certificado()
                         <th scope="col" class="text-center">Año</th>
                         <th scope="col" class="text-center">Certificado</th>
                         <th scope="col" class="text-center">Visualizar</th>
-                        <th scope="col" class="text-center">Descargar</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -292,7 +285,7 @@ function obtener_detalles_certificado()
     $numero_codigo = esc_html($certificado['numero_codigo']);
     $year_field = esc_html($certificado['year_field']);
     $nombre_certificado = esc_html($certificado['nombre_certificado']);
-    $archivo_pdf = esc_url($certificado['archivo_pdf']);
+    $archivo_pdf = esc_url($certificado['link_pdf']);
 
     $output .= "<tr>
                     <td class='text-center'>
@@ -313,13 +306,6 @@ function obtener_detalles_certificado()
                         <div class='pt-3'>
                             <a href='{$archivo_pdf}' target='_blank'>
                                 <img src='" . get_template_directory_uri() . "/assets/img/icon-eye.png' class='img-fluid icon-table' alt='...'>
-                            </a>
-                        </div>
-                    </td>
-                    <td class='text-center'>
-                        <div class='pt-3'>
-                            <a href='{$archivo_pdf}' download target='_blank'>
-                                <img src='" . get_template_directory_uri() . "/assets/img/icon-expediente.png' class='img-fluid icon-table' alt=''>
                             </a>
                         </div>
                     </td>

@@ -26,9 +26,9 @@ jQuery(document).ready(function ($) {
         success: function (response) {
           if (response.success) {
             resultsContainer.html(response.data.html);
-            resultsCount.text(`Resultados encontrados: ${response.data.count}`);
+            resultsCount.text(`Alumnos encontrados: ${response.data.count}`);
           } else {
-            resultsContainer.html('<p>No se encontraron resultados.</p>');
+            resultsContainer.html('<p>No se encontraron alumnos con ese nombre.</p>');
             resultsCount.text('');
           }
         },
@@ -38,7 +38,9 @@ jQuery(document).ready(function ($) {
         },
       });
     } else {
-      resultsContainer.html('<p>Por favor, introduce al menos 3 caracteres.</p>');
+      resultsContainer.html(
+        '<p>El nombre del alumno debe contener al menos 3 caracteres para realizar la búsqueda.</p>'
+      );
       resultsCount.text('');
     }
   });
