@@ -11,8 +11,10 @@ $logo_sitio = isset($opciones_generales['logo_sitio']) ? $opciones_generales['lo
       }
       ?>
     </a>
-    <button class="navbar-toggler px-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarExample1" aria-controls="navbarExample1" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarExample1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="nav-button">
+      <span class="icon-bar top-bar"></span>
+      <span class="icon-bar middle-bar"></span>
+      <span class="icon-bar bottom-bar"></span>
     </button>
     <!-- Container wrapper -->
     <div class="container-fluid">
@@ -21,9 +23,9 @@ $logo_sitio = isset($opciones_generales['logo_sitio']) ? $opciones_generales['lo
       <div class="collapse navbar-collapse" id="navbarExample1">
         <!-- Left links -->
         <ul class="navbar-nav navbar-hans ps-lg-0" style="padding-left: 0.15rem;padding-top: 0.6rem;">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link <?php echo is_front_page() ? 'active' : ''; ?>" href="<?php echo get_permalink(23) ?>"><?php echo esc_html(get_the_title(23)) ?></a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link <?php if (is_page_template('page-templates/t_page_nosotros.php')) {
                                   echo "active";

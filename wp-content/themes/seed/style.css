@@ -429,6 +429,8 @@ footer {
 .row-contact {
   background-color: #06442A;
   margin-bottom: 50px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .col-menu-tab {
@@ -443,6 +445,8 @@ footer {
 .section-clientes p {
   font-size: 1.5rem;
   color: #008943;
+  font-family: "HandleGotic";
+  font-weight: 700;
 }
 
 .section-eventos .card {
@@ -518,13 +522,11 @@ footer {
   top: 0;
   width: 100%;
   z-index: 999;
-  /* Asegúrate de que esté por encima del contenido */
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 1s ease-out;
 }
 
 #mainNavbar.hidden {
   opacity: 0;
-  visibility: hidden;
 }
 
 #mainNavbar.scrolled {
@@ -1849,6 +1851,49 @@ tbody>:not(caption)>*>* {
   z-index: 0;
 }
 
+.navbar-toggler {
+  background-color: #fff;
+}
+
+.navbar-toggler span {
+  display: block;
+  background-color: var(--green-2);
+  height: 3px;
+  width: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  left: 0;
+  opacity: 1;
+  transition: all 0.35s ease-out;
+  transform-origin: center left;
+}
+
+.navbar-toggler span:nth-child(1) {
+  transform: translate(0%, 0%) rotate(0deg);
+}
+
+.navbar-toggler span:nth-child(2) {
+  opacity: 1;
+}
+
+.navbar-toggler span:nth-child(3) {
+  transform: translate(0%, 0%) rotate(0deg);
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+  transform: translate(15%, -33%) rotate(45deg);
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+  transform: translate(15%, 33%) rotate(-45deg);
+}
+
+
 
 
 
@@ -1989,6 +2034,21 @@ tbody>:not(caption)>*>* {
 
   #navbarExample1 .nav-link.active {
     color: #000;
+    font-weight: 700;
+  }
+
+  #navbarExample1 .navbar-nav {
+    height: 100vh;
+    padding-top: 50px !important;
+  }
+
+  #navbarExample1 .nav-item {
+    margin: 0 30px;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
   }
 
   .box-decor-image {
@@ -2017,22 +2077,68 @@ tbody>:not(caption)>*>* {
   .bloque-free {
     display: block;
   }
+
+  .section-clientes p {
+    text-align: center;
+  }
+
+  .card--eventos-description {
+    display: none;
+  }
+
+  .swiperEventos {
+    order: 2;
+  }
+
+  #webinars,
+  #cursos {
+    height: 70px;
+  }
+
+  .card--btn-event .card-img-overlay {
+    top: 0;
+  }
+
+  .card--btn-event .card-img-overlay p {
+    margin-bottom: 0;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  .section-certificados {
+    background-repeat: no-repeat, no-repeat;
+    background-position: top;
+  }
+
+  .section-servicios {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
 }
 
 @media (max-width: 480px) {
+  .banner-title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .banner-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .date-single {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 340px) {
   .banner-title {
     font-size: 2rem;
   }
 
   .banner-subtitle {
-    font-size: 1.8rem;
-  }
-
-  .grid {
-    display: block;
-  }
-
-  .date-single {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
   }
 }

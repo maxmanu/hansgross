@@ -99,23 +99,31 @@ function cmb2_add_servicio_fields()
     ),
   ));
 
-  // $cmb->add_field(array(
-  //   'name'         => 'Arrastra y suelta tus archivos',
-  //   'desc'         => 'Puedes subir uno o varios archivos luego ordenarlos mediante drag and drop.',
-  //   'id'           => 'galeria_fila_1',
-  //   'type'         => 'file_list', // Permite múltiples archivos
-  //   'text'         => array(
-  //     'add_upload_files_text' => 'Añadir archivos', // Botón de subir
-  //     'remove_image_text'     => 'Eliminar',        // Texto de eliminar
-  //     'file_text'             => 'Archivo:',        // Texto del archivo
-  //     'file_download_text'    => 'Descargar',       // Texto para descargar
-  //     'remove_text'           => 'Eliminar',        // Texto de eliminar
-  //   ),
-  //   'query_args'   => array(
-  //     'type' => array('image/jpeg', 'image/png'), // Tipos de archivos permitidos
-  //   ),
-  //   'preview_size' => 'medium', // Tamaño de la vista previa
-  // ));
+  // Crea un campo de grupo (repetidor)
+  $group_field_id = $cmb->add_field(array(
+    'id'          => 'galeria_imagenes_1', // ID del campo de grupo
+    'type'        => 'group',
+    'description' => 'Galería de imágenes',
+    'options'     => array(
+      'group_title'   => 'Imagen {#}', // Título de cada grupo, {#} se reemplaza con el número
+      'add_button'    => 'Agregar Imagen', // Texto del botón para agregar
+      'remove_button' => 'Eliminar Imagen', // Texto del botón para eliminar
+      'sortable'      => true, // Permitir ordenar los elementos
+    ),
+  ));
+
+  // Campo dentro del grupo para subir una imagen
+  $cmb->add_group_field($group_field_id, array(
+    'name' => 'Imagen', // Nombre del campo
+    'id'   => 'logo_1', // ID único dentro del grupo
+    'type' => 'file', // Tipo de campo: subir archivo
+    'options' => array(
+      'url' => false, // Oculta el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir Imagen' // Texto del botón de carga
+    ),
+  ));
 
   //--------------------------------------------------------------------------------
 
@@ -182,21 +190,29 @@ function cmb2_add_servicio_fields()
     ),
   ));
 
-  // $cmb->add_field(array(
-  //   'name'         => 'Arrastra y suelta tus archivos',
-  //   'desc'         => 'Puedes subir uno o varios archivos luego ordenarlos mediante drag and drop.',
-  //   'id'           => 'galeria_fila_3',
-  //   'type'         => 'file_list', // Permite múltiples archivos
-  //   'text'         => array(
-  //     'add_upload_files_text' => 'Añadir archivos', // Botón de subir
-  //     'remove_image_text'     => 'Eliminar',        // Texto de eliminar
-  //     'file_text'             => 'Archivo:',        // Texto del archivo
-  //     'file_download_text'    => 'Descargar',       // Texto para descargar
-  //     'remove_text'           => 'Eliminar',        // Texto de eliminar
-  //   ),
-  //   'query_args'   => array(
-  //     'type' => array('image/jpeg', 'image/png'), // Tipos de archivos permitidos
-  //   ),
-  //   'preview_size' => 'medium', // Tamaño de la vista previa
-  // ));
+  // Crea un campo de grupo (repetidor)
+  $group_field_id = $cmb->add_field(array(
+    'id'          => 'galeria_imagenes_2', // ID del campo de grupo
+    'type'        => 'group',
+    'description' => 'Galería de imágenes',
+    'options'     => array(
+      'group_title'   => 'Imagen {#}', // Título de cada grupo, {#} se reemplaza con el número
+      'add_button'    => 'Agregar Imagen', // Texto del botón para agregar
+      'remove_button' => 'Eliminar Imagen', // Texto del botón para eliminar
+      'sortable'      => true, // Permitir ordenar los elementos
+    ),
+  ));
+
+  // Campo dentro del grupo para subir una imagen
+  $cmb->add_group_field($group_field_id, array(
+    'name' => 'Imagen', // Nombre del campo
+    'id'   => 'logo_2', // ID único dentro del grupo
+    'type' => 'file', // Tipo de campo: subir archivo
+    'options' => array(
+      'url' => false, // Oculta el campo de URL
+    ),
+    'text' => array(
+      'add_upload_file_text' => 'Subir Imagen' // Texto del botón de carga
+    ),
+  ));
 }

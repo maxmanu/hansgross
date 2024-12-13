@@ -5,11 +5,11 @@ $subtitulo = get_post_meta(36, 'pagina_subtitulo', true);
 $titulo = get_post_meta(36, 'servicios_titulo', true);
 $descripcion = get_post_meta(36, 'servicios_descripcion', true);
 $texto_fila_1 = get_post_meta(get_the_ID(), 'texto_fila_1', true);
-$galeria_fila_1 = get_post_meta(get_the_ID(), 'galeria_fila_1', true);
+$galeria_fila_1 = get_post_meta(get_the_ID(), 'galeria_imagenes_1', true);
 $video_url = get_post_meta(get_the_ID(), 'video_cmb2', true);
 $texto_fila_2 = get_post_meta(get_the_ID(), 'texto_fila_2', true);
 $texto_fila_3 = get_post_meta(get_the_ID(), 'texto_fila_3', true);
-$galeria_fila_3 = get_post_meta(get_the_ID(), 'galeria_fila_3', true);
+$galeria_fila_3 = get_post_meta(get_the_ID(), 'galeria_imagenes_2', true);
 
 // Obtener el mensaje personalizado del Custom Field de la página principal
 $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
@@ -21,7 +21,7 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
-        <div class="col-md-7">
+        <div class="col-md-7 text-center text-md-start">
           <?php if (!empty($titulo_hero)): ?>
             <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
           <?php endif; ?>
@@ -113,29 +113,28 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
           <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-30px;right:50px;"></span>
           <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>
         </div>
-        <!-- <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
+        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
           <div class="swiper swiperServicios2 mt-3">
-            <?php
-            if ($galeria_fila_1) {
-              echo '<div class="swiper-wrapper">';
-              foreach (
-                $galeria_fila_1 as $url => $archivo
-              ) {
-                echo '<div class="swiper-slide">';
-                echo '<div class="card">';
-                echo '<img src="' . esc_url($archivo) . '" alt="imagen" class="card-img-top">';
-                echo '</div>';
-                echo '</div>';
-              }
-              echo '</div>';
-            } else {
-              echo '<p>No hay imágenes.</p>';
-            }
-            ?>
+            <div class="swiper-wrapper">
+              <?php
+              if (!empty($galeria_fila_1)): ?>
+
+                <?php foreach ($galeria_fila_1 as $imagen):
+                  $url = !empty($imagen['logo_1']) ? esc_url($imagen['logo_1']) : '';
+                ?>
+                  <div class="swiper-slide">
+                    <div class="card">
+                      <img src="<?php echo $url; ?>" alt="Imagen de la galería" class="card-img-top">
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+
+              <?php endif; ?>
+            </div>
             <div class="swiper-pagination swiper-pagination2"></div>
           </div>
           <span class="box-decor-image"></span>
-        </div> -->
+        </div>
       </div>
     <?php endif; ?>
     <?php
@@ -172,29 +171,28 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
           ?>
           <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:0;"></span>
         </div>
-        <!-- <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
+        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
           <div class="swiper swiperServicios3">
-            <?php
-            if ($galeria_fila_3) {
-              echo '<div class="swiper-wrapper">';
-              foreach (
-                $galeria_fila_3 as $url => $archivo
-              ) {
-                echo '<div class="swiper-slide">';
-                echo '<div class="card">';
-                echo '<img src="' . esc_url($archivo) . '" alt="imagen" class="card-img-top">';
-                echo '</div>';
-                echo '</div>';
-              }
-              echo '</div>';
-            } else {
-              echo '<p>No hay imágenes.</p>';
-            }
-            ?>
+            <div class="swiper-wrapper">
+              <?php
+              if (!empty($galeria_fila_3)): ?>
+
+                <?php foreach ($galeria_fila_3 as $imagen):
+                  $url = !empty($imagen['logo_2']) ? esc_url($imagen['logo_2']) : '';
+                ?>
+                  <div class="swiper-slide">
+                    <div class="card">
+                      <img src="<?php echo $url; ?>" alt="Imagen de la galería" class="card-img-top">
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+
+              <?php endif; ?>
+            </div>
             <div class="swiper-pagination swiper-pagination3"></div>
           </div>
           <span class="box-decor-image" style="top:-120px;right:-10px;"></span>
-        </div> -->
+        </div>
       </div>
     <?php endif; ?>
     </div>

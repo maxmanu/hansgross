@@ -15,7 +15,7 @@ $descripcion = get_post_meta(get_the_ID(), 'servicios_descripcion', true);
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
-        <div class="col-md-7">
+        <div class="col-md-7 text-center text-md-start">
           <?php if (!empty($titulo_hero)): ?>
             <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
           <?php endif; ?>

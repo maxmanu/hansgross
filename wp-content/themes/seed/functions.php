@@ -540,38 +540,3 @@ function disable_default_editor_for_posts()
   remove_post_type_support('post', 'editor');
 }
 add_action('init', 'disable_default_editor_for_posts');
-
-
-
-
-
-
-
-
-
-// function enqueue_jquery_ui_sortable()
-// {
-//   if (is_admin()) {
-//     wp_enqueue_script('jquery-ui-sortable');
-//   }
-// }
-// add_action('admin_enqueue_scripts', 'enqueue_jquery_ui_sortable');
-
-
-/**
- * SORTEABLE JS
- */
-// function enqueue_cmb2_sortable_script()
-// {
-//   if (is_admin()) {
-//     error_log('Script cargado'); // Verifica si esta línea aparece en los logs
-//     wp_enqueue_script(
-//       'cmb2-sortable-custom',
-//       get_template_directory_uri() . '/js/cmb2-sortable.js',
-//       array('sortable'),
-//       '1.0.0',
-//       true
-//     );
-//   }
-// }
-// add_action('admin_enqueue_scripts', 'enqueue_cmb2_sortable_script');

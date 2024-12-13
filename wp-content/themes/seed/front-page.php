@@ -22,7 +22,7 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
-        <div class="col-md-7">
+        <div class="col-md-7 text-center text-md-start">
           <?php if (!empty($titulo_hero)): ?>
             <h1 class="banner-title pb-4"><?php echo esc_html($titulo_hero); ?></h1>
           <?php endif; ?>
@@ -132,7 +132,7 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
         <?php endif; ?>
         <a href="/certificados"><button class="btn btn-hans btn-hans--white mt-4">Buscar</button></a>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 hide-mobile">
         <?php if ($imagen_right_certificados) { ?>
           <img src="<?php echo esc_url($imagen_right_certificados); ?>" class="card-img" alt="...">
         <?php } ?>

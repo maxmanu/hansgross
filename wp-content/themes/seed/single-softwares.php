@@ -17,7 +17,7 @@ $image_right = get_post_meta(get_the_ID(), 'imagen_right', true);
     <?php get_template_part('template-parts/content', 'nav'); ?>
     <div class="container my-auto pb-3">
       <div class="row align-items-center hero-banner">
-        <div class="col-md-8">
+        <div class="col-md-8 text-center text-md-start">
           <?php if (!empty($titulo_hero)): ?>
             <h1 class="banner-title"><?php echo esc_html($titulo_hero); ?></h1>
           <?php endif; ?>
