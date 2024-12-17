@@ -98,11 +98,10 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
   </div>
 </section>
 
-<?php
-if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
-  <section class="section-servicios-description position-relative">
-    <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:500px;"></span>
-    <div class="container">
+<section class="section-servicios-description position-relative">
+  <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:500px;"></span>
+  <div class="container">
+    <?php if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
       <div class="row mb-5">
         <div class="col-lg-6 position-relative">
           <h2 class="colorgreen-2"><?php echo get_the_title() ?></h2>
@@ -196,12 +195,12 @@ if (!empty($texto_fila_1) && !empty($galeria_fila_1)) : ?>
         </div>
       </div>
     <?php endif; ?>
-    </div>
-    <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>
-  </section>
+  </div>
+  <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>
+</section>
 
-  <?php get_template_part('template-parts/content', 'cta'); ?>
+<?php get_template_part('template-parts/content', 'cta'); ?>
 
-  <?php
-  get_footer();
-  ?>
+<?php
+get_footer();
+?>
