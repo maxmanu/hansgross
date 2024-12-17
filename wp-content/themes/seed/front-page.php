@@ -100,13 +100,13 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
           <div id="webinars" data-category-slug="webinars" data-link="/academico?categoria=webinars" data-content="<?php echo esc_attr($descripcion_webinars); ?>" class="card card--btn-event active text-bg-dark">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
-              <p>Webinars</p>
+              <p>Webinars <i class="bi bi-camera-video ms-2 d-block d-md-none"></i></p>
             </div>
           </div>
           <div id="cursos" data-category-slug="cursos" data-link="/academico?categoria=cursos" data-content="<?php echo esc_attr($descripcion_cursos); ?>" class="card card--btn-event text-bg-dark">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-card.webp" class="card-img" alt="...">
             <div class="card-img-overlay">
-              <p>Cursos</p>
+              <p>Cursos <i class="bi bi-easel ms-2 d-block d-md-none"></i></p>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
           <?php if (!empty($subtitulo_de_seccion_servicios)): ?>
             <p><?php echo esc_html($subtitulo_de_seccion_servicios); ?></p>
           <?php endif; ?>
-          <div class="d-flex justify-content-start arrows-swipper position-relative pt-4">
+          <div class="d-flex justify-content-start arrows-swipper position-relative pt-4 hide-mobile">
             <div id="button-prev-servicios" class="btn-arrows-servicios ms-0 me-2">
               <i class="bi bi-arrow-left"></i>
             </div>
@@ -198,6 +198,7 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
             wp_reset_postdata();
             ?>
           </div>
+          <div class="swiper-pagination"></div>
           <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
       </div>
@@ -245,11 +246,12 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
             wp_reset_postdata();
             ?>
           </div>
+          <div class="swiper-pagination"></div>
           <!-- If we need navigation buttons -->
-          <div id="button-prev-software" class="swiper-button-prev">
+          <div id="button-prev-software" class="swiper-button-prev hide-mobile">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-soft-left.svg" class="arrow-soft" alt="...">
           </div>
-          <div id="button-next-software" class="swiper-button-next">
+          <div id="button-next-software" class="swiper-button-next hide-mobile">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-soft-right.svg" class="arrow-soft" alt="...">
           </div>
         </div>

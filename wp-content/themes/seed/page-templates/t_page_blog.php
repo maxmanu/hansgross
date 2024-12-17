@@ -29,7 +29,7 @@ $titulo_seccion = get_post_meta(get_the_ID(), 'titulo_seccion_noticias', true);
 
 <section class="section-blog ptb-100">
   <div class="container">
-    <div class="row align-items-center mb-5 px-5">
+    <div class="row align-items-center mb-md-5 px-md-5">
       <div class="col-lg-9 mx-auto">
         <?php
         if (!empty($titulo_seccion)) {

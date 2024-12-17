@@ -48,11 +48,12 @@ $image_right = get_post_meta(get_the_ID(), 'imagen_right', true);
               wp_reset_postdata();
               ?>
             </div>
+            <div class="swiper-pagination"></div>
             <!-- If we need navigation buttons -->
-            <div id="button-prev-software" class="swiper-button-prev">
+            <div id="button-prev-software" class="swiper-button-prev hide-mobile">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-soft-left.svg" class="arrow-soft" alt="...">
             </div>
-            <div id="button-next-software" class="swiper-button-next">
+            <div id="button-next-software" class="swiper-button-next hide-mobile">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-soft-right.svg" class="arrow-soft" alt="...">
             </div>
           </div>
@@ -111,10 +112,10 @@ if (!empty($texto_fila_1) && !empty($video_imagen)) : ?>
       <?php
       if (!empty($image_left) && !empty($image_right) && !empty($texto_fila_2)) : ?>
         <div class="row align-items-center mb-4">
-          <div class="col-lg-6 position-relative">
+          <div class="col-lg-6 position-relative text-center text-lg-start">
             <div class="wrap wrap2">
               <img class="imga img-fluid" src="<?php echo esc_url($image_left) ?>" alt="">
-              <img class="imgb img-fluid" src="<?php echo esc_url($image_right) ?>" alt="">
+              <img class="imgb img-fluid d-none d-lg-block" src="<?php echo esc_url($image_right) ?>" alt="">
             </div>
             <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:35px;right:30%;width:40px;height:40px;"></span>
             <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:50px;left:10%;"></span>

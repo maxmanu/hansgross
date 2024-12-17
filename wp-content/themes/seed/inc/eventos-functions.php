@@ -7,13 +7,9 @@ function registrar_cpt_eventos()
 {
   $labels = array(
     'name'                  => 'Eventos',
-    'Post type general name',
     'singular_name'         => 'Evento',
-    'Post type singular name',
     'menu_name'             => 'Eventos',
-    'Admin Menu text',
     'name_admin_bar'        => 'Evento',
-    'Add New on Toolbar',
     'add_new'               => 'Añadir nuevo',
     'add_new_item'          => 'Añadir nuevo evento',
     'new_item'              => 'Nuevo evento',
@@ -25,25 +21,15 @@ function registrar_cpt_eventos()
     'not_found'             => 'No se encontraron eventos.',
     'not_found_in_trash'    => 'No se encontraron eventos en la papelera.',
     'featured_image'        => 'Imagen destacada',
-    'Overrides the “Featured Image” phrase for this post type.',
     'set_featured_image'    => 'Establecer imagen destacada',
-    'Overrides the “Set featured image” phrase for this post type.',
     'remove_featured_image' => 'Eliminar imagen destacada',
-    'Overrides the “Remove featured image” phrase for this post type.',
     'use_featured_image'    => 'Usar como imagen destacada',
-    'Overrides the “Use as featured image” phrase for this post type.',
     'archives'              => 'Archivo de eventos',
-    'The post type archive label used in nav menus.',
     'insert_into_item'      => 'Insertar en el evento',
-    'Overrides the “Insert into post” phrase.',
     'uploaded_to_this_item' => 'Subido a este evento',
-    'Overrides the “Uploaded to this post” phrase.',
     'filter_items_list'     => 'Filtrar lista de eventos',
-    'Screen reader text for the filter links.',
     'items_list_navigation' => 'Navegación de lista de eventos',
-    'Screen reader text for the pagination.',
     'items_list'            => 'Lista de eventos',
-    'Screen reader text for the items list.',
   );
 
   $args = array(
@@ -239,9 +225,7 @@ function registrar_taxonomia_categorias_eventos()
 {
   $labels = array(
     'name'              => 'Categorías de Eventos',
-    'taxonomy general name',
     'singular_name'     => 'Categoría de Evento',
-    'taxonomy singular name',
     'search_items'      => 'Buscar categorías',
     'all_items'         => 'Todas las categorías',
     'parent_item'       => 'Categoría superior',
@@ -270,9 +254,7 @@ function registrar_taxonomia_etiquetas_eventos()
 {
   $labels = array(
     'name'              => 'Etiquetas de eventos',
-    'taxonomy general name',
     'singular_name'     => 'Etiqueta de evento',
-    'taxonomy singular name',
     'search_items'      => 'Buscar etiquetas',
     'all_items'         => 'Todas las etiquetas',
     'edit_item'         => 'Editar etiqueta',

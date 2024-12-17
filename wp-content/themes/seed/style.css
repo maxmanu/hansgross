@@ -1893,14 +1893,27 @@ tbody>:not(caption)>*>* {
   transform: translate(15%, 33%) rotate(-45deg);
 }
 
+.swiperServicios .swiper-pagination,
+.swiperSoftwares .swiper-pagination {
+  display: none;
+}
 
+.grid {
+  grid-template-columns: 1fr 1fr;
+}
 
+.btn-filter {
+  position: sticky;
+  padding: 10px 40px;
+  background: white;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+}
 
-
-
-
-
-
+.offcanvas.offcanvas-start {
+  max-width: 250px;
+}
 
 
 
@@ -1909,9 +1922,6 @@ tbody>:not(caption)>*>* {
 /*------MIN-WIDTH*--------*/
 
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
 
   #button-prev-software {
     left: -10px;
@@ -1922,7 +1932,6 @@ tbody>:not(caption)>*>* {
   }
 
   .col-right-event {
-    height: 572px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2001,6 +2010,22 @@ tbody>:not(caption)>*>* {
 
 
 /*------MAX-WIDTH*--------*/
+@media (max-width:1400px) {
+  .section-contactanos .btn-hans {
+    font-size: 1.1rem;
+  }
+
+  .wrap2 .imgb {
+    width: 200px;
+    height: 200px;
+  }
+
+  .wrap2 .imga {
+    width: 200px;
+    height: 150px;
+  }
+}
+
 @media (max-width: 1200px) {
   .social-links {
     margin-bottom: 30px;
@@ -2012,6 +2037,20 @@ tbody>:not(caption)>*>* {
 
   .row-card-servicios {
     margin-top: 15px;
+  }
+}
+
+@media (min-width:769px) and (max-width:1200px) {
+  .card-video-imagen {
+    height: 100%;
+  }
+
+  .div-precios {
+    display: block !important;
+  }
+
+  .div-precios .vr {
+    display: none;
   }
 }
 
@@ -2054,20 +2093,41 @@ tbody>:not(caption)>*>* {
   .box-decor-image {
     display: none;
   }
+
+  .card--btn-event .card-img-overlay p {
+    font-size: 1.5rem;
+  }
+
+  .section-eventos .card {
+    height: auto;
+  }
+
+  .card-video-imagen {
+    margin-bottom: 40px;
+  }
+
+  .wrap {
+    margin-bottom: 80px;
+  }
+
+  .wrap2 .imga {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media (max-width: 768px) {
+  .img-single {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
   .hero-banner {
     min-height: 500px;
   }
 
   .swiperEventos .swiper-slide {
     height: 100%;
-  }
-
-  .card--eventos-description,
-  #cursos {
-    margin-top: 15px;
   }
 
   .card--single {
@@ -2092,19 +2152,24 @@ tbody>:not(caption)>*>* {
 
   #webinars,
   #cursos {
-    height: 70px;
+    height: 50px;
   }
 
   .card--btn-event .card-img-overlay {
-    top: 0;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    bottom: auto;
   }
 
   .card--btn-event .card-img-overlay p {
     margin-bottom: 0;
+    display: inline-flex;
   }
 
   .hide-mobile {
-    display: none;
+    display: none !important;
   }
 
   .section-certificados {
@@ -2115,6 +2180,139 @@ tbody>:not(caption)>*>* {
   .section-servicios {
     padding-top: 60px;
     padding-bottom: 80px;
+  }
+
+  .swiperServicios,
+  .swiperSoftwares,
+  .swiperServiciosMain {
+    padding-bottom: 60px;
+  }
+
+  .swiperServicios .swiper-pagination,
+  .swiperSoftwares .swiper-pagination {
+    display: block;
+  }
+
+  .card--btn-event img {
+    display: none;
+  }
+
+  .row-footer-menu {
+    text-align: center;
+  }
+
+  footer .top-title {
+    margin-bottom: 1rem;
+  }
+
+  .swiperServicios .card {
+    max-width: 550px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .col-menu-tab {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: block !important;
+    text-align: center;
+  }
+
+  .icon-fot {
+    margin-bottom: 15px;
+  }
+
+  .image-float {
+    padding-bottom: 30px;
+  }
+
+  .box-decor {
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+  }
+
+  .box-decor-2 {
+    bottom: 0;
+    left: 10%;
+  }
+
+  .box-decor-3 {
+    bottom: 40%;
+  }
+
+  .banner-subtitle {
+    font-size: 2rem;
+  }
+
+  .splide {
+    padding: 20px;
+  }
+
+  .splide__pagination {
+    bottom: -2.5em;
+  }
+
+  .section-equipo {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .row--mision .col-lg-6:nth-child(2),
+  .row--vision .col-lg-8 {
+    padding: 20px;
+  }
+
+  .boxes-decor {
+    display: none;
+  }
+
+  .section-serviciosMain {
+    padding-top: 80px;
+    padding-bottom: 50px;
+  }
+
+  .section-servicios-description {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  #miElemento {
+    display: none;
+  }
+
+  .card-search {
+    margin-top: 0;
+    padding: 40px 50px;
+  }
+
+  #search-certificados-form .input-group {
+    flex-direction: column;
+  }
+
+  #search-certificados-form .input-group>.form-control {
+    width: 100%;
+  }
+
+  #search-certificados {
+    border-top-right-radius: .375rem;
+    border-bottom-right-radius: .375rem;
+  }
+
+  .btn--search {
+    border-top-left-radius: .375rem !important;
+    border-bottom-left-radius: .375rem !important;
+  }
+
+  .img-description {
+    max-width: 100%;
+  }
+
+  .btn-download,
+  .btn-download:hover {
+    width: 100%;
   }
 }
 
@@ -2131,6 +2329,52 @@ tbody>:not(caption)>*>* {
   .date-single {
     font-size: 0.9rem;
   }
+
+  .section-contactanos .group-buttons {
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+
+  .section-servicios-description img,
+  .swiperServicios2,
+  .swiperServicios3 {
+    width: 300px;
+    height: 300px;
+    margin-left: initial;
+    margin-right: initial;
+  }
+
+  .btn-play-wrapper img {
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  #panelsStayOpen-collapseOne .accordion-body,
+  .costo-certificado {
+    margin-left: 0;
+  }
+
+  #panelsStayOpen-collapseTwo .card {
+    margin-bottom: 30px;
+  }
+
+  #accordionPanelsHans .accordion-header button {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .card-video-imagen {
+    height: 100%;
+  }
+
+  .card-search {
+    margin-top: 15px;
+    padding: 30px 20px;
+  }
+
+  .section-blog h2 {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 340px) {
@@ -2140,5 +2384,9 @@ tbody>:not(caption)>*>* {
 
   .banner-subtitle {
     font-size: 1.3rem;
+  }
+
+  .card-eq .col-1 {
+    display: none;
   }
 }

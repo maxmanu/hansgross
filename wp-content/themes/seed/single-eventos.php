@@ -75,7 +75,7 @@ $imagen_certificado =
               <?php endif; ?>
             </div>
             <!-- <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a> -->
-            <div class="d-inline-flex mb-3">
+            <div class="d-inline-flex mb-3 div-precios">
               <p class="text-price"><sup class="sup-price">S/ </sup>
                 <?php
                 if ($precio_soles) {
@@ -285,6 +285,127 @@ $imagen_certificado =
       </div>
     </div>
   </section>
+  <div class="container d-block d-lg-none">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="card-sidebar text-center mx-auto">
+          <div class="card-video-imagen">
+            <!-- Mostrar video o imagen -->
+            <?php if ($video_imagen): ?>
+              <?php
+              $file_type = wp_check_filetype($video_imagen);
+              if (in_array($file_type['ext'], array('mp4', 'webm'))) : ?>
+                <video controls style="max-width: 100%; height: auto;">
+                  <source src="<?php echo esc_url($video_imagen); ?>" type="<?php echo esc_attr($file_type['type']); ?>">
+                  Tu navegador no soporta la reproducción de video.
+                </video>
+              <?php else: ?>
+                <img src="<?php echo esc_url($video_imagen); ?>" alt="Imagen del Servicio">
+              <?php endif; ?>
+            <?php endif; ?>
+          </div>
+          <!-- <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a> -->
+          <div class="d-md-inline-flex mb-3">
+            <p class="text-price"><sup class="sup-price">S/ </sup>
+              <?php
+              if ($precio_soles) {
+                // Asegurarte de que el precio tenga dos decimales
+                $precio_formateado = number_format($precio_soles, 2, '.', ''); // Formato: 123.45
+
+                // Separar parte entera y decimales
+                list($parte_entera, $decimales) = explode('.', $precio_formateado);
+
+                // Construir el HTML con <sup> para los decimales
+                echo '<span>' . esc_html($parte_entera) . '<sup>.' . esc_html($decimales) . '</sup></span>';
+              }
+              ?>
+            </p>
+            <div class="vr my-auto d-none d-md-block"></div>
+            <p class="text-price"><sup class="sup-price">$ </sup>
+              <?php
+              if ($precio_dolares) {
+                // Asegurarte de que el precio tenga dos decimales
+                $precio_formateado = number_format($precio_dolares, 2, '.', ''); // Formato: 123.45
+
+                // Separar parte entera y decimales
+                list($parte_entera, $decimales) = explode('.', $precio_formateado);
+
+                // Construir el HTML con <sup> para los decimales
+                echo '<span>' . esc_html($parte_entera) . '<sup>.' . esc_html($decimales) . '</sup></span>';
+              }
+              ?>
+            </p>
+          </div>
+          <?php
+          // Generar enlace de WhatsApp
+          $nombre_evento = get_the_title();
+          // $mensaje = rawurlencode("Hola, estoy interesado en el evento: $nombre_evento");
+          // $whatsapp_url = "https://wa.me/51<?php echo $whatsapp;  
+          ?>
+          <a target="_blank" href="https://wa.me/51<?php echo $whatsapp; ?>?text=<?php echo $whatsapp_message; ?> <?php echo rawurlencode($nombre_evento); ?>"><button class="btn btn-hans btn-hans--course mb-3"><i class="bi bi-cart2 pe-2"></i>Comprar</button></a>
+          <div class="sidebar-feat mb-3">
+            <?php if ($fecha): ?>
+              <div class="d-flex mb-3 mx-auto text-start">
+                <div class="feat-event-text">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-fecha.png" class="img-fluid me-2" alt="...">
+                  <b>Fecha:</b>
+                </div>
+                <div class="ms-3">
+                  <?php
+                  if ($fecha) {
+                    // Convertir la fecha del meta a timestamp
+                    $timestamp = strtotime($fecha);
+                    // Formatear la fecha al estilo '3 de diciembre, 2024'
+                    $fecha_formateada = date_i18n('j \d\e F, Y', $timestamp);
+                    $fecha_es = traducir_mes($fecha_formateada);
+                    // Mostrar la fecha formateada
+                    echo '<span> ' . esc_html($fecha_es) . '</span>';
+                  }
+                  ?>
+                </div>
+              </div>
+            <?php endif; ?>
+            <?php if ($horario): ?>
+              <div class="d-flex mb-3 mx-auto text-start">
+                <div class="feat-event-text">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-reloj.png" class="img-fluid me-2" alt="...">
+                  <b>Horario:</b>
+                </div>
+                <div class="ms-3 text-start">
+                  <?php echo esc_html($horario); ?>
+                </div>
+              </div>
+            <?php endif; ?>
+            <?php if ($brochure): ?>
+              <div class="d-flex mb-3 mx-auto text-start">
+                <div class="feat-event-text">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-brochure.png" class="img-fluid me-2" alt="...">
+                  <b>Brochure:</b>
+                </div>
+                <div class="ms-3">
+                  <?php echo esc_html($brochure); ?>
+                </div>
+              </div>
+            <?php endif; ?>
+            <?php if ($avalado): ?>
+              <div class="d-flex mx-auto text-start">
+                <div class="feat-event-text">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid me-2" alt="...">
+                  <b>Avalado:</b>
+                </div>
+                <div class="ms-3">
+                  <?php echo esc_html($avalado); ?>
+                </div>
+              </div>
+            <?php endif; ?>
+          </div>
+          <?php if ($pdf_url): ?>
+            <a target="_blank" href="<?php echo esc_url($pdf_url); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-pdf.png" alt="" class="btn-pdf img-fluid mb-4"></a>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </div>
   <section class="section-course-tabs">
     <div class="container">
       <div class="row">
@@ -363,11 +484,11 @@ $imagen_certificado =
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                 <div class="accordion-body">
                   <div class="costo-certificado">
-                    <div class="d-flex">
+                    <div class="d-sm-flex">
                       <div class="flex-shrink-0">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid" alt="...">
                       </div>
-                      <div class="flex-grow-1 ms-3">
+                      <div class="flex-grow-1 ms-sm-3">
                         <p class="costo-certificado-tab">Costo del Certificado: </p>
                         <p class="accordion-price">
                           <sup>S/</sup>

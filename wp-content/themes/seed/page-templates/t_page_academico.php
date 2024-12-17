@@ -27,17 +27,17 @@ $titulo_section = get_post_meta(get_the_ID(), 'titulo_seccion_todos_eventos_acad
   </div>
 </header>
 
-<section class="section-todos-cursos ptb-100">
+<section class="section-todos-cursos ptb-100 position-relative">
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 offset-lg-2 mb-5">
+      <div class="col-lg-10 offset-lg-2 mb-md-5">
         <?php if (!empty($titulo_section)): ?>
           <h2 class="colorgreen-2"><?php echo esc_html($titulo_section); ?></h2>
         <?php endif; ?>
       </div>
     </div>
     <div class="row gx-md-5">
-      <div class="col-xl-2">
+      <div class="col-xl-2 d-none d-md-block" id="miElemento">
         <div class="nav-category-curso mb-5">
           <p>Académico</p>
           <?php
@@ -58,8 +58,31 @@ $titulo_section = get_post_meta(get_the_ID(), 'titulo_seccion_todos_eventos_acad
       </div>
     </div>
   </div>
+  <button class="btn btn-outline-success btn-filter d-block d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <i class="bi bi-funnel me-2"></i> Filtros
+  </button>
 </section>
 
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="nav-category-curso mb-5">
+      <p>Académico</p>
+      <?php
+      echo do_shortcode('[selector_categorias_eventos]');
+      ?>
+    </div>
+    <div class="nav-category-curso">
+      <p>Categoría</p>
+      <?php
+      echo do_shortcode('[selector_etiquetas_eventos]');
+      ?>
+    </div>
+  </div>
+</div>
 <?php
 get_footer();
 ?>

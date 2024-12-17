@@ -7,13 +7,9 @@ function registrar_cpt_certificados()
 {
   $labels = array(
     'name' => 'Certificados',
-    'Post type general name',
     'singular_name' => 'Certificado',
-    'Post type singular name',
     'menu_name' => 'Certificados',
-    'Admin Menu text',
     'name_admin_bar' => 'Certificado',
-    'Add New on Toolbar',
     'add_new' => 'Añadir nuevo',
     'add_new_item' => 'Añadir nuevo certificado',
     'new_item' => 'Nuevo certificado',
@@ -25,25 +21,15 @@ function registrar_cpt_certificados()
     'not_found' => 'No se encontraron certificados.',
     'not_found_in_trash' => 'No se encontraron certificados en la papelera.',
     'featured_image' => 'Imagen destacada',
-    'Overrides the “Featured Image” phrase for this post type.',
     'set_featured_image' => 'Establecer imagen destacada',
-    'Overrides the “Set featured image” phrase for this post type.',
     'remove_featured_image' => 'Eliminar imagen destacada',
-    'Overrides the “Remove featured image” phrase for this post type.',
     'use_featured_image' => 'Usar como imagen destacada',
-    'Overrides the “Use as featured image” phrase for this post type.',
     'archives' => 'Archivo de certificados',
-    'The post type archive label used in nav menus.',
     'insert_into_item' => 'Insertar en el certificado',
-    'Overrides the “Insert into post” phrase.',
     'uploaded_to_this_item' => 'Subido a este certificado',
-    'Overrides the “Uploaded to this post” phrase.',
     'filter_items_list' => 'Filtrar lista de certificados',
-    'Screen reader text for the filter links.',
     'items_list_navigation' => 'Navegación de lista de certificados',
-    'Screen reader text for the pagination.',
     'items_list' => 'Lista de certificados',
-    'Screen reader text for the items list.',
   );
 
   $args = array(
@@ -251,7 +237,7 @@ function buscar_certificados_ajax()
     }
   } else {
     // No hay posts que coincidan con la búsqueda
-    $response = '<p>No se encontraron certificados.</p>';
+    $response = '<p>No se encontraron alumnos con ese nombre.</p>';
   }
 
   wp_reset_postdata();
@@ -283,8 +269,8 @@ function obtener_detalles_certificado()
   }
 
   // Genera la tabla con los datos del campo repetidor
-  $output = '<div class="table-responsive-xl">';
-  $output = '<table class="table">';
+  $output = '<div class="table-responsive">';
+  $output .= '<table class="table">';
   $output .= '<thead class="table-light">
                     <tr>
                         <th scope="col" class="text-center">Código</th>

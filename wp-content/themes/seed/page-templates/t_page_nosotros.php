@@ -41,7 +41,7 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-5 text-white">
-        <div class="row">
+        <div class="row d-block d-md-flex">
           <div class="col-auto">
             <span class="square"></span>
           </div>
@@ -60,16 +60,16 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
         </div>
       </div>
       <div class="col-lg-6 offset-lg-1">
-        <div class="image-float">
-          <span class="box-decor-1"></span>
+        <div class="image-float text-center text-md-start">
+          <span class="box-decor box-decor-1"></span>
           <img src="<?php if ($imagen_1) {
                       echo esc_url($imagen_1);
                     } ?>" class="img-fluid image-float__left" alt="">
           <img src="<?php if ($imagen_2) {
                       echo esc_url($imagen_2);
-                    } ?>" class="img-fluid image-float__right" alt="">
-          <span class="box-decor-2"></span>
-          <span class="box-decor-3"></span>
+                    } ?>" class="img-fluid image-float__right d-none d-md-block" alt="">
+          <span class="box-decor box-decor-2"></span>
+          <span class="box-decor box-decor-3"></span>
         </div>
         <!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-quienes-somos.webp" class="img-fluid mt-5" alt=""> -->
       </div>

@@ -16,6 +16,10 @@ const swiperServicios = new Swiper('.swiperServicios', {
     nextEl: '#button-next-servicios',
     prevEl: '#button-prev-servicios',
   },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
   breakpoints: {
     1200: {
       slidesPerView: 'auto',
@@ -31,6 +35,10 @@ const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
   navigation: {
     nextEl: '#button-next-serviciosMain',
     prevEl: '#button-prev-serviciosMain',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
   },
   breakpoints: {
     540: {
@@ -95,6 +103,10 @@ const swiperSoftwares = new Swiper('.swiperSoftwares', {
   navigation: {
     nextEl: '#button-next-software',
     prevEl: '#button-prev-software',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
   },
   breakpoints: {
     768: {

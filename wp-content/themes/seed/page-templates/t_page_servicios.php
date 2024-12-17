@@ -73,12 +73,13 @@ $descripcion = get_post_meta(get_the_ID(), 'servicios_descripcion', true);
             wp_reset_postdata();
             ?>
           </div>
+          <div class="swiper-pagination d-block d-md-none"></div>
         </div>
       </div>
     </div>
     <div class="row mt-5">
       <div class="col-1 mx-auto">
-        <div class="d-flex justify-content-center arrows-swipper position-relative">
+        <div class="d-flex justify-content-center arrows-swipper position-relative d-none d-md-flex">
           <div id="button-prev-serviciosMain" class="btn-arrows-servicios">
             <i class="bi bi-arrow-left"></i>
           </div>

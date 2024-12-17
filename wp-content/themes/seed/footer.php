@@ -37,7 +37,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         </div>
         <div class="col-xl-9">
           <div class="row row-contact">
-            <div class="col-lg-3 col-md-6 col-somos ">
+            <div class="col-lg-3 col-md-6 col-somos">
               <div class="container">
                 <div class="row align-items-center">
                   <div class="col-xl-10 mx-auto">
@@ -45,7 +45,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
                       <div class="flex-shrink-0">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/whatsapp-top-footer-icon.png" class="icon-fot" alt="...">
                       </div>
-                      <div class="flex-grow-1 ms-3">
+                      <div class="flex-grow-1 ms-md-3">
                         <?php
                         if ($celular) {
                           echo '<h6 class="mb-0 text-white">' . esc_html($celular) . '</h6>';
@@ -65,7 +65,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
                       <div class="flex-shrink-0">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/mail-top-footer-icon.png" class="icon-fot" alt="...">
                       </div>
-                      <div class="flex-grow-1 ms-3">
+                      <div class="flex-grow-1 ms-md-3">
                         <?php
                         if ($correo) {
                           echo '<h6 class="mb-0 text-white">' . esc_html($correo) . '</h6>';
@@ -85,7 +85,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
                       <div class="flex-shrink-0">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/map-top-footer-icon.png" class="icon-fot" alt="...">
                       </div>
-                      <div class="flex-grow-1 ms-3">
+                      <div class="flex-grow-1 ms-md-3">
                         <?php
                         if ($direccion) {
                           echo '<h6 class="mb-0 text-white">' . esc_html($direccion) . '</h6>';
@@ -168,26 +168,26 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         </div>
         <div class="col-xl-9">
           <div class="row justify-content-around row-footer-menu">
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/nosotros">Nosotros</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(25) ?>"><?php echo esc_html(get_the_title(25)) ?></a></p>
             </div>
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/servicios">Servicios</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(36) ?>"><?php echo esc_html(get_the_title(36)) ?></a></p>
             </div>
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/academico">Académico</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(27) ?>"><?php echo esc_html(get_the_title(27)) ?></a></p>
             </div>
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/certificados">Certificados</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(29) ?>"><?php echo esc_html(get_the_title(29)) ?></a></p>
             </div>
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/softwares">Software</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(38) ?>"><?php echo esc_html(get_the_title(38)) ?></a></p>
             </div>
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/blog">Blog</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(31) ?>"><?php echo esc_html(get_the_title(31)) ?></a></p>
             </div>
-            <div class="col-md-auto col-6">
-              <p class="top-title"><a href="/contactanos">Contáctanos</a></p>
+            <div class="col-md-auto col-12">
+              <p class="top-title"><a href="<?php echo get_permalink(33) ?>"><?php echo esc_html(get_the_title(33)) ?></a></p>
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
     </div>
   </div>
   <div class="bottom-footer text-center">
-    <small>© <?php echo date('Y'); ?> Hans Gross-Criminalística Cibernética | Todos los Derechos Reservados. Desarrollado por <a class="obi-link" href="https://obi.com.pe/" target="_blank">Obi Consulting</a></small>
+    <small>© <?php echo date('Y'); ?> Hans Gross-Criminalística Cibernética <span class="d-none d-md-inline">|</span> <br class="d-block d-md-none">Todos los Derechos Reservados.<br class="d-block d-md-none"> Desarrollado por <a class="obi-link" href="https://obi.com.pe/" target="_blank">Obi Consulting</a></small>
   </div>
 </footer>
 
@@ -210,6 +210,15 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
       var splide = new Splide('.splide', {
         type: 'loop',
         perPage: 3,
+        breakpoints: {
+          1200: {
+            perPage: 2,
+          },
+          768: {
+            perPage: 1,
+            arrows: false,
+          },
+        },
         gap: 30,
         pagination: true,
         arrowPath: 'M23.7529 4.004C22.8517 3.08804 22.8517 1.60293 23.7529 0.686971C24.6542 -0.22899 26.1151 -0.22899 27.0164 0.686971L39.3241 13.1964C39.7747 13.6542 40 14.2546 40 14.8548C40 15.1728 39.9377 15.4762 39.8249 15.7526C39.7123 16.0291 39.5454 16.2883 39.3241 16.5132L27.0164 29.0225C26.1151 29.9385 24.6542 29.9385 23.7529 29.0225C22.8517 28.1065 22.8517 26.6216 23.7529 25.7057L32.121 17.2003H2.30769C1.03323 17.2003 -7.15256e-07 16.1501 -7.15256e-07 14.8548C-7.15256e-07 13.5594 1.03323 12.5093 2.30769 12.5093H32.121L23.7529 4.004Z',
@@ -271,6 +280,21 @@ $texto_whatsapp = isset($opciones_generales['texto_whatsapp']) ? esc_html($opcio
         console.error('No se encontraron las tarjetas o el contenedor de descripción.');
       }
     });
+  </script>
+<?php } ?>
+
+<?php if (is_page_template('page-templates/t_page_academico.php')) { ?>
+  <script>
+    function eliminarSiOculto() {
+      const elemento = document.getElementById("miElemento");
+      if (elemento && window.getComputedStyle(elemento).display === "none") {
+        elemento.remove();
+      }
+    }
+
+    // Llama a la función inicialmente y en cada cambio de tamaño de ventana
+    eliminarSiOculto();
+    window.addEventListener("resize", eliminarSiOculto);
   </script>
 <?php } ?>
 

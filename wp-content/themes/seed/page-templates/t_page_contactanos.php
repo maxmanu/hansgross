@@ -102,11 +102,11 @@ $direccion = isset($opciones_generales['direccion_contacto']) ? esc_html($opcion
           <input type="text" id="name" name="name" required class="form-control" placeholder="">
         </div>
         <div class="row mb-3 mb-md-0">
-          <div class="col">
+          <div class="col-md-6 mb-3 mb-md-0">
             <label for="exampleFormControlInput1" class="form-label">Celular</label>
             <input type="text" id="celular" name="celular" required class="form-control" placeholder="">
           </div>
-          <div class="col">
+          <div class="col-md-6">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input type="email" id="email" name="email" class="form-control" required placeholder="">
           </div>

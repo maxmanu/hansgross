@@ -44,11 +44,12 @@ $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
               wp_reset_postdata();
               ?>
             </div>
+            <div class="swiper-pagination"></div>
             <!-- If we need navigation buttons -->
-            <div id="button-prev-software" class="swiper-button-prev">
+            <div id="button-prev-software" class="swiper-button-prev hide-mobile">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-soft-left.svg" class="arrow-soft" alt="...">
             </div>
-            <div id="button-next-software" class="swiper-button-next">
+            <div id="button-next-software" class="swiper-button-next hide-mobile">
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrow-soft-right.svg" class="arrow-soft" alt="...">
             </div>
           </div>
