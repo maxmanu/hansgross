@@ -47,7 +47,7 @@ $descripcion = get_post_meta(get_the_ID(), 'servicios_descripcion', true);
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col px-0">
+      <div class="col px-md-0">
         <div class="swiper swiperServiciosMain">
           <div class="swiper-wrapper text-center">
             <?php

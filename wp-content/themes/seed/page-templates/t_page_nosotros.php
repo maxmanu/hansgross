@@ -169,7 +169,7 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
         ?>
       </div>
     </div>
-    <div class="row row--vision position-relative">
+    <div class="row row--vision position-relative flex-column-reverse flex-md-row">
       <div class="boxes-decor"></div>
       <div class="col-lg-8 d-flex align-items-center">
         <?php
@@ -179,7 +179,7 @@ $imagen_fondo = get_post_meta(get_the_ID(), 'imagen_fondo', true);
         ?>
       </div>
       <div class="col-lg-4">
-        <div class="row h-100 align-items-end pb-5 ps-4">
+        <div class="row h-100 align-items-end pb-md-5 ps-4">
           <div class="col-auto">
             <span class="square square--grey"></span>
           </div>

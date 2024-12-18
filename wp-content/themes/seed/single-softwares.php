@@ -69,7 +69,9 @@ if (!empty($texto_fila_1) && !empty($video_imagen)) : ?>
     <div class="container">
       <div class="row mb-4">
         <div class="col-lg-6">
-          <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="img-fluid img-single-software mb-5" alt="...">
+          <div class="text-center text-md-start">
+            <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="img-fluid img-single-software mb-5" alt="...">
+          </div>
           <div class="position-relative">
             <?php
             echo '<div class="contenido-fila">';

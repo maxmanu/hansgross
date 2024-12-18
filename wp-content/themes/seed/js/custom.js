@@ -19,19 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.success) {
           // Renderizar los posts en Swiper
           swiperEventos.innerHTML = data.data
-            .map(
-              (post) => `
+            .map((post) => {
+              // Condición para mostrar "servicio_fecha | servicio_horario" solo si existe servicio_fecha
+              const customText = post.servicio_fecha
+                ? `<p class="card-text">${post.servicio_fecha}${
+                    post.servicio_horario ? ` | ${post.servicio_horario}` : ''
+                  }</p>`
+                : '';
+
+              return `
                 <div class="swiper-slide">
                   <div class="card">
                     <img src="${post.thumbnail}" class="card-img-top" alt="${post.title}">
                     <div class="card-body">
-                      <p class="card-title">${post.title}</p>
-                      <p class="card-text">17 de octubre | 7:00 pm a 8:00 pm</p>
+                     <a class="card-title" href="${post.link}">${post.title}</a>
+                      ${customText}
                     </div>
                   </div>
                 </div>
-              `
-            )
+              `;
+            })
             .join('');
 
           // Destruir la instancia anterior de Swiper si existe

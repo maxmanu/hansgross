@@ -81,7 +81,7 @@ function cmb2_eventos_metaboxes()
 
   // Campo para la fecha
   $cmb->add_field(array(
-    'name' => 'Fecha del Servicio',
+    'name' => 'Fecha',
     'id'   => 'servicio_fecha',
     'type' => 'text_date', // Selector de fecha
     'date_format' => 'Y-m-d', // Formato de fecha
@@ -89,7 +89,7 @@ function cmb2_eventos_metaboxes()
 
   // Campo de texto para el horario
   $cmb->add_field(array(
-    'name' => 'Horario del Servicio',
+    'name' => 'Horario',
     'id'   => 'servicio_horario',
     'type' => 'text',
   ));
@@ -640,12 +640,23 @@ function load_event_posts_by_category()
 
     while ($query->have_posts()) {
       $query->the_post();
+      $post_id = get_the_ID();
+      // Obtener y formatear la fecha si existe
+      $fecha = get_post_meta($post_id, 'servicio_fecha', true);
+      $fecha_formateada = '';
+      if ($fecha) {
+        $timestamp = strtotime($fecha);
+        $fecha_formateada = date_i18n('j \d\e F, Y', $timestamp);
+        $fecha_formateada = traducir_mes($fecha_formateada); // Asegúrate de que esta función esté definida
+      }
       $posts[] = [
         'title' => get_the_title(),
         'excerpt' => get_the_excerpt(),
         'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
         'date' => get_the_date(),
         'link' => get_permalink(),
+        'servicio_fecha' => $fecha_formateada,
+        'servicio_horario' => get_post_meta($post_id, 'servicio_horario', true),
       ];
     }
 

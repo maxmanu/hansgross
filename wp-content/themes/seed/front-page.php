@@ -147,10 +147,10 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
       <div class="col-lg-4">
         <div class="col-section-title text-white mt-5">
           <?php if (!empty($titulo_de_seccion_servicios)): ?>
-            <h2 class="title-carousel-section mb-0 campo-texto"><?php echo $titulo_de_seccion_servicios; ?></h2>
+            <h2 class="title-carousel-section"><?php echo $titulo_de_seccion_servicios; ?></h2>
           <?php endif; ?>
           <?php if (!empty($subtitulo_de_seccion_servicios)): ?>
-            <p><?php echo esc_html($subtitulo_de_seccion_servicios); ?></p>
+            <p class="text-center text-md-start"><?php echo esc_html($subtitulo_de_seccion_servicios); ?></p>
           <?php endif; ?>
           <div class="d-flex justify-content-start arrows-swipper position-relative pt-4 hide-mobile">
             <div id="button-prev-servicios" class="btn-arrows-servicios ms-0 me-2">
@@ -209,12 +209,12 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
 <section class="section-softwares">
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 ms-auto text-white">
+      <div class="col-lg-5 ms-auto text-white text-center text-md-start">
         <?php if (!empty($titulo_de_seccion_softwares)): ?>
           <h2 class="colorgreen-2"><?php echo $titulo_de_seccion_softwares; ?></h2>
         <?php endif; ?>
         <?php if (!empty($subtitulo_de_seccion_softwares)): ?>
-          <p><?php echo esc_html($subtitulo_de_seccion_softwares); ?></p>
+          <p class="text-center text-md-start"><?php echo esc_html($subtitulo_de_seccion_softwares); ?></p>
         <?php endif; ?>
         <a href="/softwares"><button class="btn btn-hans btn-hans--white mt-4">Ver más</button></a>
       </div>

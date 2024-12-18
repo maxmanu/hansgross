@@ -305,7 +305,7 @@ $imagen_certificado =
             <?php endif; ?>
           </div>
           <!-- <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-curso.jpg" alt="" class="video-image mb-3"></a> -->
-          <div class="d-md-inline-flex mb-3">
+          <div class="d-inline-flex mb-3">
             <p class="text-price"><sup class="sup-price">S/ </sup>
               <?php
               if ($precio_soles) {
@@ -320,7 +320,7 @@ $imagen_certificado =
               }
               ?>
             </p>
-            <div class="vr my-auto d-none d-md-block"></div>
+            <div class="vr my-auto"></div>
             <p class="text-price"><sup class="sup-price">$ </sup>
               <?php
               if ($precio_dolares) {
