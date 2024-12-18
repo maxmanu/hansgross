@@ -265,13 +265,13 @@ $imagen_certificado =
 
                   // Verificar si hay etiquetas y no hay errores
                   if (!empty($terms) && !is_wp_error($terms)) {
-                    echo 'Etiquetas: ';
+                    echo 'Categoría: ';
                     foreach ($terms as $term) {
                       // Mostrar cada etiqueta con su enlace
                       echo  esc_html($term->name);
                     }
                   } else {
-                    echo 'No hay etiquetas.';
+                    echo 'No tiene categoría.';
                   }
                   ?>
                 </p>
@@ -486,10 +486,13 @@ $imagen_certificado =
                   <div class="costo-certificado">
                     <div class="d-sm-flex">
                       <div class="flex-shrink-0">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid" alt="...">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid d-none d-md-block" alt="...">
                       </div>
                       <div class="flex-grow-1 ms-sm-3">
-                        <p class="costo-certificado-tab">Costo del Certificado: </p>
+                        <p class="costo-certificado-tab">
+                          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-diploma.png" class="img-fluid d-inline d-md-none" alt="...">
+                          Costo del Certificado:
+                        </p>
                         <p class="accordion-price">
                           <sup>S/</sup>
                           <?php if ($precio_soles_certificado):  echo esc_html($precio_soles_certificado);

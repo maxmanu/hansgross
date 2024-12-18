@@ -176,9 +176,13 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-card-servicios g-4">
       <?php
+      $current_post_id = get_the_ID();
+
       $args = array(
-        'post_type' => 'post',
         'posts_per_page' => 3,
+        'post__not_in'   => array($current_post_id), // Excluir el post actual
+        'orderby'        => 'date', // Ordenar por fecha
+        'order'          => 'DESC' // Más recientes primero
       );
       $query = new WP_Query($args);
       if ($query->have_posts()) {

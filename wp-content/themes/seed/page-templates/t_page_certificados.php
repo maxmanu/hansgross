@@ -38,7 +38,7 @@ $texto_buscador = get_post_meta(get_the_ID(), 'texto_buscador', true);
           <form id="search-certificados-form">
             <div class="input-group mb-3 mx-auto">
               <input type="text" id="search-certificados" name="search" class="form-control" placeholder="Ingresa nombres y apellidos completos" aria-label="Ingresa nombres y apellidos" aria-describedby="button-addon2">
-              <button class="btn btn--search" type="button" id="search-certificados-button">Buscar</button>
+              <button class="btn--search" type="button" id="search-certificados-button">Buscar</button>
             </div>
           </form>
         </div>

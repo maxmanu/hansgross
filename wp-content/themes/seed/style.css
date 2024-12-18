@@ -1091,6 +1091,8 @@ footer .top-title {
 .btn--search {
   background-color: #06834D;
   color: #fff;
+  padding: 0.375rem 0.75rem;
+  border: 0;
 }
 
 .card-search .input-group {
@@ -1102,7 +1104,7 @@ footer .top-title {
   padding: .875rem 2rem;
 }
 
-.card-search .input-group .btn {
+.card-search .input-group .btn--search {
   flex: 1;
 }
 
@@ -2358,6 +2360,11 @@ tbody>:not(caption)>*>* {
 
   .bg-green-feature {
     background-color: rgb(6 137 77);
+  }
+
+  .costo-certificado {
+    text-align: center;
+    margin-left: 0;
   }
 }
 
