@@ -1921,8 +1921,13 @@ tbody>:not(caption)>*>* {
   max-width: 250px;
 }
 
+.swiperServiciosMain .swiper-slide-active .card-footer {
+  background-color: #06442A;
+}
 
-
+.swiperServiciosMain .swiper-slide-active .card-title {
+  color: #fff;
+}
 
 
 /*------MIN-WIDTH*--------*/

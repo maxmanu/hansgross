@@ -57,19 +57,23 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
         <div class="swiper swiperServiciosMain">
           <div class="swiper-wrapper text-center">
             <?php
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $args = array(
               'post_type' => 'servicios',
               'paged' => $paged,
             );
             $query = new WP_Query($args);
             if ($query->have_posts()) {
-              while ($query->have_posts()) : $query->the_post(); ?>
-                <div class="swiper-slide">
+              while ($query->have_posts()) : $query->the_post();
+                $post_id = get_the_ID(); // Obtener ID del post
+                $permalink = get_permalink(); // Obtener el enlace permanente del post
+            ?>
+                <div class="swiper-slide" data-slide="<?php echo $post_id; ?>">
                   <div class="card">
                     <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
                     <div class="card-footer justify-content-center">
-                      <a href="<?php echo get_permalink() ?>">
-                        <h5 class="card-title"><?php echo get_the_title() ?></h5>
+                      <a href="<?php echo esc_url($permalink . '?slide=' . $post_id); ?>">
+                        <h5 class="card-title"><?php echo get_the_title(); ?></h5>
                       </a>
                     </div>
                   </div>

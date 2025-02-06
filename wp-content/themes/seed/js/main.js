@@ -27,35 +27,6 @@ const swiperServicios = new Swiper('.swiperServicios', {
   },
 });
 
-const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
-  slidesPerView: 1,
-  centeredSlides: true, // Centra la diapositiva activa
-  loop: true,
-  spaceBetween: 20,
-  navigation: {
-    nextEl: '#button-next-serviciosMain',
-    prevEl: '#button-prev-serviciosMain',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  breakpoints: {
-    540: {
-      slidesPerView: 1.5,
-    },
-    768: {
-      slidesPerView: 2.5,
-    },
-    991: {
-      slidesPerView: 3.5,
-    },
-    1200: {
-      slidesPerView: 4.5,
-    },
-  },
-});
-
 const swiperServicios2 = new Swiper('.swiperServicios2', {
   loop: true,
   pagination: {
@@ -168,4 +139,48 @@ menuToggleButton.addEventListener('click', function () {
     // Si el botón tiene la clase 'collapsed', remueve la clase del padre
     navbar.classList.remove('menu-expanded');
   }
+});
+
+const urlParams = new URLSearchParams(window.location.search);
+const slideId = urlParams.get('slide'); // Obtener el ID del slide desde la URL
+
+let initialIndex = 0; // Valor por defecto si no hay slide en la URL
+
+if (slideId) {
+  const slides = document.querySelectorAll('.swiper-slide');
+  slides.forEach((slide, index) => {
+    if (slide.getAttribute('data-slide') === slideId) {
+      initialIndex = index; // Encontrar el índice correcto basado en el data-slide
+    }
+  });
+}
+
+const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
+  slidesPerView: 'auto',
+  centeredSlides: true, // Centra la diapositiva activa
+  loop: false,
+  initialSlide: initialIndex, // Se inicia en el slide correcto
+  spaceBetween: 20,
+  navigation: {
+    nextEl: '#button-next-serviciosMain',
+    prevEl: '#button-prev-serviciosMain',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    540: {
+      slidesPerView: 1.5,
+    },
+    768: {
+      slidesPerView: 2.5,
+    },
+    991: {
+      slidesPerView: 3.5,
+    },
+    1200: {
+      slidesPerView: 4.5,
+    },
+  },
 });

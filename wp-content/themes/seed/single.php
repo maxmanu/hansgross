@@ -84,6 +84,39 @@ $whatsapp_url = "https://api.whatsapp.com/send?text={$post_title} {$post_url}";
               <a href="<?php echo esc_url($whatsapp_url); ?>" class="" target="_blank">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/whatsapp-svg-icon.svg" alt="" class="img-fluid">
               </a>
+              <a id="share-copy-btn" class="aB-share-red aR3" style="background-color: #ffffff;" title="Compartir Enlace"><i class="fa fa-share-square-o" aria-hidden="true"></i>a</a>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  document.getElementById("share-copy-btn").addEventListener("click", function(event) {
+                    event.preventDefault(); // Evita que el enlace realice una acción predeterminada
+
+                    var url = window.location.href;
+
+                    if (navigator.share) {
+                      // Si el navegador soporta Web Share API, usamos compartir
+                      navigator.share({
+                        title: document.title,
+                        text: "Mira este enlace:",
+                        url: url
+                      }).then(() => {
+                        console.log("Compartido con éxito");
+                      }).catch((error) => {
+                        console.error("Error al compartir:", error);
+                      });
+                    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+                      // Si Web Share API no está disponible pero se puede copiar al portapapeles
+                      navigator.clipboard.writeText(url).then(function() {
+                        alert("URL copiada al portapapeles");
+                      }).catch(function(err) {
+                        console.error("Error al copiar la URL", err);
+                      });
+                    } else {
+                      // Si el navegador no permite copiar automáticamente, mostramos un mensaje
+                      prompt("Copia el enlace manualmente:", url);
+                    }
+                  });
+                });
+              </script>
             </div>
           </div>
         </div>
