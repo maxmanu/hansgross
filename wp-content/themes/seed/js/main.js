@@ -67,30 +67,6 @@ const swiperLogosClientes = new Swiper('.swiperLogosClientes', {
     },
   },
 });
-const swiperSoftwares = new Swiper('.swiperSoftwares', {
-  slidesPerView: 1,
-  spaceBetween: 0,
-  loop: true,
-  navigation: {
-    nextEl: '#button-next-software',
-    prevEl: '#button-prev-software',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 2,
-    },
-    991: {
-      slidesPerView: 4,
-    },
-    1200: {
-      slidesPerView: 6,
-    },
-  },
-});
 
 const swiperEquipo = new Swiper('.swiperEquipo', {
   slidesPerView: 1,
@@ -141,46 +117,87 @@ menuToggleButton.addEventListener('click', function () {
   }
 });
 
-const urlParams = new URLSearchParams(window.location.search);
-const slideId = urlParams.get('slide'); // Obtener el ID del slide desde la URL
+document.addEventListener('DOMContentLoaded', function () {
+  // Obtiene el parámetro 'slide' de la URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const slideId = urlParams.get('slide'); // Obtener el ID del slide desde la URL
 
-let initialIndex = 0; // Valor por defecto si no hay slide en la URL
-
-if (slideId) {
+  let initialIndex = 0; // Valor por defecto si no hay slide en la URL
   const slides = document.querySelectorAll('.swiper-slide');
-  slides.forEach((slide, index) => {
-    if (slide.getAttribute('data-slide') === slideId) {
-      initialIndex = index; // Encontrar el índice correcto basado en el data-slide
-    }
-  });
-}
 
-const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
-  slidesPerView: 'auto',
-  centeredSlides: true, // Centra la diapositiva activa
-  loop: false,
-  initialSlide: initialIndex, // Se inicia en el slide correcto
-  spaceBetween: 20,
-  navigation: {
-    nextEl: '#button-next-serviciosMain',
-    prevEl: '#button-prev-serviciosMain',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  breakpoints: {
-    540: {
-      slidesPerView: 1.5,
+  if (slideId) {
+    slides.forEach((slide, index) => {
+      if (slide.getAttribute('data-slide') === slideId) {
+        initialIndex = index; // Buscar el índice correcto
+      }
+    });
+  }
+
+  const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
+    slidesPerView: 'auto',
+    centeredSlides: true, // Centra la diapositiva activa
+    loop: true,
+    loopAdditionalSlides: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '#button-next-serviciosMain',
+      prevEl: '#button-prev-serviciosMain',
     },
-    768: {
-      slidesPerView: 2.5,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
     },
-    991: {
-      slidesPerView: 3.5,
+    breakpoints: {
+      540: {
+        slidesPerView: 1.5,
+      },
+      768: {
+        slidesPerView: 2.5,
+      },
+      991: {
+        slidesPerView: 3.5,
+      },
+      1200: {
+        slidesPerView: 4.5,
+      },
     },
-    1200: {
-      slidesPerView: 4.5,
+    on: {
+      init: function () {
+        if (slideId) {
+          setTimeout(() => {
+            swiperServiciosMain.slideToLoop(initialIndex, 0); // Usar slideToLoop() en vez de initialSlide
+          }, 100);
+        }
+      },
     },
-  },
+  });
+
+  const swiperSoftwares = new Swiper('.swiperSoftwares', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    centeredSlides: true, // Centra la diapositiva activa
+    loop: true,
+    loopAdditionalSlides: 1,
+    navigation: {
+      nextEl: '#button-next-software',
+      prevEl: '#button-prev-software',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      991: { slidesPerView: 3 },
+      1200: { slidesPerView: 5 },
+    },
+    on: {
+      init: function () {
+        if (slideId) {
+          setTimeout(() => {
+            swiperSoftwares.slideToLoop(initialIndex, 0); // Usar slideToLoop() en vez de initialSlide
+          }, 100);
+        }
+      },
+    },
+  });
 });

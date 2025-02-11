@@ -34,7 +34,7 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
   </div>
 </header>
 
-<section class="section-serviciosMain ptb-100 text-white">
+<section class="section-serviciosMain ptb-100 text-white" id="anchorService">
   <div class="container">
     <div class="row mb-4">
       <div class="col-lg-8 mx-auto text-center">
@@ -72,7 +72,7 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
                   <div class="card">
                     <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
                     <div class="card-footer justify-content-center">
-                      <a href="<?php echo esc_url($permalink . '?slide=' . $post_id); ?>">
+                      <a href="<?php echo esc_url($permalink . '?slide=' . $post_id . '#anchorService'); ?>">
                         <h5 class="card-title"><?php echo get_the_title(); ?></h5>
                       </a>
                     </div>

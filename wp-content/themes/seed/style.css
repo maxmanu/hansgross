@@ -1145,10 +1145,6 @@ tbody>:not(caption)>*>* {
   margin-top: -85px;
 }
 
-.software-page .btn-arrows-servicios {
-  display: none;
-}
-
 .software-page .row-softwares {
   margin-top: 80px;
   margin-bottom: 50px;
@@ -1921,14 +1917,17 @@ tbody>:not(caption)>*>* {
   max-width: 250px;
 }
 
-.swiperServiciosMain .swiper-slide-active .card-footer {
+.single-servicios .swiperServiciosMain .swiper-slide-active .card-footer {
   background-color: #06442A;
 }
 
-.swiperServiciosMain .swiper-slide-active .card-title {
+.single-servicios .swiperServiciosMain .swiper-slide-active .card-title {
   color: #fff;
 }
 
+.single-softwares .swiperSoftwares .swiper-slide-active .btn-arrows-servicios {
+  background-color: #03111C;
+}
 
 /*------MIN-WIDTH*--------*/
 

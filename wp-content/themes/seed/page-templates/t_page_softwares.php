@@ -27,17 +27,26 @@ $subtitulo = get_post_meta(get_the_ID(), 'pagina_subtitulo', true);
           <div class="swiper swiperSoftwares">
             <div class="swiper-wrapper">
               <?php
+              $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
               $args = array(
                 'post_type' => 'softwares',
                 'paged' => $paged,
               );
               $query = new WP_Query($args);
               if ($query->have_posts()) {
-                while ($query->have_posts()) : $query->the_post(); ?>
-                  <div class="swiper-slide">
+                while ($query->have_posts()) : $query->the_post();
+                  $post_id = get_the_ID();
+                  $permalink = get_permalink();
+              ?>
+                  <div class="swiper-slide" data-slide="<?php echo $post_id; ?>">
                     <div class="card-software">
-                      <a href="<?php echo get_permalink() ?>"><img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="..."></a>
+                      <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
                     </div>
+                    <a href="<?php echo esc_url($permalink . '?slide=' . $post_id . '#anchorSoftware'); ?>">
+                      <div class="btn btn-arrows-servicios">
+                        <i class="bi bi-arrow-right"></i>
+                      </div>
+                    </a>
                   </div>
               <?php endwhile;
               }

@@ -1,19 +1,60 @@
 <?php
+namespace Mtphr\PostDuplicator;
 
-/* --------------------------------------------------------- */
-/* !Duplicate the post - 2.34 */
-/* --------------------------------------------------------- */
+add_action( 'rest_api_init', __NAMESPACE__ . '\register_routes' );
 
-function mtphr_duplicate_post( $original_id, $args=array(), $do_action=true ) {
-	
-	// Get access to the database
+/**
+ * Register rest routes
+ */
+function register_routes() {
+  register_rest_route( 'post-duplicator/v1', 'duplicate-post', array(
+    'methods' 	=> 'POST',
+    'permission_callback' => __NAMESPACE__ . '\duplicate_post_permissions',
+    'callback' => __NAMESPACE__ . '\duplicate_post',
+  ) );
+}
+
+/**
+ * Duplicate a post
+ */
+function duplicate_post_permissions( $request ) {
+  $args = $request->get_params();
+  $data = $request->get_json_params();
+  $original_id = isset( $data['original_id'] ) ? $data['original_id'] : false;
+
+  if ( ! $original_id ) {
+    return new \WP_Error( 'no_original_id', esc_html__( 'No original id passed.', 'post-duplicator' ), array( 'status' => 403 ) );
+  }
+
+  if ( ! current_user_can( 'edit_post', $original_id ) ) {
+    return new \WP_Error( 'no_permission', esc_html__( 'User does not have permission to edit original post.', 'post-duplicator' ), array( 'status' => 403 ) );
+  }
+
+  $post = get_post( $original_id );
+  if ( ! user_can_duplicate( $post ) ) {
+	  return new \WP_Error( 'no_permission', esc_html__( 'User does not have permission to duplicate post.', 'post-duplicator' ), array( 'status' => 403 ) );
+	}
+
+  return true;
+}
+
+/**
+ * Duplicate a post
+ */
+function duplicate_post( $request ) {
+  $args = $request->get_params();
+  $data = $request->get_json_params();
+
+  // Get access to the database
 	global $wpdb;
+
+  // Get the original id
+  $original_id = $data['original_id'];
 	
 	// Get the post as an array
 	$duplicate = $orig = get_post( $original_id, 'ARRAY_A' );
 		
-	$global_settings = get_mtphr_post_duplicator_settings();
-	$settings = wp_parse_args( $args, $global_settings );
+	$settings = get_option_value();
 	
 	// Modify some of the elements
 	$appended = isset( $settings['title'] ) ? sanitize_text_field( $settings['title'] ) : esc_html__( 'Copy', 'post-duplicator' );
@@ -66,9 +107,9 @@ function mtphr_duplicate_post( $original_id, $args=array(), $do_action=true ) {
 	unset( $duplicate['comment_count'] );
 
 	//$duplicate['post_content'] = wp_slash( str_replace( array( '\r\n', '\r', '\n' ), '<br />', wp_kses_post( $duplicate['post_content'] ) ) ); 
-	add_filter( 'wp_kses_allowed_html', 'mtphr_duplicate_post_additional_kses', 10, 2 );
+	add_filter( 'wp_kses_allowed_html', __NAMESPACE__ . '\additional_kses', 10, 2 );
 	$duplicate['post_content'] = wp_slash( wp_kses_post( $duplicate['post_content'] ) ); 
-	remove_filter( 'wp_kses_allowed_html', 'mtphr_duplicate_post_additional_kses', 10, 2 );
+	remove_filter( 'wp_kses_allowed_html', __NAMESPACE__ . '\additional_kses', 10, 2 );
 
 	// Insert the post into the database
 	$duplicate_id = wp_insert_post( $duplicate );
@@ -109,46 +150,17 @@ function mtphr_duplicate_post( $original_id, $args=array(), $do_action=true ) {
 	}
 	
 	// Add an action for others to do custom stuff
-	if( $do_action ) {
-		do_action( 'mtphr_post_duplicator_created', $original_id, $duplicate_id, $settings );
-	}
+	do_action( 'mtphr_post_duplicator_created', $original_id, $duplicate_id, $settings );
 
-	return [
+  return rest_ensure_response( [
 		'duplicate_id' => $duplicate_id,
-	];
+	] , 200 );
 }
 
-
-/* --------------------------------------------------------- */
-/* !Ajax duplicate post - 2.25 */
-/* --------------------------------------------------------- */
-
-function m4c_duplicate_post() {
-
-	// Check the nonce
-	check_ajax_referer( 'm4c_ajax_file_nonce', 'security' );
-	
-	// Get variables
-	$original_id  = intval( $_POST['original_id'] );
-  $author_id = get_post_field( 'post_author', $original_id );
-
-  $settings = get_mtphr_post_duplicator_settings();
-  if ( 'current_user' === $settings['post_duplication'] ) {
-    if ( get_current_user_id() != $author_id ) {
-      return wp_send_json( [] );
-    }
-  }
-	
-	// Duplicate the post
-	$data = mtphr_duplicate_post( $original_id );
-
-	wp_send_json( $data );
-}
-add_action( 'wp_ajax_m4c_duplicate_post', 'm4c_duplicate_post' );
-
-
-// Allow additional tags to wp_kses_post
-function mtphr_duplicate_post_additional_kses( $allowed_tags ) {
+/**
+ * Add custom allowed kses
+ */
+function additional_kses( $allowed_tags ) {
 	// Allow the center tag with its attributes
 	$allowed_tags['center'] = array(
 			'align' => true,
