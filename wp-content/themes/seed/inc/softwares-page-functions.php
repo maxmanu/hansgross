@@ -10,7 +10,7 @@ function custom_fields_pagina_softwares()
 
   $cmb = new_cmb2_box(array(
     'id'            => 'custom_fields_softwares', // ID único
-    'title'         => 'Sección Todos los Softwares', // Título del metabox
+    'title'         => 'Sección Todos las Soluciones', // Título del metabox
     'object_types'  => array('page'), // Solo para páginas
     'show_on'       => array(
       'key'   => 'id',

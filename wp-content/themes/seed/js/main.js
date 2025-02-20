@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
       clickable: true,
     },
     breakpoints: {
-      991: { slidesPerView: 3 },
+      768: { slidesPerView: 3 },
       1200: { slidesPerView: 5 },
     },
     on: {

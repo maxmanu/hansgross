@@ -1328,8 +1328,8 @@ tbody>:not(caption)>*>* {
 }
 
 .btn-play-wrapper img {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 70px;
+  max-height: 70px;
 }
 
 .btn-hans--whats,
@@ -1499,7 +1499,9 @@ tbody>:not(caption)>*>* {
 }
 
 .img-description {
-  max-width: 500px;
+  width: 500px;
+  height: 330px;
+  object-fit: cover;
   border-radius: 25px;
 }
 
@@ -1509,6 +1511,7 @@ tbody>:not(caption)>*>* {
   border: 1px solid rgba(123, 168, 147, 1);
   color: var(--green-2);
   width: 500px;
+  max-width: 100%;
   padding: 15px;
 }
 
@@ -1929,6 +1932,17 @@ tbody>:not(caption)>*>* {
   background-color: #03111C;
 }
 
+.solucion-title {
+  font-weight: 700;
+  color: var(--green-2);
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+main .section-software-description:nth-child(even) {
+  background-color: #FFF;
+}
+
 /*------MIN-WIDTH*--------*/
 
 @media (min-width: 768px) {
@@ -2054,6 +2068,16 @@ tbody>:not(caption)>*>* {
 
   .text-price {
     font-size: 1.8rem;
+  }
+
+  .header-logo {
+    max-width: 170px;
+  }
+}
+
+@media (min-width:991px) and (max-width:1200px) {
+  #navbarExample1 .nav-link {
+    font-size: 1rem;
   }
 }
 
@@ -2332,6 +2356,7 @@ tbody>:not(caption)>*>* {
 
   .img-description {
     max-width: 100%;
+    border-radius: 15px;
   }
 
   .btn-download,
@@ -2371,6 +2396,11 @@ tbody>:not(caption)>*>* {
   .costo-certificado {
     text-align: center;
     margin-left: 0;
+  }
+
+  .ptb-100 {
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 }
 

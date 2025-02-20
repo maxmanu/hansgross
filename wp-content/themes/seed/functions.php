@@ -203,7 +203,6 @@ add_action('do_meta_boxes', 'hide_publish_metabox');
  */
 add_filter('get_the_archive_title_prefix', '__return_false');
 
-
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */

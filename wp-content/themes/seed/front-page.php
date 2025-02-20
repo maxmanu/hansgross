@@ -230,7 +230,7 @@ $subtitulo_de_seccion_softwares = get_post_meta(get_the_ID(), 'subtitulo_de_secc
             <?php
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $args = array(
-              'post_type' => 'softwares',
+              'post_type' => 'soluciones',
               'paged' => $paged,
             );
             $query = new WP_Query($args);
