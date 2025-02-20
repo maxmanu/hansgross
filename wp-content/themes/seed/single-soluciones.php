@@ -126,7 +126,7 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
                 <a href="<?php echo $brochure ?>" target="_blank" rel="noopener noreferrer">
                   <button class="btn btn-download">
                     <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
-                    Descargar Brochure
+                    Descargars Brochure
                   </button>
                 </a>
               <?php }
