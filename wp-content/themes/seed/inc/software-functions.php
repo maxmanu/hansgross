@@ -218,7 +218,7 @@ function cmb2_add_solucion_fields()
 
   // Texto de la fila
   $cmb->add_group_field($group_field_id, array(
-    'name' => 'Texto de la fila',
+    'name' => 'Título de la fila',
     'desc' => 'Introduce una descripción.',
     'id'   => 'titulo_fila',
     'type' => 'text',
@@ -332,7 +332,7 @@ function cmb2_add_solucion_fields()
 
   // Texto de la fila
   $cmb->add_group_field($group_field_id, array(
-    'name' => 'Texto de la fila',
+    'name' => 'Título de la fila',
     'desc' => 'Introduce una descripción.',
     'id'   => 'titulo_fila_2',
     'type' => 'text',
