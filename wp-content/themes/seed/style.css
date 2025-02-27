@@ -1557,6 +1557,12 @@ tbody>:not(caption)>*>* {
   pointer-events: none;
 }
 
+.swiperLogosClientes .swiper-slide img {
+  width: 170px;
+  height: 100px;
+  object-fit: contain;
+}
+
 .obi-link:hover {
   color: inherit;
 }
