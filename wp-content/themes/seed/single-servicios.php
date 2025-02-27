@@ -61,6 +61,7 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
             $args = array(
               'post_type' => 'servicios',
               'paged' => $paged,
+              'posts_per_page' => -1,
             );
             $query = new WP_Query($args);
             if ($query->have_posts()) {

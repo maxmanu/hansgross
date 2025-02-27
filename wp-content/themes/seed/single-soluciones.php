@@ -28,6 +28,7 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
               $args = array(
                 'post_type' => 'soluciones',
                 'paged' => $paged,
+                'posts_per_page' => -1,
               );
               $query = new WP_Query($args);
               if ($query->have_posts()) {
