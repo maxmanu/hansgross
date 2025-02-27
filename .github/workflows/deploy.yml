@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
@@ -20,5 +20,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./ # Directorio local para subir (./ sube todo el proyecto)
           server-dir: ${{ secrets.FTP_PATH }}
-          method: ftp # Cambia a 'sftp' si prefieres usar SFTP en lugar de FTP
-          git-ftp-args: --insecure
+          method: ftps
+          dangerous-clean-slate: true
