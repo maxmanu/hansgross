@@ -21,4 +21,10 @@ jobs:
           local-dir: ./ # Directorio local para subir (./ sube todo el proyecto)
           server-dir: ${{ secrets.FTP_PATH }}
           method: ftps
-          dangerous-clean-slate: true
+          # dangerous-clean-slate: true //# Esto eliminará archivos en el servidor que no estén en el repositorio
+          # exclude: |
+          # wp-config.php
+          # wp-includes/*
+          # wp-admin/*
+          # .htaccess
+          # wp-content/uploads/*
