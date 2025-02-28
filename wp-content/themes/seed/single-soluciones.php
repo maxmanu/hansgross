@@ -86,79 +86,79 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
       $titulo_fila_2 = !empty($solucion['titulo_fila_2']) ? esc_html($solucion['titulo_fila_2']) : '';
       $texto_fila_2 = !empty($solucion['texto_fila_2']) ? esc_html($solucion['texto_fila_2']) : '';
   ?>
-
-      <section class="section-software-description position-relative ptb-100">
-        <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:inherit;left:55%;"></span>
-        <div class="container">
-          <div class="row mb-4">
-            <div class="col-lg-6">
-              <?php if ($logo) : ?>
-                <div class="text-center text-md-start">
-                  <img src="<?php echo $logo; ?>" alt="Logo" class="img-fluid img-single-software mb-5">
-                </div>
-              <?php endif; ?>
-              <div class="position-relative">
-                <p class="solucion-title"><?php echo esc_html($titulo_fila_1); ?></p>
-                <?php
-                echo '<div class="contenido-fila">';
-                echo wp_kses_post(wpautop($texto_fila_1));
-                echo '</div>';
-                ?>
-                <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:50px;"></span>
-              </div>
-            </div>
-            <div class="col-lg-6 text-center">
-              <div class="position-relative mb-3">
-                <?php if ($tipo_medio === 'video' && $video): ?>
-                  <a data-fslightbox="gallery" href="<?php echo esc_url($video) ?>">
-                    <img src="<?php echo $thumbnail ?>" alt="" class="img-fluid position-relative img-description">
-                    <div class="btn-play-wrapper">
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
-                    </div>
-                  </a>
-                <?php elseif ($tipo_medio === 'imagen' && $imagen): ?>
-                  <a data-fslightbox="gallery" href="<?php echo $imagen ?>">
-                    <img src="<?php echo $imagen ?>" alt="Imagen del Servicio" class="img-fluid img-description">
-                  </a>
-                <?php endif; ?>
-              </div>
-              <?php
-              if ($brochure) { ?>
-                <a href="<?php echo $brochure ?>" target="_blank" rel="noopener noreferrer">
-                  <button class="btn btn-download">
-                    <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
-                    Descargars Brochure
-                  </button>
-                </a>
-              <?php }
-              ?>
-            </div>
-          </div>
-
-          <?php
-          if (!empty($imagen_left) && !empty($imagen_right) && !empty($texto_fila_2)) : ?>
-            <div class="row align-items-center mb-4">
-              <div class="col-lg-6 position-relative text-center text-lg-start">
-                <div class="wrap wrap2">
-                  <img class="imga img-fluid" src="<?php echo $imagen_left ?>" alt="">
-                  <img class="imgb img-fluid d-none d-lg-block" src="<?php echo $imagen_right ?>" alt="">
-                </div>
-                <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:35px;right:30%;width:40px;height:40px;"></span>
-                <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:50px;left:10%;"></span>
-              </div>
+      <?php if (!empty($texto_fila_1) && !empty($tipo_medio) && ($tipo_medio === 'imagen' || $tipo_medio === 'video')) : ?>
+        <section class="section-software-description position-relative ptb-100">
+          <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:inherit;left:55%;"></span>
+          <div class="container">
+            <div class="row mb-4">
               <div class="col-lg-6">
-                <p class="solucion-title"><?php echo esc_html($titulo_fila_2); ?></p>
+                <?php if ($logo) : ?>
+                  <div class="text-center text-md-start">
+                    <img src="<?php echo $logo; ?>" alt="Logo" class="img-fluid img-single-software mb-5">
+                  </div>
+                <?php endif; ?>
+                <div class="position-relative">
+                  <p class="solucion-title"><?php echo esc_html($titulo_fila_1); ?></p>
+                  <?php
+                  echo '<div class="contenido-fila">';
+                  echo wp_kses_post(wpautop($texto_fila_1));
+                  echo '</div>';
+                  ?>
+                  <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:50px;"></span>
+                </div>
+              </div>
+              <div class="col-lg-6 text-center">
+                <div class="position-relative mb-3">
+                  <?php if ($tipo_medio === 'video' && $video): ?>
+                    <a data-fslightbox="gallery" href="<?php echo esc_url($video) ?>">
+                      <img src="<?php echo $thumbnail ?>" alt="" class="img-fluid position-relative img-description">
+                      <div class="btn-play-wrapper">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+                      </div>
+                    </a>
+                  <?php elseif ($tipo_medio === 'imagen' && $imagen): ?>
+                    <a data-fslightbox="gallery" href="<?php echo $imagen ?>">
+                      <img src="<?php echo $imagen ?>" alt="Imagen del Servicio" class="img-fluid img-description">
+                    </a>
+                  <?php endif; ?>
+                </div>
                 <?php
-                echo '<div class="contenido-fila">';
-                echo wp_kses_post(wpautop($texto_fila_2));
-                echo '</div>';
+                if ($brochure) { ?>
+                  <a href="<?php echo $brochure ?>" target="_blank" rel="noopener noreferrer">
+                    <button class="btn btn-download">
+                      <span><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-expediente.png" style="width:30px;padding-bottom:5px;" alt=""></span>
+                      Descargars Brochure
+                    </button>
+                  </a>
+                <?php }
                 ?>
               </div>
             </div>
-          <?php endif; ?>
-        </div>
-      </section>
 
+            <?php
+            if (!empty($imagen_left) && !empty($imagen_right) && !empty($texto_fila_2)) : ?>
+              <div class="row align-items-center mb-4">
+                <div class="col-lg-6 position-relative text-center text-lg-start">
+                  <div class="wrap wrap2">
+                    <img class="imga img-fluid" src="<?php echo $imagen_left ?>" alt="">
+                    <img class="imgb img-fluid d-none d-lg-block" src="<?php echo $imagen_right ?>" alt="">
+                  </div>
+                  <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:35px;right:30%;width:40px;height:40px;"></span>
+                  <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:50px;left:10%;"></span>
+                </div>
+                <div class="col-lg-6">
+                  <p class="solucion-title"><?php echo esc_html($titulo_fila_2); ?></p>
+                  <?php
+                  echo '<div class="contenido-fila">';
+                  echo wp_kses_post(wpautop($texto_fila_2));
+                  echo '</div>';
+                  ?>
+                </div>
+              </div>
+            <?php endif; ?>
+          </div>
+        </section>
+      <?php endif; ?>
   <?php
     endforeach;
   endif;
