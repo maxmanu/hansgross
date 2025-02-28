@@ -94,7 +94,7 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
             <div class="col-lg-6">
               <?php if ($logo) : ?>
                 <div class="text-center text-md-start">
-                  <img src="<?php echo $logo; ?>" alt="Logo" class="img-fluid img-single-software mb-3">
+                  <img src="<?php echo $logo; ?>" alt="Logo" class="img-fluid img-single-software mb-5">
                 </div>
               <?php endif; ?>
               <div class="position-relative">
