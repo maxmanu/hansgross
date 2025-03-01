@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     spaceBetween: 0,
     centeredSlides: true, // Centra la diapositiva activa
     loop: true,
-    // loopAdditionalSlides: 0,
+    loopAdditionalSlides: 1,
     navigation: {
       nextEl: '#button-next-software',
       prevEl: '#button-prev-software',
