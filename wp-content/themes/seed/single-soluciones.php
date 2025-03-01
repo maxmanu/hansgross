@@ -86,7 +86,7 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
       $titulo_fila_2 = !empty($solucion['titulo_fila_2']) ? esc_html($solucion['titulo_fila_2']) : '';
       $texto_fila_2 = !empty($solucion['texto_fila_2']) ? esc_html($solucion['texto_fila_2']) : '';
   ?>
-      <?php if (!empty($texto_fila_1) && !empty($tipo_medio) && ($tipo_medio === 'imagen' || $tipo_medio === 'video')) : ?>
+      <?php if (!empty($texto_fila_1) && !empty($tipo_medio) && (($tipo_medio === 'imagen' && !empty($imagen)) || ($tipo_medio === 'video' && !empty($video)))) : ?>
         <section class="section-software-description position-relative ptb-100">
           <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:inherit;left:55%;"></span>
           <div class="container">
