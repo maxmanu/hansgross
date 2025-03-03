@@ -1937,8 +1937,9 @@ tbody>:not(caption)>*>* {
   color: #fff;
 }
 
-.single-softwares .swiperSoftwares .swiper-slide-active .btn-arrows-servicios {
+.single-soluciones .swiperSoftwares .swiper-slide-active .btn-arrows-servicios {
   background-color: #03111C;
+  border: 2px solid white;
 }
 
 .solucion-title {

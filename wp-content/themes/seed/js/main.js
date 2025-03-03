@@ -118,10 +118,10 @@ menuToggleButton.addEventListener('click', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Obtiene el parámetro 'slide' de la URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const slideId = urlParams.get('slide'); // Obtener el ID del slide desde la URL
+  // 1. Obtener el valor 'selectedSlide' almacenado en sessionStorage
+  let slideId = sessionStorage.getItem('selectedSlide');
 
+  // 2. Calcular el índice del slide que coincide con el valor almacenado
   let initialIndex = 0; // Valor por defecto si no hay slide en la URL
   const slides = document.querySelectorAll('.swiper-slide');
 
@@ -133,11 +133,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // 3. Configurar el Swiper.
+  // Nota: El slider se comporta distinto según la cantidad de slides,
+  // por eso se usa centeredSlides y loop si hay más de 6 diapositivas.
+  const totalSlidesSoftwares = document.querySelectorAll('.swiperSoftwares .swiper-slide').length;
+  const swiperSoftwares = new Swiper('.swiperSoftwares', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    centeredSlides: totalSlidesSoftwares > 6, // Centra la diapositiva activa si hay más de 6 diapositivas
+    loop: totalSlidesSoftwares > 6, // Solo activa loop si hay más de 6 diapositivas
+    loopAdditionalSlides: totalSlidesSoftwares > 6 ? 1 : 0, // Evita duplicados innecesarios si hay pocas diapositivas
+    navigation: {
+      nextEl: '#button-next-software',
+      prevEl: '#button-prev-software',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      768: { slidesPerView: 3 },
+      1200: { slidesPerView: 5 },
+    },
+    on: {
+      init: function () {
+        // Si hay un slide almacenado en sessionStorage, reposicionar el slider
+        if (slideId) {
+          setTimeout(() => {
+            swiperSoftwares.slideToLoop(initialIndex, 0); // Usar slideToLoop() en vez de initialSlide
+          }, 100);
+        }
+      },
+    },
+  });
+
+  // 3. Configurar el Swiper.
+  const totalSlidesServicios = document.querySelectorAll('.swiperServiciosMain .swiper-slide').length;
   const swiperServiciosMain = new Swiper('.swiperServiciosMain', {
     slidesPerView: 'auto',
-    centeredSlides: true, // Centra la diapositiva activa
-    loop: true,
-    loopAdditionalSlides: 1,
+    centeredSlides: totalSlidesServicios > 6, // Centra la diapositiva activa si hay más de 6 diapositivas
+    loop: totalSlidesServicios > 6, // Solo activa loop si hay más de 6 diapositivas
+    loopAdditionalSlides: totalSlidesServicios > 6 ? 1 : 0, // Evita duplicados innecesarios si hay pocas diapositivas
     spaceBetween: 20,
     navigation: {
       nextEl: '#button-next-serviciosMain',
@@ -172,32 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  const swiperSoftwares = new Swiper('.swiperSoftwares', {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    centeredSlides: true, // Centra la diapositiva activa
-    loop: true,
-    loopAdditionalSlides: 1,
-    navigation: {
-      nextEl: '#button-next-software',
-      prevEl: '#button-prev-software',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    breakpoints: {
-      768: { slidesPerView: 3 },
-      1200: { slidesPerView: 5 },
-    },
-    on: {
-      init: function () {
-        if (slideId) {
-          setTimeout(() => {
-            swiperSoftwares.slideToLoop(initialIndex, 0); // Usar slideToLoop() en vez de initialSlide
-          }, 100);
-        }
-      },
-    },
+  // 4. Actualizar sessionStorage cuando se haga clic en un slide
+  slides.forEach((slide) => {
+    slide.addEventListener('click', function () {
+      const id = slide.getAttribute('data-slide');
+      sessionStorage.setItem('selectedSlide', id);
+    });
   });
 });

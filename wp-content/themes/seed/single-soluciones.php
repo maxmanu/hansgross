@@ -40,7 +40,7 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
                     <div class="card-software">
                       <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
                     </div>
-                    <a href="<?php echo esc_url($permalink . '?slide=' . $post_id . '#anchorSoftware'); ?>">
+                    <a href="<?php echo esc_url($permalink . '#anchorSoftware'); ?>">
                       <div class="btn btn-arrows-servicios">
                         <i class="bi bi-arrow-right"></i>
                       </div>

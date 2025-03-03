@@ -73,7 +73,7 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
                   <div class="card">
                     <img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id()) ?>" class="card-img-top" alt="...">
                     <div class="card-footer justify-content-center">
-                      <a href="<?php echo esc_url($permalink . '?slide=' . $post_id . '#anchorService'); ?>">
+                      <a href="<?php echo esc_url($permalink . '#anchorService'); ?>">
                         <h5 class="card-title"><?php echo get_the_title(); ?></h5>
                       </a>
                     </div>
