@@ -334,6 +334,7 @@ h2 {
 
 .section-servicios-description p {
   text-align: justify;
+  overflow-wrap: break-word;
 }
 
 .section-servicios-description .card {
@@ -2479,8 +2480,15 @@ main .section-software-description:nth-child(even) {
     padding-bottom: 0;
   }
 
+
   .row--vision {
     padding-top: 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .swiperServiciosMain .card-img-top {
+    height: 235px;
   }
 }
 

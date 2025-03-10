@@ -52,129 +52,6 @@ function registrar_cpt_soluciones()
 }
 add_action('init', 'registrar_cpt_soluciones');
 
-
-
-// function cmb2_add_solucion_fields()
-// {
-//   $cmb = new_cmb2_box(array(
-//     'id'            => 'software_metabox_2', // ID único del metabox
-//     'title'         => 'Primera Fila de Contenido', // Título del metabox
-//     'object_types'  => array('soluciones'), // Tipos de contenido donde se aplicará
-//     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
-//     'priority'      => 'high', // Prioridad del metabox
-//     'show_names'    => true, // Mostrar etiquetas del campo
-//   ));
-
-//   $cmb->add_field(array(
-//     'name'       => 'Texto de primera fila', // Etiqueta del campo
-//     'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
-//     'id'         => 'texto_fila_1', // ID único del campo
-//     'type'    => 'wysiwyg',
-//     'options' => array(
-//       'wpautop' => true, // use wpautop?
-//       'media_buttons' => false, // show insert/upload button(s)
-//       'teeny'         => false, // Usa el editor estándar (no simplificado)
-//     ),
-//     'custom_required' => true, // Indica que el campo es obligatorio.
-//   ));
-
-//   $cmb->add_field(array(
-//     'name'         => 'Video o Imagen',
-//     'desc'         => 'Sube un video o imagen.',
-//     'id'           => 'video_software',
-//     'type'         => 'file',
-//     'options'      => array(
-//       'url' => false, // Oculta el campo de URL adicional (opcional)
-//     ),
-//     'text'         => array(
-//       'add_upload_file_text' => 'Añadir video o imagen' // Texto del botón
-//     ),
-//     'query_args' => array(
-//       'type' => array(
-//         'image/jpeg',
-//         'image/png',
-//         'video/mp4',
-//         'video/webm'
-//       ), // Permitir imágenes y videos
-//     ),
-//     'preview_size' => array(300, 300), // Tamaño del preview en el administrador
-//   ));
-
-//   $cmb->add_field(array(
-//     'name'         => 'Brochure',
-//     'desc'         => 'Sube un pdf.',
-//     'id'           => 'brochure_software',
-//     'type'         => 'file',
-//     'options'      => array(
-//       'url' => false, // Oculta el campo de URL adicional (opcional)
-//     ),
-//     'text'         => array(
-//       'add_upload_file_text' => 'Añadir archivo' // Texto del botón
-//     ),
-//     'query_args'   => array(
-//       'type' => 'pdf', // Tipos de archivo permitidos
-//     ),
-//     'preview_size' => array(300, 300), // Tamaño del preview en el administrador
-//   ));
-
-//   //--------------------------------------------------------------------------------
-
-//   $cmb = new_cmb2_box(array(
-//     'id'            => 'software_metabox_3', // ID único del metabox
-//     'title'         => 'Segunda Fila de Contenido', // Título del metabox
-//     'object_types'  => array('soluciones'), // Tipos de contenido donde se aplicará (en este caso, solo posts)
-//     'context'       => 'normal', // Dónde aparecerá (normal, side, advanced)
-//     'priority'      => 'high', // Prioridad del metabox
-//     'show_names'    => true, // Mostrar etiquetas del campo
-//   ));
-
-//   $cmb->add_field(array(
-//     'name' => 'Imagen 1', // Nombre del campo
-//     'desc' => 'Sube una imagen', // Descripción opcional
-//     'id'   => 'imagen_left', // ID único del campo
-//     'type' => 'file', // Tipo de campo
-//     'options' => array(
-//       'url' => true, // Permitir la URL
-//     ),
-//     'text' => array(
-//       'add_upload_file_text' => 'Subir imagen', // Texto del botón
-//     ),
-//     'query_args' => array(
-//       'type' => 'image', // Limitar a imágenes
-//     ),
-//   ));
-
-//   $cmb->add_field(array(
-//     'name' => 'Imagen 2', // Nombre del campo
-//     'desc' => 'Sube una imagen', // Descripción opcional
-//     'id'   => 'imagen_right', // ID único del campo
-//     'type' => 'file', // Tipo de campo
-//     'options' => array(
-//       'url' => true, // Permitir la URL
-//     ),
-//     'text' => array(
-//       'add_upload_file_text' => 'Subir imagen', // Texto del botón
-//     ),
-//     'query_args' => array(
-//       'type' => 'image', // Limitar a imágenes
-//     ),
-//   ));
-
-//   $cmb->add_field(array(
-//     'name'       => 'Texto de segunda fila', // Etiqueta del campo
-//     'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
-//     'id'         => 'texto_fila_2', // ID único del campo
-//     'type'    => 'wysiwyg',
-//     'options' => array(
-//       'wpautop' => true, // use wpautop?
-//       'media_buttons' => false, // show insert/upload button(s)
-//       'teeny'         => false, // Usa el editor estándar (no simplificado)
-//     ),
-//   ));
-// }
-
-// add_action('cmb2_admin_init', 'cmb2_add_solucion_fields');
-
 function cmb2_add_solucion_fields()
 {
   $cmb = new_cmb2_box(array(
@@ -198,7 +75,7 @@ function cmb2_add_solucion_fields()
     ),
   ));
 
-  // Video o imagen
+  // Logo
   $cmb->add_group_field($group_field_id, array(
     'name' => 'Logo',
     'desc' => 'Sube un logo.',
@@ -239,6 +116,7 @@ function cmb2_add_solucion_fields()
     'options' => array(
       'imagen' => __('Subir una imagen', 'cmb2'),
       'video'  => __('Subir un video', 'cmb2'),
+      'youtube'  => __('Enlace de Youtube', 'cmb2'),
     ),
     'default' => 'imagen',
   ));
@@ -265,6 +143,23 @@ function cmb2_add_solucion_fields()
   $cmb->add_group_field($group_field_id, array(
     'name'        => 'Imagen Thumbnail',
     'id'          => 'imagen_thumbnail',
+    'type'        => 'file',
+    'options'     => array('url' => false),
+    'text'        => array('add_upload_file_text' => 'Subir imagen'),
+    'query_args'  => array('type' => array('image/jpeg', 'image/png', 'image/webp')),
+    'preview_size' => array(300, 300),
+  ));
+
+  $cmb->add_group_field($group_field_id, array(
+    'name'        => 'Enlace de Youtube',
+    'desc'        => 'Introduce una URL válida como : "https://www.youtube.com/watch?v=3nQNiWdeH2Q"',
+    'id'          => 'youtube_url',
+    'type'        => 'text_url',
+  ));
+
+  $cmb->add_group_field($group_field_id, array(
+    'name'        => 'Youtube Thumbnail',
+    'id'          => 'youtube_thumbnail',
     'type'        => 'file',
     'options'     => array('url' => false),
     'text'        => array('add_upload_file_text' => 'Subir imagen'),
@@ -353,6 +248,64 @@ function cmb2_conditional_logic_script()
 {
 ?>
   <script>
+    // document.addEventListener("DOMContentLoaded", function() {
+    //   function updateFieldVisibility(row) {
+    //     let tipoMedio = row.querySelector('[name$="[tipo_medio]"]');
+    //     if (!tipoMedio) return;
+
+    //     let imageField = row.querySelector('[id$="imagen_upload"]')?.closest('.cmb-row');
+    //     let videoField = row.querySelector('[id$="video_upload"]')?.closest('.cmb-row');
+    //     let thumbField = row.querySelector('[id$="imagen_thumbnail"]')?.closest('.cmb-row');
+    //     let youtubeField = row.querySelector('[id$="youtube_url"]')?.closest('.cmb-row');
+    //     let youtubeThumbField = row.querySelector('[id$="youtube_thumbnail"]')?.closest('.cmb-row');
+
+    //     if (!imageField || !videoField || !thumbField || !youtubeField || !youtubeThumbField) return;
+
+    //     imageField.style.display = "none";
+    //     videoField.style.display = "none";
+    //     thumbField.style.display = "none";
+    //     youtubeField.style.display = "none";
+    //     youtubeThumbField.style.display = "none";
+
+    //     if (tipoMedio.value === "imagen") {
+    //       imageField.style.display = "block";
+    //     } else if (tipoMedio.value === "video") {
+    //       videoField.style.display = "block";
+    //       thumbField.style.display = "block";
+    //     } else if (tipoMedio.value === "youtube") {
+    //       youtubeField.style.display = "block";
+    //       youtubeThumbField.style.display = "block";
+    //     }
+    //   }
+
+    //   function initializeRepeater() {
+    //     document.querySelectorAll('.cmb-repeatable-grouping').forEach(row => {
+    //       updateFieldVisibility(row);
+    //     });
+    //   }
+
+    //   document.addEventListener("change", function(e) {
+    //     if (e.target.matches('[name$="[tipo_medio]"]')) {
+    //       let row = e.target.closest('.cmb-repeatable-grouping');
+    //       if (row) updateFieldVisibility(row);
+    //     }
+    //   });
+
+    //   // Detectar cuando se agrega un nuevo grupo repetible
+    //   document.addEventListener("cmb2_add_row", function(e) {
+    //     let newRow = e.detail ? e.detail.row : null;
+    //     if (newRow) {
+    //       // Resetear el select a su valor por defecto
+    //       let tipoMedio = newRow.querySelector('[name$="[tipo_medio]"]');
+    //       if (tipoMedio) tipoMedio.value = ""; // O el valor predeterminado de tu configuración
+
+    //       // Aplicar la visibilidad correcta
+    //       updateFieldVisibility(newRow);
+    //     }
+    //   });
+
+    //   initializeRepeater();
+    // });
     document.addEventListener("DOMContentLoaded", function() {
       function updateFieldVisibility(row) {
         let tipoMedio = row.querySelector('[name$="[tipo_medio]"]');
@@ -361,18 +314,25 @@ function cmb2_conditional_logic_script()
         let imageField = row.querySelector('[id$="imagen_upload"]')?.closest('.cmb-row');
         let videoField = row.querySelector('[id$="video_upload"]')?.closest('.cmb-row');
         let thumbField = row.querySelector('[id$="imagen_thumbnail"]')?.closest('.cmb-row');
+        let youtubeField = row.querySelector('[id$="youtube_url"]')?.closest('.cmb-row');
+        let youtubeThumbField = row.querySelector('[id$="youtube_thumbnail"]')?.closest('.cmb-row');
 
-        if (!imageField || !videoField || !thumbField) return;
+        [imageField, videoField, thumbField, youtubeField, youtubeThumbField].forEach(field => {
+          if (field) field.style.display = "none";
+        });
 
-        imageField.style.display = "none";
-        videoField.style.display = "none";
-        thumbField.style.display = "none";
-
-        if (tipoMedio.value === "imagen") {
-          imageField.style.display = "block";
-        } else if (tipoMedio.value === "video") {
-          videoField.style.display = "block";
-          thumbField.style.display = "block";
+        switch (tipoMedio.value) {
+          case "imagen":
+            if (imageField) imageField.style.display = "block";
+            break;
+          case "video":
+            if (videoField) videoField.style.display = "block";
+            if (thumbField) thumbField.style.display = "block";
+            break;
+          case "youtube":
+            if (youtubeField) youtubeField.style.display = "block";
+            if (youtubeThumbField) youtubeThumbField.style.display = "block";
+            break;
         }
       }
 
@@ -388,6 +348,25 @@ function cmb2_conditional_logic_script()
           if (row) updateFieldVisibility(row);
         }
       });
+
+      // 👀 Detectar cuando se agrega un nuevo grupo con MutationObserver
+      const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && node.classList.contains("cmb-repeatable-grouping")) {
+              // console.log("🆕 Nuevo grupo detectado con MutationObserver:", node);
+              updateFieldVisibility(node);
+            }
+          });
+        });
+      });
+
+      const repeatableContainer = document.querySelector('.cmb-repeatable-group');
+      if (repeatableContainer) {
+        observer.observe(repeatableContainer, {
+          childList: true
+        });
+      }
 
       initializeRepeater();
     });

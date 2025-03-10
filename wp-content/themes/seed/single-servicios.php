@@ -6,10 +6,21 @@ $titulo = get_post_meta(36, 'servicios_titulo', true);
 $descripcion = get_post_meta(36, 'servicios_descripcion', true);
 $texto_fila_1 = get_post_meta(get_the_ID(), 'texto_fila_1', true);
 $galeria_fila_1 = get_post_meta(get_the_ID(), 'galeria_imagenes_1', true);
-$video_url = get_post_meta(get_the_ID(), 'video_cmb2', true);
+
+// Obtener el tipo de medio seleccionado
+$tipo_medio = get_post_meta(get_the_ID(), 'tipo_medio', true);
+
+// Obtener los valores de los campos
+$imagen2 = get_post_meta(get_the_ID(), 'imagen_upload', true);
+$video = get_post_meta(get_the_ID(), 'video_cmb2', true);
+$video_thumbnail = get_post_meta(get_the_ID(), 'imagen_thumbnail', true);
+$youtube = get_post_meta(get_the_ID(), 'youtube_url', true);
+$youtube_thumbnail = get_post_meta(get_the_ID(), 'youtube_thumbnail', true);
 $texto_fila_2 = get_post_meta(get_the_ID(), 'texto_fila_2', true);
+
 $texto_fila_3 = get_post_meta(get_the_ID(), 'texto_fila_3', true);
 $galeria_fila_3 = get_post_meta(get_the_ID(), 'galeria_imagenes_2', true);
+
 
 // Obtener el mensaje personalizado del Custom Field de la página principal
 $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
@@ -102,7 +113,6 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
     </div>
   </div>
 </section>
-
 <section class="section-servicios-description position-relative">
   <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:500px;"></span>
   <div class="container">
@@ -142,17 +152,29 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
         </div>
       </div>
     <?php endif; ?>
-    <?php
-    if (!empty($video_url) && !empty($texto_fila_2)) : ?>
+    <?php if (!empty($texto_fila_2) && !empty($tipo_medio) && (($tipo_medio === 'imagen' && !empty($imagen2)) || ($tipo_medio === 'video' && !empty($video)) || ($tipo_medio === 'youtube' && !empty($youtube)))) : ?>
       <div class="row mb-5 align-items-center">
         <div class="col-lg-6 text-lg-start text-center">
           <div class="position-relative mb-3 image-column">
-            <a data-fslightbox="gallery" href="<?php echo esc_url($video_url) ?>">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/img-person-video.png" alt="" class="img-fluid position-relative">
-              <div class="btn-play-wrapper">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
-              </div>
-            </a>
+            <?php if ($tipo_medio === 'video' && $video): ?>
+              <a data-fslightbox="gallery" href="<?php echo esc_url($video) ?>">
+                <img src="<?php echo esc_url($video_thumbnail) ?>" alt="" class="img-fluid position-relative">
+                <div class="btn-play-wrapper">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+                </div>
+              </a>
+            <?php elseif ($tipo_medio === 'imagen' && $imagen2): ?>
+              <a data-fslightbox="gallery" href="<?php echo esc_url($imagen2); ?>">
+                <img src="<?php echo esc_url($imagen2); ?>" alt="Imagen del Servicio" class="img-fluid">
+              </a>
+            <?php elseif ($tipo_medio === 'youtube' && $youtube): ?>
+              <a data-fslightbox="gallery" href="<?php echo esc_url($youtube) ?>">
+                <img src="<?php echo esc_url($youtube_thumbnail) ?>" alt="" class="img-fluid position-relative">
+                <div class="btn-play-wrapper">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+                </div>
+              </a>
+            <?php endif; ?>
             <span class="box-decor-image" style="top:-30px; right:-30px;"></span>
           </div>
         </div>
@@ -164,41 +186,42 @@ $custom_whatsapp_message = get_post_meta(36, 'whatsapp_message', true);
           ?>
         </div>
       </div>
-    <?php endif; ?>
-    <?php
-    if (!empty($video_url) && !empty($texto_fila_2) && !empty($texto_fila_3) && !empty($galeria_fila_3)) : ?>
-      <div class="row">
-        <div class="col-lg-6 position-relative">
-          <?php
-          echo '<div class="contenido-fila">';
-          echo wp_kses_post(wpautop($texto_fila_3));
-          echo '</div>';
-          ?>
-          <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:0;"></span>
-        </div>
-        <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
-          <div class="swiper swiperServicios3">
-            <div class="swiper-wrapper">
-              <?php
-              if (!empty($galeria_fila_3)): ?>
 
-                <?php foreach ($galeria_fila_3 as $imagen):
-                  $url = !empty($imagen['logo_2']) ? esc_url($imagen['logo_2']) : '';
-                ?>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <img src="<?php echo $url; ?>" alt="Imagen de la galería" class="card-img-top">
-                    </div>
-                  </div>
-                <?php endforeach; ?>
-
-              <?php endif; ?>
-            </div>
-            <div class="swiper-pagination swiper-pagination3"></div>
+      <?php
+      if (!empty($texto_fila_3) && !empty($galeria_fila_3)) : ?>
+        <div class="row">
+          <div class="col-lg-6 position-relative">
+            <?php
+            echo '<div class="contenido-fila">';
+            echo wp_kses_post(wpautop($texto_fila_3));
+            echo '</div>';
+            ?>
+            <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:-80px;right:0;"></span>
           </div>
-          <span class="box-decor-image" style="top:-120px;right:-10px;"></span>
+          <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center position-relative">
+            <div class="swiper swiperServicios3">
+              <div class="swiper-wrapper">
+                <?php
+                if (!empty($galeria_fila_3)): ?>
+
+                  <?php foreach ($galeria_fila_3 as $imagen):
+                    $url = !empty($imagen['logo_2']) ? esc_url($imagen['logo_2']) : '';
+                  ?>
+                    <div class="swiper-slide">
+                      <div class="card">
+                        <img src="<?php echo $url; ?>" alt="Imagen de la galería" class="card-img-top">
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+
+                <?php endif; ?>
+              </div>
+              <div class="swiper-pagination swiper-pagination3"></div>
+            </div>
+            <span class="box-decor-image" style="top:-120px;right:-10px;"></span>
+          </div>
         </div>
-      </div>
+      <?php endif; ?>
     <?php endif; ?>
   </div>
   <span class="box-decor-image" style="background:#85E5BB;opacity:0.5;top:inherit;right:inherit;bottom:85px;left:200px;"></span>

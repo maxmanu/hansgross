@@ -122,8 +122,30 @@ function cmb2_add_servicio_fields()
   ));
 
   $cmb->add_field(array(
+    'name'    => 'Tipo de medio',
+    'id'      => 'tipo_medio',
+    'type'    => 'select',
+    'options' => array(
+      'imagen' => __('Subir una imagen', 'cmb2'),
+      'video'  => __('Subir un video', 'cmb2'),
+      'youtube'  => __('Enlace de Youtube', 'cmb2'),
+    ),
+    'default' => 'imagen',
+  ));
+
+  $cmb->add_field(array(
+    'name'        => 'Imagen',
+    'id'          => 'imagen_upload',
+    'type'        => 'file',
+    'options'     => array('url' => false),
+    'text'        => array('add_upload_file_text' => 'Subir imagen'),
+    'query_args'  => array('type' => array('image/jpeg', 'image/png', 'image/webp')),
+    'preview_size' => array(300, 300),
+  ));
+
+  $cmb->add_field(array(
     'name'         => 'Video',
-    'desc'         => 'Sube un video o proporciona una URL.',
+    'desc'         => 'Sube un video.',
     'id'           => 'video_cmb2',
     'type'         => 'file',
     'options'      => array(
@@ -138,7 +160,33 @@ function cmb2_add_servicio_fields()
     'preview_size' => array(300, 300), // Tamaño del preview en el administrador
   ));
 
-  // Añadir un campo de texto para el autor
+  $cmb->add_field(array(
+    'name'        => 'Imagen Thumbnail',
+    'id'          => 'imagen_thumbnail',
+    'type'        => 'file',
+    'options'     => array('url' => false),
+    'text'        => array('add_upload_file_text' => 'Subir imagen'),
+    'query_args'  => array('type' => array('image/jpeg', 'image/png', 'image/webp')),
+    'preview_size' => array(300, 300),
+  ));
+
+  $cmb->add_field(array(
+    'name'        => 'Enlace de Youtube',
+    'desc' => 'Introduce una URL válida como : "https://www.youtube.com/watch?v=3nQNiWdeH2Q"',
+    'id'          => 'youtube_url',
+    'type'        => 'text_url',
+  ));
+
+  $cmb->add_field(array(
+    'name'        => 'Youtube Thumbnail',
+    'id'          => 'youtube_thumbnail',
+    'type'        => 'file',
+    'options'     => array('url' => false),
+    'text'        => array('add_upload_file_text' => 'Subir imagen'),
+    'query_args'  => array('type' => array('image/jpeg', 'image/png', 'image/webp')),
+    'preview_size' => array(300, 300),
+  ));
+
   $cmb->add_field(array(
     'name'       => 'Texto de segunda fila', // Etiqueta del campo
     'desc'       => 'Introduce una descripción.', // Descripción debajo del campo
@@ -201,3 +249,50 @@ function cmb2_add_servicio_fields()
     ),
   ));
 }
+
+function cmb2_conditional_logic_script_services()
+{ ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function updateFieldVisibility(row) {
+        let tipoMedio = document.querySelector('[name="tipo_medio"]');
+        if (!tipoMedio) return;
+
+        let imageField = document.querySelector('#imagen_upload')?.closest('.cmb-row');
+        let videoField = document.querySelector('#video_cmb2')?.closest('.cmb-row');
+        let thumbField = document.querySelector('#imagen_thumbnail')?.closest('.cmb-row');
+        let youtubeField = document.querySelector('#youtube_url')?.closest('.cmb-row');
+        let youtubeThumbField = document.querySelector('#youtube_thumbnail')?.closest('.cmb-row');
+
+
+        [imageField, videoField, thumbField, youtubeField, youtubeThumbField].forEach(field => {
+          if (field) field.style.display = "none";
+        });
+
+        switch (tipoMedio.value) {
+          case "imagen":
+            if (imageField) imageField.style.display = "block";
+            break;
+          case "video":
+            if (videoField) videoField.style.display = "block";
+            if (thumbField) thumbField.style.display = "block";
+            break;
+          case "youtube":
+            if (youtubeField) youtubeField.style.display = "block";
+            if (youtubeThumbField) youtubeThumbField.style.display = "block";
+            break;
+        }
+      }
+
+      document.addEventListener("change", function(e) {
+        if (e.target.matches('[name="tipo_medio"]')) {
+          updateFieldVisibility();
+        }
+      });
+
+      updateFieldVisibility(); // Ejecutar al cargar la página
+    });
+  </script>
+<?php
+}
+add_action('admin_footer', 'cmb2_conditional_logic_script_services');

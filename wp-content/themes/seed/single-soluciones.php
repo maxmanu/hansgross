@@ -80,13 +80,15 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
       $imagen = !empty($solucion['imagen_upload']) ? esc_url($solucion['imagen_upload']) : '';
       $video = !empty($solucion['video_upload']) ? esc_url($solucion['video_upload']) : '';
       $thumbnail = !empty($solucion['imagen_thumbnail']) ? esc_url($solucion['imagen_thumbnail']) : '';
+      $youtube = !empty($solucion['youtube_url']) ? esc_url($solucion['youtube_url']) : '';
+      $thumbnail_youtube = !empty($solucion['youtube_thumbnail']) ? esc_url($solucion['youtube_thumbnail']) : '';
       $brochure = !empty($solucion['brochure_software']) ? esc_url($solucion['brochure_software']) : '';
       $imagen_left = !empty($solucion['imagen_left']) ? esc_url($solucion['imagen_left']) : '';
       $imagen_right = !empty($solucion['imagen_right']) ? esc_url($solucion['imagen_right']) : '';
       $titulo_fila_2 = !empty($solucion['titulo_fila_2']) ? esc_html($solucion['titulo_fila_2']) : '';
       $texto_fila_2 = !empty($solucion['texto_fila_2']) ? esc_html($solucion['texto_fila_2']) : '';
   ?>
-      <?php if (!empty($texto_fila_1) && !empty($tipo_medio) && (($tipo_medio === 'imagen' && !empty($imagen)) || ($tipo_medio === 'video' && !empty($video)))) : ?>
+      <?php if (!empty($texto_fila_1) && !empty($tipo_medio) && (($tipo_medio === 'imagen' && !empty($imagen)) || ($tipo_medio === 'video' && !empty($video)) || ($tipo_medio === 'youtube' && !empty($youtube)))) : ?>
         <section class="section-software-description position-relative ptb-100">
           <span class="box-decor-image" style="background:#CCCED0;opacity:0.5;top:30px;right:inherit;left:55%;"></span>
           <div class="container">
@@ -119,6 +121,13 @@ $subtitulo = get_post_meta(38, 'pagina_subtitulo', true);
                   <?php elseif ($tipo_medio === 'imagen' && $imagen): ?>
                     <a data-fslightbox="gallery" href="<?php echo $imagen ?>">
                       <img src="<?php echo $imagen ?>" alt="Imagen del Servicio" class="img-fluid img-description">
+                    </a>
+                  <?php elseif ($tipo_medio === 'youtube' && $youtube): ?>
+                    <a data-fslightbox="gallery" href="<?php echo esc_url($youtube) ?>">
+                      <img src="<?php echo $thumbnail_youtube ?>" alt="" class="img-fluid position-relative img-description">
+                      <div class="btn-play-wrapper">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/btn-play.svg" class="btn-play" alt="">
+                      </div>
                     </a>
                   <?php endif; ?>
                 </div>
