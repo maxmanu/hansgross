@@ -44,7 +44,7 @@ function registrar_cpt_servicios()
     'hierarchical' => false,
     'menu_position' => 5,
     'menu_icon' => 'dashicons-hammer', // Cambia el ícono si lo deseas.
-    'supports' => array('title', 'excerpt', 'thumbnail'),
+    'supports' => array('title', 'thumbnail'),
   );
 
   register_post_type('servicios', $args);

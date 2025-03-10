@@ -18,7 +18,7 @@ function cmb2_custom_fields_inicio()
       'object_types' => array('page'), // Aplica a páginas (puedes cambiar a cualquier CPT)
       'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
       'context'      => 'normal', // Ubicación: normal, side o advanced
-      'priority'     => 'high', // Prioridad
+      'priority'     => 'low', // Prioridad
       'show_names'   => true, // Mostrar nombres de los campos
     ));
 
@@ -56,7 +56,7 @@ function cmb2_custom_fields_inicio()
       'object_types' => array('page'), // Se aplica a páginas
       'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
       'context'      => 'normal', // Ubicación: normal, side o advanced
-      'priority'     => 'high', // Prioridad del meta box
+      'priority'     => 'low', // Prioridad del meta box
       'show_names'   => true, // Muestra los nombres de los campos
     ));
 
@@ -100,7 +100,7 @@ function cmb2_custom_fields_inicio()
       'object_types' => array('page'), // Se aplica a páginas
       'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
       'context'      => 'normal', // Ubicación: normal, side o advanced
-      'priority'     => 'high', // Prioridad del meta box
+      'priority'     => 'low', // Prioridad del meta box
       'show_names'   => true, // Muestra los nombres de los campos
     ));
 
@@ -152,7 +152,7 @@ function cmb2_custom_fields_inicio()
       'object_types' => array('page'), // Se aplica a páginas
       'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
       'context'      => 'normal', // Ubicación: normal, side o advanced
-      'priority'     => 'high', // Prioridad del meta box
+      'priority'     => 'low', // Prioridad del meta box
       'show_names'   => true, // Muestra los nombres de los campos
     ));
 
@@ -182,7 +182,7 @@ function cmb2_custom_fields_inicio()
       'object_types' => array('page'), // Se aplica a páginas
       'show_on'      => array('key' => 'id', 'value' => array($homepage_id)), // Solo en la página de inicio
       'context'      => 'normal', // Ubicación: normal, side o advanced
-      'priority'     => 'high', // Prioridad del meta box
+      'priority'     => 'low', // Prioridad del meta box
       'show_names'   => true, // Muestra los nombres de los campos
     ));
 

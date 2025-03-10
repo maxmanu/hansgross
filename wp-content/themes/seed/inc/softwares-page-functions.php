@@ -16,6 +16,7 @@ function custom_fields_pagina_softwares()
       'key'   => 'id',
       'value' => array($page_id), // Aplica solo para la página con ID 25
     ),
+    'priority'      => 'low',
   ));
 
   // Campo de texto: Título

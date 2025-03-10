@@ -16,6 +16,7 @@ function custom_fields_pagina_academico()
       'key'   => 'id',
       'value' => array($page_id),
     ),
+    'priority'      => 'low',
   ));
 
   $cmb->add_field(array(

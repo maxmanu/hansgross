@@ -17,6 +17,7 @@ function custom_fields_pagina_nosotros()
       'key'   => 'id',
       'value' => array($page_id), // Aplica solo para la página con ID 25
     ),
+    'priority'      => 'low',
   ));
 
   // Campo de texto: Título
@@ -67,6 +68,7 @@ function custom_fields_pagina_nosotros()
       'key'   => 'id',
       'value' => array($page_id), // Aplica solo para la página con ID 25
     ),
+    'priority'      => 'low',
   ));
   // Campo de texto: Título
   $cmb->add_field(array(
@@ -141,6 +143,7 @@ function custom_fields_pagina_nosotros()
       'key'   => 'id',
       'value' => array($page_id), // Aplica solo para la página con ID 25
     ),
+    'priority'      => 'low',
   ));
 
   // Campo de texto para la Misión

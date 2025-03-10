@@ -12,6 +12,7 @@ function custom_fields_pagina_servicios()
     'id'            => 'custom_fields_servicios', // ID único
     'title'         => 'Sección Todos los Servicios', // Título del metabox
     'object_types'  => array('page'), // Solo para páginas
+    'priority'      => 'low',
     'show_on'       => array(
       'key'   => 'id',
       'value' => array($page_id), // Aplica solo para la página con ID 25

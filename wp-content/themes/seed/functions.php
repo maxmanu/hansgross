@@ -204,6 +204,41 @@ add_action('do_meta_boxes', 'hide_publish_metabox');
 add_filter('get_the_archive_title_prefix', '__return_false');
 
 /**
+ * CUSTOM FIELDS GENERICAS
+ */
+
+add_action('cmb2_admin_init', 'cmb2_custom_fields_para_paginas');
+
+function cmb2_custom_fields_para_paginas()
+{
+  // Crea un nuevo meta box
+  $cmb = new_cmb2_box(array(
+    'id'           => 'custom_fields_paginas', // ID único para el meta box
+    'title'        => 'Banner de Página', // Título del meta box
+    'object_types' => array('page'), // Se aplica solo a páginas
+    'context'      => 'normal', // Contexto: normal, side o advanced
+    'priority'     => 'high', // Prioridad: high o low
+    'show_names'   => true, // Mostrar nombres de los campos
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Título', // Etiqueta del campo
+    'desc' => 'Ingrese un título para la página.', // Descripción del campo
+    'id'   => 'pagina_titulo', // ID único del campo
+    'type' => 'text', // Tipo de campo (texto)
+  ));
+
+  $cmb->add_field(array(
+    'name' => 'Subtítulo', // Etiqueta del campo
+    'desc' => 'Ingrese un subtítulo para la página.', // Descripción del campo
+    'id'   => 'pagina_subtitulo', // ID único del campo
+    'type' => 'text', // Tipo de campo (texto)
+  ));
+}
+
+add_action('cmb2_admin_init', 'cmb2_custom_fields_inicio');
+
+/**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/eventos-functions.php';
@@ -240,43 +275,6 @@ function categoryEventosRadioButton()
     echo '.each(function(){this.type="radio"});</script>';
   }
 }
-
-
-/**
- * CUSTOM FIELDS GENERICAS
- */
-
-add_action('cmb2_admin_init', 'cmb2_custom_fields_para_paginas');
-
-function cmb2_custom_fields_para_paginas()
-{
-  // Crea un nuevo meta box
-  $cmb = new_cmb2_box(array(
-    'id'           => 'custom_fields_paginas', // ID único para el meta box
-    'title'        => 'Banner de Página', // Título del meta box
-    'object_types' => array('page'), // Se aplica solo a páginas
-    'context'      => 'normal', // Contexto: normal, side o advanced
-    'priority'     => 'high', // Prioridad: high o low
-    'show_names'   => true, // Mostrar nombres de los campos
-  ));
-
-  $cmb->add_field(array(
-    'name' => 'Título', // Etiqueta del campo
-    'desc' => 'Ingrese un título para la página.', // Descripción del campo
-    'id'   => 'pagina_titulo', // ID único del campo
-    'type' => 'text', // Tipo de campo (texto)
-  ));
-
-  $cmb->add_field(array(
-    'name' => 'Subtítulo', // Etiqueta del campo
-    'desc' => 'Ingrese un subtítulo para la página.', // Descripción del campo
-    'id'   => 'pagina_subtitulo', // ID único del campo
-    'type' => 'text', // Tipo de campo (texto)
-  ));
-}
-
-add_action('cmb2_admin_init', 'cmb2_custom_fields_inicio');
-
 
 /**
  * CUSTOM FIELDS PÁGINA DE OPCIONES

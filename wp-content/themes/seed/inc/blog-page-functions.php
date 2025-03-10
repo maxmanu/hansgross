@@ -16,6 +16,7 @@ function custom_fields_pagina_blog()
       'key'   => 'id',
       'value' => array($page_id),
     ),
+    'priority'      => 'low',
   ));
 
   // Campo de texto largo: Descripción
